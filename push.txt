@@ -1,0 +1,12 @@
+First time
+create repo [username.github.io]
+git clone [your link]
+cd [.\username.github.io\]
+git add . 
+git commit -m "First commit"
+git push origin main
+
+UPDATE
+git add . 
+git commit -m "Updated code with recent changes"
+git push origin main
