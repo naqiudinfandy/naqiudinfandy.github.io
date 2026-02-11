@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | By Naqib</title>
+
+    <!-- custom css-->
+    <link rel="stylesheet" href="style.css">
+    <!--box icon-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- swiper css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!--Software icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.13.0/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+
+    <!--header design-->
+    <header class="header">
+        <a href="#" class="logo">Welcome to My Portfolio!</a>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#portfolio">Skills & Project</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="bx bx-moon" id="darkMode-icon"></div>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+    </header>
+    
+
+    <!--home section-->
+    <section class="home" id="home">
+
+        <div class="home-content">
+            <h3>Hello, I am</h3>
+            <h1>Muhammad Naqiudin</h1>
+            <p>A passionate programmer and data specialist. Skilled in various programming language and software.</p>
+
+            <div class="social-media">
+                <!-- <a href="#"><i class='bx bxl-facebook' ></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a> -->
+                <a href="https://www.instagram.com/naqiudin._?igsh=eTJiZGVnYW81dHll&utm_source=qr"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="https://www.linkedin.com/in/naqiudin-fandy/"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://github.com/naqiudinfandy"><i class='bx bxl-github'></i></a>
+                <a href="https://wa.link/ch48tk"><i class='bx bxl-whatsapp'></i></a>
+            </div>
+
+            <a href="resume\Muhammad-Naqiudin-Resume.pdf" class="btn" target="_blank">Download CV</a>
+        </div>
+
+        <div class="profession-container">
+            <div class="profession-box">
+
+                <div class="profession" style="--i:0;">
+                    <i class='bx bx-code-alt'></i>
+                    <h3>Web Developer</h3>
+                </div>
+
+                <div class="profession" style="--i:1;">
+                    <i class='bx bx-data'></i>
+                    <h3>Data Scientist</h3>
+                </div>
+
+                <div class="profession" style="--i:2;">
+                    <i class='bx bx-palette'></i>
+                    <h3>Web Designer</h3>
+                </div>
+
+                <div class="profession" style="--i:3;">
+                    <i class='bx bx-stats'></i>
+                    <h3>Data Analyst</h3>
+                </div>
+
+                <div class="circle"></div>
+            </div>
+
+            <div class="overlay"></div>
+        </div>
+
+        <div class="home-img">
+            <img src="image\lynx.png" alt=""> 
+        </div>
+
+    </section>
+
+    <!--about section-->
+    <section class="about" id="about">
+
+        <div class="about-img">
+            <img src="image\meanime.png" alt="">
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">About <span>Myself</span></h2>
+            <h3>Hi, I'm Here To Help Your Next Project!</h3>
+            <p>Hello, I'm Muhammad Naqiudin, a dedicated Data Scientist, Data Analyst, and Web Developer 
+                with a strong background in Degree of Computer Science(Data Science) with Honours. I specialize 
+                in extracting insights from complex datasets using Python, R, and SQL, while leveraging 
+                data visualization tools like Tableau and Power BI to present actionable findings. In 
+                addition to my analytical skills, I have experience in building responsive web applications 
+                using HTML, CSS, and JavaScript. I am passionate about continuous learning and excited to 
+                combine my expertise in data science and web development to drive impactful projects.</p>
+        </div>
+
+    </section>
+
+    <!--experience section-->
+    <section class="services" id="experience">
+        <h2  class="heading">My <span>Experience</span></h2>
+        <h2  class="heading">Academic Journey</h2>
+        <div class="services-container">
+
+            <div class="services-box">
+                <div class="education-img">
+                    <img src="image\smktm.png" alt="">
+                </div>
+                <h3>High School at <span>SMK Telok Mas</span></h3>
+                <p>JAN 2015 - DEC 2019</p>
+                <p>Grade: 5A 2B 2C</p>
+                <p>Course: Pure Science</p>
+                <!-- <a href="#" class="btn">Read More</a> -->
+            </div>
+
+            <div class="services-box">
+                <div class="education-img">
+                    <img src="image\kmm.png" alt="">
+                </div>
+                <h3>Pre-University at <span>Malacca Matriculation College</span></h3>
+                <p>MAY 2020- MAY 2021</p>
+                <p>Grade: 3.46</p>
+                <p>Course: Science (Module 2) - Computer Science</p>
+                <!-- <a href="#" class="btn">Read More</a> -->
+            </div>
+
+            <div class="services-box">
+                <div class="education-img">
+                    <img src="image\UKM.png" alt="">
+                </div>
+                <h3>Bachelor Degree at <span>National University of Malaysia</span></h3>
+                <p>SEP 2021- AUG 2025</p>
+                <p>Grade: 3.68</p>
+                <p>Course: Computer Science (Data Science)</p>
+                <!-- <a href="#" class="btn">Read More</a> -->
+            </div>
+
+        </div>
+
+
+        <!--Experience-->
+        <h2  class="heading" style = "margin-top: 100px;">Working <span>Experience</span></h2>
+        <div class="services-container">
+
+            <div class="services-box">
+                <div class="education-img">
+                    <img src="image\MBO.png" alt="">
+                </div>
+                <h3>Part Time at <span>MBO Sdn Bhd</span></h3>
+                <p>AUG 2022 - OCT 2022</p>
+                <p>Service Crew</p>
+
+                <!-- <a href="#" class="btn">Read More</a> -->
+            </div>
+
+            <div class="services-box">
+                <div class="education-img">
+                    <img src="image\TMrnd.png" alt="">
+                </div>
+                <h3>Internship at <span>Telekom Research & Development</span></h3>
+                <p>SEP 2024 - JAN 2025 (20 weeks)</p>
+                <p>Intern Data Science</p>
+                <p></p>
+               
+                <!-- <a href="#" class="btn">Read More</a> -->
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--portfolio section-->
+    <section class="portfolio" id="portfolio">
+
+    <!-- Skills Section -->
+    <div class="testimonial-container" id="skills">
+        <h2 class="heading">My <span>Skills</span></h2>
+
+        <div class="testimonial-wrapper">
+            <div class="testimonial-box mySwiper">
+                <div class="testimonial-content swiper-wrapper">
+
+                    <!-- Programming Languages -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Programming Languages</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/python.png" alt="Python" style="width: 50px; height: 50px;"><p>Python</p></div>
+                            <div class="icon-item"><img src="image/java.png" alt="Java" style="width: 50px; height: 50px;"><p>Java</p></div>
+                            <div class="icon-item"><img src="image/javascript.png" alt="JavaScript" style="width: 50px; height: 50px;"><p>JavaScript</p></div>
+                            <div class="icon-item"><img src="image/typescript.png" alt="TypeScript" style="width: 50px; height: 50px;"><p>TypeScript</p></div>
+                            <div class="icon-item"><img src="image/sql.png" alt="SQL" style="width: 50px; height: 50px;"><p>SQL</p></div>
+                            <div class="icon-item"><img src="image/php.png" alt="PHP" style="width: 50px; height: 50px;"><p>PHP</p></div>
+                            <div class="icon-item"><img src="image/R.png" alt="R" style="width: 50px; height: 50px;"><p>R</p></div>
+                            <div class="icon-item"><img src="image/cpp.png" alt="C++" style="width: 50px; height: 50px;"><p>C++</p></div>
+                            <div class="icon-item"><img src="image/csharp.png" alt="C#" style="width: 50px; height: 50px;"><p>C#</p></div>
+                            <div class="icon-item"><img src="image/vbnet.png" alt="vbnet" style="width: 50px; height: 50px;"><p>VB.NET</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Web Development</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/html.png" alt="HTML" style="width: 50px; height: 50px;"><p>HTML</p></div>
+                            <div class="icon-item"><img src="image/css.png" alt="CSS" style="width: 50px; height: 50px;"><p>CSS</p></div>
+                            <div class="icon-item"><img src="image/react.png" alt="React" style="width: 50px; height: 50px;"><p>React</p></div>
+                            <div class="icon-item"><img src="image/angular.png" alt="Angular" style="width: 50px; height: 50px;"><p>Angular</p></div>
+                            <div class="icon-item"><img src="image/jquery.png" alt="jQuery" style="width: 50px; height: 50px;"><p>jQuery</p></div>
+                            <div class="icon-item"><img src="image/bootstrap.png" alt="Bootstrap" style="width: 50px; height: 50px;"><p>Bootstrap</p></div>
+                            <div class="icon-item"><img src="image/django.png" alt="Django" style="width: 50px; height: 50px;"><p>Django</p></div>
+                            <div class="icon-item"><img src="image/flask.png" alt="Flask" style="width: 50px; height: 50px;"><p>Flask</p></div>
+                            <div class="icon-item"><img src="image/xampp.png" alt="xampp" style="width: 50px; height: 50px;"><p>Xampp</p></div>
+                            <div class="icon-item"><img src="image/phpmyadmin.png" alt="PhpMyAdmin" style="width: 50px; height: 50px;"><p>PhpMyAdmin</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Data Science & Analytics -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Data Science & Analytics</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/scikit.png" alt="Scikit-Learn" style="width: 50px; height: 50px;"><p>Scikit-Learn</p></div>
+                            <div class="icon-item"><img src="image/yolo.png" alt="Ultralytics" style="width: 50px; height: 50px;"><p>Ultralytics</p></div>
+                            <div class="icon-item"><img src="image/tensorflow.png" alt="TensorFlow" style="width: 50px; height: 50px;"><p>TensorFlow</p></div>
+                            <div class="icon-item"><img src="image/pytorch.png" alt="PyTorch" style="width: 50px; height: 50px;"><p>PyTorch</p></div>
+                            <div class="icon-item"><img src="image/yolo.png" alt="YOLOv8" style="width: 50px; height: 50px;"><p>YOLOv8</p></div>
+                            <div class="icon-item"><img src="image/opencv.png" alt="OpenCV" style="width: 50px; height: 50px;"><p>OpenCV</p></div>
+                            <div class="icon-item"><img src="image/pandas.png" alt="Pandas" style="width: 50px; height: 50px;"><p>Pandas</p></div>
+                            <div class="icon-item"><img src="image/numpy.png" alt="NumPy" style="width: 50px; height: 50px;"><p>NumPy</p></div>
+                            <div class="icon-item"><img src="image/seaborn.png" alt="Seaborn" style="width: 50px; height: 50px;"><p>Seaborn</p></div>
+                            <div class="icon-item"><img src="image/matplotlib.png" alt="Matplotlib" style="width: 50px; height: 50px;"><p>Matplotlib</p></div>
+                            <div class="icon-item"><img src="image/powerbi.png" alt="Matplotlib" style="width: 50px; height: 50px;"><p>Power BI</p></div>
+                            <div class="icon-item"><img src="image/hadoop.png" alt="Matplotlib" style="width: 50px; height: 50px;"><p>Hadoop</p></div>
+                            <div class="icon-item"><img src="image/anaconda.png" alt="Matplotlib" style="width: 50px; height: 50px;"><p>Anaconda</p></div>
+                            <div class="icon-item"><img src="image/labelimg.png" alt="Matplotlib" style="width: 50px; height: 50px;"><p>LabelImg</p></div>
+                            <div class="icon-item"><img src="image/roboflow.png" alt="Matplotlib" style="width: 50px; height: 50px;"><p>RoboFlow</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Databases & Cloud -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Databases & Cloud</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/excel.png" alt="Excel" style="width: 50px; height: 50px;"><p>Excel</p></div>
+                            <div class="icon-item"><img src="image/xml.png" alt="XML" style="width: 50px; height: 50px;"><p>XML</p></div>
+                            <div class="icon-item"><img src="image/json.png" alt="JSON" style="width: 50px; height: 50px;"><p>JSON</p></div>
+                            <div class="icon-item"><img src="image/mariadb.png" alt="MariaDB" style="width: 50px; height: 50px;"><p>MariaDB</p></div>
+                            <div class="icon-item"><img src="image/oracledb.png" alt="OracleDB" style="width: 50px; height: 50px;"><p>OracleDB</p></div>
+                            <div class="icon-item"><img src="image/azure.png" alt="Microsoft Azure" style="width: 50px; height: 50px;"><p>Microsoft Azure</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Software -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Tools & Software</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/git.png" alt="Git" style="width: 50px; height: 50px;"><p>Git</p></div>
+                            <div class="icon-item"><img src="image/linux.png" alt="Linux" style="width: 50px; height: 50px;"><p>Linux</p></div>
+                            <div class="icon-item"><img src="image/phpmyadmin.png" alt="PhpMyAdmin" style="width: 50px; height: 50px;"><p>PhpMyAdmin</p></div>
+                            <div class="icon-item"><img src="image/vscode.png" alt="Visual Studio Code" style="width: 50px; height: 50px;"><p>VS Code</p></div>
+                            <div class="icon-item"><img src="image/jupyter.png" alt="Jupyter Notebook" style="width: 50px; height: 50px;"><p>Jupyter <br> Notebook</p></div>
+                            <div class="icon-item"><img src="image/jira.png" alt="Jira" style="width: 50px; height: 50px;"><p>Jira</p></div>
+                            <div class="icon-item"><img src="image/robot.png" alt="Selenium" style="width: 50px; height: 50px;"><p>Robot <br> Framework <br> Selenium</p></div>
+                            <div class="icon-item"><img src="image/visualstudio.png" alt="Visual Basic" style="width: 50px; height: 50px;"><p>Visual <br> Studio 2019</p></div>
+                            <div class="icon-item"><img src="image/anaconda.png" alt="anaconda" style="width: 50px; height: 50px;"><p>Anaconda</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Design & Productivity -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Design & Productivity</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/photoshop.png" alt="Adobe Photoshop" style="width: 50px; height: 50px;"><p>Adobe <br> Photoshop</p></div>
+                            <div class="icon-item"><img src="image/figma.png" alt="Figma" style="width: 50px; height: 50px;"><p>Figma</p></div>
+                            <div class="icon-item"><img src="image/blender.png" alt="Blender" style="width: 50px; height: 50px;"><p>Blender</p></div>
+                            <div class="icon-item"><img src="image/canva.png" alt="Canva" style="width: 50px; height: 50px;"><p>Canva</p></div>
+                            <div class="icon-item"><img src="image/Sheets.png" alt="Google Sheets" style="width: 50px; height: 50px;"><p>Google Sheets</p></div>
+                            <div class="icon-item"><img src="image/word.png" alt="Google Sheets" style="width: 50px; height: 50px;"><p>MS Words</p></div>
+                            <div class="icon-item"><img src="image/powerpoint.png" alt="Google Sheets" style="width: 50px; height: 50px;"><p>MS PowerPoint</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="testimonial-slide swiper-slide">
+                        <h3>Languages</h3>
+                        <div class="icon-container">
+                            <div class="icon-item"><img src="image/uk.png" alt="English" style="width: 50px; height: 50px;"><p>English</p></div>
+                            <div class="icon-item"><img src="image/malaysia.png" alt="Bahasa Melayu" style="width: 50px; height: 50px;"><p>Bahasa Melayu</p></div>
+                            <div class="icon-item"><img src="image/indonesia.png" alt="Indonesia" style="width: 50px; height: 50px;"><p>Indonesia</p></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+        <!--Project section-->
+        <h2 class="heading" style="margin-top: 100px;" id="project">My <span>Latest Project</span></h2>
+        <div class="portfolio-container">
+
+            <div class="portfolio-box">
+                <img src="image\myproject1.png" alt="">
+                <div class="portfolio-layer">
+                    <h4>Final Year Project</h4>
+                    <p>Breast Cancer Detection using Histopathology Image System</p>
+                    <a href="project.html#fyp"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="image\myproject2.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Web Development Project</h4>
+                    <p>Product Catalog (Drawing Tools)</p>
+                    <a href="project.html#webdev"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="image\myproject3.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Modelling Project</h4>
+                    <p>Sentiment Analysis From Tweets Data</p>
+                    <a href="project.html#sentiment"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="image\myproject4.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Web Design Project</h4>
+                    <p>My Own Portfolio</p>
+                    <a href="project.html#design"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="image\myproject5.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Application Project</h4>
+                    <p>Drawing art tools application</p>
+                    <a href="project.html#apps"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="image\myproject6.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Data Analysis Project</h4>
+                    <p>K-Means Clustering</p>
+                    <a href="project.html#analysis"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="image\myproject7.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Face Mask Detection using</h4>
+                    <p>YOLOv8 and OpenCV</p>
+                    <a href="project.html#yolo"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            
+            <div class="portfolio-box">
+                <img src="image\myproject8.png" alt="">
+
+                <div class="portfolio-layer">
+                    <h4>Web Developer Project</h4>
+                    <p>Angular and REST API</p>
+                    <a href="project.html#angular"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+<!-- Certification Section -->
+<section class="certifications" id="certifications">
+    <h2 class="heading">My <span>Certifications</span></h2>
+    <div class="certifications-container swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="certification-box swiper-slide" style="text-align: center; border: 2px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="image/cert1.png" alt="Microsoft Power BI Certificate" style="width: 700px; height: 400px;">
+                <h3 style="font-size: 26px; margin-top: 10px;">Microsoft Certified: Power BI Data Analyst Associate</h3>
+                <p><strong>Organization:</strong> Microsoft</p>
+                <p><strong>Issued:</strong> February 2025</p>
+                <p><strong>Credential ID:</strong> 3EC00920AAB8D3DC</p>
+                <a href="https://learn.microsoft.com/api/credentials/share/en-us/NaqiudinFandy-9953/3EC00920AAB8D3DC?sharingId=B6F2B5ADEF882F37" target="_blank">View Credential</a>
+            </div>
+            <div class="certification-box swiper-slide" style="text-align: center; border: 2px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="image/cert2.png" alt="Microsoft Azure Data Fundamentals" style="width: 700px; height: 400px;">
+                <h3 style="font-size: 26px; margin-top: 10px;">Microsoft Certified: Azure Data Fundamentals</h3>
+                <p><strong>Organization:</strong> Microsoft</p>
+                <p><strong>Issued:</strong> February 2025</p>
+                <p><strong>Credential ID:</strong> 27D46BD4DEA08F19</p>
+                <a href="https://learn.microsoft.com/api/credentials/share/en-us/NaqiudinFandy-9953/27D46BD4DEA08F19?sharingId" target="_blank">View Credential</a>
+            </div>
+            <div class="certification-box swiper-slide" style="text-align: center; border: 2px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="image/cert3.png" alt="HackerRank Frontend Developer" style="width: 700px; height: 500px;">
+                <h3 style="font-size: 26px; margin-top: 10px;">Frontend Developer (React) Certificate</h3>
+                <p><strong>Organization:</strong> HackerRank</p>
+                <p><strong>Issued:</strong> February 2025</p>
+                <p><strong>Credential ID:</strong> 8C2A15FC6E0F</p>
+                <a href="https://www.hackerrank.com/certificates/8c2a15fc6e0f" target="_blank">View Credential</a>
+            </div>
+            <div class="certification-box swiper-slide" style="text-align: center; border: 2px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="image/cert4.png" alt="HackerRank Software Engineer Intern" style="width: 700px; height: 500px;">
+                <h3 style="font-size: 26px; margin-top: 10px;">Software Engineer Intern Certificate</h3>
+                <p><strong>Organization:</strong> HackerRank</p>
+                <p><strong>Issued:</strong> March 2025</p>
+                <p><strong>Credential ID:</strong> 56CCD82A6CD3</p>
+                <a href="https://www.hackerrank.com/certificates/56ccd82a6cd3" target="_blank">View Credential</a>
+            </div>
+            <div class="certification-box swiper-slide" style="text-align: center; border: 2px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 5px 5px 15px rgba(0,0,0,0.2);">
+                <img src="image/APU.png" alt="APU Data Analyst" style="width: 300px; height: 300px;">
+                <h3 style="font-size: 26px; margin-top: 10px;">Analyzing Data With Power BI</h3>
+                <p><strong>Organization:</strong> Asia Pacific University Technology and Innovation</p>
+                <p><strong>Issued:</strong> April 2025</p>
+                <p><strong>Credential ID:</strong></p>
+                <a href="https://www.credly.com/badges/7baa742f-742f-412c-88ee-5035b7aa5d6c/linked_in_profile" target="_blank">View Credential</a>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+
+    <!-- Contact section -->
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me!</span></h2>
+        <div class="social-media">
+            <a href="https://www.instagram.com/naqiudin._?igsh=eTJiZGVnYW81dHll&utm_source=qr"><i class='bx bxl-instagram-alt'></i></a>
+            <a href="https://www.linkedin.com/in/naqiudin-fandy/"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://github.com/naqiudinfandy"><i class='bx bxl-github'></i></a>
+            <a href="https://wa.link/ch48tk"><i class='bx bxl-whatsapp'></i></a>
+            <a href="mailto:naqiudin73@gmail.com"><i class='bx bxs-envelope'></i></a>
+            <a href="tel:+60176220665"><i class='bx bxs-phone'></i></a>
+        </div>
+    </section>
+    
+
+    <!--footer section-->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2024 by Naqib | All right reserved!</p>
+            <p>Muhammad Naqiudin Bin Noor Affandy</p>
+            <p>naqiudin73@gmail.com</p>
+            <p>+6017-622 0665</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i>Back to the top</a>
+        </div>
+    </footer>
+
+
+
+    <!-- scroll reveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- custom js-->
+    <script src="scripts.js"></script>
+    
+</body>
+</html>
