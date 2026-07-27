@@ -317,12 +317,31 @@ breaks.
 
 ## What is not in this repository
 
-`.gitignore` deliberately keeps these local:
+`.gitignore` keeps one folder out of git — `archived/` — and everything that is
+not part of the live site now lives inside it:
 
-- `archived/` — previous portfolio versions, kept as a personal backup
-- `figma.html`, `figma.css`, `Untitled_img/`, `Untitled_icon/`, the design PNG — Figma exports used as a reference while building
-- `*.docx`, `*.zip` and other working documents
-- `node_modules/`, editor settings and OS junk
+```
+archived/
+├── figma-design/     Figma export the design was built from + placeholder art
+├── unused-images/    69 images the current pages don't display
+├── resume-source/    source PDF for the CV in assets/
+└── README.md         what each folder holds, and how to restore a file
+```
+
+Drop anything else you want to keep but not publish into `archived/` and it is
+excluded automatically — no need to edit `.gitignore` again.
+
+The **previous portfolio** is a separate git repository and lives beside this
+project rather than inside it:
+
+```
+Documents\Development\
+├── portfolio\        ← this repo   → github.com/naqiudinfandy/naqiudinfandy.github.io
+└── portfolio-old\    ← old site    → github.com/naqiudinfandy/portfolio_naqiudinfandy
+```
+
+`portfolio-old/image/` holds the full-resolution originals of every project
+screenshot; the copies in `assets/img/` were downscaled for performance.
 
 ---
 
