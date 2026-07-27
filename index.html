@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  MUHAMMAD NAQIUDIN — PERSONAL PORTFOLIO
+  ============================================================================
+  File        : index.html  (main / landing page — everything lives on one page)
+  Author      : Muhammad Naqiudin Bin Noor Affandy
+  Stack       : Plain HTML5 + CSS3 + vanilla JavaScript (no build step needed)
+  Libraries   : GSAP + ScrollTrigger (scroll animation), Motion One (UI motion)
+
+  PAGE MAP (in document order) — every section below has an id you can link to:
+    #loader        → full-screen loading animation (removed after page load)
+    #home          → hero: name, role, call-to-action buttons, quick stats
+    #about         → photo + personal story + social links
+    #education     → UKM degree + matriculation
+    #experience    → work timeline (Infineon, Freelance, AirAsia, TM R&D)
+    #skills        → grouped tech stack + scrolling logo marquee
+    #projects      → 6 highlighted projects  → full list in projects.html
+    #certifications→ 7 professional certificates + awards / involvements
+    #contact       → contact details + message form (opens your mail client)
+    footer         → sitemap links + back-to-top
+
+  NAVIGATION NOTES:
+    • Top navbar + mobile drawer both scroll to the #ids listed above.
+    • "View all projects" and every project "Case study" link → projects.html
+    • "Download CV" → assets/resume/Muhammad-Naqiudin-Resume.pdf
+    • Language switcher (EN / MS / 中文) is powered by i18n.js — it swaps any
+      element that carries a data-i18n="..." attribute.
+  ============================================================================
+-->
+<!-- class="no-js" is removed by script.js — it lets the CSS show all content
+     if JavaScript is disabled, instead of leaving reveal elements invisible. -->
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ---------- SEO / social preview metadata ---------- -->
+  <title>Muhammad Naqiudin — Software Engineer &amp; Master Data Developer</title>
+  <meta name="description" content="Muhammad Naqiudin Bin Noor Affandy — Software Engineer and Master Data Developer at Infineon Technologies. Oracle PL/SQL, ETL, C# .NET, Python and Next.js. Portfolio of data engineering, machine learning and web projects.">
+  <meta name="author" content="Muhammad Naqiudin Bin Noor Affandy">
+  <meta name="keywords" content="Muhammad Naqiudin, Software Engineer Malaysia, Master Data Developer, PL/SQL Developer, Data Engineer, Data Scientist, Next.js Developer Melaka">
+  <meta name="theme-color" content="#060A12">
+  <link rel="canonical" href="https://naqiudinfandy.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Muhammad Naqiudin — Software Engineer &amp; Master Data Developer">
+  <meta property="og:description" content="Data engineering, backend development and modern web work. Oracle PL/SQL · C# .NET · Python · Next.js">
+  <meta property="og:image" content="assets/img/me.png">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Inline SVG favicon: the "NF" monogram, no extra file request -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23060A12'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='46' font-weight='700' fill='%2300F0FF' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
+
+  <!-- ---------- Fonts (display / body / mono) ---------- -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- ---------- Our stylesheet ---------- -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ===========================================================================
+     1. LOADING ANIMATION
+     Shown immediately, hidden by script.js once the page + fonts are ready.
+     The counter is driven in JS (see initPreloader()).
+     =========================================================================== -->
+<div id="loader" class="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <!-- Monogram that "types" itself in -->
+    <div class="loader__logo">
+      <span class="loader__bracket">&lt;</span><span class="loader__mono">NF</span><span class="loader__bracket">/&gt;</span>
+    </div>
+    <!-- Thin progress rail + percentage -->
+    <div class="loader__bar"><span class="loader__fill"></span></div>
+    <div class="loader__meta">
+      <span class="loader__status">booting portfolio</span>
+      <span class="loader__pct">0%</span>
+    </div>
+  </div>
+  <!-- Curtain panels that slide away to reveal the site -->
+  <div class="loader__curtain"></div>
+</div>
+
+
+<!-- ===========================================================================
+     2. GLOBAL BACKGROUND LAYERS
+     Purely decorative, sits behind everything (z-index: -1 in CSS).
+       .bg__grid  – faint dot grid that drifts on scroll
+       .bg__blob  – slow-moving coloured "aurora" glows
+       #bg-canvas – JS particle constellation that reacts to the mouse
+     =========================================================================== -->
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="bg__blob bg__blob--cyan"></div>
+  <div class="bg__blob bg__blob--violet"></div>
+  <div class="bg__blob bg__blob--magenta"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg__noise"></div>
+</div>
+
+<!-- Custom mouse cursor (two parts: a dot that snaps, a ring that lags behind).
+     Hidden automatically on touch devices — see script.js initCursor(). -->
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"><span class="cursor__label"></span></div>
+</div>
+
+<!-- Scroll progress bar pinned to the very top of the viewport -->
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+<!-- Skip link for keyboard users -->
+<a href="#home" class="skip-link">Skip to content</a>
+
+
+<!-- ===========================================================================
+     3. NAVIGATION BAR  (liquid-glass, sticks to the top, shrinks on scroll)
+     =========================================================================== -->
+<header class="nav" id="navbar">
+  <div class="nav__inner glass">
+
+    <!-- Logo → scrolls back to #home -->
+    <a href="#home" class="nav__logo" aria-label="Home">
+      <span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span>
+    </a>
+
+    <!-- Desktop links. data-i18n keys are replaced by i18n.js on language change -->
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="#about"          data-i18n="nav.about">About</a>
+      <a href="#education"      data-i18n="nav.education">Education</a>
+      <a href="#experience"     data-i18n="nav.experience">Experience</a>
+      <a href="#skills"         data-i18n="nav.skills">Skills</a>
+      <a href="#projects"       data-i18n="nav.projects">Projects</a>
+      <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="#contact"        data-i18n="nav.contact">Contact</a>
+      <!-- Sliding highlight pill that follows the active link (moved by JS) -->
+      <span class="nav__indicator" aria-hidden="true"></span>
+    </nav>
+
+    <div class="nav__actions">
+
+      <!-- ---- Language switcher: English / Bahasa Melayu / 中文 ---- -->
+      <div class="lang" id="lang-switch">
+        <button class="lang__btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"></path>
+          </svg>
+          <span class="lang__current">EN</span>
+        </button>
+        <ul class="lang__menu glass" role="listbox">
+          <li><button role="option" data-lang="en">English <span>EN</span></button></li>
+          <li><button role="option" data-lang="ms">Bahasa Melayu <span>MS</span></button></li>
+          <li><button role="option" data-lang="zh">中文 <span>ZH</span></button></li>
+        </ul>
+      </div>
+
+      <!-- Primary CTA → jumps to the contact section -->
+      <a href="#contact" class="btn btn--primary btn--sm magnetic" data-i18n="nav.hire">Hire Me</a>
+
+      <!-- Hamburger (mobile only) → opens the drawer below -->
+      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ---- Mobile drawer (slides in from the right on phones/tablets) ---- -->
+<div class="drawer" id="mobile-menu" aria-hidden="true">
+  <nav class="drawer__links" aria-label="Mobile navigation">
+    <a href="#home"           data-i18n="nav.home">Home</a>
+    <a href="#about"          data-i18n="nav.about">About</a>
+    <a href="#education"      data-i18n="nav.education">Education</a>
+    <a href="#experience"     data-i18n="nav.experience">Experience</a>
+    <a href="#skills"         data-i18n="nav.skills">Skills</a>
+    <a href="#projects"       data-i18n="nav.projects">Projects</a>
+    <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+    <a href="#contact"        data-i18n="nav.contact">Contact</a>
+    <a href="projects.html" class="drawer__ext" data-i18n="nav.allProjects">All projects →</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/naqiudin-fandy/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:naqiudin73@gmail.com">Email</a>
+  </div>
+</div>
+
+
+<main>
+
+<!-- ===========================================================================
+     4. HERO  (#home)
+     Big condensed name, role, two CTAs and four headline numbers.
+     Mouse movement gently shifts the layers (parallax) — see initHeroParallax().
+     =========================================================================== -->
+<section class="hero" id="home">
+
+  <!-- Floating glass chips that drift around the hero (decorative, parallax) -->
+  <div class="hero__floaters" aria-hidden="true">
+    <span class="floater floater--1 glass" data-depth="0.05">Oracle PL/SQL</span>
+    <span class="floater floater--2 glass" data-depth="0.09">C# .NET</span>
+    <span class="floater floater--3 glass" data-depth="0.07">Python</span>
+    <span class="floater floater--4 glass" data-depth="0.11">Next.js</span>
+    <span class="floater floater--ring" data-depth="0.04"></span>
+    <span class="floater floater--ring2" data-depth="0.06"></span>
+    <span class="floater floater--cube" data-depth="0.08">
+      <!-- Pure-CSS spinning 3D cube -->
+      <span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    </span>
+  </div>
+
+  <div class="container hero__content">
+
+    <!-- Availability pill with a live pulsing dot -->
+    <div class="hero__badge glass reveal">
+      <span class="pulse-dot"></span>
+      <span data-i18n="hero.badge">Open to new opportunities</span>
+    </div>
+
+    <!-- Display name. Each word is wrapped so JS can animate them separately. -->
+    <h1 class="hero__title">
+      <span class="hero__line"><span class="word">Muhammad</span></span>
+      <span class="hero__line"><span class="word hero__accent" data-text="Naqiudin">Naqiudin</span></span>
+    </h1>
+
+    <!-- Role line — the second half is re-typed by JS (rotating job titles) -->
+    <p class="hero__role reveal">
+      <span data-i18n="hero.roleStatic">Software Engineer</span>
+      <span class="hero__sep">·</span>
+      <span class="type" id="type-target" aria-live="polite"></span><span class="type__caret"></span>
+    </p>
+
+    <p class="hero__desc reveal" data-i18n="hero.desc">
+      I build and maintain the enterprise data systems that big engineering runs on —
+      Oracle PL/SQL, ETL pipelines and C# .NET backends at Infineon Technologies — and
+      craft fast, modern websites with Next.js on the side.
+    </p>
+
+    <!-- Two primary calls to action -->
+    <div class="hero__cta reveal">
+      <a href="#projects" class="btn btn--primary magnetic">
+        <span data-i18n="hero.ctaWork">View My Work</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
+      <a href="assets/resume/Muhammad-Naqiudin-Resume.pdf" class="btn btn--ghost magnetic" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span data-i18n="hero.ctaCv">Download CV</span>
+      </a>
+    </div>
+
+    <!-- Headline numbers. data-count is the target — JS counts up to it. -->
+    <div class="hero__stats reveal">
+      <div class="stat">
+        <span class="stat__num" data-count="2" data-suffix="+">0</span>
+        <span class="stat__label" data-i18n="hero.statYears">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-count="12" data-suffix="+">0</span>
+        <span class="stat__label" data-i18n="hero.statProjects">Projects Shipped</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-count="7" data-suffix="">0</span>
+        <span class="stat__label" data-i18n="hero.statCerts">Certifications</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-count="3.70" data-decimals="2">0</span>
+        <span class="stat__label" data-i18n="hero.statCgpa">Degree CGPA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Little "scroll down" hint at the bottom of the hero -->
+  <a href="#about" class="hero__scroll" aria-label="Scroll to about section">
+    <span class="hero__scroll-line"></span>
+    <span data-i18n="hero.scroll">scroll</span>
+  </a>
+</section>
+
+
+<!-- ===========================================================================
+     5. ABOUT  (#about)
+     Left: cut-out portrait inside a glass frame that tilts with the mouse.
+     Right: the story, quick facts and social links.
+     =========================================================================== -->
+<section class="section about" id="about">
+  <div class="container about__grid">
+
+    <!-- ---- Portrait ---- -->
+    <div class="about__media reveal" data-reveal="left">
+      <div class="portrait tilt">
+        <div class="portrait__glow"></div>
+        <img src="assets/img/me.png" alt="Portrait of Muhammad Naqiudin" loading="lazy" width="420" height="620">
+        <div class="portrait__frame"></div>
+        <!-- Small floating badge on the photo -->
+        <div class="portrait__chip glass">
+          <span class="pulse-dot pulse-dot--sm"></span>
+          <span data-i18n="about.chip">Based in Melaka, MY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Copy ---- -->
+    <div class="about__copy reveal" data-reveal="right">
+      <span class="eyebrow"><i></i><span data-i18n="about.eyebrow">About Me</span></span>
+      <h2 class="display" data-i18n="about.title">Data people can trust, code people enjoy.</h2>
+
+      <p data-i18n="about.p1">
+        I'm a Software Engineer working as an L3 Master Data Solution Developer at
+        Infineon Technologies, where I keep worldwide engineering databases accurate,
+        available and fast. My day looks like Oracle PL/SQL packages, ETL and data
+        warehouse fixes, C# .NET enhancements and weekly Jenkins releases.
+      </p>
+      <p data-i18n="about.p2">
+        Before Infineon I trained as a data scientist — XGBoost forecasting at
+        <strong>AirAsia</strong>, Random Forest and LSTM network models at
+        <strong>TM Research &amp; Development</strong>, and a HoverNet deep-learning
+        final year project at <strong>UKM</strong>, which I finished with First Class Honours.
+      </p>
+      <p data-i18n="about.p3">
+        Outside the enterprise world I freelance as a web developer, shipping Next.js
+        and TypeScript sites with real SEO, real analytics and rule-based chatbots —
+        including the one sitting in the corner of this page. Say hello to it.
+      </p>
+
+      <!-- Quick facts -->
+      <div class="chips">
+        <span class="chip glass">📍 <span data-i18n="about.fact1">Melaka, Malaysia</span></span>
+        <span class="chip glass">🎓 <span data-i18n="about.fact2">UKM Class of 2025</span></span>
+        <span class="chip glass">⭐ <span data-i18n="about.fact3">First Class Honours</span></span>
+        <span class="chip glass">🗣️ <span data-i18n="about.fact4">MY · EN · ID</span></span>
+      </div>
+
+      <!-- Social icon row -->
+      <div class="socials">
+        <a href="https://github.com/naqiudinfandy" class="social glass magnetic" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.23.66-.5v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.16.59.67.5A10 10 0 0 0 12 2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/naqiudin-fandy/" class="social glass magnetic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21H9z"/></svg>
+        </a>
+        <a href="mailto:naqiudin73@gmail.com" class="social glass magnetic" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+        <a href="https://wa.me/60176220665" class="social glass magnetic" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A3 3 0 0 0 6.6 12a5.2 5.2 0 0 0 1.1 2.6 11.9 11.9 0 0 0 4.6 4c2.2.9 2.2.6 2.6.6a2.6 2.6 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================================================================
+     6. EDUCATION  (#education)
+     Vertical rail with two glass cards.
+     =========================================================================== -->
+<section class="section education" id="education">
+  <div class="container">
+
+    <header class="section__head reveal">
+      <span class="eyebrow"><i></i><span data-i18n="edu.eyebrow">Education</span></span>
+      <h2 class="display" data-i18n="edu.title">Where it started.</h2>
+      <p class="section__lead" data-i18n="edu.lead">
+        Computer Science with a Data Science specialisation — finished top of the class rather than just on time.
+      </p>
+    </header>
+
+    <div class="rail">
+
+      <!-- ---- UKM ---- -->
+      <article class="rail__item reveal">
+        <span class="rail__node" aria-hidden="true"></span>
+        <div class="card glass tilt">
+          <div class="card__top">
+            <div class="card__head">
+              <img class="card__logo" src="assets/img/UKM.png" alt="Universiti Kebangsaan Malaysia logo" loading="lazy" width="44" height="44">
+              <div>
+                <h3 data-i18n="edu.ukm.school">Universiti Kebangsaan Malaysia (UKM)</h3>
+                <p class="card__sub" data-i18n="edu.ukm.degree">Bachelor of Computer Science (Hons) — Data Science</p>
+              </div>
+            </div>
+            <div class="card__meta">
+              <span class="mono">Sept 2021 – Jul 2025</span>
+              <span class="grade">CGPA <strong>3.70</strong></span>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag" data-i18n="edu.ukm.t1">First Class Honours</span>
+            <span class="tag" data-i18n="edu.ukm.t2">Dean's List — 6 semesters</span>
+            <span class="tag" data-i18n="edu.ukm.t3">FYP: Breast Cancer Prediction (HoverNet)</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- Matriculation ---- -->
+      <article class="rail__item reveal">
+        <span class="rail__node" aria-hidden="true"></span>
+        <div class="card glass tilt">
+          <div class="card__top">
+            <div class="card__head">
+              <img class="card__logo" src="assets/img/kmm.png" alt="Malacca Matriculation College logo" loading="lazy" width="44" height="44">
+              <div>
+                <h3 data-i18n="edu.kmm.school">Malacca Matriculation College</h3>
+                <p class="card__sub" data-i18n="edu.kmm.degree">Physical Science — Module 2 (Computer Science)</p>
+              </div>
+            </div>
+            <div class="card__meta">
+              <span class="mono">May 2020 – May 2021</span>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag" data-i18n="edu.kmm.t1">Pre-university foundation</span>
+            <span class="tag" data-i18n="edu.kmm.t2">Mathematics · Physics · Computer Science</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================================================================
+     7. EXPERIENCE  (#experience)
+     Timeline with a line that "fills up" as you scroll (GSAP ScrollTrigger).
+     =========================================================================== -->
+<section class="section experience" id="experience">
+  <div class="container">
+
+    <header class="section__head reveal">
+      <span class="eyebrow"><i></i><span data-i18n="exp.eyebrow">Experience</span></span>
+      <h2 class="display" data-i18n="exp.title">Where I've worked.</h2>
+      <p class="section__lead" data-i18n="exp.lead">
+        Two years across enterprise master data, machine learning research and freelance web development.
+      </p>
+    </header>
+
+    <div class="timeline">
+      <!-- The rail + the coloured progress line that grows on scroll -->
+      <div class="timeline__rail" aria-hidden="true"><span class="timeline__progress"></span></div>
+
+      <!-- ---------- Infineon ---------- -->
+      <article class="tl-item reveal">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="card glass card--job tilt">
+          <div class="card__top">
+            <div class="card__head">
+              <img class="card__logo" src="assets/img/Infineon.png" alt="Infineon Technologies logo" loading="lazy" width="44" height="44">
+              <div>
+                <h3 data-i18n="exp.ifx.role">Software Engineer — Master Data Developer</h3>
+                <p class="card__sub company">Infineon Technologies</p>
+              </div>
+            </div>
+            <div class="card__meta">
+              <span class="mono">Jul 2025 – Present</span>
+              <span class="loc" data-i18n="exp.ifx.loc">Melaka, Malaysia</span>
+            </div>
+          </div>
+
+          <p class="card__body" data-i18n="exp.ifx.summary">
+            L3 support and development for Infineon's worldwide engineering master data
+            systems — keeping data consistent across every system class and site.
+          </p>
+
+          <ul class="bullets">
+            <li data-i18n="exp.ifx.b1">Built Oracle PL/SQL functions, procedures and packages for patching, cleansing, restructuring and automated backend tasks.</li>
+            <li data-i18n="exp.ifx.b2">Designed and refined ETL / data-warehouse flows with validation and error handling, lifting data reliability and system performance.</li>
+            <li data-i18n="exp.ifx.b3">Delivered SAP data migration, de-duplication, cleansing and reporting work that streamlined enterprise workflows by ~30%.</li>
+            <li data-i18n="exp.ifx.b4">Enhanced backend and frontend features in C# .NET, from bug fixes to full feature releases.</li>
+            <li data-i18n="exp.ifx.b5">Acted as Software Release Manager (SRM) — weekly Jenkins CI/CD releases across DEV, INT and PROD.</li>
+            <li data-i18n="exp.ifx.b6">Automated repeat tickets with KNIME workflows, saving roughly 50% of the manual handling time.</li>
+            <li data-i18n="exp.ifx.b7">Handled incidents in Remedy and change requests in Octane; version control in TFS / Azure DevOps.</li>
+          </ul>
+
+          <div class="tags">
+            <span class="tag">Oracle PL/SQL</span><span class="tag">ETL</span><span class="tag">C# .NET</span>
+            <span class="tag">SAP</span><span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">KNIME</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- Freelance ---------- -->
+      <article class="tl-item reveal">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="card glass card--job tilt">
+          <div class="card__top">
+            <div class="card__head">
+              <span class="card__logo card__logo--mono">&lt;/&gt;</span>
+              <div>
+                <h3 data-i18n="exp.free.role">Web Developer — Freelance</h3>
+                <p class="card__sub company" data-i18n="exp.free.company">Independent / Client Projects</p>
+              </div>
+            </div>
+            <div class="card__meta">
+              <span class="mono">Sept 2025 – Present</span>
+              <span class="loc" data-i18n="exp.free.loc">Remote, Malaysia</span>
+            </div>
+          </div>
+
+          <p class="card__body" data-i18n="exp.free.summary">
+            End-to-end websites for real businesses — design, build, deploy, domain, SEO and after-care.
+          </p>
+
+          <ul class="bullets">
+            <li data-i18n="exp.free.b1">Responsive, high-performance sites in Next.js and TypeScript using SSR and SSG for fast first paint.</li>
+            <li data-i18n="exp.free.b2">Deployed on Vercel and Cloudflare with DNS, SSL and CDN configured for safe, global delivery.</li>
+            <li data-i18n="exp.free.b3">SEO work end to end: metadata, structured data, Lighthouse tuning, lazy loading, image optimisation and Google Search Console.</li>
+            <li data-i18n="exp.free.b4">Shipped rule-based chatbots so visitors get product answers instantly, without a backend bill.</li>
+            <li data-i18n="exp.free.b5">Ran requirements gathering directly with clients and delivered to agreed business goals and timelines.</li>
+          </ul>
+
+          <div class="tags">
+            <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">React</span>
+            <span class="tag">Tailwind</span><span class="tag">Vercel</span><span class="tag">Cloudflare</span><span class="tag">SEO</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- AirAsia ---------- -->
+      <article class="tl-item reveal">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="card glass card--job tilt">
+          <div class="card__top">
+            <div class="card__head">
+              <img class="card__logo" src="assets/img/airasia.png" alt="AirAsia logo" loading="lazy" width="44" height="44">
+              <div>
+                <h3 data-i18n="exp.aa.role">Data Scientist — Apprentice</h3>
+                <p class="card__sub company">AirAsia · K-Youth Employment Programme</p>
+              </div>
+            </div>
+            <div class="card__meta">
+              <span class="mono">Apr 2025 – Jun 2025</span>
+              <span class="loc" data-i18n="exp.aa.loc">Sepang, Malaysia</span>
+            </div>
+          </div>
+
+          <p class="card__body" data-i18n="exp.aa.summary">
+            Joined the data science team to forecast in-flight food waste and reduce cost per flight.
+          </p>
+
+          <ul class="bullets">
+            <li data-i18n="exp.aa.b1">Built XGBoost models for food-waste prediction — cleaning, feature engineering and hyperparameter tuning.</li>
+            <li data-i18n="exp.aa.b2">Used Google Cloud Platform for data tracking, validation and workflow monitoring.</li>
+            <li data-i18n="exp.aa.b3">Trained in multicultural teamwork, communication and stakeholder presentation.</li>
+          </ul>
+
+          <div class="tags">
+            <span class="tag">XGBoost</span><span class="tag">Python</span><span class="tag">GCP</span><span class="tag">Feature Engineering</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- TM R&D ---------- -->
+      <article class="tl-item reveal">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="card glass card--job tilt">
+          <div class="card__top">
+            <div class="card__head">
+              <img class="card__logo" src="assets/img/TMrnd.png" alt="TM Research and Development logo" loading="lazy" width="44" height="44">
+              <div>
+                <h3 data-i18n="exp.tm.role">Data Science Intern</h3>
+                <p class="card__sub company">TM Research &amp; Development Sdn Bhd</p>
+              </div>
+            </div>
+            <div class="card__meta">
+              <span class="mono">Sept 2024 – Jan 2025</span>
+              <span class="loc" data-i18n="exp.tm.loc">Cyberjaya, Malaysia</span>
+            </div>
+          </div>
+
+          <p class="card__body" data-i18n="exp.tm.summary">
+            Network analytics — turning messy telco data into fault monitoring and quality-of-service insight.
+          </p>
+
+          <ul class="bullets">
+            <li data-i18n="exp.tm.b1">Raised data quality by 90% by cleaning thousands of access-network, termination-log, CTT and speed-test records.</li>
+            <li data-i18n="exp.tm.b2">Built Random Forest Regression and LSTM time-series models predicting speed drops and faults at 80%+ accuracy.</li>
+            <li data-i18n="exp.tm.b3">Created Power BI and Python (Matplotlib / Seaborn) dashboards for weekly network performance reviews.</li>
+            <li data-i18n="exp.tm.b4">Supported the OracleDB → MariaDB migration with ETL development and rigorous testing.</li>
+            <li data-i18n="exp.tm.b5">Automated extraction with Selenium Robot Framework, cutting manual work by 60%.</li>
+            <li data-i18n="exp.tm.b6">Led Angular frontend work and REST API integration for internal monitoring platforms; contributed Spring Boot microservices.</li>
+            <li data-i18n="exp.tm.b7">Delivered 8+ Agile sprints using Jira and GitLab with cross-team collaboration.</li>
+          </ul>
+
+          <div class="tags">
+            <span class="tag">Random Forest</span><span class="tag">LSTM</span><span class="tag">Power BI</span>
+            <span class="tag">Angular</span><span class="tag">Spring Boot</span><span class="tag">Selenium</span><span class="tag">MariaDB</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================================================================
+     8. SKILLS  (#skills)
+     Six glass panels of grouped skills + an infinite logo marquee underneath.
+     =========================================================================== -->
+<section class="section skills" id="skills">
+  <div class="container">
+
+    <header class="section__head section__head--center reveal">
+      <span class="eyebrow"><i></i><span data-i18n="skills.eyebrow">Skills</span></span>
+      <h2 class="display" data-i18n="skills.title">My toolkit.</h2>
+      <p class="section__lead" data-i18n="skills.lead">
+        The tools I actually reach for — in the office, on client work and at 1 a.m. on side projects.
+      </p>
+    </header>
+
+    <div class="skills__grid">
+
+      <!-- Each .skill-panel = one category. .sk items use a 2-letter monogram. -->
+      <div class="skill-panel glass tilt reveal">
+        <h3 class="skill-panel__title"><span class="dot dot--cyan"></span><span data-i18n="skills.g1">Languages</span></h3>
+        <ul>
+          <li class="sk"><span class="sk__badge" data-c="py">Py</span>Python</li>
+          <li class="sk"><span class="sk__badge" data-c="sql">SQ</span>SQL / PL-SQL</li>
+          <li class="sk"><span class="sk__badge" data-c="cs">C#</span>C# .NET</li>
+          <li class="sk"><span class="sk__badge" data-c="java">Ja</span>Java</li>
+          <li class="sk"><span class="sk__badge" data-c="ts">TS</span>TypeScript</li>
+          <li class="sk"><span class="sk__badge" data-c="js">JS</span>JavaScript</li>
+          <li class="sk"><span class="sk__badge" data-c="php">Ph</span>PHP</li>
+          <li class="sk"><span class="sk__badge" data-c="r">R</span>R</li>
+        </ul>
+      </div>
+
+      <div class="skill-panel glass tilt reveal">
+        <h3 class="skill-panel__title"><span class="dot dot--violet"></span><span data-i18n="skills.g2">Web &amp; Frameworks</span></h3>
+        <ul>
+          <li class="sk"><span class="sk__badge" data-c="next">Nx</span>Next.js</li>
+          <li class="sk"><span class="sk__badge" data-c="react">Re</span>React</li>
+          <li class="sk"><span class="sk__badge" data-c="ng">Ng</span>Angular</li>
+          <li class="sk"><span class="sk__badge" data-c="node">No</span>Node.js</li>
+          <li class="sk"><span class="sk__badge" data-c="spring">Sp</span>Spring Boot</li>
+          <li class="sk"><span class="sk__badge" data-c="dj">Dj</span>Django</li>
+          <li class="sk"><span class="sk__badge" data-c="flask">Fl</span>Flask</li>
+          <li class="sk"><span class="sk__badge" data-c="api">Ap</span>REST API</li>
+        </ul>
+      </div>
+
+      <div class="skill-panel glass tilt reveal">
+        <h3 class="skill-panel__title"><span class="dot dot--magenta"></span><span data-i18n="skills.g3">Data Science &amp; AI</span></h3>
+        <ul>
+          <li class="sk"><span class="sk__badge" data-c="sk">Sk</span>Scikit-Learn</li>
+          <li class="sk"><span class="sk__badge" data-c="tf">Tf</span>TensorFlow</li>
+          <li class="sk"><span class="sk__badge" data-c="pt">Pt</span>PyTorch</li>
+          <li class="sk"><span class="sk__badge" data-c="pd">Pd</span>Pandas</li>
+          <li class="sk"><span class="sk__badge" data-c="np">Np</span>NumPy</li>
+          <li class="sk"><span class="sk__badge" data-c="cv">Cv</span>OpenCV</li>
+          <li class="sk"><span class="sk__badge" data-c="yolo">Yo</span>YOLO / Ultralytics</li>
+          <li class="sk"><span class="sk__badge" data-c="se">Se</span>Selenium</li>
+        </ul>
+      </div>
+
+      <div class="skill-panel glass tilt reveal">
+        <h3 class="skill-panel__title"><span class="dot dot--blue"></span><span data-i18n="skills.g4">Cloud &amp; Big Data</span></h3>
+        <ul>
+          <li class="sk"><span class="sk__badge" data-c="az">Az</span>Microsoft Azure</li>
+          <li class="sk"><span class="sk__badge" data-c="adf">Df</span>Azure Data Factory</li>
+          <li class="sk"><span class="sk__badge" data-c="dbx">Db</span>Azure Databricks</li>
+          <li class="sk"><span class="sk__badge" data-c="fab">Fb</span>Microsoft Fabric</li>
+          <li class="sk"><span class="sk__badge" data-c="knime">Kn</span>KNIME</li>
+          <li class="sk"><span class="sk__badge" data-c="hadoop">Hd</span>Hadoop / Hive</li>
+          <li class="sk"><span class="sk__badge" data-c="gcp">Gc</span>Google Cloud</li>
+          <li class="sk"><span class="sk__badge" data-c="vercel">Vc</span>Vercel</li>
+        </ul>
+      </div>
+
+      <div class="skill-panel glass tilt reveal">
+        <h3 class="skill-panel__title"><span class="dot dot--green"></span><span data-i18n="skills.g5">Databases</span></h3>
+        <ul>
+          <li class="sk"><span class="sk__badge" data-c="ora">Or</span>OracleDB</li>
+          <li class="sk"><span class="sk__badge" data-c="maria">Ma</span>MariaDB / MySQL</li>
+          <li class="sk"><span class="sk__badge" data-c="sap">SA</span>SAP</li>
+          <li class="sk"><span class="sk__badge" data-c="pma">Pm</span>phpMyAdmin</li>
+          <li class="sk"><span class="sk__badge" data-c="acc">Ac</span>MS Access</li>
+          <li class="sk"><span class="sk__badge" data-c="dw">Dw</span>Data Warehouse</li>
+        </ul>
+      </div>
+
+      <div class="skill-panel glass tilt reveal">
+        <h3 class="skill-panel__title"><span class="dot dot--amber"></span><span data-i18n="skills.g6">Tools &amp; Analytics</span></h3>
+        <ul>
+          <li class="sk"><span class="sk__badge" data-c="git">Gh</span>Git / GitHub</li>
+          <li class="sk"><span class="sk__badge" data-c="jenkins">Je</span>Jenkins</li>
+          <li class="sk"><span class="sk__badge" data-c="devops">Do</span>Azure DevOps / TFS</li>
+          <li class="sk"><span class="sk__badge" data-c="jira">Ji</span>Jira · Confluence</li>
+          <li class="sk"><span class="sk__badge" data-c="remedy">Rm</span>Remedy · Octane</li>
+          <li class="sk"><span class="sk__badge" data-c="pbi">Bi</span>Power BI · Tableau</li>
+          <li class="sk"><span class="sk__badge" data-c="winscp">Ws</span>WinSCP · Linux</li>
+          <li class="sk"><span class="sk__badge" data-c="copilot">Ai</span>Copilot · LLM tooling</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ---- Infinite logo marquee (two identical tracks scrolling seamlessly) ---- -->
+    <div class="marquee reveal" aria-hidden="true">
+      <div class="marquee__fade marquee__fade--l"></div>
+      <div class="marquee__track">
+        <!-- Track A -->
+        <div class="marquee__group">
+          <img src="assets/img/python.png"      alt="" loading="lazy"><img src="assets/img/oracledb.png" alt="" loading="lazy">
+          <img src="assets/img/csharp.png"      alt="" loading="lazy"><img src="assets/img/sql.png"      alt="" loading="lazy">
+          <img src="assets/img/typescript.png"  alt="" loading="lazy"><img src="assets/img/react.png"    alt="" loading="lazy">
+          <img src="assets/img/angular.png"     alt="" loading="lazy"><img src="assets/img/azure.png"    alt="" loading="lazy">
+          <img src="assets/img/powerbi.png"     alt="" loading="lazy"><img src="assets/img/pandas.png"   alt="" loading="lazy">
+          <img src="assets/img/tensorflow.png"  alt="" loading="lazy"><img src="assets/img/pytorch.png"  alt="" loading="lazy">
+          <img src="assets/img/git.png"         alt="" loading="lazy"><img src="assets/img/linux.png"    alt="" loading="lazy">
+          <img src="assets/img/mariadb.png"     alt="" loading="lazy"><img src="assets/img/java.png"     alt="" loading="lazy">
+        </div>
+        <!-- Track B — exact duplicate so the loop never shows a gap -->
+        <div class="marquee__group">
+          <img src="assets/img/python.png"      alt="" loading="lazy"><img src="assets/img/oracledb.png" alt="" loading="lazy">
+          <img src="assets/img/csharp.png"      alt="" loading="lazy"><img src="assets/img/sql.png"      alt="" loading="lazy">
+          <img src="assets/img/typescript.png"  alt="" loading="lazy"><img src="assets/img/react.png"    alt="" loading="lazy">
+          <img src="assets/img/angular.png"     alt="" loading="lazy"><img src="assets/img/azure.png"    alt="" loading="lazy">
+          <img src="assets/img/powerbi.png"     alt="" loading="lazy"><img src="assets/img/pandas.png"   alt="" loading="lazy">
+          <img src="assets/img/tensorflow.png"  alt="" loading="lazy"><img src="assets/img/pytorch.png"  alt="" loading="lazy">
+          <img src="assets/img/git.png"         alt="" loading="lazy"><img src="assets/img/linux.png"    alt="" loading="lazy">
+          <img src="assets/img/mariadb.png"     alt="" loading="lazy"><img src="assets/img/java.png"     alt="" loading="lazy">
+        </div>
+      </div>
+      <div class="marquee__fade marquee__fade--r"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================================================================
+     9. PROJECTS  (#projects)
+     Six highlights. Every "Case study" link jumps to the matching anchor
+     inside projects.html (e.g. projects.html#masterdata).
+     =========================================================================== -->
+<section class="section projects" id="projects">
+  <div class="container">
+
+    <header class="section__head reveal">
+      <span class="eyebrow"><i></i><span data-i18n="proj.eyebrow">Projects</span></span>
+      <h2 class="display" data-i18n="proj.title">What I've built.</h2>
+      <p class="section__lead" data-i18n="proj.lead">
+        Enterprise data work, machine learning research and client websites. Six highlights below — the rest live on the projects page.
+      </p>
+    </header>
+
+    <div class="proj-grid">
+
+      <!-- ---- 1. Infineon master data migration (no screenshot — internal system,
+                  so the card uses a hand-built SQL "code preview" instead) ---- -->
+      <article class="proj glass tilt reveal proj--wide">
+        <span class="proj__flag" data-i18n="proj.featured">Featured</span>
+        <div class="proj__media proj__media--code">
+          <div class="code">
+            <div class="code__bar"><i></i><i></i><i></i><span class="code__file">migrate_master_data.pks</span></div>
+<pre class="code__body"><span class="c-k">CREATE OR REPLACE PACKAGE BODY</span> mdm_migration <span class="c-k">AS</span>
+  <span class="c-k">PROCEDURE</span> merge_duplicates(p_class <span class="c-k">IN VARCHAR2</span>) <span class="c-k">IS</span>
+  <span class="c-k">BEGIN</span>
+    <span class="c-k">MERGE INTO</span> mdm_part t
+    <span class="c-k">USING</span> (<span class="c-k">SELECT</span> golden_id, part_no, site
+             <span class="c-k">FROM</span> stg_part_dedup
+            <span class="c-k">WHERE</span> class = p_class) s
+       <span class="c-k">ON</span> (t.part_no = s.part_no)
+    <span class="c-k">WHEN MATCHED THEN UPDATE SET</span> t.golden_id = s.golden_id
+    <span class="c-k">WHEN NOT MATCHED THEN INSERT</span> <span class="c-c">/* new golden record */</span>
+      <span class="c-k">VALUES</span> (s.golden_id, s.part_no, s.site);
+    log_pkg.audit(<span class="c-s">'MERGE'</span>, <span class="c-k">SQL%ROWCOUNT</span>);
+  <span class="c-k">END</span>;
+<span class="c-k">END</span> mdm_migration;</pre>
+          </div>
+        </div>
+        <div class="proj__body">
+          <h3 data-i18n="proj.p1.title">Enterprise Master Data Migration &amp; Cleansing</h3>
+          <p data-i18n="proj.p1.desc">
+            SAP-related migration and de-duplication across Infineon's worldwide engineering
+            master data. PL/SQL packages merge golden records, an ETL layer validates every
+            load, and KNIME workflows automate the repeat tickets — around 30% less manual
+            workflow and 50% less handling time on recurring data patches.
+          </p>
+          <div class="tags">
+            <span class="tag">Oracle PL/SQL</span><span class="tag">ETL</span><span class="tag">SAP</span>
+            <span class="tag">KNIME</span><span class="tag">Data Quality</span>
+          </div>
+          <a class="proj__link" href="projects.html#masterdata">
+            <span data-i18n="proj.case">Case study</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ---- 2. Homestay Shimah Jay (freelance) ---- -->
+      <article class="proj glass tilt reveal">
+        <span class="proj__flag proj__flag--alt" data-i18n="proj.client">Client Work</span>
+        <div class="proj__media proj__media--browser">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">homestayshimahjay.com</span></div>
+            <div class="browser__view">
+              <div class="bw-hero"></div>
+              <div class="bw-row"><span></span><span></span><span></span></div>
+              <div class="bw-row bw-row--sm"><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj__body">
+          <h3 data-i18n="proj.p2.title">Homestay Shimah Jay — Booking Site</h3>
+          <p data-i18n="proj.p2.desc">
+            Bilingual marketing site for six boutique homestays in Melaka. Next.js 16 App Router
+            with a locale segment, a statically generated page per house, generated sitemap with
+            hreflang, and a rule-based chatbot answering guest questions 24/7.
+          </p>
+          <div class="tags">
+            <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+            <span class="tag">Tailwind v4</span><span class="tag">SEO</span>
+          </div>
+          <a class="proj__link" href="projects.html#homestay">
+            <span data-i18n="proj.case">Case study</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ---- 3. Final Year Project ---- -->
+      <article class="proj glass tilt reveal">
+        <span class="proj__flag" data-i18n="proj.featured">Featured</span>
+        <div class="proj__media">
+          <img src="assets/img/myproject1.png" alt="Breast cancer prediction system interface" loading="lazy">
+        </div>
+        <div class="proj__body">
+          <h3 data-i18n="proj.p3.title">Breast Cancer Prediction — HoverNet</h3>
+          <p data-i18n="proj.p3.desc">
+            Final year project: a Django web system that runs the HoverNet deep-learning
+            framework to segment and classify nuclei in histopathology images from the
+            PanNuke dataset, giving pathologists a faster second opinion.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Django</span><span class="tag">PyTorch</span>
+            <span class="tag">HoverNet</span><span class="tag">MySQL</span>
+          </div>
+          <a class="proj__link" href="projects.html#fyp">
+            <span data-i18n="proj.case">Case study</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ---- 4. YOLOv8 ---- -->
+      <article class="proj glass tilt reveal">
+        <div class="proj__media">
+          <img src="assets/img/myproject7.png" alt="Real-time face mask detection results" loading="lazy">
+        </div>
+        <div class="proj__body">
+          <h3 data-i18n="proj.p4.title">Real-Time Face Mask Detection</h3>
+          <p data-i18n="proj.p4.desc">
+            YOLOv8 + OpenCV detector served through Flask. Three-class output (worn, worn
+            incorrectly, not worn) with colour-coded live webcam overlay — mAP50 0.905,
+            precision 0.898.
+          </p>
+          <div class="tags">
+            <span class="tag">YOLOv8</span><span class="tag">OpenCV</span><span class="tag">Flask</span><span class="tag">Roboflow</span>
+          </div>
+          <div class="proj__links">
+            <a class="proj__link" href="projects.html#yolo">
+              <span data-i18n="proj.case">Case study</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="proj__link proj__link--ghost" href="https://github.com/naqiudinfandy/Facemask-detection-YOLOv8-OpenCV" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- 5. TM R&D network prediction ---- -->
+      <article class="proj glass tilt reveal">
+        <div class="proj__media proj__media--chart">
+          <!-- Hand-drawn SVG chart so the card has real texture, not a stock photo -->
+          <svg class="spark" viewBox="0 0 320 150" role="img" aria-label="Network speed prediction chart">
+            <defs>
+              <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"  stop-color="#00F0FF" stop-opacity=".38"/>
+                <stop offset="100%" stop-color="#00F0FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g stroke="rgba(255,255,255,.07)" stroke-width="1">
+              <line x1="0" y1="35" x2="320" y2="35"/><line x1="0" y1="70" x2="320" y2="70"/>
+              <line x1="0" y1="105" x2="320" y2="105"/>
+            </g>
+            <path class="spark__area" d="M0,120 L30,105 L60,112 L90,78 L120,88 L150,55 L180,66 L210,40 L240,52 L270,28 L300,38 L320,26 L320,150 L0,150 Z" fill="url(#sparkFill)"/>
+            <path class="spark__line" d="M0,120 L30,105 L60,112 L90,78 L120,88 L150,55 L180,66 L210,40 L240,52 L270,28 L300,38 L320,26" fill="none" stroke="#00F0FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="spark__pred" d="M210,40 L240,44 L270,22 L300,30 L320,16" fill="none" stroke="#FF00AA" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="proj__body">
+          <h3 data-i18n="proj.p5.title">Network Fault &amp; Speed Prediction</h3>
+          <p data-i18n="proj.p5.desc">
+            Time-series forecasting on TM's access-network telemetry. Random Forest Regression
+            and LSTM models anticipate speed degradation and faults at 80%+ accuracy, surfaced
+            through Power BI dashboards for weekly ops reviews.
+          </p>
+          <div class="tags">
+            <span class="tag">LSTM</span><span class="tag">Random Forest</span><span class="tag">Power BI</span><span class="tag">ETL</span>
+          </div>
+          <a class="proj__link" href="projects.html#network">
+            <span data-i18n="proj.case">Case study</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ---- 6. Angular + REST API ---- -->
+      <article class="proj glass tilt reveal">
+        <div class="proj__media">
+          <img src="assets/img/myproject8.png" alt="Angular product management dashboard" loading="lazy">
+        </div>
+        <div class="proj__body">
+          <h3 data-i18n="proj.p6.title">Angular &amp; REST API Platform</h3>
+          <p data-i18n="proj.p6.desc">
+            Token-authenticated Angular 18 application with product CRUD, modal forms,
+            route-guarded pages and a paginated detail view driven by asynchronous
+            date-range queries.
+          </p>
+          <div class="tags">
+            <span class="tag">Angular 18</span><span class="tag">TypeScript</span><span class="tag">REST API</span><span class="tag">JWT</span>
+          </div>
+          <a class="proj__link" href="projects.html#angular">
+            <span data-i18n="proj.case">Case study</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Link out to the full project archive -->
+    <div class="projects__more reveal">
+      <a href="projects.html" class="btn btn--ghost btn--lg magnetic">
+        <span data-i18n="proj.viewAll">View all 12 projects</span>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================================================================
+     10. CERTIFICATIONS + AWARDS  (#certifications)
+     The certificate cards flip in 3D on hover / tap.
+     =========================================================================== -->
+<section class="section certs" id="certifications">
+  <div class="container">
+
+    <header class="section__head section__head--center reveal">
+      <span class="eyebrow"><i></i><span data-i18n="cert.eyebrow">Certifications</span></span>
+      <h2 class="display" data-i18n="cert.title">Credentials.</h2>
+      <p class="section__lead" data-i18n="cert.lead">
+        Hover a card to see the credential details. All verifiable — links included where the issuer provides one.
+      </p>
+    </header>
+
+    <div class="cert-grid">
+
+      <!-- Card pattern: .flip > .flip__inner > .flip__face--front / --back -->
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">🏅</span>
+            <h3>Power BI Data Analyst Associate</h3>
+            <p class="cert__issuer">Microsoft</p>
+            <span class="cert__year mono">2025</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id">ID · 3EC00920AAB8D3DC</p>
+            <p data-i18n="cert.c1.note">Modelling, DAX, data preparation and report design in Power BI.</p>
+            <a href="https://learn.microsoft.com/api/credentials/share/en-us/NaqiudinFandy-9953/3EC00920AAB8D3DC?sharingId=B6F2B5ADEF882F37" target="_blank" rel="noopener noreferrer" data-i18n="cert.verify">Verify →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">☁️</span>
+            <h3>Azure Data Fundamentals (DP-900)</h3>
+            <p class="cert__issuer">Microsoft</p>
+            <span class="cert__year mono">2025</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id">ID · 27D46BD4DEA08F19</p>
+            <p data-i18n="cert.c2.note">Core data concepts, relational and non-relational data, analytics on Azure.</p>
+            <a href="https://learn.microsoft.com/api/credentials/share/en-us/NaqiudinFandy-9953/27D46BD4DEA08F19" target="_blank" rel="noopener noreferrer" data-i18n="cert.verify">Verify →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">⚛️</span>
+            <h3>Frontend Developer (React)</h3>
+            <p class="cert__issuer">HackerRank</p>
+            <span class="cert__year mono">2024</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id">ID · 8C2A15FC6E0F</p>
+            <p data-i18n="cert.c3.note">React components, state management and DOM problem solving under timed conditions.</p>
+            <a href="https://www.hackerrank.com/certificates/8c2a15fc6e0f" target="_blank" rel="noopener noreferrer" data-i18n="cert.verify">Verify →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">💻</span>
+            <h3>Software Engineer Intern</h3>
+            <p class="cert__issuer">HackerRank</p>
+            <span class="cert__year mono">2024</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id">ID · 56CCD82A6CD3</p>
+            <p data-i18n="cert.c4.note">Data structures, algorithms and applied problem solving assessment.</p>
+            <a href="https://www.hackerrank.com/certificates/56ccd82a6cd3" target="_blank" rel="noopener noreferrer" data-i18n="cert.verify">Verify →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">🗄️</span>
+            <h3>SQL (Intermediate)</h3>
+            <p class="cert__issuer">HackerRank</p>
+            <span class="cert__year mono">2024</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id" data-i18n="cert.c5.id">Joins · aggregation · subqueries</p>
+            <p data-i18n="cert.c5.note">Intermediate SQL assessment covering complex joins, grouping and nested queries.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">📊</span>
+            <h3>Analyzing Data with Power BI</h3>
+            <p class="cert__issuer">Asia Pacific University (APU)</p>
+            <span class="cert__year mono">2025</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id">Credly verified</p>
+            <p data-i18n="cert.c6.note">Applied analytics programme — data modelling and executive reporting.</p>
+            <a href="https://www.credly.com/badges/7baa742f-742f-412c-88ee-5035b7aa5d6c/linked_in_profile" target="_blank" rel="noopener noreferrer" data-i18n="cert.verify">Verify →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip reveal">
+        <div class="flip__inner">
+          <div class="flip__face flip__face--front glass">
+            <span class="cert__icon">🚀</span>
+            <h3>K-Youth Employment Programme</h3>
+            <p class="cert__issuer">Khazanah Nasional</p>
+            <span class="cert__year mono">2025</span>
+          </div>
+          <div class="flip__face flip__face--back glass">
+            <p class="mono cert__id">AirAsia cohort</p>
+            <p data-i18n="cert.c7.note">Industry apprenticeship in data science, professional communication and teamwork.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ---- Awards & involvements strip ---- -->
+    <div class="awards reveal">
+      <h3 class="awards__title" data-i18n="cert.awardsTitle">Awards &amp; Involvements</h3>
+      <div class="awards__grid">
+        <div class="award glass">
+          <span class="award__medal award__medal--lead">★</span>
+          <div>
+            <h4 data-i18n="cert.a1.t">Program Leader — SCHOOL@UKM Prototyping Workshop</h4>
+            <p data-i18n="cert.a1.d">Led a Figma + Bravo Studio prototyping workshop for students · 2024</p>
+          </div>
+        </div>
+        <div class="award glass">
+          <span class="award__medal award__medal--gold">🥇</span>
+          <div>
+            <h4 data-i18n="cert.a2.t">Gold — Contingent March-Past</h4>
+            <p data-i18n="cert.a2.d">Sukan Antara Fakulti (SAF), UKM · 2023</p>
+          </div>
+        </div>
+        <div class="award glass">
+          <span class="award__medal award__medal--bronze">🥉</span>
+          <div>
+            <h4 data-i18n="cert.a3.t">Bronze — AR/VR Reality Competition</h4>
+            <p data-i18n="cert.a3.d">Mobile Application Development Club · 2022</p>
+          </div>
+        </div>
+        <div class="award glass">
+          <span class="award__medal award__medal--silver">🥈</span>
+          <div>
+            <h4 data-i18n="cert.a4.t">Silver — IDIIC International Challenge</h4>
+            <p data-i18n="cert.a4.d">International Digital Innovation &amp; Invention Challenge · 2021</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================================================================
+     11. CONTACT  (#contact)
+     Left: details + availability. Right: message form.
+     The form has NO server — script.js opens the visitor's mail app with the
+     message pre-filled, so it works on GitHub Pages with zero backend.
+     =========================================================================== -->
+<section class="section contact" id="contact">
+  <div class="container">
+
+    <header class="section__head section__head--center reveal">
+      <span class="eyebrow"><i></i><span data-i18n="contact.eyebrow">Contact</span></span>
+      <h2 class="display" data-i18n="contact.title">Let's build something.</h2>
+      <p class="section__lead" data-i18n="contact.lead">
+        Got a role, a project or just a question about the code on this page? My inbox is open.
+      </p>
+    </header>
+
+    <div class="contact__grid">
+
+      <!-- ---- Details column ---- -->
+      <div class="contact__info reveal" data-reveal="left">
+
+        <a class="contact__row glass magnetic" href="mailto:naqiudin73@gmail.com">
+          <span class="contact__ico">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </span>
+          <span>
+            <small class="mono" data-i18n="contact.email">Email</small>
+            <strong>naqiudin73@gmail.com</strong>
+          </span>
+        </a>
+
+        <a class="contact__row glass magnetic" href="tel:+60176220665">
+          <span class="contact__ico">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
+          </span>
+          <span>
+            <small class="mono" data-i18n="contact.phone">Phone</small>
+            <strong>+60 17-622 0665</strong>
+          </span>
+        </a>
+
+        <div class="contact__row glass">
+          <span class="contact__ico">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <span>
+            <small class="mono" data-i18n="contact.location">Location</small>
+            <strong data-i18n="contact.locationValue">75460 Melaka, Malaysia</strong>
+          </span>
+        </div>
+
+        <p class="contact__label mono" data-i18n="contact.findMe">Find me online</p>
+        <div class="contact__socials">
+          <a href="https://github.com/naqiudinfandy" class="glass magnetic" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/naqiudin-fandy/" class="glass magnetic" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://wa.me/60176220665" class="glass magnetic" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="assets/resume/Muhammad-Naqiudin-Resume.pdf" class="glass magnetic" target="_blank" rel="noopener noreferrer" data-i18n="contact.resume">Résumé</a>
+        </div>
+
+        <div class="contact__note glass">
+          <span class="pulse-dot pulse-dot--sm"></span>
+          <p data-i18n="contact.note">
+            Currently a full-time Software Engineer and open to <strong>freelance web projects</strong>
+            and <strong>data engineering opportunities</strong>. I usually reply within 24 hours.
+          </p>
+        </div>
+      </div>
+
+      <!-- ---- Form column ---- -->
+      <form class="contact__form glass reveal" id="contact-form" data-reveal="right" novalidate>
+        <div class="field">
+          <label for="cf-name" class="mono" data-i18n="contact.fName">Your name</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required placeholder="Ahmad Zaki" data-i18n-ph="contact.fNamePh">
+        </div>
+        <div class="field">
+          <label for="cf-email" class="mono" data-i18n="contact.fEmail">Email address</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" data-i18n-ph="contact.fEmailPh">
+        </div>
+        <div class="field">
+          <label for="cf-subject" class="mono" data-i18n="contact.fSubject">Subject</label>
+          <input id="cf-subject" name="subject" type="text" placeholder="Freelance website enquiry" data-i18n-ph="contact.fSubjectPh">
+        </div>
+        <div class="field">
+          <label for="cf-msg" class="mono" data-i18n="contact.fMsg">Message</label>
+          <textarea id="cf-msg" name="message" rows="5" required placeholder="Tell me about the project or role…" data-i18n-ph="contact.fMsgPh"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block magnetic">
+          <span data-i18n="contact.send">Send Message</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+
+        <!-- Status line filled in by script.js after submit -->
+        <p class="form__status mono" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form__hint" data-i18n="contact.formHint">
+          This opens your own email app with everything filled in — nothing is stored on a server.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ===========================================================================
+     12. FOOTER
+     =========================================================================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#home" class="nav__logo"><span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span></a>
+      <p data-i18n="footer.tagline">Built by hand in Melaka, Malaysia — no page builder, no template.</p>
+    </div>
+
+    <nav class="footer__links" aria-label="Footer navigation">
+      <a href="#about"          data-i18n="nav.about">About</a>
+      <a href="#education"      data-i18n="nav.education">Education</a>
+      <a href="#experience"     data-i18n="nav.experience">Experience</a>
+      <a href="#skills"         data-i18n="nav.skills">Skills</a>
+      <a href="projects.html"   data-i18n="nav.projects">Projects</a>
+      <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="#contact"        data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <p class="footer__copy mono">© <span id="year">2026</span> Muhammad Naqiudin Bin Noor Affandy</p>
+  </div>
+
+  <!-- Back to top -->
+  <a href="#home" class="to-top magnetic" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+</footer>
+
+
+<!-- ===========================================================================
+     13. RULE-BASED CHATBOT  (bottom-right)
+     All logic + answers live in chatbot.js — it matches keywords, it does NOT
+     call any AI service, so it works offline and costs nothing to run.
+     =========================================================================== -->
+<button class="chat-fab magnetic" id="chat-fab" aria-label="Open chat assistant" aria-expanded="false" aria-controls="chat-panel">
+  <svg class="chat-fab__open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9">
+    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-5a8 8 0 1 1 17-6z"/>
+  </svg>
+  <svg class="chat-fab__close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M18 6 6 18M6 6l12 12"/>
+  </svg>
+  <span class="chat-fab__ping"></span>
+</button>
+
+<section class="chat glass" id="chat-panel" aria-hidden="true" aria-label="Portfolio assistant">
+  <header class="chat__head">
+    <span class="chat__avatar">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>
+    </span>
+    <div>
+      <strong data-i18n="chat.title">Portfolio Assistant</strong>
+      <small><span class="pulse-dot pulse-dot--sm"></span><span data-i18n="chat.status">rule-based · always online</span></small>
+    </div>
+    <button class="chat__x" id="chat-close" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </header>
+
+  <!-- Messages get appended here by chatbot.js -->
+  <div class="chat__log" id="chat-log" role="log" aria-live="polite"></div>
+
+  <!-- Suggested questions — rebuilt by chatbot.js after every answer -->
+  <div class="chat__chips" id="chat-chips"></div>
+
+  <form class="chat__input" id="chat-form">
+    <input id="chat-text" type="text" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
+    <button type="submit" aria-label="Send message">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </form>
+</section>
+
+
+<!-- ===========================================================================
+     SCRIPTS
+     Order matters:
+       1. GSAP + ScrollTrigger → scroll-driven animation
+       2. Motion One           → the vanilla-JS sibling of Framer Motion
+       3. i18n.js              → language dictionary + switcher
+       4. chatbot.js           → rule-based assistant
+       5. script.js            → everything else (loader, cursor, tilt, canvas…)
+     Every library is used defensively: if a CDN is blocked the site still works,
+     it just animates with plain CSS instead.
+     =========================================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="chatbot.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+</html>

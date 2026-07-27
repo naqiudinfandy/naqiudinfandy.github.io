@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  PROJECT ARCHIVE — full case studies
+  ============================================================================
+  File   : projects.html
+  Parent : index.html  (every "Case study" link on the home page lands here,
+                        at the matching #anchor listed below)
+
+  ANCHORS ON THIS PAGE
+    #masterdata → Enterprise Master Data Migration & Cleansing  (Infineon)
+    #homestay   → Homestay Shimah Jay booking site              (freelance)
+    #fyp        → Breast Cancer Prediction, HoverNet            (final year)
+    #yolo       → Real-time face mask detection
+    #network    → Network fault & speed prediction              (TM R&D)
+    #foodwaste  → In-flight food waste prediction               (AirAsia)
+    #angular    → Angular + REST API product platform
+    #sentiment  → Tweet sentiment classification
+    #kmeans     → Customer segmentation with K-Means
+    #catalog    → Product catalog web system
+    #vbapp      → Drawing art tools desktop application
+    #portfolio  → This portfolio website
+
+  The filter bar near the top hides/shows cards by the data-cat attribute on
+  each <article class="case">. Filtering is handled in script.js →
+  initProjectsPage().
+
+  NOTE ON LANGUAGE: the page chrome (nav, headings, labels) is translated into
+  English / Bahasa Melayu / 中文 by i18n.js. The detailed technical write-ups
+  below are kept in English on purpose — that is the language the stacks,
+  metrics and tooling are documented in.
+  ============================================================================
+-->
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Projects — Muhammad Naqiudin</title>
+  <meta name="description" content="Full case studies of Muhammad Naqiudin's work: enterprise master data migration with Oracle PL/SQL, machine learning models, and Next.js client websites.">
+  <meta name="theme-color" content="#060A12">
+  <link rel="canonical" href="https://naqiudinfandy.github.io/projects.html">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23060A12'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='46' font-weight='700' fill='%2300F0FF' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Background layers (same as the home page) -->
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="bg__blob bg__blob--cyan"></div>
+  <div class="bg__blob bg__blob--violet"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg__noise"></div>
+</div>
+
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"><span class="cursor__label"></span></div>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+
+<!-- ===========================================================================
+     NAVIGATION — links point back to the sections of index.html
+     =========================================================================== -->
+<header class="nav" id="navbar">
+  <div class="nav__inner glass">
+    <a href="index.html" class="nav__logo" aria-label="Back to home">
+      <span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#about"          data-i18n="nav.about">About</a>
+      <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
+      <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
+      <a href="projects.html" class="is-active" data-i18n="nav.projects">Projects</a>
+      <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
+      <span class="nav__indicator" aria-hidden="true"></span>
+    </nav>
+
+    <div class="nav__actions">
+      <div class="lang" id="lang-switch">
+        <button class="lang__btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"></path>
+          </svg>
+          <span class="lang__current">EN</span>
+        </button>
+        <ul class="lang__menu glass" role="listbox">
+          <li><button role="option" data-lang="en">English <span>EN</span></button></li>
+          <li><button role="option" data-lang="ms">Bahasa Melayu <span>MS</span></button></li>
+          <li><button role="option" data-lang="zh">中文 <span>ZH</span></button></li>
+        </ul>
+      </div>
+
+      <a href="index.html#contact" class="btn btn--primary btn--sm magnetic" data-i18n="nav.hire">Hire Me</a>
+
+      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="mobile-menu" aria-hidden="true">
+  <nav class="drawer__links" aria-label="Mobile navigation">
+    <a href="index.html"                data-i18n="nav.home">Home</a>
+    <a href="index.html#about"          data-i18n="nav.about">About</a>
+    <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
+    <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
+    <a href="projects.html"             data-i18n="nav.projects">Projects</a>
+    <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
+    <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/naqiudin-fandy/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:naqiudin73@gmail.com">Email</a>
+  </div>
+</div>
+
+
+<main>
+
+<!-- ===========================================================================
+     PAGE HERO
+     =========================================================================== -->
+<header class="page-hero container">
+  <span class="eyebrow"><i></i><span data-i18n="page.eyebrow">Project Archive</span></span>
+  <h1 class="display" data-i18n="page.title">Every project, in detail.</h1>
+  <p class="section__lead" style="margin-inline:auto" data-i18n="page.lead">
+    Twelve builds across enterprise data engineering, machine learning and web development —
+    what the problem was, what I did, and what changed as a result.
+  </p>
+</header>
+
+<div class="container">
+
+  <!-- ---- Category filter. data-filter matches data-cat on each .case ---- -->
+  <div class="filters glass" role="group" aria-label="Filter projects by category">
+    <button class="is-active" data-filter="all"  data-i18n="page.filterAll">All</button>
+    <button data-filter="data" data-i18n="page.filterData">Data Engineering</button>
+    <button data-filter="ml"   data-i18n="page.filterMl">Machine Learning</button>
+    <button data-filter="web"  data-i18n="page.filterWeb">Web Development</button>
+    <button data-filter="app"  data-i18n="page.filterApp">Applications</button>
+  </div>
+
+
+  <!-- =========================================================================
+       01 — ENTERPRISE MASTER DATA MIGRATION  (Infineon, confidential)
+       ========================================================================= -->
+  <article class="case glass reveal" id="masterdata" data-cat="data">
+    <div class="case__head">
+      <span class="case__index">01</span>
+      <div>
+        <h2 class="case__title">Enterprise Master Data Migration &amp; Cleansing</h2>
+        <p class="case__role">Infineon Technologies · Master Data Developer</p>
+      </div>
+      <span class="case__year">2025 – present</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          Infineon's engineering master data is spread across many system classes and worldwide
+          sites. Over years of growth the same physical part could exist under several records,
+          each with a slightly different attribute set. Duplicate and drifting records break
+          downstream reporting, slow engineering lookups and create rework for the teams that
+          depend on that data being <strong>one single truth</strong>.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          I built the PL/SQL layer that consolidates those records. Staging tables hold candidate
+          duplicates, a <strong>MERGE</strong>-based procedure promotes one golden record per part
+          and repoints the rest, and every operation writes to an audit package so any change can
+          be traced and rolled back.
+        </p>
+        <p>
+          Around that core I designed the ETL and data-warehouse flow — validation rules before
+          load, explicit error handling instead of silent failures, and reconciliation counts after
+          each run. The recurring parts of the job (data patching, cleansing, preparing comparison
+          sheets) were moved into <strong>KNIME</strong> workflows so a repeat ticket became a
+          button press rather than an afternoon.
+        </p>
+        <p>
+          The work also covered <strong>SAP</strong>-side migration and restructuring, plus the
+          reporting that lets the business see data quality trending rather than guessing at it.
+          Releases went out through weekly Jenkins pipelines across DEV, INT and PROD, which I ran
+          as Software Release Manager.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>~30%</b><span>leaner enterprise workflow</span></div>
+          <div class="case__stat"><b>~50%</b><span>less handling time per repeat ticket</span></div>
+          <div class="case__stat"><b>Weekly</b><span>release cadence, 3 environments</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Oracle PL/SQL</span><span class="tag">Oracle DB</span><span class="tag">ETL</span>
+          <span class="tag">Data Warehouse</span><span class="tag">SAP</span><span class="tag">KNIME</span>
+          <span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">C# .NET</span>
+          <span class="tag">Remedy</span><span class="tag">Octane</span>
+        </div>
+
+        <!-- No screenshots possible — an internal system. A code sketch stands in. -->
+        <div class="proj__media proj__media--code" style="margin-top:18px;border-radius:14px;border:1px solid rgba(255,255,255,.08)">
+          <div class="code">
+            <div class="code__bar"><i></i><i></i><i></i><span class="code__file">merge_golden_record.sql</span></div>
+<pre class="code__body"><span class="c-c">-- one golden record per part, everything else repointed</span>
+<span class="c-k">MERGE INTO</span> mdm_part t
+<span class="c-k">USING</span> (
+  <span class="c-k">SELECT</span> part_no,
+         <span class="c-k">MIN</span>(record_id)  <span class="c-k">AS</span> golden_id,
+         <span class="c-k">COUNT</span>(*)        <span class="c-k">AS</span> dup_count
+    <span class="c-k">FROM</span> stg_part_candidate
+   <span class="c-k">GROUP BY</span> part_no
+  <span class="c-k">HAVING COUNT</span>(*) &gt; 1
+) s
+   <span class="c-k">ON</span> (t.part_no = s.part_no)
+<span class="c-k">WHEN MATCHED THEN UPDATE SET</span>
+      t.golden_id  = s.golden_id,
+      t.changed_on = <span class="c-k">SYSDATE</span>;
+
+audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROWCOUNT</span>);
+<span class="c-k">COMMIT</span>;</pre>
+          </div>
+        </div>
+        <p class="form__hint" style="margin-top:10px;text-align:left" data-i18n="page.confidential">
+          Internal enterprise system — no screenshots can be shared, so the write-up describes the approach instead.
+        </p>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       02 — HOMESTAY SHIMAH JAY  (freelance)
+       ========================================================================= -->
+  <article class="case glass reveal" id="homestay" data-cat="web">
+    <div class="case__head">
+      <span class="case__index">02</span>
+      <div>
+        <h2 class="case__title">Homestay Shimah Jay — Booking Website</h2>
+        <p class="case__role">Freelance · Design, build, deploy &amp; SEO</p>
+      </div>
+      <span class="case__year">2025</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          A family running six boutique homestays in Umbai and Telok Mas, Melaka, was taking every
+          enquiry by WhatsApp. Guests could not see the houses side by side, prices had to be
+          repeated by hand, and the business was invisible on Google. They needed a proper website
+          that spoke both Malay and English, without a monthly platform fee.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Built with <strong>Next.js 16 (App Router)</strong>, React 19 and Tailwind CSS v4 in
+          TypeScript. Every page sits under a locale segment, so <code>/en</code> and
+          <code>/ms</code> are real routes rather than a client-side toggle — better for both
+          visitors and search engines.
+        </p>
+        <p>
+          Each house gets a statically generated page per locale, so the pages are pure HTML at
+          request time and load fast on a phone with weak signal. The sitemap and robots files are
+          generated for both locales with correct <strong>hreflang</strong>, and I set up Google
+          Search Console, domain, DNS, SSL and CDN through Cloudflare and Vercel.
+        </p>
+        <p>
+          A <strong>rule-based chatbot</strong> answers the questions the owners were previously
+          typing out by hand — check-in times, capacity, directions, pricing — so enquiries arrive
+          already qualified.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>6</b><span>houses, one page each, two locales</span></div>
+          <div class="case__stat"><b>SSG</b><span>static pages — no server cost</span></div>
+          <div class="case__stat"><b>24/7</b><span>chatbot handling routine questions</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+          <span class="tag">Tailwind v4</span><span class="tag">SSG / SSR</span><span class="tag">Vercel</span>
+          <span class="tag">Cloudflare</span><span class="tag">SEO</span><span class="tag">Search Console</span>
+        </div>
+
+        <div class="proj__media proj__media--browser" style="margin-top:18px;border-radius:14px;border:1px solid rgba(255,255,255,.08);min-height:230px">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">homestayshimahjay.com/ms</span></div>
+            <div class="browser__view">
+              <div class="bw-hero"></div>
+              <div class="bw-row"><span></span><span></span><span></span></div>
+              <div class="bw-row"><span></span><span></span><span></span></div>
+              <div class="bw-row bw-row--sm"><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       03 — FINAL YEAR PROJECT
+       ========================================================================= -->
+  <article class="case glass reveal" id="fyp" data-cat="ml">
+    <div class="case__head">
+      <span class="case__index">03</span>
+      <div>
+        <h2 class="case__title">Breast Cancer Prediction using the HoverNet Approach</h2>
+        <p class="case__role">UKM · Final Year Project</p>
+      </div>
+      <span class="case__year">2024 – 2025</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          Diagnosing breast cancer from histopathology slides means counting and classifying
+          nuclei by eye — slow, tiring, and inconsistent between reviewers. A model that
+          segments and classifies nuclei automatically gives the pathologist a fast second
+          opinion instead of replacing their judgement.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Implemented the <strong>HoverNet</strong> framework, which predicts horizontal and
+          vertical distance maps alongside the segmentation branch — that is what lets it
+          separate nuclei that touch each other, the failure case simpler models struggle with.
+          Trained and evaluated on the <strong>PanNuke</strong> dataset.
+        </p>
+        <p>
+          Wrapped the model in a <strong>Django</strong> web application so a clinician uploads a
+          slide image and gets back the overlay and per-class counts, with results and user
+          accounts persisted in MySQL. Preprocessing and dataset analysis were done in Jupyter
+          and Excel.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>Simultaneous</b><span>segmentation + classification</span></div>
+          <div class="case__stat"><b>Web-based</b><span>usable without any ML setup</span></div>
+          <div class="case__stat"><b>First Class</b><span>degree outcome</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">HoverNet</span>
+          <span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">PHP</span>
+          <span class="tag">Bootstrap</span><span class="tag">Jupyter</span><span class="tag">XAMPP</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject1.png"  alt="Breast cancer prediction system — overview" loading="lazy">
+          <img src="assets/img/myproject1b.png" alt="Breast cancer prediction system — analysis" loading="lazy">
+          <img src="assets/img/myproject1c.png" alt="Breast cancer prediction system — results" loading="lazy">
+          <img src="assets/img/myproject1d.png" alt="Breast cancer prediction system — interface" loading="lazy">
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       04 — YOLOv8 FACE MASK DETECTION
+       ========================================================================= -->
+  <article class="case glass reveal" id="yolo" data-cat="ml">
+    <div class="case__head">
+      <span class="case__index">04</span>
+      <div>
+        <h2 class="case__title">Real-Time Face Mask Detection — YOLOv8 &amp; OpenCV</h2>
+        <p class="case__role">Personal project · Computer vision</p>
+      </div>
+      <span class="case__year">2024</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          Checking mask compliance manually at an entrance does not scale, and a plain
+          "mask / no mask" classifier misses the most common real-world case: a mask worn
+          under the nose. The model needed three classes, not two, and it needed to run live.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Labelled and augmented the dataset in <strong>LabelImg</strong> and
+          <strong>Roboflow</strong>, then trained <strong>YOLOv8</strong> for three classes:
+          worn correctly (green), worn incorrectly (yellow), not worn (red). OpenCV handles the
+          webcam stream and draws the colour-coded boxes; a <strong>Flask</strong> app serves it
+          in the browser so no local install is needed.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>0.905</b><span>mAP@50</span></div>
+          <div class="case__stat"><b>0.898</b><span>precision</span></div>
+          <div class="case__stat"><b>0.848</b><span>recall</span></div>
+          <div class="case__stat"><b>0.636</b><span>mAP@50-95</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">YOLOv8</span><span class="tag">Ultralytics</span><span class="tag">OpenCV</span>
+          <span class="tag">Flask</span><span class="tag">TensorFlow</span><span class="tag">Roboflow</span>
+          <span class="tag">LabelImg</span><span class="tag">Anaconda</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject7.png"  alt="Face mask detection — interface" loading="lazy">
+          <img src="assets/img/myproject7b.png" alt="Face mask detection — live detection" loading="lazy">
+          <img src="assets/img/myproject7d.png" alt="Face mask detection — training run" loading="lazy">
+          <img src="assets/img/myproject7e.png" alt="Face mask detection — evaluation metrics" loading="lazy">
+        </div>
+
+        <div class="case__links">
+          <a class="btn btn--ghost btn--sm magnetic" href="https://github.com/naqiudinfandy/Facemask-detection-YOLOv8-OpenCV" target="_blank" rel="noopener noreferrer">
+            View on GitHub
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       05 — NETWORK FAULT & SPEED PREDICTION  (TM R&D)
+       ========================================================================= -->
+  <article class="case glass reveal" id="network" data-cat="ml data">
+    <div class="case__head">
+      <span class="case__index">05</span>
+      <div>
+        <h2 class="case__title">Network Fault &amp; Internet Speed Prediction</h2>
+        <p class="case__role">TM Research &amp; Development · Data Science Intern</p>
+      </div>
+      <span class="case__year">2024 – 2025</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          Network faults were handled reactively: a customer complains, then someone looks. The
+          telemetry to see problems coming already existed — access network logs, termination
+          logs, CTT records, speed tests — but it was messy enough that nobody trusted it.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Started with the unglamorous half: cleaning and reconciling thousands of records across
+          four sources, which lifted usable data quality by around <strong>90%</strong>. Then built
+          <strong>Random Forest Regression</strong> and <strong>LSTM</strong> time-series models to
+          predict speed degradation and fault likelihood.
+        </p>
+        <p>
+          Results went into <strong>Power BI</strong> and Python (Matplotlib / Seaborn) dashboards
+          reviewed weekly by the ops team. I also automated the data extraction with
+          <strong>Selenium Robot Framework</strong>, and supported the OracleDB → MariaDB migration
+          with ETL work and testing.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>80%+</b><span>prediction accuracy</span></div>
+          <div class="case__stat"><b>90%</b><span>improvement in data quality</span></div>
+          <div class="case__stat"><b>60%</b><span>less manual reporting work</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">LSTM</span><span class="tag">Random Forest</span>
+          <span class="tag">Pandas</span><span class="tag">Power BI</span><span class="tag">Seaborn</span>
+          <span class="tag">Selenium</span><span class="tag">OracleDB</span><span class="tag">MariaDB</span>
+        </div>
+
+        <!-- Internal telco data — the chart below is an illustration of the output shape -->
+        <div class="proj__media proj__media--chart" style="margin-top:18px;border-radius:14px;border:1px solid rgba(255,255,255,.08);min-height:200px">
+          <svg class="spark" viewBox="0 0 320 150" role="img" aria-label="Illustration of predicted versus actual network speed">
+            <defs>
+              <linearGradient id="sparkFill2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00F0FF" stop-opacity=".35"/>
+                <stop offset="100%" stop-color="#00F0FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g stroke="rgba(255,255,255,.07)"><line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="80" x2="320" y2="80"/><line x1="0" y1="120" x2="320" y2="120"/></g>
+            <path class="spark__area" d="M0,118 L40,96 L80,108 L120,72 L160,84 L200,50 L240,60 L280,34 L320,42 L320,150 L0,150 Z" fill="url(#sparkFill2)"/>
+            <path class="spark__line" d="M0,118 L40,96 L80,108 L120,72 L160,84 L200,50 L240,60 L280,34 L320,42" fill="none" stroke="#00F0FF" stroke-width="2.2" stroke-linecap="round"/>
+            <path class="spark__pred" d="M200,50 L240,54 L280,28 L320,36" fill="none" stroke="#FF00AA" stroke-width="2" stroke-dasharray="5 5"/>
+          </svg>
+        </div>
+        <p class="form__hint" style="margin-top:10px;text-align:left" data-i18n="page.confidential">
+          Internal enterprise system — no screenshots can be shared, so the write-up describes the approach instead.
+        </p>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       06 — FOOD WASTE PREDICTION  (AirAsia)
+       ========================================================================= -->
+  <article class="case glass reveal" id="foodwaste" data-cat="ml data">
+    <div class="case__head">
+      <span class="case__index">06</span>
+      <div>
+        <h2 class="case__title">In-Flight Food Waste Prediction</h2>
+        <p class="case__role">AirAsia · K-Youth Employment Programme</p>
+      </div>
+      <span class="case__year">2025</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          Load too much food onto a flight and it is thrown away; load too little and passengers
+          go without. Every unit of that error is either wasted cost or lost revenue, repeated
+          across hundreds of flights a day.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Worked with the data science team on <strong>XGBoost</strong> models to forecast waste
+          per flight. My contribution was across the pipeline: cleaning the historic catering data,
+          engineering features (route, time of day, aircraft, seasonality, load factor) and tuning
+          hyperparameters against a held-out set.
+        </p>
+        <p>
+          Data tracking, validation and workflow monitoring ran on <strong>Google Cloud
+          Platform</strong>. Alongside the modelling, the programme included formal training in
+          multicultural teamwork, communication and presenting results to non-technical
+          stakeholders — which mattered as much as the model itself.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>XGBoost</b><span>gradient-boosted forecasting</span></div>
+          <div class="case__stat"><b>GCP</b><span>tracked, validated pipeline</span></div>
+          <div class="case__stat"><b>3 months</b><span>industry apprenticeship</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">Pandas</span>
+          <span class="tag">Scikit-Learn</span><span class="tag">Google Cloud</span><span class="tag">Feature Engineering</span>
+        </div>
+        <p class="form__hint" style="margin-top:14px;text-align:left" data-i18n="page.confidential">
+          Internal enterprise system — no screenshots can be shared, so the write-up describes the approach instead.
+        </p>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       07 — ANGULAR + REST API
+       ========================================================================= -->
+  <article class="case glass reveal" id="angular" data-cat="web">
+    <div class="case__head">
+      <span class="case__index">07</span>
+      <div>
+        <h2 class="case__title">Angular &amp; REST API Product Platform</h2>
+        <p class="case__role">Full-stack build · Authentication &amp; CRUD</p>
+      </div>
+      <span class="case__year">2024</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          A three-screen application that had to prove the fundamentals properly: real token
+          authentication, protected routes, product management, and a detail view driven by
+          asynchronous API queries — not mocked data.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          <strong>Login</strong> — credentials POST to the API; a valid response stores the bearer
+          token and unlocks the app, while any direct attempt to reach a protected route without
+          one bounces back to login.
+        </p>
+        <p>
+          <strong>Home</strong> — a product table fetched with the bearer token. Adding opens a
+          modal whose submit button stays disabled until every required field is filled; editing
+          pre-fills the same modal and updates the row in place.
+        </p>
+        <p>
+          <strong>Detail</strong> — reached by clicking a product name, with the ID passed as a
+          route parameter. It shows a paginated table with date filters (defaulting to yesterday →
+          today) where both pagination and the range update asynchronously.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>3</b><span>route-guarded modules</span></div>
+          <div class="case__stat"><b>JWT</b><span>bearer token flow</span></div>
+          <div class="case__stat"><b>Async</b><span>paginated, filtered queries</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Angular 18</span><span class="tag">TypeScript</span><span class="tag">RxJS</span>
+          <span class="tag">REST API</span><span class="tag">JWT</span><span class="tag">GitLab</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject8.png"  alt="Angular platform — login" loading="lazy">
+          <img src="assets/img/myproject8a.png" alt="Angular platform — home" loading="lazy">
+          <img src="assets/img/myproject8b.png" alt="Angular platform — product list" loading="lazy">
+          <img src="assets/img/myproject8d.png" alt="Angular platform — modal form" loading="lazy">
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       08 — SENTIMENT ANALYSIS
+       ========================================================================= -->
+  <article class="case glass reveal" id="sentiment" data-cat="ml">
+    <div class="case__head">
+      <span class="case__index">08</span>
+      <div>
+        <h2 class="case__title">Tweet Sentiment Classification</h2>
+        <p class="case__role">Modelling project · Natural language processing</p>
+      </div>
+      <span class="case__year">2023</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          Free-text opinion is the hardest kind of data to summarise. The goal was to classify
+          tweets as positive, negative or neutral, and — more usefully — to find out which
+          classical model actually earns its place on this kind of text.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Built the full preprocessing chain: cleaning noise and handles, tokenisation,
+          stop-word handling and vectorisation. Then trained and compared three classifiers —
+          <strong>Logistic Regression</strong>, <strong>Naive Bayes</strong> and
+          <strong>Support Vector Machines</strong> — on identical splits so the comparison was fair.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>3</b><span>models benchmarked head to head</span></div>
+          <div class="case__stat"><b>3-class</b><span>positive / negative / neutral</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">NLTK</span>
+          <span class="tag">Pandas</span><span class="tag">Jupyter</span><span class="tag">Power BI</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject3.png"  alt="Sentiment analysis — overview" loading="lazy">
+          <img src="assets/img/myproject3b.png" alt="Sentiment analysis — exploratory data analysis" loading="lazy">
+          <img src="assets/img/myproject3c.png" alt="Sentiment analysis — model comparison" loading="lazy">
+          <img src="assets/img/myproject3d.png" alt="Sentiment analysis — results" loading="lazy">
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       09 — K-MEANS SEGMENTATION
+       ========================================================================= -->
+  <article class="case glass reveal" id="kmeans" data-cat="ml data">
+    <div class="case__head">
+      <span class="case__index">09</span>
+      <div>
+        <h2 class="case__title">Customer Segmentation with K-Means</h2>
+        <p class="case__role">Data analysis project · Unsupervised learning</p>
+      </div>
+      <span class="case__year">2023</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          "All customers" is not a useful marketing target. The task was to split mall customers
+          into meaningful groups from annual income and spending score, and turn those groups into
+          something a business could actually act on.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Cleaned and explored the dataset first — distributions, correlations, outliers — then
+          used the <strong>elbow method</strong> to choose <em>k</em> rather than guessing it.
+          Ran <strong>K-Means</strong> clustering and visualised the resulting segments with
+          Matplotlib and Seaborn, then described each cluster in plain language: who they are,
+          what they spend, what to offer them.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>Elbow</b><span>method-driven cluster count</span></div>
+          <div class="case__stat"><b>High-value</b><span>segments identified for targeting</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Jupyter</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject6.png"  alt="K-Means segmentation — overview" loading="lazy">
+          <img src="assets/img/myproject6b.png" alt="K-Means segmentation — elbow method" loading="lazy">
+          <img src="assets/img/myproject6c.png" alt="K-Means segmentation — clusters" loading="lazy">
+          <img src="assets/img/myproject6e.png" alt="K-Means segmentation — results" loading="lazy">
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       10 — PRODUCT CATALOG WEB SYSTEM
+       ========================================================================= -->
+  <article class="case glass reveal" id="catalog" data-cat="web">
+    <div class="case__head">
+      <span class="case__index">10</span>
+      <div>
+        <h2 class="case__title">Product Catalog Web System</h2>
+        <p class="case__role">Web development project · Multi-role system</p>
+      </div>
+      <span class="case__year">2023</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          A drawing-tools retailer needed more than a product list: staff, supervisors and
+          customers all touch the same catalogue but should not see or do the same things.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Built a PHP + MySQL system with three permission levels — Admin, Supervisor and
+          Normal User. Admins manage products including image upload; staff and customer accounts
+          can be registered and updated; purchases generate an invoice. Deployed on UKM's server
+          and tested locally under XAMPP, with a responsive Bootstrap front end.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>3</b><span>user roles with distinct permissions</span></div>
+          <div class="case__stat"><b>Full CRUD</b><span>plus image upload &amp; invoicing</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
+          <span class="tag">Bootstrap</span><span class="tag">phpMyAdmin</span><span class="tag">XAMPP</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject2.png"  alt="Product catalog — home" loading="lazy">
+          <img src="assets/img/myproject2b.png" alt="Product catalog — admin panel" loading="lazy">
+          <img src="assets/img/myproject2e.png" alt="Product catalog — invoice" loading="lazy">
+          <img src="assets/img/myproject2g.png" alt="Product catalog — dashboard" loading="lazy">
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       11 — VB.NET DESKTOP APPLICATION
+       ========================================================================= -->
+  <article class="case glass reveal" id="vbapp" data-cat="app">
+    <div class="case__head">
+      <span class="case__index">11</span>
+      <div>
+        <h2 class="case__title">Drawing Art Tools — Desktop Application</h2>
+        <p class="case__role">Desktop software · VB.NET &amp; database integration</p>
+      </div>
+      <span class="case__year">2022</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          A shop counter needs software that works without internet: add a product, take an order,
+          amend it, print the report. Web was the wrong answer here — a native Windows form was
+          the right one.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Built the application in <strong>Visual Studio 2019</strong> with
+          <strong>Visual Basic .NET</strong>, backed by an Access database and MySQL for product and
+          order data. Full create / update / delete on both the catalogue and the orders, with
+          real-time reads and writes between the forms and the database, plus a reporting screen.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>Offline</b><span>works with no internet connection</span></div>
+          <div class="case__stat"><b>2 stores</b><span>Access + MySQL integration</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">VB.NET</span><span class="tag">Visual Studio 2019</span>
+          <span class="tag">MS Access</span><span class="tag">MySQL</span><span class="tag">SQL</span>
+        </div>
+
+        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject5.png"  alt="Drawing art tools app — main window" loading="lazy">
+          <img src="assets/img/myproject5a.png" alt="Drawing art tools app — products" loading="lazy">
+          <img src="assets/img/myproject5b.png" alt="Drawing art tools app — orders" loading="lazy">
+          <img src="assets/img/myproject5e.png" alt="Drawing art tools app — report" loading="lazy">
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- =========================================================================
+       12 — THIS PORTFOLIO
+       ========================================================================= -->
+  <article class="case glass reveal" id="portfolio" data-cat="web">
+    <div class="case__head">
+      <span class="case__index">12</span>
+      <div>
+        <h2 class="case__title">This Portfolio Website</h2>
+        <p class="case__role">Personal project · Third iteration, built from scratch</p>
+      </div>
+      <span class="case__year">2026</span>
+    </div>
+
+    <div class="case__grid">
+      <div class="case__body">
+        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
+        <p>
+          The previous two versions of my portfolio worked, but they looked like every other
+          developer template: a card grid, a couple of fade-ins, done. I wanted something that
+          demonstrates front-end craft directly — you should be able to judge the work by
+          using the page, before reading a word of it.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
+        <p>
+          Designed the layout in <strong>Figma</strong> first, then built it by hand in plain
+          HTML, CSS and JavaScript — no framework, no page builder, no build step, so it deploys
+          straight to GitHub Pages.
+        </p>
+        <p>
+          The motion layer uses <strong>GSAP + ScrollTrigger</strong> for scroll-driven parallax
+          and the timeline scrub, and <strong>Motion One</strong> — Framer Motion's vanilla-JS
+          sibling — for the hero entrance. The glass surfaces are real
+          <code>backdrop-filter</code> panels with a specular highlight that tracks the pointer,
+          and there is a canvas particle field, a custom easing cursor, magnetic buttons and 3D
+          tilt cards.
+        </p>
+        <p>
+          Everything is translated into <strong>English, Bahasa Melayu and 中文</strong> through a
+          small key-based i18n layer, and the assistant in the corner is a
+          <strong>rule-based chatbot</strong> — keyword matching over a written answer sheet,
+          no AI service, no API cost.
+        </p>
+
+        <h3 class="case__sub" data-i18n="page.result">Result</h3>
+        <div class="case__stats">
+          <div class="case__stat"><b>0</b><span>build steps or dependencies to install</span></div>
+          <div class="case__stat"><b>3</b><span>languages, one key-based dictionary</span></div>
+          <div class="case__stat"><b>A11y</b><span>keyboard nav, reduced-motion, print styles</span></div>
+        </div>
+      </div>
+
+      <aside>
+        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
+        <div class="tags">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+          <span class="tag">GSAP</span><span class="tag">ScrollTrigger</span><span class="tag">Motion One</span>
+          <span class="tag">Canvas API</span><span class="tag">Figma</span><span class="tag">GitHub Pages</span>
+        </div>
+
+        <h3 class="case__sub">Previous versions</h3>
+        <div class="case__shots">
+          <img src="assets/img/myproject4.png"  alt="Portfolio version 2 — home" loading="lazy">
+          <img src="assets/img/myproject4b.png" alt="Portfolio version 2 — skills" loading="lazy">
+          <img src="assets/img/myproject4c.png" alt="Portfolio version 2 — projects" loading="lazy">
+          <img src="assets/img/myproject4d.png" alt="Portfolio version 2 — contact" loading="lazy">
+        </div>
+
+        <div class="case__links">
+          <a class="btn btn--ghost btn--sm magnetic" href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">
+            Source on GitHub
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+
+  <!-- ---- Back to the home page ---- -->
+  <div class="projects__more reveal" style="margin-bottom:80px">
+    <a href="index.html#projects" class="btn btn--primary btn--lg magnetic">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      <span data-i18n="nav.back">← Back to home</span>
+    </a>
+  </div>
+
+</div>
+</main>
+
+
+<!-- ===========================================================================
+     FOOTER
+     =========================================================================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="index.html" class="nav__logo"><span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span></a>
+      <p data-i18n="footer.tagline">Built by hand in Melaka, Malaysia — no page builder, no template.</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer navigation">
+      <a href="index.html"                data-i18n="nav.home">Home</a>
+      <a href="index.html#about"          data-i18n="nav.about">About</a>
+      <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
+      <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
+      <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
+    </nav>
+    <p class="footer__copy mono">© <span id="year">2026</span> Muhammad Naqiudin Bin Noor Affandy</p>
+  </div>
+
+  <a href="#" class="to-top magnetic" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+</footer>
+
+
+<!-- ===========================================================================
+     CHATBOT (same rule-based assistant as the home page)
+     =========================================================================== -->
+<button class="chat-fab magnetic" id="chat-fab" aria-label="Open chat assistant" aria-expanded="false" aria-controls="chat-panel">
+  <svg class="chat-fab__open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9">
+    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-5a8 8 0 1 1 17-6z"/>
+  </svg>
+  <svg class="chat-fab__close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M18 6 6 18M6 6l12 12"/>
+  </svg>
+  <span class="chat-fab__ping"></span>
+</button>
+
+<section class="chat glass" id="chat-panel" aria-hidden="true" aria-label="Portfolio assistant">
+  <header class="chat__head">
+    <span class="chat__avatar">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>
+    </span>
+    <div>
+      <strong data-i18n="chat.title">Portfolio Assistant</strong>
+      <small><span class="pulse-dot pulse-dot--sm"></span><span data-i18n="chat.status">rule-based · always online</span></small>
+    </div>
+    <button class="chat__x" id="chat-close" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </header>
+  <div class="chat__log" id="chat-log" role="log" aria-live="polite"></div>
+  <div class="chat__chips" id="chat-chips"></div>
+  <form class="chat__input" id="chat-form">
+    <input id="chat-text" type="text" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
+    <button type="submit" aria-label="Send message">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </form>
+</section>
+
+
+<!-- Scripts — same set and order as index.html -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="chatbot.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+# ============================================================================
+#  .gitignore — Muhammad Naqiudin · Portfolio
+#  Anything listed here stays on your local machine and is NEVER pushed
+#  to GitHub. Only the files that actually make the live website run
+#  (index.html, projects.html, style.css, script.js, i18n.js, chatbot.js,
+#  assets/, README.md) get published.
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# 1. archived/ — THE ONE RULE THAT MATTERS
+#    Everything not used by the live site now lives in this single folder:
+#      archived/old_portfolio/   previous site + full-resolution originals
+#      archived/figma-design/    figma.html, figma.css, design PNG, Untitled_*
+#      archived/unused-images/   images the new pages don't display
+#      archived/resume-source/   the source PDF
+#    See archived/README.md. Anything you drop in here is automatically
+#    excluded from GitHub — no need to edit this file again.
+# ---------------------------------------------------------------------------
+archived/
+backup/
+old_portfolio/
+**/archieve/
+
+# ---------------------------------------------------------------------------
+# 2. Safety net — design sources, in case any land back in the project root
+# ---------------------------------------------------------------------------
+/figma.html
+/figma.css
+/Untitled_icon/
+/Untitled_img/
+/Website Portfolio Design.png
+*.fig
+
+# ---------------------------------------------------------------------------
+# 3. Empty leftover folders from the old layout (replaced by assets/)
+#    NOTE: assets/img and assets/resume ARE published — only these two
+#    top-level folders are skipped.
+# ---------------------------------------------------------------------------
+/image/
+/resume/
+
+# ---------------------------------------------------------------------------
+# 4. Documents & archives that should not sit in a public repo
+# ---------------------------------------------------------------------------
+*.docx
+*.doc
+*.pptx
+*.xlsx
+*.zip
+*.rar
+*.7z
+~$*                 # MS Office lock/temp files (e.g. ~$resume.docx)
+
+# ---------------------------------------------------------------------------
+# 5. Node / build tooling (in case you later add a bundler)
+# ---------------------------------------------------------------------------
+node_modules/
+dist/
+build/
+.next/
+.cache/
+*.log
+npm-debug.log*
+yarn-error.log*
+.env
+.env.*
+
+# ---------------------------------------------------------------------------
+# 6. Editor & OS junk
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# 7. Personal notes / scratch files
+# ---------------------------------------------------------------------------
+push.txt
+TODO.txt
+notes.md
+scratch/
+
+# Any file starting with an underscore is treated as a local draft or test
+# page (e.g. _shot.html) and never published.
+_*.html
+_*.css
+_*.js
