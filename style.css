@@ -1087,7 +1087,7 @@ body.has-cursor button { cursor: none; }
    ============================================================================ */
 .skills__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 .skill-panel { padding: 22px; transform-style: preserve-3d; transition: transform .45s var(--ease-out), border-color .4s, box-shadow .45s; }
@@ -1158,7 +1158,7 @@ body.has-cursor button { cursor: none; }
    ============================================================================ */
 .proj-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 /* The first card spans the full row on desktop */
@@ -1801,8 +1801,9 @@ a.contact__row:hover {
 @media (max-width: 1024px) {
   .nav__links { display: none; }          /* collapse into the drawer */
   .nav__burger { display: block; }
-  .about__grid { grid-template-columns: 1fr; }
-  .about__media { max-width: 380px; margin-inline: auto; }
+  /* Potret dan penerangan kekal sebelah-menyebelah pada tablet dan telefon. */
+  .about__grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 24px; }
+  .about__media { min-width: 0; }
   .contact__grid { grid-template-columns: 1fr; }
   .case__grid { grid-template-columns: 1fr; }
   .floater--cube, .floater--ring, .floater--ring2 { display: none; }

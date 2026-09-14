@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Versi portfolio terdahulu; résumé sentiasa menggunakan fail semasa. -->
+  <meta name="robots" content="noindex, follow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Muhammad Naqiudin — Project Portfolio. Detailed breakdown of data science, AI, and web development projects.">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Projects | Muhammad Naqiudin</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+</head>
+<body>
+  <a class="version-return" href="../index.html">← Current portfolio / Portfolio terkini</a>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo">naqiudin<span class="dot">.</span></a>
+      <div class="nav-links">
+        <a href="#fyp">FYP</a>
+        <a href="#webdev">Web Dev</a>
+        <a href="#sentiment">Modelling</a>
+        <a href="#design">Design</a>
+        <a href="#apps">VB App</a>
+        <a href="#analysis">K-Means</a>
+        <a href="#yolo">YOLOv8</a>
+        <a href="#angular">Angular</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav-mobile" role="dialog" aria-label="Mobile navigation">
+    <a href="#fyp">Final Year Project</a>
+    <a href="#webdev">Web Development</a>
+    <a href="#sentiment">Modelling</a>
+    <a href="#design">Web Design</a>
+    <a href="#apps">VB Application</a>
+    <a href="#analysis">K-Means</a>
+    <a href="#yolo">YOLOv8 & OpenCV</a>
+    <a href="#angular">Angular & REST API</a>
+    <a href="index.html#projects">← Back to Home</a>
+  </div>
+
+  <!-- ========== PROJECT HERO ========== -->
+  <header class="project-detail-hero">
+    <span class="section-label">Project Portfolio</span>
+    <h1 class="section-title">Explore My <span class="highlight">Projects</span></h1>
+    <p class="section-desc" style="margin:0 auto;">Detailed breakdown of each project — from concept to execution.</p>
+
+    <nav class="project-detail-nav" aria-label="Project navigation">
+      <a href="#fyp" class="active">FYP</a>
+      <a href="#webdev">Web Dev</a>
+      <a href="#sentiment">Modelling</a>
+      <a href="#design">Design</a>
+      <a href="#apps">VB App</a>
+      <a href="#analysis">K-Means</a>
+      <a href="#yolo">YOLOv8</a>
+      <a href="#angular">Angular</a>
+    </nav>
+
+    <a href="index.html#projects" class="back-home-btn">
+      <i class='bx bx-arrow-back'></i> Back to Home
+    </a>
+  </header>
+
+  <!-- ====================================================================
+       PROJECT 1: FINAL YEAR PROJECT
+       ==================================================================== -->
+  <section id="fyp" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Final Year <span class="highlight">Project</span></h2>
+
+      <!-- Image Slider -->
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject1.png" alt="Breast Cancer Prediction System - Overview" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject1b.png" alt="Breast Cancer Prediction System - Analysis" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject1c.png" alt="Breast Cancer Prediction System - Results" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject1d.png" alt="Breast Cancer Prediction System - Interface" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="project-desc-card fade-in">
+        <h2>Breast Cancer Prediction Using HoverNet Approach System</h2>
+        <p>
+          This project serves as my <strong>Final Year Project</strong> and focuses on developing a comprehensive 
+          web-based system for <strong>Breast Cancer Prediction</strong>. Leveraging cutting-edge deep learning 
+          techniques, the system implements the <strong>HoverNet framework</strong> to perform simultaneous segmentation 
+          and classification of nuclei in histopathology images. The primary objective is to analyze data from the 
+          <strong>PanNuke dataset</strong> and accurately predict cancerous cells, thereby enhancing diagnostic efficiency 
+          and accuracy for medical professionals.
+        </p>
+        <p>
+          The web application is built using <strong>Python</strong> and the <strong>Django framework</strong>, with an intuitive 
+          interface designed with <strong>HTML, CSS, and PHP</strong>. The back-end incorporates <strong>SQL</strong> for 
+          database management, enabling secure and efficient data handling. Development was conducted in 
+          <strong>Visual Studio Code</strong>, utilizing <strong>Excel</strong> for data preprocessing and analysis.
+        </p>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Deep learning integration using the HoverNet framework for precise segmentation and classification of nuclei.</li>
+            <li>Seamless analysis of histopathology images from the PanNuke dataset.</li>
+            <li>Web-based interface for easy accessibility and usability by medical professionals.</li>
+            <li>Improved diagnostic workflows by providing accurate and timely cancer predictions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="../assets/img/python.png" alt="Python" loading="lazy"><span>Python</span></div>
+        <div class="skill-item"><img src="image/javascript.png" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+        <div class="skill-item"><img src="image/html.png" alt="HTML" loading="lazy"><span>HTML</span></div>
+        <div class="skill-item"><img src="../assets/img/sql.png" alt="MySQL" loading="lazy"><span>MySQL</span></div>
+        <div class="skill-item"><img src="image/php.png" alt="PHP" loading="lazy"><span>PHP</span></div>
+        <div class="skill-item"><img src="image/xampp.png" alt="XAMPP" loading="lazy"><span>XAMPP</span></div>
+        <div class="skill-item"><img src="image/phpmyadmin.png" alt="phpMyAdmin" loading="lazy"><span>phpMyAdmin</span></div>
+        <div class="skill-item"><img src="image/excel.png" alt="Excel" loading="lazy"><span>Excel</span></div>
+        <div class="skill-item"><img src="image/vscode.png" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+        <div class="skill-item"><img src="image/figma.png" alt="Figma" loading="lazy"><span>Figma</span></div>
+        <div class="skill-item"><img src="image/jupyter.png" alt="Jupyter Notebook" loading="lazy"><span>Jupyter</span></div>
+        <div class="skill-item"><img src="image/bootstrap.png" alt="Bootstrap" loading="lazy"><span>Bootstrap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 2: WEB DEVELOPMENT
+       ==================================================================== -->
+  <section id="webdev" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Web <span class="highlight">Development</span> Project</h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject2.png" alt="Product Catalog - Home" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject2a.png" alt="Product Catalog - Listing" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject2b.png" alt="Product Catalog - Admin" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject2c.png" alt="Product Catalog - Details" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject2d.png" alt="Product Catalog - Cart" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject2e.png" alt="Product Catalog - Invoice" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject2f.png" alt="Product Catalog - Users" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject2g.png" alt="Product Catalog - Dashboard" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>Web-Based System: Product Catalog</h2>
+        <p>
+          This project is a <strong>Product Catalog</strong> designed for managing and showcasing a variety of drawing tools. 
+          The web-based platform offers a user-friendly interface where users can browse, view, and select products, with detailed 
+          information about each tool. Built using <strong>HTML, CSS, PHP, and JavaScript</strong>, the system ensures a smooth 
+          and responsive experience for all users.
+        </p>
+        <p>
+          The application was developed on <strong>UKM's server</strong>, with backend functionality implemented using <strong>PHP</strong> and 
+          <strong>SQL</strong>. The design leverages <strong>HTML, CSS, Bootstrap</strong>, and <strong>JavaScript</strong> for an intuitive and visually appealing 
+          interface. The project was coded using <strong>Sublime Text</strong> and tested locally with <strong>XAMPP</strong>.
+        </p>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Admin functionality to manage products, including adding, editing, and deleting items.</li>
+            <li>Ability to upload and display product images in the catalog.</li>
+            <li>Support for multiple user roles: Admin, Supervisor, and Normal Users, each with specific permissions.</li>
+            <li>Customer and staff management, including registration and account updates.</li>
+            <li>Invoice generation for purchases to streamline customer transactions.</li>
+            <li>Responsive design ensuring usability across devices.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="image/javascript.png" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+        <div class="skill-item"><img src="image/html.png" alt="HTML" loading="lazy"><span>HTML</span></div>
+        <div class="skill-item"><img src="../assets/img/sql.png" alt="MySQL" loading="lazy"><span>MySQL</span></div>
+        <div class="skill-item"><img src="image/php.png" alt="PHP" loading="lazy"><span>PHP</span></div>
+        <div class="skill-item"><img src="image/xampp.png" alt="XAMPP" loading="lazy"><span>XAMPP</span></div>
+        <div class="skill-item"><img src="image/phpmyadmin.png" alt="phpMyAdmin" loading="lazy"><span>phpMyAdmin</span></div>
+        <div class="skill-item"><img src="image/vscode.png" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+        <div class="skill-item"><img src="image/bootstrap.png" alt="Bootstrap" loading="lazy"><span>Bootstrap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 3: SENTIMENT ANALYSIS
+       ==================================================================== -->
+  <section id="sentiment" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Modelling <span class="highlight">Project</span></h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject3.png" alt="Sentiment Analysis - Overview" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject3b.png" alt="Sentiment Analysis - EDA" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject3c.png" alt="Sentiment Analysis - Models" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject3d.png" alt="Sentiment Analysis - Results" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>Sentiment Analysis Model from Tweets Data</h2>
+        <p>
+          This project involves developing a <strong>Sentiment Analysis Model</strong> that classifies tweets into positive, negative, or neutral sentiments. 
+          Using the <strong>"movie_data.csv"</strong> dataset, which contains tweet data collected from Twitter, the project aims to preprocess text data 
+          and evaluate multiple machine learning classifiers to determine their accuracy in sentiment prediction.
+        </p>
+        <p>
+          The preprocessing phase includes tasks such as text cleaning, tokenization, and vectorization. The processed data is then used to train 
+          three different machine learning models: <strong>Logistic Regression</strong>, <strong>Naive Bayes</strong>, and <strong>Support Vector Machines (SVM)</strong>. 
+          Each model is evaluated based on its performance in classifying sentiments, providing valuable insights into public opinions on various topics.
+        </p>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Text preprocessing, including cleaning, tokenization, and vectorization, to prepare the data for analysis.</li>
+            <li>Implementation and comparison of three machine learning classifiers: Logistic Regression, Naive Bayes, and SVM.</li>
+            <li>Evaluation of each classifier's performance to determine the most accurate model for sentiment prediction.</li>
+            <li>Analysis of public opinions using tweet sentiment classification to gain actionable insights.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="../assets/img/python.png" alt="Python" loading="lazy"><span>Python</span></div>
+        <div class="skill-item"><img src="image/jupyter.png" alt="Jupyter Notebook" loading="lazy"><span>Jupyter</span></div>
+        <div class="skill-item"><img src="image/excel.png" alt="Excel" loading="lazy"><span>Excel</span></div>
+        <div class="skill-item"><img src="../assets/img/powerbi.png" alt="Power BI" loading="lazy"><span>Power BI</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 4: WEB DESIGN (PORTFOLIO)
+       ==================================================================== -->
+  <section id="design" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Web <span class="highlight">Design</span> Project</h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject4.png" alt="Portfolio Design - Home" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject4a.png" alt="Portfolio Design - About" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject4b.png" alt="Portfolio Design - Skills" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject4c.png" alt="Portfolio Design - Projects" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject4d.png" alt="Portfolio Design - Contact" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject4e.png" alt="Portfolio Design - Footer" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>My Personal Portfolio</h2>
+        <p>
+          This is a personal project where I created <strong>My Own Portfolio</strong> to showcase my web design skills. The portfolio is designed with a focus 
+          on responsiveness and visual appeal. It demonstrates my ability to create interactive and dynamic web pages using core web technologies such as 
+          <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong>.
+        </p>
+        <p>
+          The portfolio features a range of design elements including responsive layouts, smooth animations, and a user-friendly interface. 
+          It is fully optimized to adapt to different screen sizes, ensuring that visitors can enjoy a seamless browsing experience, whether they are on desktop 
+          or mobile devices.
+        </p>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Responsive layout design for an optimal viewing experience on any device.</li>
+            <li>Interactive and engaging animations to enhance user experience.</li>
+            <li>User-friendly interface to present skills, projects, and contact information.</li>
+            <li>Customizable design, allowing for future updates and additions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="image/javascript.png" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+        <div class="skill-item"><img src="image/html.png" alt="HTML" loading="lazy"><span>HTML</span></div>
+        <div class="skill-item"><img src="image/vscode.png" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+        <div class="skill-item"><img src="image/css.png" alt="CSS" loading="lazy"><span>CSS</span></div>
+        <div class="skill-item"><img src="image/bootstrap.png" alt="Bootstrap" loading="lazy"><span>Bootstrap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 5: VB APPLICATION
+       ==================================================================== -->
+  <section id="apps" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Drawing Art <span class="highlight">Tools Application</span></h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject5.png" alt="Drawing App - Main" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject5a.png" alt="Drawing App - Products" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject5b.png" alt="Drawing App - Orders" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject5c.png" alt="Drawing App - Edit" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject5d.png" alt="Drawing App - Delete" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject5e.png" alt="Drawing App - Report" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>Product Catalog for Drawing Art Tools Application</h2>
+        <p>
+          This project involves the creation of a <strong>Product Catalog for Drawing Art Tools</strong> application, built using 
+          <strong>Visual Studio 2019</strong> with <strong>Visual Basic (VB)</strong>, an <strong>Access Database</strong> for data storage, 
+          and <strong>MySQL</strong> for handling product and order data efficiently. The application provides an intuitive interface to create, update, and delete orders 
+          while managing a catalog of various drawing tools.
+        </p>
+        <p>
+          The system is designed to allow users to view and manage products, including adding new products, editing existing ones, 
+          and deleting items from the catalog. Additionally, users can place orders, track their status, and perform necessary updates to keep the catalog 
+          and orders up to date.
+        </p>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Product catalog management, including adding, editing, and deleting drawing art tools.</li>
+            <li>Order creation, update, and deletion functionalities for an efficient order management system.</li>
+            <li>Integration with Access Database and MySQL to store product and order information.</li>
+            <li>User-friendly interface designed with Visual Basic (.vb files) for smooth navigation.</li>
+            <li>Seamless connection between the application and the backend database for real-time updates.</li>
+          </ul>
+        </div>
+        <p style="text-align:center;"><strong>Project File:</strong> PRJ_DRAWINGARTSUPPLIES_A188417.sln</p>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="image/visualstudio.png" alt="Visual Studio" loading="lazy"><span>Visual Studio</span></div>
+        <div class="skill-item"><img src="image/access.png" alt="Access" loading="lazy"><span>Access</span></div>
+        <div class="skill-item"><img src="../assets/img/sql.png" alt="SQL" loading="lazy"><span>SQL</span></div>
+        <div class="skill-item"><img src="image/vbnet.png" alt="VB.NET" loading="lazy"><span>VB.NET</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 6: K-MEANS CLUSTERING
+       ==================================================================== -->
+  <section id="analysis" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Customer Segmentation using <span class="highlight">K-Means Clustering</span></h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject6.png" alt="K-Means - Overview" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject6a.png" alt="K-Means - EDA" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject6b.png" alt="K-Means - Elbow Method" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject6c.png" alt="K-Means - Clusters" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject6d.png" alt="K-Means - Visualization" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject6e.png" alt="K-Means - Results" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>Customer Segmentation Analysis using K-Means Clustering</h2>
+        <p>
+          The objective of this project was to analyze customer data from the <strong>"Mall_Customer.csv"</strong> dataset and segment individuals into 
+          distinct groups based on their annual income and spending behavior using the <strong>K-Means clustering algorithm</strong>.
+          The goal was to derive actionable insights that would help optimize customer engagement strategies.
+        </p>
+        <p>
+          The project employed a series of machine learning techniques to gain valuable insights into customer behavior. The process began with <strong>data preprocessing</strong> 
+          to clean and prepare the dataset for analysis. This was followed by <strong>exploratory data analysis (EDA)</strong> to identify patterns and relationships within the data. 
+          The <strong>K-Means clustering algorithm</strong> was then implemented to group customers into clusters based on their annual income and spending habits.
+        </p>
+        <p>
+          Tools such as <strong>Python</strong>, <strong>Jupyter Notebook</strong>, <strong>Pandas</strong>, <strong>Matplotlib</strong>, and <strong>Seaborn</strong> were utilized 
+          for data manipulation and visualization. The clusters identified provided valuable insights into high-value customer groups, allowing businesses to 
+          tailor their engagement strategies more effectively.
+        </p>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Data preprocessing to clean and prepare the dataset for analysis.</li>
+            <li>Exploratory Data Analysis (EDA) to uncover patterns and insights in customer behavior.</li>
+            <li>Application of the K-Means clustering algorithm for customer segmentation based on income and spending patterns.</li>
+            <li>Use of Python, Pandas, Matplotlib, and Seaborn for data analysis and visualizations.</li>
+            <li>Identification of high-value customer clusters for enhanced engagement strategies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="image/vscode.png" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+        <div class="skill-item"><img src="image/excel.png" alt="Excel" loading="lazy"><span>Excel</span></div>
+        <div class="skill-item"><img src="image/jupyter.png" alt="Jupyter" loading="lazy"><span>Jupyter</span></div>
+        <div class="skill-item"><img src="../assets/img/python.png" alt="Python" loading="lazy"><span>Python</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 7: YOLOv8 FACE MASK DETECTION
+       ==================================================================== -->
+  <section id="yolo" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Face Mask Detection with <span class="highlight">YOLOv8 & OpenCV</span></h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject7.png" alt="YOLO Face Mask - UI 1" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject7a.png" alt="YOLO Face Mask - UI 2" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject7b.png" alt="YOLO Face Mask - Detection" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject7c.png" alt="YOLO Face Mask - Results" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject7d.png" alt="YOLO Face Mask - Training" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject7e.png" alt="YOLO Face Mask - Metrics" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>Real-Time Face Mask Detection System using YOLOv8 & OpenCV</h2>
+        <p>
+          This project focuses on developing a <strong>real-time face mask detection system</strong> utilizing <strong>YOLOv8</strong> and <strong>OpenCV</strong>. 
+          The model is trained to detect whether individuals are wearing a face mask correctly, wearing it improperly, or not wearing it at all. 
+          The system is designed to be deployed as a <strong>web-based application</strong> using <strong>Flask</strong>, providing an intuitive user interface 
+          for real-time mask monitoring.
+        </p>
+        <p>The model classifies face mask compliance into three categories:</p>
+        <ul style="list-style:disc; margin-left:1.25rem; color:var(--text-secondary); font-size:0.95rem; margin-bottom:1rem;">
+          <li><strong style="color:#22c55e;">Good (Green):</strong> Properly worn face mask.</li>
+          <li><strong style="color:#f59e0b;">Moderate (Yellow):</strong> Incorrectly worn face mask.</li>
+          <li><strong style="color:#ef4444;">Bad (Red):</strong> No face mask detected.</li>
+        </ul>
+        <div class="project-features">
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Real-time face mask detection using YOLOv8.</li>
+            <li>Live webcam detection with OpenCV.</li>
+            <li>Web-based system powered by Flask for easy access and monitoring.</li>
+            <li>Three-class mask detection with intuitive color-coded results.</li>
+            <li>Optimized detection with high accuracy and low latency.</li>
+            <li>Evaluation Metrics — Precision: 0.8981, Recall: 0.8483, mAP50: 0.9053, mAP50-95: 0.6355</li>
+          </ul>
+        </div>
+        <p style="text-align:center;">
+          <strong>Repository:</strong> <a href="https://github.com/naqiudinfandy/Facemask-detection-YOLOv8-OpenCV" target="_blank" rel="noopener noreferrer">GitHub Repository →</a>
+        </p>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="../assets/img/python.png" alt="Python" loading="lazy"><span>Python</span></div>
+        <div class="skill-item"><img src="image/javascript.png" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+        <div class="skill-item"><img src="image/html.png" alt="HTML" loading="lazy"><span>HTML</span></div>
+        <div class="skill-item"><img src="image/vscode.png" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+        <div class="skill-item"><img src="image/css.png" alt="CSS" loading="lazy"><span>CSS</span></div>
+        <div class="skill-item"><img src="image/jupyter.png" alt="Jupyter" loading="lazy"><span>Jupyter</span></div>
+        <div class="skill-item"><img src="image/opencv.png" alt="OpenCV" loading="lazy"><span>OpenCV</span></div>
+        <div class="skill-item"><img src="image/yolo.png" alt="YOLOv8" loading="lazy"><span>YOLOv8</span></div>
+        <div class="skill-item"><img src="image/anaconda.png" alt="Anaconda" loading="lazy"><span>Anaconda</span></div>
+        <div class="skill-item"><img src="image/flask.png" alt="Flask" loading="lazy"><span>Flask</span></div>
+        <div class="skill-item"><img src="../assets/img/tensorflow.png" alt="TensorFlow" loading="lazy"><span>TensorFlow</span></div>
+        <div class="skill-item"><img src="image/labelimg.png" alt="LabelImg" loading="lazy"><span>LabelImg</span></div>
+        <div class="skill-item"><img src="image/roboflow.png" alt="Roboflow" loading="lazy"><span>Roboflow</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROJECT 8: ANGULAR & REST API
+       ==================================================================== -->
+  <section id="angular" class="project-section">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center;">Web Development with <span class="highlight">Angular & REST API</span></h2>
+
+      <div class="project-swiper-wrapper fade-in">
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../assets/img/myproject8.png" alt="Angular App - Login" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject8a.png" alt="Angular App - Home" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject8b.png" alt="Angular App - Products" loading="lazy"></div>
+            <div class="swiper-slide"><img src="image/myproject8c.png" alt="Angular App - Detail" loading="lazy"></div>
+            <div class="swiper-slide"><img src="../assets/img/myproject8d.png" alt="Angular App - Modal" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="project-desc-card fade-in">
+        <h2>Angular Authentication & Product Management System</h2>
+        <p>
+          This project showcases a responsive and interactive <strong>web application</strong> built using <strong>Angular 18+</strong> that utilizes a <strong>RESTful API</strong> for user authentication and product data handling.
+          The application features <strong>three core modules</strong>: Login Page, Home Page, and Detail Page — each with modern UI elements and client-side state management.
+        </p>
+        <div class="project-features">
+          <h3>🔐 Login Page</h3>
+          <ul>
+            <li>Authenticates user via POST request to the provided API endpoint.</li>
+            <li>Only valid credentials allow access.</li>
+            <li>Upon success, token is stored and used for authenticated routes.</li>
+            <li>Unauthorized access redirects back to login.</li>
+          </ul>
+        </div>
+        <div class="project-features">
+          <h3>🏠 Home Page (Product List)</h3>
+          <ul>
+            <li>Displays a table of products retrieved from API using bearer token.</li>
+            <li>Each product row includes a clickable product name and edit icon.</li>
+            <li>Access is restricted to authenticated users only.</li>
+            <li>Add Product: Modal form with required fields; submit disabled if incomplete.</li>
+            <li>Edit/Remove: Edit opens modal with pre-filled info; changes update in-place.</li>
+          </ul>
+        </div>
+        <div class="project-features">
+          <h3>📄 Detail Page</h3>
+          <ul>
+            <li>Accessed by clicking on product name in Home Page.</li>
+            <li>Product ID passed via route path parameter.</li>
+            <li>Displays paginated table with date filters (default yesterday → today).</li>
+            <li>Pagination and data range updates dynamically and asynchronously.</li>
+            <li>Valid data range: 25 Jan 2022 – 16 Feb 2022.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="tools-label">Tools Used:</p>
+      <div class="tools-grid">
+        <div class="skill-item"><img src="../assets/img/angular.png" alt="Angular" loading="lazy"><span>Angular 18</span></div>
+        <div class="skill-item"><img src="../assets/img/typescript.png" alt="TypeScript" loading="lazy"><span>TypeScript</span></div>
+        <div class="skill-item"><img src="image/html.png" alt="HTML" loading="lazy"><span>HTML</span></div>
+        <div class="skill-item"><img src="image/css.png" alt="CSS" loading="lazy"><span>CSS</span></div>
+        <div class="skill-item"><img src="image/javascript.png" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+        <div class="skill-item"><img src="image/vscode.png" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+        <div class="skill-item"><img src="../assets/img/git.png" alt="GitLab" loading="lazy"><span>GitLab</span></div>
+        <div class="skill-item"><img src="image/restapi.png" alt="REST API" loading="lazy"><span>REST API</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="#fyp">FYP</a>
+        <a href="#yolo">YOLOv8</a>
+        <a href="#angular">Angular</a>
+      </div>
+      <p>&copy; 2025 Muhammad Naqiudin. All rights reserved.</p>
+      <a href="#fyp" class="back-to-top" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>

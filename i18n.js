@@ -35,6 +35,8 @@
        ENGLISH — the source of truth
        ==================================================================== */
     en: {
+      "nav.legacy": "Previous portfolio",
+      "nav.development": "Web & Apps",
       /* -- navigation -- */
       'nav.home': 'Home',
       'nav.about': 'About',
@@ -51,8 +53,8 @@
       /* -- hero -- */
       'hero.badge': 'Open to new opportunities',
       'hero.roleStatic': 'Software Engineer',
-      'hero.desc': 'I build and maintain the enterprise data systems that big engineering runs on — Oracle PL/SQL, ETL pipelines and C# .NET backends at Infineon Technologies — and craft fast, modern websites with Next.js on the side.',
-      'hero.ctaWork': 'View My Work',
+      "hero.desc": "I build websites for real businesses and applications that make work easier. As a Software Engineer at Infineon Technologies, I also work with Oracle PL/SQL, ETL and C# .NET — bringing enterprise engineering experience to every build.",
+      "hero.ctaWork": "Web & App Portfolio",
       'hero.ctaCv': 'Download CV',
       'hero.statYears': 'Years Experience',
       'hero.statProjects': 'Projects Shipped',
@@ -66,9 +68,9 @@
       'about.eyebrow': 'About Me',
       'about.title': 'Data people can trust, code people enjoy.',
       'about.chip': 'Based in Melaka, MY',
-      'about.p1': "I'm a Software Engineer working as an L3 Master Data Solution Developer at Infineon Technologies, where I keep worldwide engineering databases accurate, available and fast. My day looks like Oracle PL/SQL packages, ETL and data warehouse fixes, C# .NET enhancements and weekly Jenkins releases.",
-      'about.p2': 'Before Infineon I trained as a data scientist — XGBoost forecasting at <strong>AirAsia</strong>, Random Forest and LSTM network models at <strong>TM Research &amp; Development</strong>, and a HoverNet deep-learning final year project at <strong>UKM</strong>, which I finished with First Class Honours.',
-      'about.p3': 'Outside the enterprise world I freelance as a web developer, shipping Next.js and TypeScript sites with real SEO, real analytics and rule-based chatbots — including the one sitting in the corner of this page. Say hello to it.',
+      "about.p1": "I'm a Software Engineer at Infineon Technologies, working on enterprise data systems with Oracle PL/SQL, ETL and C# .NET. I turn complex requirements into reliable, usable software.",
+      "about.p2": "My background spans data science at <strong>AirAsia</strong> and <strong>TM R&amp;D</strong>, and a Computer Science degree from <strong>UKM</strong> with First Class Honours.",
+      "about.p3": "I also build freelance websites for businesses, including Homestay Shimah Jay and Kambing Golek Melaka Official. Explore their interfaces and case studies in my web and application portfolio.",
       'about.fact1': 'Melaka, Malaysia',
       'about.fact2': 'UKM Class of 2025',
       'about.fact3': 'First Class Honours',
@@ -146,23 +148,21 @@
       /* -- projects -- */
       'proj.eyebrow': 'Projects',
       'proj.title': "What I've built.",
-      'proj.lead': 'Enterprise data work, machine learning research and client websites. Six highlights below — the rest live on the projects page.',
+      "proj.lead": "Client websites, useful applications and enterprise engineering. Explore the highlights, then open a case study for the details.",
       'proj.featured': 'Featured',
       'proj.client': 'Client Work',
       'proj.case': 'Case study',
-      'proj.viewAll': 'View all 12 projects',
+      "proj.viewAll": "Explore all projects",
       'proj.p1.title': 'Enterprise Master Data Migration &amp; Cleansing',
-      'proj.p1.desc': "SAP-related migration and de-duplication across Infineon's worldwide engineering master data. PL/SQL packages merge golden records, an ETL layer validates every load, and KNIME workflows automate the repeat tickets — around 30% less manual workflow and 50% less handling time on recurring data patches.",
-      'proj.p2.title': 'Homestay Shimah Jay — Booking Site',
-      'proj.p2.desc': 'Bilingual marketing site for six boutique homestays in Melaka. Next.js 16 App Router with a locale segment, a statically generated page per house, generated sitemap with hreflang, and a rule-based chatbot answering guest questions 24/7.',
+      "proj.p1.desc": "Enterprise data migration, cleansing and ETL workflows using Oracle PL/SQL, SAP and KNIME at Infineon Technologies.",
       'proj.p3.title': 'Breast Cancer Prediction — HoverNet',
-      'proj.p3.desc': 'Final year project: a Django web system that runs the HoverNet deep-learning framework to segment and classify nuclei in histopathology images from the PanNuke dataset, giving pathologists a faster second opinion.',
+      "proj.p3.desc": "A Django research interface connecting histopathology images to HoverNet for nuclei segmentation and classification. UKM final year project.",
       'proj.p4.title': 'Real-Time Face Mask Detection',
-      'proj.p4.desc': 'YOLOv8 + OpenCV detector served through Flask. Three-class output (worn, worn incorrectly, not worn) with colour-coded live webcam overlay — mAP50 0.905, precision 0.898.',
+      "proj.p4.desc": "Real-time face mask detection with YOLOv8, OpenCV and a Flask interface. Three classes, from camera input to results.",
       'proj.p5.title': 'Network Fault &amp; Speed Prediction',
-      'proj.p5.desc': "Time-series forecasting on TM's access-network telemetry. Random Forest Regression and LSTM models anticipate speed degradation and faults at 80%+ accuracy, surfaced through Power BI dashboards for weekly ops reviews.",
+      "proj.p5.desc": "Random Forest and LSTM models for network speed and fault analysis, developed during my internship at TM R&D.",
       'proj.p6.title': 'Angular &amp; REST API Platform',
-      'proj.p6.desc': 'Token-authenticated Angular 18 application with product CRUD, modal forms, route-guarded pages and a paginated detail view driven by asynchronous date-range queries.',
+      "proj.p6.desc": "An Angular application with token authentication, product management and REST API integration.",
 
       /* -- certifications -- */
       'cert.eyebrow': 'Certifications',
@@ -224,7 +224,7 @@
       /* -- projects.html -- */
       'page.eyebrow': 'Project Archive',
       'page.title': 'Every project, in detail.',
-      'page.lead': 'Twelve builds across enterprise data engineering, machine learning and web development — what the problem was, what I did, and what changed as a result.',
+      "page.lead": "Client websites, applications, enterprise data engineering and machine learning — the brief, the implementation and the work behind each project.",
       'page.filterAll': 'All',
       'page.filterData': 'Data Engineering',
       'page.filterMl': 'Machine Learning',
@@ -242,6 +242,8 @@
        BAHASA MELAYU
        ==================================================================== */
     ms: {
+      "nav.legacy": "Portfolio terdahulu",
+      "nav.development": "Web & Aplikasi",
       'nav.home': 'Utama',
       'nav.about': 'Tentang',
       'nav.education': 'Pendidikan',
@@ -256,8 +258,8 @@
 
       'hero.badge': 'Terbuka untuk peluang baharu',
       'hero.roleStatic': 'Jurutera Perisian',
-      'hero.desc': 'Saya membina dan menyelenggara sistem data perusahaan yang menjadi tulang belakang kejuruteraan besar — Oracle PL/SQL, saluran ETL dan backend C# .NET di Infineon Technologies — sambil membangunkan laman web moden yang pantas dengan Next.js.',
-      'hero.ctaWork': 'Lihat Hasil Kerja',
+      "hero.desc": "Saya membina laman web untuk perniagaan dan aplikasi yang memudahkan kerja. Sebagai Jurutera Perisian di Infineon Technologies, saya juga menggunakan Oracle PL/SQL, ETL dan C# .NET — membawa pengalaman kejuruteraan perusahaan kepada setiap projek.",
+      "hero.ctaWork": "Portfolio Web & Aplikasi",
       'hero.ctaCv': 'Muat Turun CV',
       'hero.statYears': 'Tahun Pengalaman',
       'hero.statProjects': 'Projek Disiapkan',
@@ -269,9 +271,9 @@
       'about.eyebrow': 'Tentang Saya',
       'about.title': 'Data yang dipercayai, kod yang menyenangkan.',
       'about.chip': 'Berpangkalan di Melaka',
-      'about.p1': 'Saya seorang Jurutera Perisian yang bertugas sebagai L3 Master Data Solution Developer di Infineon Technologies, memastikan pangkalan data kejuruteraan seluruh dunia kekal tepat, tersedia dan pantas. Kerja harian saya melibatkan pakej Oracle PL/SQL, pembaikan ETL dan gudang data, penambahbaikan C# .NET serta pelepasan Jenkins mingguan.',
-      'about.p2': 'Sebelum Infineon saya dilatih sebagai saintis data — ramalan XGBoost di <strong>AirAsia</strong>, model Random Forest dan LSTM rangkaian di <strong>TM Research &amp; Development</strong>, serta projek tahun akhir pembelajaran mendalam HoverNet di <strong>UKM</strong> yang saya tamatkan dengan Kelas Pertama.',
-      'about.p3': 'Di luar dunia korporat saya bekerja bebas sebagai pembangun web, menghasilkan laman Next.js dan TypeScript lengkap dengan SEO sebenar, analitis dan chatbot berasaskan peraturan — termasuk yang ada di sudut halaman ini. Cubalah sapa ia.',
+      "about.p1": "Saya Jurutera Perisian di Infineon Technologies, membangunkan sistem data perusahaan dengan Oracle PL/SQL, ETL dan C# .NET. Saya menukar keperluan kompleks kepada perisian yang stabil dan mudah digunakan.",
+      "about.p2": "Latar belakang saya merangkumi sains data di <strong>AirAsia</strong> dan <strong>TM R&amp;D</strong>, serta ijazah Sains Komputer dari <strong>UKM</strong> dengan Kelas Pertama.",
+      "about.p3": "Saya juga membina laman web freelance untuk perniagaan, termasuk Homestay Shimah Jay dan Kambing Golek Melaka Official. Terokai antara muka dan kajian kes dalam portfolio web dan aplikasi saya.",
       'about.fact1': 'Melaka, Malaysia',
       'about.fact2': 'Graduan UKM 2025',
       'about.fact3': 'Ijazah Kelas Pertama',
@@ -345,23 +347,21 @@
 
       'proj.eyebrow': 'Projek',
       'proj.title': 'Apa yang saya bina.',
-      'proj.lead': 'Kerja data perusahaan, penyelidikan pembelajaran mesin dan laman web pelanggan. Enam sorotan di bawah — selebihnya di halaman projek.',
+      "proj.lead": "Laman web pelanggan, aplikasi yang berguna dan kejuruteraan perusahaan. Terokai sorotan ini dan buka kajian kes untuk butirannya.",
       'proj.featured': 'Pilihan',
       'proj.client': 'Kerja Pelanggan',
       'proj.case': 'Kajian kes',
-      'proj.viewAll': 'Lihat semua 12 projek',
+      "proj.viewAll": "Terokai semua projek",
       'proj.p1.title': 'Migrasi &amp; Pembersihan Master Data Perusahaan',
-      'proj.p1.desc': 'Migrasi dan penyingkiran pendua berkaitan SAP merentas master data kejuruteraan Infineon di seluruh dunia. Pakej PL/SQL menggabungkan rekod induk, lapisan ETL mengesahkan setiap muatan, dan aliran kerja KNIME mengautomasikan tiket berulang — kira-kira 30% kurang kerja manual dan 50% lebih pantas untuk penampalan data berulang.',
-      'proj.p2.title': 'Homestay Shimah Jay — Laman Tempahan',
-      'proj.p2.desc': 'Laman pemasaran dwibahasa untuk enam homestay butik di Melaka. Next.js 16 App Router dengan segmen bahasa, satu halaman statik bagi setiap rumah, peta laman berhreflang, serta chatbot berasaskan peraturan yang menjawab soalan tetamu 24/7.',
+      "proj.p1.desc": "Migrasi, pembersihan data dan aliran ETL perusahaan menggunakan Oracle PL/SQL, SAP dan KNIME di Infineon Technologies.",
       'proj.p3.title': 'Ramalan Kanser Payudara — HoverNet',
-      'proj.p3.desc': 'Projek tahun akhir: sistem web Django yang menjalankan rangka kerja pembelajaran mendalam HoverNet untuk mensegmen dan mengklasifikasi nukleus dalam imej histopatologi daripada set data PanNuke, memberi pakar patologi pendapat kedua yang lebih pantas.',
+      "proj.p3.desc": "Antara muka penyelidikan Django yang menghubungkan imej histopatologi kepada HoverNet untuk segmentasi dan klasifikasi nukleus. Projek tahun akhir UKM.",
       'proj.p4.title': 'Pengesanan Pelitup Muka Masa Nyata',
-      'proj.p4.desc': 'Pengesan YOLOv8 + OpenCV disajikan melalui Flask. Tiga kelas keputusan (dipakai betul, salah pakai, tidak dipakai) dengan lapisan webcam berkod warna — mAP50 0.905, ketepatan 0.898.',
+      "proj.p4.desc": "Pengesanan pelitup muka masa nyata dengan YOLOv8, OpenCV dan antara muka Flask. Tiga kelas daripada input kamera kepada hasil.",
       'proj.p5.title': 'Ramalan Kerosakan &amp; Kelajuan Rangkaian',
-      'proj.p5.desc': 'Ramalan siri masa pada telemetri rangkaian akses TM. Model Random Forest Regression dan LSTM menjangka kemerosotan kelajuan dan kerosakan pada ketepatan 80%+, dipaparkan melalui papan pemuka Power BI untuk semakan operasi mingguan.',
+      "proj.p5.desc": "Model Random Forest dan LSTM untuk analisis kelajuan serta kerosakan rangkaian, dibina ketika latihan industri di TM R&D.",
       'proj.p6.title': 'Platform Angular &amp; REST API',
-      'proj.p6.desc': 'Aplikasi Angular 18 dengan pengesahan token, CRUD produk, borang modal, halaman berpengawal laluan dan paparan terperinci bernombor halaman yang dipacu pertanyaan julat tarikh tak segerak.',
+      "proj.p6.desc": "Aplikasi Angular dengan pengesahan token, pengurusan produk dan integrasi REST API.",
 
       'cert.eyebrow': 'Pensijilan',
       'cert.title': 'Kelayakan.',
@@ -418,7 +418,7 @@
 
       'page.eyebrow': 'Arkib Projek',
       'page.title': 'Setiap projek, secara terperinci.',
-      'page.lead': 'Dua belas projek merentasi kejuruteraan data perusahaan, pembelajaran mesin dan pembangunan web — apa masalahnya, apa yang saya lakukan, dan apa hasilnya.',
+      "page.lead": "Laman web pelanggan, aplikasi, kejuruteraan data perusahaan dan pembelajaran mesin — keperluan, pelaksanaan dan hasil kerja bagi setiap projek.",
       'page.filterAll': 'Semua',
       'page.filterData': 'Kejuruteraan Data',
       'page.filterMl': 'Pembelajaran Mesin',
@@ -436,6 +436,8 @@
        中文 (SIMPLIFIED CHINESE)
        ==================================================================== */
     zh: {
+      "nav.legacy": "旧版作品集",
+      "nav.development": "网站与应用",
       'nav.home': '首页',
       'nav.about': '关于',
       'nav.education': '教育',
@@ -450,8 +452,8 @@
 
       'hero.badge': '正在寻找新机会',
       'hero.roleStatic': '软件工程师',
-      'hero.desc': '我在英飞凌科技构建并维护支撑大型工程业务的企业数据系统 —— Oracle PL/SQL、ETL 数据管道与 C# .NET 后端 —— 同时用 Next.js 打造快速、现代的网站。',
-      'hero.ctaWork': '查看作品',
+      "hero.desc": "我为企业开发网站和实用应用程序。在英飞凌担任软件工程师期间，我使用 Oracle PL/SQL、ETL 和 C# .NET，将企业工程经验融入每个项目。",
+      "hero.ctaWork": "网站与应用作品集",
       'hero.ctaCv': '下载简历',
       'hero.statYears': '年工作经验',
       'hero.statProjects': '个已交付项目',
@@ -463,9 +465,9 @@
       'about.eyebrow': '关于我',
       'about.title': '值得信赖的数据，令人愉快的代码。',
       'about.chip': '常驻马来西亚马六甲',
-      'about.p1': '我是一名软件工程师，在英飞凌科技担任 L3 主数据解决方案开发员，负责让全球工程数据库保持准确、可用且高效。日常工作包括 Oracle PL/SQL 程序包、ETL 与数据仓库修复、C# .NET 功能增强，以及每周的 Jenkins 发布。',
-      'about.p2': '在英飞凌之前，我接受的是数据科学训练 —— 在 <strong>亚洲航空</strong> 做 XGBoost 预测，在 <strong>TM 研发中心</strong> 建立随机森林与 LSTM 网络模型，并在 <strong>马来西亚国民大学（UKM）</strong> 完成了基于 HoverNet 的深度学习毕业设计，最终以一等荣誉毕业。',
-      'about.p3': '在企业工作之外，我也接自由职业的网站开发，交付带有真实 SEO、真实分析与规则型聊天机器人的 Next.js 与 TypeScript 网站 —— 包括这个页面角落里的那一个。欢迎和它打个招呼。',
+      "about.p1": "我在英飞凌担任软件工程师，使用 Oracle PL/SQL、ETL 和 C# .NET 开发企业数据系统，将复杂需求转化为可靠、易用的软件。",
+      "about.p2": "我的经历包括 <strong>AirAsia</strong> 与 <strong>TM R&amp;D</strong> 的数据科学工作，以及 <strong>UKM</strong> 计算机科学一等荣誉学位。",
+      "about.p3": "我也为企业开发网站，包括 Homestay Shimah Jay 和 Kambing Golek Melaka Official。欢迎查看网站与应用作品集中的界面和案例。",
       'about.fact1': '马六甲，马来西亚',
       'about.fact2': 'UKM 2025 届',
       'about.fact3': '一等荣誉学位',
@@ -539,23 +541,21 @@
 
       'proj.eyebrow': '项目',
       'proj.title': '我做过的东西。',
-      'proj.lead': '企业数据工作、机器学习研究与客户网站。下面是六个精选项目 —— 其余的都在项目页面。',
+      "proj.lead": "客户网站、实用应用程序与企业工程。浏览精选作品并查看详细案例。",
       'proj.featured': '精选',
       'proj.client': '客户项目',
       'proj.case': '案例详情',
-      'proj.viewAll': '查看全部 12 个项目',
+      "proj.viewAll": "浏览所有项目",
       'proj.p1.title': '企业主数据迁移与清洗',
-      'proj.p1.desc': '围绕 SAP 的迁移与去重工作，覆盖英飞凌全球工程主数据。PL/SQL 程序包合并黄金记录，ETL 层校验每一次加载，KNIME 工作流自动处理重复工单 —— 人工流程减少约 30%，重复数据修补的处理时间减少 50%。',
-      'proj.p2.title': 'Homestay Shimah Jay — 预订网站',
-      'proj.p2.desc': '为马六甲六家精品民宿打造的双语营销网站。Next.js 16 App Router 配合语言路由段，每套房源一个静态生成页面，自动生成带 hreflang 的站点地图，并有规则型聊天机器人全天候回答住客问题。',
+      "proj.p1.desc": "在英飞凌使用 Oracle PL/SQL、SAP 和 KNIME 实现企业数据迁移、清洗与 ETL 流程。",
       'proj.p3.title': '乳腺癌预测 — HoverNet',
-      'proj.p3.desc': '毕业设计：一套 Django 网页系统，运行 HoverNet 深度学习框架，对 PanNuke 数据集中的组织病理图像进行细胞核分割与分类，为病理医师提供更快的第二意见。',
+      "proj.p3.desc": "通过 Django 研究界面连接组织病理图像与 HoverNet，实现细胞核分割和分类。UKM 毕业设计。",
       'proj.p4.title': '实时口罩佩戴检测',
-      'proj.p4.desc': '基于 YOLOv8 + OpenCV 的检测器，通过 Flask 提供服务。三类判定（正确佩戴、佩戴不当、未佩戴）并以颜色标注实时摄像画面 —— mAP50 0.905，精确率 0.898。',
+      "proj.p4.desc": "使用 YOLOv8、OpenCV 与 Flask 界面进行实时口罩检测，将摄像头输入分为三类。",
       'proj.p5.title': '网络故障与速率预测',
-      'proj.p5.desc': '针对 TM 接入网遥测数据的时间序列预测。随机森林回归与 LSTM 模型以 80% 以上准确率预判网速劣化与故障，并通过 Power BI 看板支持每周运维评审。',
+      "proj.p5.desc": "在 TM R&D 实习期间开发 Random Forest 和 LSTM 模型，用于网速与网络故障分析。",
       'proj.p6.title': 'Angular 与 REST API 平台',
-      'proj.p6.desc': '基于令牌认证的 Angular 18 应用，包含产品增删改查、弹窗表单、路由守卫页面，以及由异步日期范围查询驱动的分页详情视图。',
+      "proj.p6.desc": "包含令牌认证、产品管理与 REST API 集成的 Angular 应用。",
 
       'cert.eyebrow': '专业认证',
       'cert.title': '资格证书。',
@@ -612,7 +612,7 @@
 
       'page.eyebrow': '项目档案',
       'page.title': '每一个项目的完整细节。',
-      'page.lead': '十二个项目，横跨企业数据工程、机器学习与网站开发 —— 问题是什么、我做了什么、结果如何。',
+      "page.lead": "客户网站、应用程序、企业数据工程与机器学习：了解每个项目的需求、实现与工作内容。",
       'page.filterAll': '全部',
       'page.filterData': '数据工程',
       'page.filterMl': '机器学习',
@@ -650,6 +650,8 @@
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const val = t(el.dataset.i18n, lang);
       if (typeof val !== 'string') return;             // skip arrays (hero.roles)
+      // Label terjemahan mungkin berada dalam kajian kes English; tandakan bahasa label tepat.
+      el.lang = lang === 'zh' ? 'zh-CN' : lang;
       // Anything containing a tag (<strong>) OR an entity (&amp;) must go through
       // innerHTML, otherwise textContent would print "&amp;" literally on screen.
       if (/[<&]/.test(val)) el.innerHTML = val;

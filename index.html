@@ -15,7 +15,7 @@
     #education     → UKM degree + matriculation
     #experience    → work timeline (Infineon, Freelance, AirAsia, TM R&D)
     #skills        → grouped tech stack + scrolling logo marquee
-    #projects      → 6 highlighted projects  → full list in projects.html
+    #projects      → 7 highlighted projects  → full list in projects.html
     #certifications→ 7 professional certificates + awards / involvements
     #contact       → contact details + message form (opens your mail client)
     footer         → sitemap links + back-to-top
@@ -60,6 +60,7 @@
 
   <!-- ---------- Our stylesheet ---------- -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="work.css">
 </head>
 
 <body>
@@ -135,7 +136,7 @@
       <a href="#experience"     data-i18n="nav.experience">Experience</a>
       <a href="#skills"         data-i18n="nav.skills">Skills</a>
       <a href="#projects"       data-i18n="nav.projects">Projects</a>
-      <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
       <a href="#contact"        data-i18n="nav.contact">Contact</a>
       <!-- Sliding highlight pill that follows the active link (moved by JS) -->
       <span class="nav__indicator" aria-hidden="true"></span>
@@ -178,7 +179,7 @@
     <a href="#experience"     data-i18n="nav.experience">Experience</a>
     <a href="#skills"         data-i18n="nav.skills">Skills</a>
     <a href="#projects"       data-i18n="nav.projects">Projects</a>
-    <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+    <a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
     <a href="#contact"        data-i18n="nav.contact">Contact</a>
     <a href="projects.html" class="drawer__ext" data-i18n="nav.allProjects">All projects →</a>
   </nav>
@@ -234,16 +235,12 @@
       <span class="type" id="type-target" aria-live="polite"></span><span class="type__caret"></span>
     </p>
 
-    <p class="hero__desc reveal" data-i18n="hero.desc">
-      I build and maintain the enterprise data systems that big engineering runs on —
-      Oracle PL/SQL, ETL pipelines and C# .NET backends at Infineon Technologies — and
-      craft fast, modern websites with Next.js on the side.
-    </p>
+    <p class="hero__desc reveal" data-i18n="hero.desc">I build websites for real businesses and applications that make work easier. As a Software Engineer at Infineon Technologies, I also work with Oracle PL/SQL, ETL and C# .NET — bringing enterprise engineering experience to every build.</p>
 
     <!-- Two primary calls to action -->
     <div class="hero__cta reveal">
-      <a href="#projects" class="btn btn--primary magnetic">
-        <span data-i18n="hero.ctaWork">View My Work</span>
+      <a href="development.html" class="btn btn--primary magnetic">
+        <span data-i18n="hero.ctaWork">Web &amp; App Portfolio</span>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
       </a>
       <a href="assets/resume/Muhammad-Naqiudin-Resume.pdf" class="btn btn--ghost magnetic" target="_blank" rel="noopener noreferrer">
@@ -308,23 +305,9 @@
       <span class="eyebrow"><i></i><span data-i18n="about.eyebrow">About Me</span></span>
       <h2 class="display" data-i18n="about.title">Data people can trust, code people enjoy.</h2>
 
-      <p data-i18n="about.p1">
-        I'm a Software Engineer working as an L3 Master Data Solution Developer at
-        Infineon Technologies, where I keep worldwide engineering databases accurate,
-        available and fast. My day looks like Oracle PL/SQL packages, ETL and data
-        warehouse fixes, C# .NET enhancements and weekly Jenkins releases.
-      </p>
-      <p data-i18n="about.p2">
-        Before Infineon I trained as a data scientist — XGBoost forecasting at
-        <strong>AirAsia</strong>, Random Forest and LSTM network models at
-        <strong>TM Research &amp; Development</strong>, and a HoverNet deep-learning
-        final year project at <strong>UKM</strong>, which I finished with First Class Honours.
-      </p>
-      <p data-i18n="about.p3">
-        Outside the enterprise world I freelance as a web developer, shipping Next.js
-        and TypeScript sites with real SEO, real analytics and rule-based chatbots —
-        including the one sitting in the corner of this page. Say hello to it.
-      </p>
+      <p data-i18n="about.p1">I'm a Software Engineer at Infineon Technologies, working on enterprise data systems with Oracle PL/SQL, ETL and C# .NET. I turn complex requirements into reliable, usable software.</p>
+      <p data-i18n="about.p2">My background spans data science at <strong>AirAsia</strong> and <strong>TM R&amp;D</strong>, and a Computer Science degree from <strong>UKM</strong> with First Class Honours.</p>
+      <p data-i18n="about.p3">I also build freelance websites for businesses, including Homestay Shimah Jay and Kambing Golek Melaka Official. Explore their interfaces and case studies in my web and application portfolio.</p>
 
       <!-- Quick facts -->
       <div class="chips">
@@ -741,16 +724,24 @@
     <header class="section__head reveal">
       <span class="eyebrow"><i></i><span data-i18n="proj.eyebrow">Projects</span></span>
       <h2 class="display" data-i18n="proj.title">What I've built.</h2>
-      <p class="section__lead" data-i18n="proj.lead">
-        Enterprise data work, machine learning research and client websites. Six highlights below — the rest live on the projects page.
-      </p>
+      <p class="section__lead" data-i18n="proj.lead">Client websites, useful applications and enterprise engineering. Explore the highlights, then open a case study for the details.</p>
     </header>
 
     <div class="proj-grid">
+<article class="proj glass tilt reveal" lang="en">
+  <span class="proj__flag proj__flag--alt">Client Work</span>
+  <a class="proj__media" href="development.html#homestay" aria-label="Explore Homestay Shimah Jay"><img src="assets/img/work/homestay-desktop.jpg" alt="Homestay Shimah Jay website UI" width="1440" height="1000" loading="lazy"></a>
+  <div class="proj__body"><p class="work-kicker">Hospitality website</p><h3>Homestay Shimah Jay</h3><p>A bilingual website for eight Melaka homestays, with house galleries, a guest assistant and direct booking enquiries.</p><div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS v4</span></div><a class="proj__link" href="development.html#homestay">Explore the project ↗</a></div>
+</article>
+<article class="proj glass tilt reveal" lang="en">
+  <span class="proj__flag proj__flag--alt">Client Work</span>
+  <a class="proj__media" href="development.html#kgom" aria-label="Explore Kambing Golek Melaka Official"><img src="assets/img/work/kgom-desktop.jpg" alt="Kambing Golek Melaka Official website UI" width="1440" height="1000" loading="lazy"></a>
+  <div class="proj__body"><p class="work-kicker">Food &amp; events website</p><h3>Kambing Golek Melaka Official</h3><p>A catering website with package pages, food galleries and a guided WhatsApp enquiry form for events in Melaka.</p><div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS v4</span></div><a class="proj__link" href="development.html#kgom">Explore the project ↗</a></div>
+</article>
 
       <!-- ---- 1. Infineon master data migration (no screenshot — internal system,
                   so the card uses a hand-built SQL "code preview" instead) ---- -->
-      <article class="proj glass tilt reveal proj--wide">
+      <article class="proj glass tilt reveal">
         <span class="proj__flag" data-i18n="proj.featured">Featured</span>
         <div class="proj__media proj__media--code">
           <div class="code">
@@ -773,12 +764,7 @@
         </div>
         <div class="proj__body">
           <h3 data-i18n="proj.p1.title">Enterprise Master Data Migration &amp; Cleansing</h3>
-          <p data-i18n="proj.p1.desc">
-            SAP-related migration and de-duplication across Infineon's worldwide engineering
-            master data. PL/SQL packages merge golden records, an ETL layer validates every
-            load, and KNIME workflows automate the repeat tickets — around 30% less manual
-            workflow and 50% less handling time on recurring data patches.
-          </p>
+          <p data-i18n="proj.p1.desc">Enterprise data migration, cleansing and ETL workflows using Oracle PL/SQL, SAP and KNIME at Infineon Technologies.</p>
           <div class="tags">
             <span class="tag">Oracle PL/SQL</span><span class="tag">ETL</span><span class="tag">SAP</span>
             <span class="tag">KNIME</span><span class="tag">Data Quality</span>
@@ -791,35 +777,7 @@
       </article>
 
       <!-- ---- 2. Homestay Shimah Jay (freelance) ---- -->
-      <article class="proj glass tilt reveal">
-        <span class="proj__flag proj__flag--alt" data-i18n="proj.client">Client Work</span>
-        <div class="proj__media proj__media--browser">
-          <div class="browser">
-            <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">homestayshimahjay.com</span></div>
-            <div class="browser__view">
-              <div class="bw-hero"></div>
-              <div class="bw-row"><span></span><span></span><span></span></div>
-              <div class="bw-row bw-row--sm"><span></span><span></span></div>
-            </div>
-          </div>
-        </div>
-        <div class="proj__body">
-          <h3 data-i18n="proj.p2.title">Homestay Shimah Jay — Booking Site</h3>
-          <p data-i18n="proj.p2.desc">
-            Bilingual marketing site for six boutique homestays in Melaka. Next.js 16 App Router
-            with a locale segment, a statically generated page per house, generated sitemap with
-            hreflang, and a rule-based chatbot answering guest questions 24/7.
-          </p>
-          <div class="tags">
-            <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
-            <span class="tag">Tailwind v4</span><span class="tag">SEO</span>
-          </div>
-          <a class="proj__link" href="projects.html#homestay">
-            <span data-i18n="proj.case">Case study</span>
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-      </article>
+
 
       <!-- ---- 3. Final Year Project ---- -->
       <article class="proj glass tilt reveal">
@@ -829,11 +787,7 @@
         </div>
         <div class="proj__body">
           <h3 data-i18n="proj.p3.title">Breast Cancer Prediction — HoverNet</h3>
-          <p data-i18n="proj.p3.desc">
-            Final year project: a Django web system that runs the HoverNet deep-learning
-            framework to segment and classify nuclei in histopathology images from the
-            PanNuke dataset, giving pathologists a faster second opinion.
-          </p>
+          <p data-i18n="proj.p3.desc">A Django research interface connecting histopathology images to HoverNet for nuclei segmentation and classification. UKM final year project.</p>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Django</span><span class="tag">PyTorch</span>
             <span class="tag">HoverNet</span><span class="tag">MySQL</span>
@@ -852,11 +806,7 @@
         </div>
         <div class="proj__body">
           <h3 data-i18n="proj.p4.title">Real-Time Face Mask Detection</h3>
-          <p data-i18n="proj.p4.desc">
-            YOLOv8 + OpenCV detector served through Flask. Three-class output (worn, worn
-            incorrectly, not worn) with colour-coded live webcam overlay — mAP50 0.905,
-            precision 0.898.
-          </p>
+          <p data-i18n="proj.p4.desc">Real-time face mask detection with YOLOv8, OpenCV and a Flask interface. Three classes, from camera input to results.</p>
           <div class="tags">
             <span class="tag">YOLOv8</span><span class="tag">OpenCV</span><span class="tag">Flask</span><span class="tag">Roboflow</span>
           </div>
@@ -892,11 +842,7 @@
         </div>
         <div class="proj__body">
           <h3 data-i18n="proj.p5.title">Network Fault &amp; Speed Prediction</h3>
-          <p data-i18n="proj.p5.desc">
-            Time-series forecasting on TM's access-network telemetry. Random Forest Regression
-            and LSTM models anticipate speed degradation and faults at 80%+ accuracy, surfaced
-            through Power BI dashboards for weekly ops reviews.
-          </p>
+          <p data-i18n="proj.p5.desc">Random Forest and LSTM models for network speed and fault analysis, developed during my internship at TM R&D.</p>
           <div class="tags">
             <span class="tag">LSTM</span><span class="tag">Random Forest</span><span class="tag">Power BI</span><span class="tag">ETL</span>
           </div>
@@ -914,11 +860,7 @@
         </div>
         <div class="proj__body">
           <h3 data-i18n="proj.p6.title">Angular &amp; REST API Platform</h3>
-          <p data-i18n="proj.p6.desc">
-            Token-authenticated Angular 18 application with product CRUD, modal forms,
-            route-guarded pages and a paginated detail view driven by asynchronous
-            date-range queries.
-          </p>
+          <p data-i18n="proj.p6.desc">An Angular application with token authentication, product management and REST API integration.</p>
           <div class="tags">
             <span class="tag">Angular 18</span><span class="tag">TypeScript</span><span class="tag">REST API</span><span class="tag">JWT</span>
           </div>
@@ -931,9 +873,9 @@
     </div>
 
     <!-- Link out to the full project archive -->
-    <div class="projects__more reveal">
+    <div class="projects__more reveal"><a href="development.html" class="btn btn--primary" data-i18n="nav.development">Web &amp; App Portfolio ↗</a>
       <a href="projects.html" class="btn btn--ghost btn--lg magnetic">
-        <span data-i18n="proj.viewAll">View all 12 projects</span>
+        <span data-i18n="proj.viewAll">Explore all projects</span>
         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1224,13 +1166,13 @@
       <p data-i18n="footer.tagline">Built by hand in Melaka, Malaysia — no page builder, no template.</p>
     </div>
 
-    <nav class="footer__links" aria-label="Footer navigation">
+    <nav class="footer__links" aria-label="Footer navigation"><a href="development.html" data-i18n="nav.development">Web &amp; Apps</a><a href="legacy/index.html" data-i18n="nav.legacy">Previous portfolio</a>
       <a href="#about"          data-i18n="nav.about">About</a>
       <a href="#education"      data-i18n="nav.education">Education</a>
       <a href="#experience"     data-i18n="nav.experience">Experience</a>
       <a href="#skills"         data-i18n="nav.skills">Skills</a>
       <a href="projects.html"   data-i18n="nav.projects">Projects</a>
-      <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
       <a href="#contact"        data-i18n="nav.contact">Contact</a>
     </nav>
 
@@ -1259,7 +1201,7 @@
   <span class="chat-fab__ping"></span>
 </button>
 
-<section class="chat glass" id="chat-panel" aria-hidden="true" aria-label="Portfolio assistant">
+<section class="chat glass" id="chat-panel" inert aria-hidden="true" aria-label="Portfolio assistant">
   <header class="chat__head">
     <span class="chat__avatar">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>
@@ -1280,7 +1222,7 @@
   <div class="chat__chips" id="chat-chips"></div>
 
   <form class="chat__input" id="chat-form">
-    <input id="chat-text" type="text" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
+    <input id="chat-text" type="text" maxlength="1000" enterkeyhint="send" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
     <button type="submit" aria-label="Send message">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
     </button>
@@ -1303,6 +1245,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js" defer></script>
 <script src="i18n.js" defer></script>
+<script src="chatbot-knowledge.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="script.js" defer></script>
 </body>

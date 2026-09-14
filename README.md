@@ -10,6 +10,12 @@ Live site: **https://naqiudinfandy.github.io**
 
 ---
 
+## Kemas kini portfolio — 14 September 2026
+
+Halaman khas client ialah [`development.html`](development.html). Ia memaparkan Homestay Shimah Jay, Kambing Golek Melaka Official, contoh aplikasi dan dua versi portfolio. Pautan sasaran selepas deployment: `https://naqiudinfandy.github.io/development.html`. Kerja sesi ini masih lokal; belum commit, push atau deploy.
+
+Versi lama boleh dibuka melalui [`legacy/index.html`](legacy/index.html). [Memori projek](docs/PROJECT_MEMORY.md), [peta fail](docs/FILE_MAP.md) dan [log perubahan](docs/CHANGELOG.md) merekod keputusan dan pengesahan semasa.
+
 ## Table of contents
 
 - [About me](#about-me)
@@ -179,22 +185,22 @@ back to CSS transitions and the site keeps working.
 
 ```
 portfolio/
-├── index.html          Main single-page site (hero → contact)
-├── projects.html       Full case studies, one anchor per project
-├── style.css           All styling, organised into 23 numbered sections
-├── script.js           All interaction, one init… function per feature
-├── i18n.js             English / Bahasa Melayu / 中文 dictionary + switcher
-├── chatbot.js          Rule-based assistant (keyword matching, no AI service)
-├── README.md           This file
-├── .gitignore          Keeps archived/, Figma exports and drafts out of git
-└── assets/
-    ├── img/            Project screenshots, company logos, portrait
-    └── resume/         CV in PDF form
+├── index.html             Portfolio utama semasa
+├── development.html       Halaman khas perkongsian client
+├── projects.html          Arkib 13 kajian kes
+├── style.css / work.css   Reka bentuk dan penyesuaian responsif
+├── script.js              Interaksi bersama dan salinan link
+├── i18n.js                Pilihan English / Bahasa Melayu / 中文
+├── chatbot-knowledge.js   Fakta projek dan enjin konteks
+├── chatbot.js             Jawapan pengalaman dan UI chatbot
+├── assets/                Gambar yang digunakan dan résumé semasa
+├── legacy/                Dua halaman portfolio lama dan aset berkaitan
+├── scripts/               Ujian chatbot, browser dan audit fail
+├── docs/                  Memori, peta fail dan changelog
+└── .gitignore             Arkib peribadi, alat lokal dan fail sementara
 ```
 
-Both HTML files share `style.css`, `script.js`, `i18n.js` and `chatbot.js`.
-Each `init…()` function in `script.js` checks whether the elements it needs are
-present and exits quietly if not, so one script safely serves both pages.
+Tiga halaman semasa berkongsi CSS, navigasi, bahasa dan chatbot. Versi lama menggunakan CSS/JS asal serta pautan pulang ke portfolio semasa. Ia berkongsi aset yang sepadan dan PDF résumé semasa.
 
 ---
 
@@ -223,28 +229,16 @@ npx serve .
 
 ## Deploying to GitHub Pages
 
-```bash
-git init
-git add .
-git commit -m "New portfolio"
-git branch -M main
-git remote add origin https://github.com/naqiudinfandy/naqiudinfandy.github.io.git
-git push -u origin main
-```
+Repository ini sudah mempunyai sejarah Git. Semak `git status` dan `git diff` dahulu, kemudian pilih fail yang hendak dikomit. `.gitignore` menapis fail baharu; ia tidak membuang fail yang sudah dijejak. Perubahan résumé pemilik mesti disemak berasingan.
 
-Then in the repository: **Settings → Pages → Source: `main` / root**.
-The site goes live at `https://naqiudinfandy.github.io` within a minute or two.
-
-Because `.gitignore` already excludes `archived/`, the Figma exports and all
-`.docx` files, `git add .` is safe — only the files the live site needs are
-committed.
+Deployment bergantung pada tetapan GitHub Pages repository. Selepas commit dan push dibuat oleh pemilik, semak status Pages serta URL sebenar. Ujian lokal bukan bukti laman live telah berubah.
 
 ---
 
 ## Features built into the site
 
 **Motion & interaction**
-- Loading animation with a real progress bar and a curtain reveal
+- Loading animation with a simulated progress indicator and a curtain reveal
 - Staged hero entrance (masked word reveal with a spring easing)
 - Scroll-reveal on every section via `IntersectionObserver`
 - GSAP ScrollTrigger parallax: hero content, background aurora layers, portrait and project images all move at different rates
@@ -265,14 +259,14 @@ and a masked gradient border that mimics a refracted edge.
 Any element with `data-i18n="key"` is swapped by `i18n.js`. The choice is saved
 in `localStorage`, `<html lang>` is updated for screen readers and search
 engines, and a `languagechange` event lets the typewriter and chatbot follow
-along. The detailed case-study copy in `projects.html` stays in English on
+along. The detailed case-study copy in `projects.html` and `development.html` stays in English on
 purpose — that is the language its metrics and tooling are documented in.
 
 **Rule-based chatbot**
-`chatbot.js` scores the visitor's message against a keyword table (longer
-keyword = stronger signal) and replies from a written answer sheet in all three
-languages. There is no AI service behind it: no API key, no network request, no
-running cost. Suggested-question chips rebuild after every answer.
+
+`chatbot-knowledge.js` menambah 11 topik: dua projek freelance, harga/skop, tempoh, proses, aplikasi, UI/UX, versi portfolio, SEO, hosting/sokongan dan peluang kerja. Enjin menggunakan kata penuh dan konteks projek untuk soalan susulan, serta boleh menjawab sehingga tiga topik berkaitan dalam satu soalan. `chatbot.js` mengekalkan fakta pengalaman asal dan mengurus panel.
+
+Tiada AI API, kos model atau sejarah chat tersimpan. Soalan dihadkan kepada 1000 aksara, teks pengguna tidak dirender sebagai HTML, dan butang WhatsApp membawa soalan asal untuk dihantar sendiri oleh pelawat. Harga, deposit, jadual, gaji dan terma projek mesti disahkan terus dengan Naqiudin.
 
 **Responsive & accessible**
 Mobile-first breakpoints at 1024px, 700px and 400px; a slide-in drawer with
@@ -289,8 +283,8 @@ print stylesheet that turns the page into a clean document.
 | Any visible text (all 3 languages) | `i18n.js` — find the key, change all three dictionaries |
 | A section's structure or a new card | `index.html` (each section has a numbered comment banner) |
 | Colours, spacing, fonts | `style.css` §01 *Design tokens* — the `:root` block |
-| A project case study | `projects.html` — copy an existing `<article class="case">` |
-| What the chatbot knows | `chatbot.js` — add an entry to the `INTENTS` array |
+| A project case study | Selaraskan `projects.html`, `development.html`, kad utama dan fakta chatbot |
+| What the chatbot knows | `chatbot-knowledge.js` untuk projek/perkhidmatan; `chatbot.js` untuk pengalaman asal |
 | The CV file | Replace `assets/resume/Muhammad-Naqiudin-Resume.pdf` (keep the filename) |
 | Screenshots | Drop files into `assets/img/` and point the `<img src>` at them |
 
@@ -302,46 +296,37 @@ matching `id`, and point the card's "Case study" link at `projects.html#that-id`
 
 ## Browser support & accessibility
 
-Tested against current Chrome, Edge, Firefox and Safari on desktop and mobile.
-`backdrop-filter` is the only modern feature the design leans on; where it is
-unsupported the glass panels fall back to a solid translucent fill and nothing
-breaks.
+Sasaran semasa ialah browser berasaskan Chromium dan WebKit pada desktop/mobile. Dua kolum dikekalkan untuk profil, toolkit dan sorotan projek, termasuk lebar 320px. Panel chat menggunakan saiz visual viewport dan safe-area, input 16px, had mesej serta kawalan fokus. Lightbox boleh dibuka dengan Enter/Space dan ditutup dengan Escape. Menu mobile melepaskan scroll apabila skrin dibesarkan.
 
-- Keyboard navigable throughout, with a skip link and visible focus outlines
-- Every image has meaningful `alt` text; decorative layers are `aria-hidden`
-- Live regions on the chat log and form status
-- `prefers-reduced-motion` disables the canvas, blobs, parallax and reveals
-- Colour contrast checked against the dark background for body and UI text
+Ujian browser ialah emulasi, bukan pengesahan setiap telefon Android, iPhone atau Huawei fizikal. Lihat changelog untuk hasil ujian sebenar; tiada dakwaan semua model peranti atau Firefox telah diuji dalam sesi ini.
+
+Jalankan server statik dahulu, contohnya `python -m http.server 3210 --bind 127.0.0.1`.
+
+```powershell
+node scripts/check-chatbot.cjs
+node scripts/audit-files.mjs
+node --check chatbot.js
+node --check chatbot-knowledge.js
+node --check script.js
+node --check i18n.js
+
+# Playwright hanyalah alat pengesahan lokal, bukan dependency laman.
+npm install --prefix .local/browser --no-save playwright
+.local/browser/node_modules/.bin/playwright install webkit
+$env:PLAYWRIGHT_MODULE = (Resolve-Path .local/browser/node_modules/playwright).Path
+$env:PORTFOLIO_URL = 'http://127.0.0.1:3210'
+node scripts/check-browser.cjs
+```
+
+Edge perlu tersedia pada mesin untuk channel `msedge`. Screenshot ujian disimpan di `.local/browser-check/`. Laman tidak menggunakan React, jadi hydration atau React Strict Mode tidak terpakai; pengesahan meliputi JavaScript biasa, reduced-motion, CDN disekat dan mod tanpa JS.
 
 ---
 
 ## What is not in this repository
 
-`.gitignore` keeps one folder out of git — `archived/` — and everything that is
-not part of the live site now lives inside it:
+`.gitignore` mengecualikan `archived/`, `.local/`, dependencies, laporan ujian, `.env`, dokumen pejabat, fail sementara dan PDF résumé bernama `*-old*.pdf`. Fail Word dan sumber gambar yang tidak digunakan tidak disalin daripada projek rujukan. Fail laman, dokumentasi, skrip ujian dan `legacy/` mesti kekal dalam Git.
 
-```
-archived/
-├── figma-design/     Figma export the design was built from + placeholder art
-├── unused-images/    69 images the current pages don't display
-├── resume-source/    source PDF for the CV in assets/
-└── README.md         what each folder holds, and how to restore a file
-```
-
-Drop anything else you want to keep but not publish into `archived/` and it is
-excluded automatically — no need to edit `.gitignore` again.
-
-The **previous portfolio** is a separate git repository and lives beside this
-project rather than inside it:
-
-```
-Documents\Development\
-├── portfolio\        ← this repo   → github.com/naqiudinfandy/naqiudinfandy.github.io
-└── portfolio-old\    ← old site    → github.com/naqiudinfandy/portfolio_naqiudinfandy
-```
-
-`portfolio-old/image/` holds the full-resolution originals of every project
-screenshot; the copies in `assets/img/` were downscaled for performance.
+Repo saudara `portfolio-old` kekal tidak disentuh. Hanya dua halaman lama, CSS/JS dan aset yang dirujuk diterbitkan dalam `legacy/`; résumé menggunakan PDF semasa. Enam screenshot freelance dirakam daripada build production lokal projek asal, manakala dua preview versi dirakam daripada laman portfolio lokal. Screenshot runtime ini sengaja dikongsi di `assets/img/work/`.
 
 ---
 

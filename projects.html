@@ -47,9 +47,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="work.css">
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- Background layers (same as the home page) -->
 <div class="bg" aria-hidden="true">
@@ -82,7 +84,7 @@
       <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
       <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
       <a href="projects.html" class="is-active" data-i18n="nav.projects">Projects</a>
-      <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
+      <a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
       <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
       <span class="nav__indicator" aria-hidden="true"></span>
     </nav>
@@ -118,7 +120,7 @@
     <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
     <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
     <a href="projects.html"             data-i18n="nav.projects">Projects</a>
-    <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
+    <a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
     <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
   </nav>
   <div class="drawer__foot">
@@ -129,16 +131,17 @@
 </div>
 
 
-<main>
+<main id="main-content">
 
 <!-- ===========================================================================
      PAGE HERO
      =========================================================================== -->
 <header class="page-hero container">
+<a class="work-backlink" href="development.html" data-i18n="nav.development">Web &amp; App Portfolio ↗</a>
   <span class="eyebrow"><i></i><span data-i18n="page.eyebrow">Project Archive</span></span>
   <h1 class="display" data-i18n="page.title">Every project, in detail.</h1>
   <p class="section__lead" style="margin-inline:auto" data-i18n="page.lead">
-    Twelve builds across enterprise data engineering, machine learning and web development —
+    Client websites and application builds across enterprise data engineering, machine learning and web development —
     what the problem was, what I did, and what changed as a result.
   </p>
 </header>
@@ -158,7 +161,7 @@
   <!-- =========================================================================
        01 — ENTERPRISE MASTER DATA MIGRATION  (Infineon, confidential)
        ========================================================================= -->
-  <article class="case glass reveal" id="masterdata" data-cat="data">
+  <article lang="en" class="case glass reveal" id="masterdata" data-cat="data">
     <div class="case__head">
       <span class="case__index">01</span>
       <div>
@@ -251,81 +254,60 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        02 — HOMESTAY SHIMAH JAY  (freelance)
        ========================================================================= -->
-  <article class="case glass reveal" id="homestay" data-cat="web">
-    <div class="case__head">
-      <span class="case__index">02</span>
-      <div>
-        <h2 class="case__title">Homestay Shimah Jay — Booking Website</h2>
-        <p class="case__role">Freelance · Design, build, deploy &amp; SEO</p>
-      </div>
-      <span class="case__year">2025</span>
+  <!-- Kajian kes berdasarkan kod projek dan tangkapan production lokal, September 2026. -->
+<article class="case glass reveal client-case" id="homestay" data-cat="web">
+  <div class="case__head"><span class="case__index">01</span><div><p class="case__role">Hospitality · Freelance website</p><h2 class="case__title">Homestay Shimah Jay</h2></div><span class="work-status">Client project</span></div>
+  <div class="case__grid">
+    <div class="case__body">
+      <h3 class="work-statement">A welcoming place to find your next family stay.</h3><p>A bilingual website bringing eight homestays in Umbai and Telok Mas, Melaka into one easy-to-explore collection. Guests can compare houses, browse real photos and move from discovery to an enquiry.</p>
+      <h3 class="case__sub">The brief</h3><p>Present the houses, facilities and location clearly, and give Malay- and English-speaking guests a straightforward way to contact the hosts.</p>
+      <h3 class="case__sub">What I built</h3><p>Built a responsive Next.js App Router site with a dedicated page for each house, photo galleries, a trip planner, FAQs and a rule-based guest assistant. Malay uses the root URL; English uses /en, with permanent redirects for older /ms links.</p>
+      <h3 class="case__sub">UI / UX decisions</h3><p>Warm natural colours, architectural curves and a clear visual hierarchy create a family-friendly feel. Two-column house cards help guests compare on mobile; touch galleries and prominent WhatsApp links support the enquiry journey.</p>
+      <h3 class="case__sub">Engineering</h3><p>Typed house data feeds the cards, detail pages and assistant. Canonical URLs, hreflang, structured data and a sitemap support discoverability. Booking enquiries hand off to WhatsApp and external booking platforms; this is not an availability or payment engine.</p>
+      <div class="case__stats"><div class="case__stat"><b>8</b><span>homestays in one collection</span></div><div class="case__stat"><b>BM / EN</b><span>language-specific pages</span></div><div class="case__stat"><b>WhatsApp</b><span>direct enquiry journey</span></div></div>
+      <div class="case__links"><a class="btn btn--primary" href="https://www.homestayshimahjay.com/" target="_blank" rel="noopener noreferrer">Visit website ↗</a><a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry">Discuss a similar project ↗</a></div>
     </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          A family running six boutique homestays in Umbai and Telok Mas, Melaka, was taking every
-          enquiry by WhatsApp. Guests could not see the houses side by side, prices had to be
-          repeated by hand, and the business was invisible on Google. They needed a proper website
-          that spoke both Malay and English, without a monthly platform fee.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Built with <strong>Next.js 16 (App Router)</strong>, React 19 and Tailwind CSS v4 in
-          TypeScript. Every page sits under a locale segment, so <code>/en</code> and
-          <code>/ms</code> are real routes rather than a client-side toggle — better for both
-          visitors and search engines.
-        </p>
-        <p>
-          Each house gets a statically generated page per locale, so the pages are pure HTML at
-          request time and load fast on a phone with weak signal. The sitemap and robots files are
-          generated for both locales with correct <strong>hreflang</strong>, and I set up Google
-          Search Console, domain, DNS, SSL and CDN through Cloudflare and Vercel.
-        </p>
-        <p>
-          A <strong>rule-based chatbot</strong> answers the questions the owners were previously
-          typing out by hand — check-in times, capacity, directions, pricing — so enquiries arrive
-          already qualified.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>6</b><span>houses, one page each, two locales</span></div>
-          <div class="case__stat"><b>SSG</b><span>static pages — no server cost</span></div>
-          <div class="case__stat"><b>24/7</b><span>chatbot handling routine questions</span></div>
-        </div>
+    <aside class="work-evidence">
+      <div class="case__shots work-shots">
+        <figure class="work-shots__desktop"><img src="assets/img/work/homestay-desktop.jpg" alt="Homestay Shimah Jay — actual desktop homepage interface" width="1440" height="1000" loading="lazy"><figcaption>Desktop · homepage</figcaption></figure>
+        <figure><img src="assets/img/work/homestay-detail.jpg" alt="Homestay Shimah Jay — house detail interface" width="1440" height="1000" loading="lazy"><figcaption>House details</figcaption></figure>
+        <figure class="work-shots__mobile"><img src="assets/img/work/homestay-mobile.jpg" alt="Homestay Shimah Jay — actual mobile homepage interface" width="390" height="844" loading="lazy"><figcaption>Mobile · 390px</figcaption></figure>
       </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
-          <span class="tag">Tailwind v4</span><span class="tag">SSG / SSR</span><span class="tag">Vercel</span>
-          <span class="tag">Cloudflare</span><span class="tag">SEO</span><span class="tag">Search Console</span>
-        </div>
-
-        <div class="proj__media proj__media--browser" style="margin-top:18px;border-radius:14px;border:1px solid rgba(255,255,255,.08);min-height:230px">
-          <div class="browser">
-            <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">homestayshimahjay.com/ms</span></div>
-            <div class="browser__view">
-              <div class="bw-hero"></div>
-              <div class="bw-row"><span></span><span></span><span></span></div>
-              <div class="bw-row"><span></span><span></span><span></span></div>
-              <div class="bw-row bw-row--sm"><span></span><span></span></div>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <p class="work-caption">Actual UI from the local production build · September 2026. Select an image to enlarge.</p>
+      <h3 class="case__sub">Technologies</h3><div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS v4</span><span class="tag">Vercel</span></div><h3 class="case__sub">Skills applied</h3><div class="tags"><span class="tag">Responsive UI/UX</span><span class="tag">Bilingual routing</span><span class="tag">Technical SEO</span><span class="tag">Accessible galleries</span><span class="tag">Chatbot logic</span><span class="tag">Browser testing</span></div>
+    </aside>
+  </div>
+</article>
+<!-- Kajian kes berdasarkan kod projek dan tangkapan production lokal, September 2026. -->
+<article class="case glass reveal client-case" id="kgom" data-cat="web">
+  <div class="case__head"><span class="case__index">02</span><div><p class="case__role">Food & events · Freelance website</p><h2 class="case__title">Kambing Golek Melaka Official</h2></div><span class="work-status">Client project</span></div>
+  <div class="case__grid">
+    <div class="case__body">
+      <h3 class="work-statement">From a first impression to an event enquiry.</h3><p>A dedicated website for a Melaka catering business, built around its food, event packages and service information. A guided enquiry form helps visitors prepare the details the business needs for a quotation.</p>
+      <h3 class="case__sub">The brief</h3><p>Make catering packages easy to discover and understand, showcase the food and event experience, and guide visitors towards a useful WhatsApp enquiry.</p>
+      <h3 class="case__sub">What I built</h3><p>Created a multi-page Next.js site with package listings and detail pages, an image gallery, company information, FAQs and a contact page. The enquiry form gathers event details and opens WhatsApp with a prepared message.</p>
+      <h3 class="case__sub">UI / UX decisions</h3><p>Bold food photography, a warm visual palette and distinct package cards put the offer first. Responsive image galleries, clear navigation and repeated enquiry links help visitors explore on both phones and desktops.</p>
+      <h3 class="case__sub">Engineering</h3><p>Reusable React components and typed package content keep the site consistent. Next.js image handling, metadata, structured data, sitemap and robots configuration support delivery and discovery. Motion and Lenis provide animation and scroll behaviour. Enquiries are confirmed by the business, not by an online checkout.</p>
+      <div class="case__stats"><div class="case__stat"><b>Packages</b><span>listing & detail pages</span></div><div class="case__stat"><b>Gallery</b><span>food & event photography</span></div><div class="case__stat"><b>WhatsApp</b><span>prepared event enquiries</span></div></div>
+      <div class="case__links"><a class="btn btn--primary" href="https://www.kambinggolekmelakaofficial.my/" target="_blank" rel="noopener noreferrer">Visit website ↗</a><a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry">Discuss a similar project ↗</a></div>
     </div>
-  </article>
+    <aside class="work-evidence">
+      <div class="case__shots work-shots">
+        <figure class="work-shots__desktop"><img src="assets/img/work/kgom-desktop.jpg" alt="Kambing Golek Melaka Official — actual desktop homepage interface" width="1440" height="1000" loading="lazy"><figcaption>Desktop · homepage</figcaption></figure>
+        <figure><img src="assets/img/work/kgom-detail.jpg" alt="Kambing Golek Melaka Official — package listing interface" width="1440" height="1000" loading="lazy"><figcaption>Package discovery</figcaption></figure>
+        <figure class="work-shots__mobile"><img src="assets/img/work/kgom-mobile.jpg" alt="Kambing Golek Melaka Official — actual mobile homepage interface" width="390" height="844" loading="lazy"><figcaption>Mobile · 390px</figcaption></figure>
+      </div>
+      <p class="work-caption">Actual UI from the local production build · September 2026. Select an image to enlarge.</p>
+      <h3 class="case__sub">Technologies</h3><div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS v4</span><span class="tag">Motion</span><span class="tag">Lenis</span></div><h3 class="case__sub">Skills applied</h3><div class="tags"><span class="tag">Responsive UI/UX</span><span class="tag">Component design</span><span class="tag">Enquiry forms</span><span class="tag">Technical SEO</span><span class="tag">Image optimisation</span><span class="tag">Interaction testing</span></div>
+    </aside>
+  </div>
+</article>
 
 
   <!-- =========================================================================
        03 — FINAL YEAR PROJECT
        ========================================================================= -->
-  <article class="case glass reveal" id="fyp" data-cat="ml">
+  <article lang="en" class="case glass reveal" id="fyp" data-cat="ml">
     <div class="case__head">
       <span class="case__index">03</span>
       <div>
@@ -390,7 +372,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        04 — YOLOv8 FACE MASK DETECTION
        ========================================================================= -->
-  <article class="case glass reveal" id="yolo" data-cat="ml">
+  <article lang="en" class="case glass reveal" id="yolo" data-cat="ml">
     <div class="case__head">
       <span class="case__index">04</span>
       <div>
@@ -457,7 +439,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        05 — NETWORK FAULT & SPEED PREDICTION  (TM R&D)
        ========================================================================= -->
-  <article class="case glass reveal" id="network" data-cat="ml data">
+  <article lang="en" class="case glass reveal" id="network" data-cat="ml data">
     <div class="case__head">
       <span class="case__index">05</span>
       <div>
@@ -532,7 +514,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        06 — FOOD WASTE PREDICTION  (AirAsia)
        ========================================================================= -->
-  <article class="case glass reveal" id="foodwaste" data-cat="ml data">
+  <article lang="en" class="case glass reveal" id="foodwaste" data-cat="ml data">
     <div class="case__head">
       <span class="case__index">06</span>
       <div>
@@ -590,7 +572,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        07 — ANGULAR + REST API
        ========================================================================= -->
-  <article class="case glass reveal" id="angular" data-cat="web">
+  <article lang="en" class="case glass reveal" id="angular" data-cat="web">
     <div class="case__head">
       <span class="case__index">07</span>
       <div>
@@ -656,7 +638,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        08 — SENTIMENT ANALYSIS
        ========================================================================= -->
-  <article class="case glass reveal" id="sentiment" data-cat="ml">
+  <article lang="en" class="case glass reveal" id="sentiment" data-cat="ml">
     <div class="case__head">
       <span class="case__index">08</span>
       <div>
@@ -712,7 +694,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        09 — K-MEANS SEGMENTATION
        ========================================================================= -->
-  <article class="case glass reveal" id="kmeans" data-cat="ml data">
+  <article lang="en" class="case glass reveal" id="kmeans" data-cat="ml data">
     <div class="case__head">
       <span class="case__index">09</span>
       <div>
@@ -769,7 +751,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        10 — PRODUCT CATALOG WEB SYSTEM
        ========================================================================= -->
-  <article class="case glass reveal" id="catalog" data-cat="web">
+  <article lang="en" class="case glass reveal" id="catalog" data-cat="web">
     <div class="case__head">
       <span class="case__index">10</span>
       <div>
@@ -824,7 +806,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        11 — VB.NET DESKTOP APPLICATION
        ========================================================================= -->
-  <article class="case glass reveal" id="vbapp" data-cat="app">
+  <article lang="en" class="case glass reveal" id="vbapp" data-cat="app">
     <div class="case__head">
       <span class="case__index">11</span>
       <div>
@@ -880,7 +862,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <!-- =========================================================================
        12 — THIS PORTFOLIO
        ========================================================================= -->
-  <article class="case glass reveal" id="portfolio" data-cat="web">
+  <article lang="en" class="case glass reveal" id="portfolio" data-cat="web">
     <div class="case__head">
       <span class="case__index">12</span>
       <div>
@@ -938,12 +920,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
         </div>
 
         <h3 class="case__sub">Previous versions</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject4.png"  alt="Portfolio version 2 — home" loading="lazy">
-          <img src="assets/img/myproject4b.png" alt="Portfolio version 2 — skills" loading="lazy">
-          <img src="assets/img/myproject4c.png" alt="Portfolio version 2 — projects" loading="lazy">
-          <img src="assets/img/myproject4d.png" alt="Portfolio version 2 — contact" loading="lazy">
-        </div>
+
 
         <div class="case__links">
           <a class="btn btn--ghost btn--sm magnetic" href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">
@@ -953,7 +930,15 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
         </div>
       </aside>
     </div>
-  </article>
+  <!-- Kedua-dua versi portfolio boleh dibuka, tanpa menggandakan résumé atau fail peribadi. -->
+<section class="version-showcase" aria-label="Portfolio design versions" lang="en">
+  <div><span class="work-kicker">A design evolution</span><h3 class="work-statement">One developer. Two perspectives.</h3><p>Explore the previous portfolio and the current design, built with HTML, CSS and JavaScript.</p></div>
+  <div class="version-grid">
+    <a class="version-card" href="legacy/index.html"><img src="assets/img/work/portfolio-old.jpg" alt="Previous portfolio design preview" width="1440" height="1000" loading="lazy"><span><b>01 / Classic portfolio</b><small>Previous design · Explore ↗</small></span></a>
+    <a class="version-card" href="index.html"><img src="assets/img/work/portfolio-new.jpg" alt="Current portfolio design preview" width="1440" height="1000" loading="lazy"><span><b>02 / Current portfolio</b><small>Current design · Explore ↗</small></span></a>
+  </div>
+</section>
+</article>
 
 
   <!-- ---- Back to the home page ---- -->
@@ -977,7 +962,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
       <a href="index.html" class="nav__logo"><span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span></a>
       <p data-i18n="footer.tagline">Built by hand in Melaka, Malaysia — no page builder, no template.</p>
     </div>
-    <nav class="footer__links" aria-label="Footer navigation">
+    <nav class="footer__links" aria-label="Footer navigation"><a href="development.html" data-i18n="nav.development">Web &amp; Apps</a><a href="legacy/index.html" data-i18n="nav.legacy">Previous portfolio</a>
       <a href="index.html"                data-i18n="nav.home">Home</a>
       <a href="index.html#about"          data-i18n="nav.about">About</a>
       <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
@@ -1007,7 +992,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <span class="chat-fab__ping"></span>
 </button>
 
-<section class="chat glass" id="chat-panel" aria-hidden="true" aria-label="Portfolio assistant">
+<section class="chat glass" id="chat-panel" inert aria-hidden="true" aria-label="Portfolio assistant">
   <header class="chat__head">
     <span class="chat__avatar">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>
@@ -1023,7 +1008,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
   <div class="chat__log" id="chat-log" role="log" aria-live="polite"></div>
   <div class="chat__chips" id="chat-chips"></div>
   <form class="chat__input" id="chat-form">
-    <input id="chat-text" type="text" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
+    <input id="chat-text" type="text" maxlength="1000" enterkeyhint="send" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
     <button type="submit" aria-label="Send message">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
     </button>
@@ -1036,6 +1021,7 @@ audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROW
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js" defer></script>
 <script src="i18n.js" defer></script>
+<script src="chatbot-knowledge.js" defer></script>
 <script src="chatbot.js" defer></script>
 <script src="script.js" defer></script>
 </body>

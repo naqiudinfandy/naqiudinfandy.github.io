@@ -351,6 +351,8 @@
 
     /* ---- Mobile drawer ---- */
     if (burger && drawer) {
+      // Menu tertutup tidak boleh menerima fokus papan kekunci.
+      drawer.inert = true;
       // The dark blurred layer behind the drawer is created here, not in HTML,
       // because it only ever exists to support this interaction.
       const scrim = document.createElement('div');
@@ -358,12 +360,15 @@
       document.body.appendChild(scrim);
 
       function setDrawer(open) {
+        drawer.inert = !open;
         drawer.classList.toggle('is-open', open);
         scrim.classList.toggle('is-open', open);
         burger.classList.toggle('is-open', open);
         burger.setAttribute('aria-expanded', String(open));
         drawer.setAttribute('aria-hidden', String(!open));
         document.body.style.overflow = open ? 'hidden' : '';
+        if (open) $('a', drawer)?.focus();
+        else if (drawer.contains(document.activeElement)) burger.focus();
       }
 
       burger.addEventListener('click', () => setDrawer(!drawer.classList.contains('is-open')));
@@ -371,6 +376,18 @@
       $$('a', drawer).forEach(a => a.addEventListener('click', () => setDrawer(false)));
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape') setDrawer(false);
+        if (e.key === 'Tab' && drawer.classList.contains('is-open')) {
+          const links = $$('a[href], button:not([disabled])', drawer);
+          const first = links[0], last = links[links.length - 1];
+          if (e.shiftKey && (document.activeElement === first || document.activeElement === burger)) {
+            e.preventDefault(); last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+          }
+        }
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024 && drawer.classList.contains('is-open')) setDrawer(false);
       });
     }
   }
@@ -551,7 +568,7 @@
     }
 
     /* ---- (b) scroll parallax (needs GSAP) ---- */
-    if (!gsap || !ST || REDUCED) return;
+    if (!gsap || !ST || REDUCED || !FINE_POINTER) return;
 
     // Hero content drifts up and fades as you scroll past it
     const heroContent = $('.hero__content');
@@ -565,7 +582,7 @@
     // Background blobs move at different speeds → layered depth
     gsap.to('.bg__blob--cyan',    { yPercent: -22, ease: 'none', scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.2 } });
     gsap.to('.bg__blob--violet',  { yPercent:  16, ease: 'none', scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.6 } });
-    gsap.to('.bg__blob--magenta', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2.0 } });
+    if ($('.bg__blob--magenta')) gsap.to('.bg__blob--magenta', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2.0 } });
 
     // The portrait floats slightly against the text beside it
     const portrait = $('.portrait');
@@ -793,12 +810,16 @@
     if (filterBar) {
       const buttons = $$('button', filterBar);
       const cases   = $$('.case');
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.classList.contains('is-active'))));
 
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           const want = btn.dataset.filter;
 
-          buttons.forEach(b => b.classList.toggle('is-active', b === btn));
+          buttons.forEach(b => {
+            b.classList.toggle('is-active', b === btn);
+            b.setAttribute('aria-pressed', String(b === btn));
+          });
 
           cases.forEach(c => {
             const cats = (c.dataset.cat || '').split(' ');
@@ -810,6 +831,14 @@
           if (ST) ST.refresh();
         });
       });
+      // Pautan anchor daripada chat/browser mesti membuka kajian kes walaupun ditapis.
+      window.addEventListener('hashchange', () => {
+        const target = document.getElementById(location.hash.slice(1));
+        if (target?.classList.contains('is-hidden')) {
+          buttons.find(b => b.dataset.filter === 'all')?.click();
+          target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+        }
+      });
     }
 
     /* ---- Screenshot lightbox ---- */
@@ -819,6 +848,11 @@
     // Built in JS because it only exists to serve this interaction
     const box = document.createElement('div');
     box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Project screenshot');
+    box.setAttribute('aria-hidden', 'true');
+    box.inert = true;
     box.innerHTML =
       '<button class="lightbox__x" aria-label="Close image">' +
         '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>' +
@@ -826,23 +860,44 @@
     document.body.appendChild(box);
 
     const bigImg = $('img', box);
+    const closeButton = $('button', box);
+    let trigger;
+    let previousOverflow = '';
 
     function open(src, alt) {
+      trigger = document.activeElement;
+      previousOverflow = document.body.style.overflow;
+      box.inert = false;
+      box.setAttribute('aria-hidden', 'false');
       bigImg.src = src;
       bigImg.alt = alt || '';
       box.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      closeButton.focus();
     }
     function close() {
+      if (!box.classList.contains('is-open')) return;
       box.classList.remove('is-open');
-      document.body.style.overflow = '';
+      box.setAttribute('aria-hidden', 'true');
+      trigger?.focus({ preventScroll: true });
+      box.inert = true;
+      document.body.style.overflow = previousOverflow;
     }
 
     shots.forEach(img => {
-      img.addEventListener('click', () => open(img.dataset.full || img.src, img.alt));
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Enlarge: ' + img.alt);
+      img.addEventListener('click', () => { img.focus({ preventScroll: true }); open(img.dataset.full || img.src, img.alt); });
+      img.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img.dataset.full || img.src, img.alt); }
+      });
     });
     box.addEventListener('click', e => { if (e.target !== bigImg) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') close();
+      if (e.key === 'Tab' && box.classList.contains('is-open')) { e.preventDefault(); closeButton.focus(); }
+    });
   }
 
 
@@ -850,6 +905,23 @@
      19. MISC
      ========================================================================== */
   function initMisc() {
+    // Pautan khusus perkongsian client tidak membawa hash atau parameter ujian lokal.
+    const share = $('#share-work');
+    if (share) share.addEventListener('click', async () => {
+      const url = new URL('development.html', window.location.href).href;
+      const status = $('#share-status');
+      try {
+        await navigator.clipboard.writeText(url);
+        status.textContent = 'Portfolio link copied.';
+      } catch {
+        status.textContent = 'Copy this link: ';
+        const field = document.createElement('input');
+        field.type = 'text'; field.readOnly = true; field.value = url;
+        field.setAttribute('aria-label', 'Portfolio link to copy');
+        status.appendChild(field); field.focus(); field.select();
+      }
+    });
+
     // Footer year — never goes stale
     const year = $('#year');
     if (year) year.textContent = String(new Date().getFullYear());

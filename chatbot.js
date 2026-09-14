@@ -122,9 +122,9 @@
            'projek', 'hasil kerja', 'contoh kerja', 'dibina',
            '项目', '作品', '案例', '做过', '代码库'],
       a: {
-        en: "Twelve projects are documented on the <a href='projects.html'>projects page</a>. Highlights:<ul><li><strong>Enterprise Master Data Migration</strong> — PL/SQL + ETL + SAP at Infineon</li><li><strong>Homestay Shimah Jay</strong> — bilingual Next.js 16 booking site</li><li><strong>Breast Cancer Prediction</strong> — HoverNet deep learning, final year project</li><li><strong>Face Mask Detection</strong> — YOLOv8 + OpenCV + Flask, mAP50 0.905</li><li><strong>Network Fault Prediction</strong> — LSTM + Random Forest at TM R&amp;D</li><li><strong>Angular &amp; REST API platform</strong> — token auth + product CRUD</li></ul>",
-        ms: "Dua belas projek didokumentasikan di <a href='projects.html'>halaman projek</a>. Sorotan:<ul><li><strong>Migrasi Master Data Perusahaan</strong> — PL/SQL + ETL + SAP di Infineon</li><li><strong>Homestay Shimah Jay</strong> — laman tempahan dwibahasa Next.js 16</li><li><strong>Ramalan Kanser Payudara</strong> — pembelajaran mendalam HoverNet, projek tahun akhir</li><li><strong>Pengesanan Pelitup Muka</strong> — YOLOv8 + OpenCV + Flask, mAP50 0.905</li><li><strong>Ramalan Kerosakan Rangkaian</strong> — LSTM + Random Forest di TM R&amp;D</li><li><strong>Platform Angular &amp; REST API</strong> — pengesahan token + CRUD produk</li></ul>",
-        zh: "共有十二个项目记录在 <a href='projects.html'>项目页面</a>。重点包括：<ul><li><strong>企业主数据迁移</strong> —— 英飞凌的 PL/SQL + ETL + SAP</li><li><strong>Homestay Shimah Jay</strong> —— 双语 Next.js 16 预订网站</li><li><strong>乳腺癌预测</strong> —— HoverNet 深度学习毕业设计</li><li><strong>口罩检测</strong> —— YOLOv8 + OpenCV + Flask，mAP50 0.905</li><li><strong>网络故障预测</strong> —— TM 研发中心的 LSTM + 随机森林</li><li><strong>Angular 与 REST API 平台</strong> —— 令牌认证 + 产品增删改查</li></ul>"
+        en: "The projects are documented on the <a href='projects.html'>projects page</a>. Highlights:<ul><li><strong>Enterprise Master Data Migration</strong> — PL/SQL + ETL + SAP at Infineon</li><li><strong>Homestay Shimah Jay</strong> — bilingual Next.js 16 hospitality site</li><li><strong>Kambing Golek Melaka Official</strong> — catering website and event enquiries</li><li><strong>Breast Cancer Prediction</strong> — HoverNet deep learning, final year project</li><li><strong>Face Mask Detection</strong> — YOLOv8 + OpenCV + Flask, mAP50 0.905</li><li><strong>Network Fault Prediction</strong> — LSTM + Random Forest at TM R&amp;D</li><li><strong>Angular &amp; REST API platform</strong> — token auth + product CRUD</li></ul>",
+        ms: "Projek didokumentasikan di <a href='projects.html'>halaman projek</a>. Sorotan:<ul><li><strong>Migrasi Master Data Perusahaan</strong> — PL/SQL + ETL + SAP di Infineon</li><li><strong>Homestay Shimah Jay</strong> — laman homestay dwibahasa Next.js 16</li><li><strong>Kambing Golek Melaka Official</strong> — laman katering dan pertanyaan majlis</li><li><strong>Ramalan Kanser Payudara</strong> — pembelajaran mendalam HoverNet, projek tahun akhir</li><li><strong>Pengesanan Pelitup Muka</strong> — YOLOv8 + OpenCV + Flask, mAP50 0.905</li><li><strong>Ramalan Kerosakan Rangkaian</strong> — LSTM + Random Forest di TM R&amp;D</li><li><strong>Platform Angular &amp; REST API</strong> — pengesahan token + CRUD produk</li></ul>",
+        zh: "项目记录在 <a href='projects.html'>项目页面</a>。重点包括：<ul><li><strong>企业主数据迁移</strong> —— 英飞凌的 PL/SQL + ETL + SAP</li><li><strong>Homestay Shimah Jay</strong> —— 双语 Next.js 16 民宿网站</li><li><strong>Kambing Golek Melaka Official</strong> —— 餐饮与活动咨询网站</li><li><strong>乳腺癌预测</strong> —— HoverNet 深度学习毕业设计</li><li><strong>口罩检测</strong> —— YOLOv8 + OpenCV + Flask，mAP50 0.905</li><li><strong>网络故障预测</strong> —— TM 研发中心的 LSTM + 随机森林</li><li><strong>Angular 与 REST API 平台</strong> —— 令牌认证 + 产品增删改查</li></ul>"
       },
       chips: ['ml', 'infineon', 'freelance', 'contact']
     },
@@ -298,8 +298,22 @@
     }
   ];
 
+  /* Gabungkan fakta projek yang disemak dengan rekod pengalaman sedia ada. */
+  INTENTS.unshift(...(window.PORTFOLIO_KNOWLEDGE || []));
+
   /* Labels shown on the suggestion chips, per intent, per language */
   const CHIP_LABEL = {
+    homestay: { en: 'Homestay project', ms: 'Projek Homestay', zh: '民宿项目' },
+    kgom: { en: 'Kambing Golek project', ms: 'Projek Kambing Golek', zh: '烤羊网站项目' },
+    pricing: { en: 'Pricing & scope', ms: 'Harga & skop', zh: '价格与范围' },
+    timeline: { en: 'Project timeline', ms: 'Tempoh projek', zh: '项目工期' },
+    process: { en: 'How to get started', ms: 'Cara mulakan projek', zh: '如何开始' },
+    applications: { en: 'Application projects', ms: 'Projek aplikasi', zh: '应用项目' },
+    design: { en: 'UI/UX & mobile', ms: 'UI/UX & mobile', zh: '界面与移动端' },
+    versions: { en: 'Portfolio versions', ms: 'Versi portfolio', zh: '作品集版本' },
+    seo: { en: 'SEO approach', ms: 'Pendekatan SEO', zh: 'SEO 方法' },
+    support: { en: 'Hosting & support', ms: 'Hosting & sokongan', zh: '托管与支持' },
+    hiring: { en: 'Hire Naqiudin', ms: 'Peluang kerjaya', zh: '招聘合作' },
     about:          { en: 'Who is he?',        ms: 'Siapa dia?',         zh: '他是谁？' },
     experience:     { en: 'Work experience',   ms: 'Pengalaman kerja',   zh: '工作经历' },
     infineon:       { en: 'Infineon role',     ms: 'Peranan Infineon',   zh: '英飞凌工作' },
@@ -329,174 +343,167 @@
     ms: "Saya belum ada peraturan untuk soalan itu. Saya paling mahir tentang <strong>pengalaman</strong>, <strong>projek</strong>, <strong>kemahiran</strong>, <strong>pendidikan</strong>, <strong>pensijilan</strong> dan <strong>maklumat hubungan</strong>. Untuk yang lain, e-mel <a href='mailto:naqiudin73@gmail.com'>naqiudin73@gmail.com</a> — manusia sebenar akan menjawab.",
     zh: "这个问题我还没有对应的规则。我最擅长回答关于他的 <strong>工作经历</strong>、<strong>项目</strong>、<strong>技能</strong>、<strong>教育</strong>、<strong>证书</strong> 与 <strong>联系方式</strong>。其他问题欢迎发邮件到 <a href='mailto:naqiudin73@gmail.com'>naqiudin73@gmail.com</a> —— 会有真人回复。"
   };
-  const DEFAULT_CHIPS = ['experience', 'projects', 'skills', 'contact', 'resume'];
+  const DEFAULT_CHIPS = ['homestay', 'kgom', 'applications', 'hiring'];
 
 
-  /* ------------------------------------------------------------------------
-     2. DOM WIRING
-     ------------------------------------------------------------------------ */
-  let els = {};          // cached elements
-  let started = false;   // has the greeting been shown yet?
 
-  /** Current site language, borrowed from i18n.js (falls back to English). */
-  function lang() {
-    return (window.I18N && window.I18N.lang) || 'en';
-  }
+  /* Pendawaian UI: mesej pelawat sentiasa teks; hanya jawapan tempatan
+     yang dikarang di atas dibenarkan sebagai HTML. Timer dibersihkan apabila
+     bahasa berubah supaya jawapan bahasa lama tidak muncul kemudian. */
+  let els = {};
+  let started = false;
+  let pending = false;
+  let replyTimer;
+  const assistant = window.createPortfolioAssistant(INTENTS);
 
-  /** Add a message bubble to the log. `who` is 'bot' or 'me'. */
-  function say(html, who) {
+  /** Bahasa jawapan mengikut pilihan bahasa laman yang aktif. */
+  function lang() { return (window.I18N && window.I18N.lang) || 'en'; }
+
+  /** Tambah gelembung; `who=me` menggunakan textContent untuk mengelakkan suntikan HTML. */
+  function say(content, who) {
     const div = document.createElement('div');
-    div.className = 'msg msg--' + (who || 'bot');
-    div.innerHTML = html;
+    div.className = 'msg msg--' + who;
+    if (who === 'me') div.textContent = content;
+    else div.innerHTML = content;
     els.log.appendChild(div);
+    // Had memori DOM untuk sesi panjang, tanpa menyimpan chat dalam storage.
+    while (els.log.children.length > 80) els.log.firstElementChild.remove();
     els.log.scrollTop = els.log.scrollHeight;
     return div;
   }
 
-  /** Show the three bouncing dots, then replace them with the real answer. */
-  function botReply(html, chips) {
-    const typing = document.createElement('div');
-    typing.className = 'msg msg--bot msg--typing';
-    typing.innerHTML = '<i></i><i></i><i></i>';
-    els.log.appendChild(typing);
-    els.log.scrollTop = els.log.scrollHeight;
-
-    // A short human-ish pause that scales a little with answer length
-    const delay = Math.min(1100, 380 + html.length * 1.6);
-    setTimeout(() => {
-      typing.remove();
-      say(html, 'bot');
-      renderChips(chips);
-    }, delay);
+  /** Elak susunan balasan bercampur akibat submit atau chip berulang. */
+  function setPending(value) {
+    pending = value;
+    els.input.readOnly = value;
+    els.form.querySelector('button').disabled = value;
+    els.chips.querySelectorAll('button').forEach(b => { b.disabled = value; });
+    els.log.setAttribute('aria-busy', String(value));
   }
 
-  /** Rebuild the suggestion chips under the log. */
+  /** Handoff membawa soalan asal secara URL-encoded; pengguna sendiri menghantar mesej. */
+  function handoff(question) {
+    const labels = { en: 'Discuss this with Naqiudin on WhatsApp ↗', ms: 'Bincang dengan Naqiudin di WhatsApp ↗', zh: '通过 WhatsApp 联系 Naqiudin ↗' };
+    const intros = { en: 'Hi Naqiudin, I saw your portfolio. My question: ', ms: 'Hai Naqiudin, saya sudah lihat portfolio anda. Soalan saya: ', zh: '你好 Naqiudin，我看过你的作品集。我的问题：' };
+    const href = 'https://wa.me/60176220665?text=' + encodeURIComponent(intros[lang()] + question);
+    return '<a class="chat__handoff" href="' + href + '" target="_blank" rel="noopener noreferrer">' + labels[lang()] + '</a>';
+  }
+
+  /** Paparkan indikator ringkas, kemudian jawapan dalam urutan yang sama. */
+  function botReply(html, chips) {
+    setPending(true);
+    const typing = say('<i></i><i></i><i></i>', 'bot');
+    typing.classList.add('msg--typing');
+    replyTimer = setTimeout(() => {
+      typing.remove();
+      say(html, 'bot');
+      setPending(false);
+      renderChips(chips);
+    }, 420);
+  }
+
+  /** Chip memberi soalan susulan yang berkaitan dengan topik semasa. */
   function renderChips(ids) {
-    const list = (ids && ids.length ? ids : DEFAULT_CHIPS).slice(0, 4);
-    els.chips.innerHTML = '';
-    list.forEach(id => {
+    els.chips.replaceChildren();
+    (ids && ids.length ? ids : DEFAULT_CHIPS).slice(0, 4).forEach(id => {
       const label = CHIP_LABEL[id] && (CHIP_LABEL[id][lang()] || CHIP_LABEL[id].en);
       if (!label) return;
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = label;
-      // Clicking a chip behaves exactly like typing that question
+      b.disabled = pending;
       b.addEventListener('click', () => {
-        say(label, 'me');
+        if (pending) return;
         const intent = INTENTS.find(i => i.id === id);
-        if (intent) botReply(intent.a[lang()] || intent.a.en, intent.chips);
-        else botReply(FALLBACK[lang()] || FALLBACK.en, DEFAULT_CHIPS);
+        say(label, 'me');
+        assistant.remember(id);
+        botReply((intent ? intent.a[lang()] || intent.a.en : FALLBACK[lang()]) + handoff(label), intent ? intent.chips : DEFAULT_CHIPS);
       });
       els.chips.appendChild(b);
     });
   }
 
-  /* ------------------------------------------------------------------------
-     3. THE MATCHING RULE
-     ------------------------------------------------------------------------ */
-
-  /** Normalise: lower-case, strip punctuation, squash spaces. */
-  function clean(str) {
-    return ' ' + str.toLowerCase()
-      .replace(/[^\p{L}\p{N}\s./+#-]/gu, ' ')
-      .replace(/\s+/g, ' ')
-      .trim() + ' ';
+  /** Satu soalan boleh merangkumi projek dan topik komersial serentak. */
+  function handle(value) {
+    const text = value.trim().slice(0, 1000);
+    if (!text || pending) return;
+    say(text, 'me');
+    const matches = assistant.resolve(text);
+    const html = matches.length ? matches.map(i => i.a[lang()] || i.a.en).join('<hr>') : FALLBACK[lang()] || FALLBACK.en;
+    botReply(html + handoff(text), matches.length ? matches[0].chips : DEFAULT_CHIPS);
+    els.input.value = '';
   }
 
-  /**
-   * Score every intent and return the best one.
-   * Longer keywords score higher so a specific phrase beats a generic word.
-   * Chinese has no spaces, so CJK keywords are matched as plain substrings.
-   */
-  function match(text) {
-    const hay = clean(text);
-    let best = null, bestScore = 0;
-
-    INTENTS.forEach(intent => {
-      let score = 0;
-      intent.kw.forEach(k => {
-        const key = k.toLowerCase();
-        const isCJK = /[一-鿿]/.test(key);
-        const found = isCJK ? hay.includes(key) : hay.includes(' ' + key) || hay.includes(key + ' ');
-        if (found) score += key.length;           // longer match = stronger signal
-      });
-      if (score > bestScore) { bestScore = score; best = intent; }
-    });
-
-    // Require a minimum signal so a stray letter doesn't trigger an answer
-    return bestScore >= 2 ? best : null;
-  }
-
-  /** Handle one visitor message end to end. */
-  function handle(text) {
-    const trimmed = text.trim();
-    if (!trimmed) return;
-    say(trimmed.replace(/</g, '&lt;'), 'me');    // escape: never render user HTML
-
-    const intent = match(trimmed);
-    if (intent) botReply(intent.a[lang()] || intent.a.en, intent.chips);
-    else botReply(FALLBACK[lang()] || FALLBACK.en, DEFAULT_CHIPS);
-  }
-
-  /* ------------------------------------------------------------------------
-     4. OPEN / CLOSE + BOOT
-     ------------------------------------------------------------------------ */
+  /** Buka panel tanpa memaksa papan kekunci telefon menutup kandungan awal. */
   function openChat() {
+    els.panel.inert = false;
     els.panel.classList.add('is-open');
     els.panel.setAttribute('aria-hidden', 'false');
     els.fab.classList.add('is-open', 'was-opened');
     els.fab.setAttribute('aria-expanded', 'true');
-
-    // First open → greet
     if (!started) {
       started = true;
-      botReply(GREETING[lang()] || GREETING.en, DEFAULT_CHIPS);
+      say(GREETING[lang()] || GREETING.en, 'bot');
+      renderChips(DEFAULT_CHIPS);
     }
-    setTimeout(() => els.input && els.input.focus(), 380);
+    els.close.focus({ preventScroll: true });
   }
 
+  /** Fokus dipulangkan kepada pencetus; kandungan tertutup tidak boleh ditab. */
   function closeChat() {
     els.panel.classList.remove('is-open');
     els.panel.setAttribute('aria-hidden', 'true');
     els.fab.classList.remove('is-open');
     els.fab.setAttribute('aria-expanded', 'false');
+    els.fab.focus({ preventScroll: true });
+    els.panel.inert = true;
+  }
+
+  /** Ketinggian sebenar kawasan pelayar, termasuk perubahan papan kekunci iOS/Android. */
+  function syncViewport() {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    els.panel.style.setProperty('--chat-vh', viewport.height + 'px');
+    els.panel.style.setProperty('--chat-top', viewport.offsetTop + 'px');
+    els.panel.classList.toggle('is-keyboard', viewport.height < window.innerHeight * .78);
   }
 
   function init() {
     els = {
-      fab:   document.getElementById('chat-fab'),
-      panel: document.getElementById('chat-panel'),
-      close: document.getElementById('chat-close'),
-      log:   document.getElementById('chat-log'),
-      chips: document.getElementById('chat-chips'),
-      form:  document.getElementById('chat-form'),
+      fab: document.getElementById('chat-fab'), panel: document.getElementById('chat-panel'),
+      close: document.getElementById('chat-close'), log: document.getElementById('chat-log'),
+      chips: document.getElementById('chat-chips'), form: document.getElementById('chat-form'),
       input: document.getElementById('chat-text')
     };
-    // Page doesn't have the widget (e.g. a future sub-page) → do nothing
     if (!els.fab || !els.panel) return;
-
-    els.fab.addEventListener('click', () => {
-      els.panel.classList.contains('is-open') ? closeChat() : openChat();
-    });
+    els.panel.inert = true;
+    els.input.maxLength = 1000;
+    els.fab.addEventListener('click', () => els.panel.classList.contains('is-open') ? closeChat() : openChat());
     els.close.addEventListener('click', closeChat);
-
-    els.form.addEventListener('submit', e => {
-      e.preventDefault();
-      handle(els.input.value);
-      els.input.value = '';
-    });
-
-    // Escape closes the panel
+    els.form.addEventListener('submit', e => { e.preventDefault(); handle(els.input.value); });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && els.panel.classList.contains('is-open')) closeChat();
     });
-
-    // When the site language changes, refresh the chip labels so they match
     document.addEventListener('languagechange', () => {
-      if (started) renderChips(DEFAULT_CHIPS);
+      clearTimeout(replyTimer);
+      assistant.reset();
+      setPending(false);
+      els.log.replaceChildren();
+      els.input.value = '';
+      if (started) { say(GREETING[lang()] || GREETING.en, 'bot'); renderChips(DEFAULT_CHIPS); }
+    });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', syncViewport);
+      window.visualViewport.addEventListener('scroll', syncViewport);
+      syncViewport();
+    }
+    // Pembersihan apabila dokumen ditutup; pendengar kekal sah dalam bfcache.
+    window.addEventListener('pagehide', () => {
+      clearTimeout(replyTimer);
+      els.log.querySelectorAll('.msg--typing').forEach(el => el.remove());
+      setPending(false);
     });
   }
-
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
