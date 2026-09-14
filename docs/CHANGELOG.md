@@ -1,5 +1,15 @@
 # Log perubahan portfolio
 
+## 2026-09-14 — Gunakan pautan Vercel KGOM sementara
+
+**Permintaan:** gunakan `https://kambing-golek-melaka-official.vercel.app/` dahulu sebagai pautan website Kambing Golek Melaka Official.
+
+**Perubahan/fail:** butang “Visit website” KGOM di `development.html` ditukar daripada domain tersuai kepada URL Vercel. `projects.html` sudah menggunakan URL yang diminta ketika tugas bermula. Keputusan pautan sementara direkod dalam `docs/PROJECT_MEMORY.md`.
+
+**Pengesahan:** audit fail lulus untuk 5 halaman dan 509 rujukan tempatan; `git diff --check` lulus. Kedua-dua pautan kajian kes disemak melalui carian sumber. Tiada perubahan layout atau logik JavaScript, jadi ujian browser penuh tidak diulang.
+
+**Isu tertinggal/status deployment:** tiada isu lokal dikenal pasti; status laman Vercel tidak diuji. Perubahan tugas ini lokal sahaja, tanpa commit, push atau deployment.
+
 ## 2026-09-14 — Portfolio client, projek freelance, chatbot dan mobile
 
 **Permintaan:** tambah Homestay Shimah Jay dan Kambing Golek Melaka Official dengan teknologi, kemahiran serta gambar UI/UX; sediakan halaman perkongsian web/application development; perincikan chatbot; kekalkan dua kolum untuk potret/penerangan, toolkit dan projek pada mobile; paparkan versi portfolio lama/baharu; kemaskan gitignore serta pengalaman desktop/mobile untuk client freelance dan peluang kerja sepenuh masa.

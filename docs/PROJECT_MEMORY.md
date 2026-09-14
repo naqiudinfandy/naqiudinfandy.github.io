@@ -34,6 +34,8 @@ Homestay: Next.js 16.2.11, React 19, TypeScript, Tailwind v4. Lapan rumah, BM `/
 
 KGOM: sumber sebenar dalam `kambinggolekmelakaofficial/website_kgom`, Next.js 16.3.1, React 19, TypeScript, Tailwind v4, Motion dan Lenis. Halaman pakej/detail, galeri, FAQ dan borang butiran majlis yang membuka WhatsApp. Tidak didakwa sebagai e-commerce atau laman dwibahasa lengkap.
 
+Keputusan pemilik 14 September 2026: gunakan sementara `https://kambing-golek-melaka-official.vercel.app/` untuk pautan website KGOM dalam portfolio, menggantikan domain tersuai. Kedua-dua butang “Visit website” di `development.html` dan `projects.html` mesti menuju URL Vercel ini sehingga pemilik mengarahkan pertukaran.
+
 Enam screenshot projek diambil daripada build production lokal sedia ada pada 14 September 2026. Dua screenshot portfolio diambil daripada halaman statik lokal. Tiada mockup AI atau angka peningkatan conversion/SEO direka. Foto UI memaparkan kandungan sebenar build rujukan pada waktu tangkapan; itu bukan pengesahan semua fakta perniagaan dalam laman pelanggan.
 
 ## Chatbot
