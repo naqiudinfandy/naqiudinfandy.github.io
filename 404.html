@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+  404.html — halaman "tidak dijumpai" khas portfolio.
+
+  GitHub Pages memaparkan fail ini secara automatik (status HTTP 404) untuk SEBARANG
+  pautan yang tidak wujud, pada sebarang kedalaman (contoh /abc atau /projek/lama/x).
+  Oleh itu semua laluan dalam fail ini MESTI bermula dengan "/" (mutlak dari akar laman),
+  bukan relatif seperti "assets/…", supaya CSS, JS dan pautan tidak rosak.
+
+  noindex: halaman ralat tidak patut disenaraikan oleh Google.
+  Gaya & animasi daripada /assets/css/site.css dan /assets/js/site.js (hero gelap yang sama).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found · Muhammad Naqiudin</title>
+  <meta name="theme-color" content="#090e24">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='66' font-family='Arial' font-size='44' font-weight='800' fill='white' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
+  <!-- Pulihkan pilihan tema & saiz teks (sama seperti halaman lain). -->
+  <script>
+    (function (r) {
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme'); if (t) r.dataset.theme = t;
+        if (localStorage.getItem('text') === 'large') r.dataset.text = 'large';
+      } catch (e) {}
+    })(document.documentElement);
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script src="/assets/js/site.js" defer></script>
+  <style>
+    /* Gaya khas halaman 404 sahaja (kecil, jadi diletak di sini dan bukan dalam site.css). */
+    .nf { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding-block: 48px; }
+    .nf__inner { text-align: center; max-width: 680px; margin-inline: auto; }
+    /* Nombor 404 besar bergradien yang terapung perlahan (dijeda bila reduced-motion). */
+    .nf__code {
+      display: block; font-size: clamp(5.5rem, 3rem + 14vw, 10rem); font-weight: 800; line-height: 1; letter-spacing: -.05em;
+      background: linear-gradient(110deg, #a5b4fc, #e9d5ff 45%, #67e8f9); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: #c7d2fe; animation: bob 6s ease-in-out infinite; margin-bottom: 8px;
+    }
+    .nf h1 { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); }
+    .nf .lead { margin-inline: auto; }
+    .nf .btn-row { justify-content: center; margin-top: 22px; }
+    .nf__path { display: inline-block; max-width: 100%; margin: 4px 0 0; padding: 4px 10px; border-radius: 8px; background: rgba(255, 255, 255, .08); color: #e0e7ff; font-size: .9rem; overflow-wrap: anywhere; }
+    .nf__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 6px; margin: 26px 0 0; padding: 0; list-style: none; }
+    .nf__links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #c7d2fe; font-weight: 700; text-decoration: none; }
+    .nf__links a:hover { background: rgba(255, 255, 255, .08); color: #fff; }
+  </style>
+</head>
+<body>
+<main id="main">
+  <section class="hero nf" aria-labelledby="nf-title" data-anim>
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span>
+      <span class="hero__grid-bg"></span>
+    </div>
+    <div class="container nf__inner" data-stagger>
+      <span class="nf__code hero-in" aria-hidden="true">404</span>
+      <h1 id="nf-title" class="hero-in">This page took a different route.</h1>
+      <p class="lead hero-in">The link may be old or mistyped. Let's get you back to something useful.</p>
+      <p class="hero-in"><span class="nf__path" id="nf-path"></span></p>
+      <div class="btn-row hero-in">
+        <a class="btn btn--primary" href="/">Back to home</a>
+        <a class="btn btn--ghost" href="/development.html">Web case studies</a>
+        <a class="btn btn--ghost" href="/projects.html">All projects</a>
+      </div>
+      <ul class="nf__links hero-in" aria-label="Other pages">
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/assets/resume/Muhammad-Naqiudin-Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+<script>
+  // Tunjuk laluan yang dicari supaya pelawat nampak apa yang salah. textContent = selamat (bukan HTML).
+  (function () {
+    var el = document.getElementById('nf-path');
+    if (el) el.textContent = decodeURIComponent(location.pathname);
+  })();
+</script>
+</body>
+</html>

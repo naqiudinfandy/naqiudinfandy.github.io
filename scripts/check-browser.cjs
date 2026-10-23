@@ -1,176 +1,226 @@
-/* Semakan pelayar portfolio pada Edge (Chromium) dan WebKit.
-   Playwright alat lokal pilihan melalui PLAYWRIGHT_MODULE, bukan dependency laman.
-   Semak grid, gambar, bahasa, chat, navigasi, lightbox dan fallback tanpa JS/CDN.
-   Hasil screenshot disimpan dalam .local/ supaya tidak diterbitkan bersama laman. */
+/* Semakan pelayar portfolio pada Edge (Chromium) dan WebKit (enjin Safari).
+
+   Apa yang disemak:
+     - 5 lebar skrin (320–1440px): tiada skrol mendatar, teks tidak terkeluar skrin
+     - semua gambar berjaya dimuat, tiada ralat JavaScript
+     - butang & pautan utama sekurang-kurangnya 44px tinggi (mudah ditekan)
+     - menu telefon, butang tema, butang "Aa", lightbox, penapis projek, salin e-mel
+     - mod tanpa JavaScript dan "kurangkan gerakan" tetap memaparkan kandungan
+     - halaman legacy/ masih dibuka tanpa ralat
+
+   Playwright ialah alat lokal pilihan (PLAYWRIGHT_MODULE), bukan dependency laman.
+   Jalankan pelayan statik dahulu:  python -m http.server 3210 --bind 127.0.0.1
+   Screenshot disimpan dalam .local/browser-check/ (tidak diterbitkan). */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { chromium, webkit } = require(process.env.PLAYWRIGHT_MODULE || path.resolve('.local/browser/node_modules/playwright'));
+
 const base = process.env.PORTFOLIO_URL || 'http://127.0.0.1:3210';
 const out = path.resolve('.local/browser-check');
 fs.mkdirSync(out, { recursive: true });
+const pages = ['index.html', 'development.html', 'projects.html'];
+const widths = [320, 390, 768, 1024, 1440];
 let checks = 0;
 
-/** Tunggu font serta loader sebenar, tanpa menutup overlay secara paksa. */
-async function ready(page) {
-  await page.waitForFunction(() => !document.querySelector('#loader') || document.querySelector('#loader').classList.contains('is-done'));
-  await page.evaluate(() => document.fonts.ready);
-}
-/** Semua imej lazy dimuat dengan tatal; imej lightbox kosong tidak dikira. */
+/** Paksa semua gambar lazy dimuat, kemudian pastikan tiada yang gagal. */
 async function images(page) {
   await page.evaluate(async () => {
     const imgs = [...document.images].filter(img => img.getAttribute('src'));
     await Promise.all(imgs.map(img => { img.loading = 'eager'; return img.decode().catch(() => {}); }));
   });
-  assert.deepEqual(await page.evaluate(() => [...document.images].filter(img => img.getAttribute('src') && !img.naturalWidth).map(img => img.src)), []);
+  const broken = await page.evaluate(() => [...document.images].filter(img => img.getAttribute('src') && !img.naturalWidth).map(img => img.src));
+  assert.deepEqual(broken, [], 'Broken images');
   checks++;
 }
-/** Penilaian overflow juga menyemak teks utama, kerana overflow-x:hidden boleh menyembunyikan masalah. */
-async function layout(page, modern) {
-  // Tunggu resize/media query WebKit. Timer Playwright juga berfungsi dalam mod tanpa JS.
-  await page.waitForTimeout(500);
-  const state = await page.evaluate(modern => {
-    const columns = selector => {
-      const node = document.querySelector(selector);
-      return node ? getComputedStyle(node).gridTemplateColumns.split(' ').length : null;
-    };
-    const escaped = [...document.querySelectorAll('main p, main h1, main h2, main h3, .skill-panel li')].filter(el => {
-      if (!el.getClientRects().length || el.closest('.is-hidden')) return false;
-      const r = el.getBoundingClientRect();
-      return r.left < -1 || r.right > innerWidth + 1;
-    }).map(el => el.textContent.trim().slice(0,80));
-    return { overflow: document.documentElement.scrollWidth - innerWidth, about: columns('.about__grid'), skills: columns('.skills__grid'), projects: columns('.proj-grid'), escaped: modern ? escaped : [] };
-  }, modern);
-  assert.ok(state.overflow <= 1, JSON.stringify(state));
-  assert.deepEqual(state.escaped, []);
-  for (const key of ['about','skills','projects']) if (state[key] !== null) assert.equal(state[key], 2, key);
+
+/** Tiada skrol mendatar dan tiada teks terkeluar dari skrin. */
+async function layout(page, label) {
+  const state = await page.evaluate(() => ({
+    overflow: document.documentElement.scrollWidth - innerWidth,
+    escaped: [...document.querySelectorAll('main p, main h1, main h2, main h3, main li, .site-header a, .site-header button')]
+      // Jalur teknologi (.marquee) sengaja bergerak keluar skrin, jadi dikecualikan.
+      .filter(el => el.getClientRects().length && !el.closest('[hidden]') && !el.closest('.marquee'))
+      .filter(el => { const r = el.getBoundingClientRect(); return r.left < -1 || r.right > innerWidth + 1; })
+      .map(el => el.textContent.trim().slice(0, 40)),
+  }));
+  assert.ok(state.overflow <= 0, `${label}: horizontal overflow ${state.overflow}px`);
+  assert.deepEqual(state.escaped, [], `${label}: text outside screen`);
   checks++;
 }
-/** Balasan diperiksa melalui UI sebenar, termasuk padanan fakta lama. */
-async function ask(page, text, expected) {
-  await page.locator('#chat-text').fill(text);
-  await page.locator('#chat-form').evaluate(form => form.requestSubmit());
-  await page.waitForFunction(() => document.querySelector('#chat-log').getAttribute('aria-busy') === 'false');
-  assert.match(await page.locator('#chat-log .msg--bot').last().innerText(), expected, text);
+
+/** Sasaran sentuh: butang & pautan berbentuk butang ≥ 44px. */
+async function tapTargets(page, label) {
+  const small = await page.evaluate(() => [...document.querySelectorAll('.btn, .icon-btn, .copy-btn, .nav a, .filters button, details.more summary')]
+    .filter(el => el.getClientRects().length && !el.closest('[hidden]'))
+    .filter(el => el.getBoundingClientRect().height < 43.5)
+    .map(el => `${el.className} "${el.textContent.trim().slice(0, 20)}" ${Math.round(el.getBoundingClientRect().height)}px`));
+  assert.deepEqual(small, [], `${label}: tap targets under 44px`);
   checks++;
+}
+
+async function run(browserType, name, options = {}) {
+  const browser = await browserType.launch(options);
+  const errors = [];
+  const watch = page => page.on('pageerror', e => errors.push(`${name}: ${e.message}`));
+
+  // 1. Susun atur, gambar dan sasaran sentuh pada setiap halaman & lebar.
+  for (const file of pages) {
+    for (const width of widths) {
+      const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
+      const page = await context.newPage(); watch(page);
+      await page.goto(`${base}/${file}`, { waitUntil: 'load' });
+      await layout(page, `${name} ${file} ${width}`);
+      await tapTargets(page, `${name} ${file} ${width}`);
+      if (width === 390) await images(page);
+      if (width === 390 || width === 1440) await page.screenshot({ path: path.join(out, `${name}-${file.replace('.html', '')}-${width}.png`) });
+      await context.close();
+    }
+  }
+
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true });
+  const page = await context.newPage(); watch(page);
+  await page.goto(`${base}/index.html`, { waitUntil: 'load' });
+
+  // 2. Menu telefon: buka, pautan menutup menu, Escape menutup dan fokus kembali.
+  const menuBtn = page.locator('[data-menu-toggle]');
+  await menuBtn.click();
+  assert.equal(await menuBtn.getAttribute('aria-expanded'), 'true');
+  assert.equal(await page.locator('#mobile-nav').isVisible(), true);
+  await page.locator('#mobile-nav a[href="#skills"]').click();
+  assert.equal(await page.locator('#mobile-nav').isVisible(), false, 'menu closes after link');
+  await menuBtn.click();
+  await page.keyboard.press('Escape');
+  assert.equal(await menuBtn.getAttribute('aria-expanded'), 'false');
+  assert.equal(await page.evaluate(() => document.activeElement.hasAttribute('data-menu-toggle')), true, 'focus returns to menu button');
+  checks += 4;
+
+  // 3. Tema & saiz teks disimpan selepas muat semula.
+  await page.locator('[data-theme-toggle]').click();
+  const theme = await page.evaluate(() => document.documentElement.dataset.theme);
+  assert.ok(theme === 'dark' || theme === 'light');
+  await page.locator('[data-text-toggle]').click();
+  await page.reload({ waitUntil: 'load' });
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), theme, 'theme persists');
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.text), 'large', 'text size persists');
+  await layout(page, `${name} index large-text`);
+  await page.locator('[data-text-toggle]').click();
+  checks += 3;
+
+  // 4. <details> pengalaman boleh dibuka.
+  await page.locator('#experience details.more summary').first().click();
+  assert.equal(await page.locator('#experience details.more').first().evaluate(d => d.open), true);
+  checks++;
+
+  // 4b. Foto travel: polaroid kecil membuka versi besar dalam lightbox.
+  const travel = page.locator('.travel-strip .polaroid button').first();
+  await travel.scrollIntoViewIfNeeded();
+  await travel.click();
+  assert.equal(await page.locator('#lightbox').evaluate(d => d.open), true, 'travel lightbox opens');
+  assert.match(await page.locator('#lightbox img').getAttribute('src'), /-lg\.webp$/);
+  await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#lightbox').evaluate(d => d.open), false);
+  checks += 3;
+
+  // 5. Lightbox: buka dengan klik, tutup dengan Escape, fokus kembali ke gambar.
+  await page.goto(`${base}/development.html#homestay`, { waitUntil: 'load' });
+  const shot = page.locator('#homestay [data-zoom]').first();
+  await shot.click();
+  assert.equal(await page.locator('#lightbox').evaluate(d => d.open), true, 'lightbox opens');
+  assert.ok(await page.locator('#lightbox img').evaluate(img => img.complete && img.naturalWidth > 0 || new Promise(r => img.onload = () => r(img.naturalWidth > 0))));
+  await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#lightbox').evaluate(d => d.open), false, 'lightbox closes');
+  assert.equal(await shot.evaluate(el => el === document.activeElement), true, 'focus returns to image');
+  checks += 4;
+
+  // 6. Penapis projek.
+  await page.goto(`${base}/projects.html`, { waitUntil: 'load' });
+  const visible = () => page.evaluate(() => [...document.querySelectorAll('[data-cat]')].filter(el => !el.hidden).map(el => el.id));
+  const all = await visible();
+  await page.locator('[data-filter="ml"]').click();
+  const ml = await visible();
+  assert.ok(ml.length > 0 && ml.length < all.length && ml.includes('yolo') && !ml.includes('kgom'), 'ml filter');
+  await page.locator('[data-filter="app"]').click();
+  assert.deepEqual(await visible(), ['vbapp']);
+  await page.locator('[data-filter="all"]').click();
+  assert.equal((await visible()).length, all.length);
+  checks += 3;
+
+  // 7. Anchor lama & baharu wujud (pautan luar tidak rosak).
+  for (const id of ['masterdata', 'homestay', 'kgom', 'fyp', 'yolo', 'network', 'foodwaste', 'angular', 'sentiment', 'kmeans', 'catalog', 'vbapp', 'portfolio', 'booking', 'rsvp']) {
+    assert.equal(await page.locator(`#${id}`).count(), 1, `projects.html#${id}`);
+  }
+  checks++;
+  await context.close();
+
+  // 8. Salin e-mel (Chromium sahaja: WebKit Playwright tidak menyokong kebenaran clipboard).
+  if (name === 'edge') {
+    const c = await browser.newContext({ permissions: ['clipboard-read', 'clipboard-write'] });
+    const p = await c.newPage(); watch(p);
+    await p.goto(`${base}/index.html#contact`, { waitUntil: 'load' });
+    await p.locator('[data-copy]').click();
+    await p.waitForFunction(() => document.getElementById('copy-status').textContent.includes('copied'));
+    assert.equal(await p.evaluate(() => navigator.clipboard.readText()), 'naqiudin73@gmail.com');
+    checks++;
+    await c.close();
+  }
+
+  // 9. Tanpa JavaScript: kandungan .reveal tetap kelihatan, menu telefon tersembunyi.
+  const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  const nj = await noJs.newPage();
+  for (const file of pages) {
+    await nj.goto(`${base}/${file}`, { waitUntil: 'load' });
+    const hidden = await nj.evaluate(() => [...document.querySelectorAll('.reveal')].filter(el => getComputedStyle(el).opacity !== '1').length);
+    assert.equal(hidden, 0, `${file} no-JS reveal content visible`);
+    checks++;
+  }
+  await noJs.close();
+
+  // 10. Animasi muncul berfungsi biasa (tanpa reduced-motion) dan elemen akhirnya kelihatan.
+  const motion = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const mp = await motion.newPage(); watch(mp);
+  await mp.goto(`${base}/index.html`, { waitUntil: 'load' });
+  // Kiraan naik berakhir pada nilai sebenar, dan pemutar peranan bertukar perkataan.
+  await mp.waitForTimeout(3200);
+  assert.deepEqual(await mp.locator('.stat b').allTextContents(), ['2+ yrs', '3', '3.70', '7'], 'count-up final values');
+  assert.notEqual(await mp.locator('.rotator__word').textContent(), 'System Engineer', 'role rotator changes');
+  assert.equal(await mp.locator('.hero').evaluate(el => el.classList.contains('is-paused')), false);
+  await mp.locator('#contact').scrollIntoViewIfNeeded();
+  await mp.waitForTimeout(900);
+  assert.equal(await mp.locator('#contact .reveal').first().evaluate(el => getComputedStyle(el).opacity), '1');
+  // Animasi hero dijeda bila hero di luar skrin (jimat bateri/haba).
+  assert.equal(await mp.locator('.hero').evaluate(el => el.classList.contains('is-paused')), true, 'hero animation paused offscreen');
+  checks += 4;
+
+  // 10b. Halaman 404 khas: tiru GitHub Pages yang menjawab URL tidak wujud (pada sebarang
+  //      kedalaman) dengan kandungan 404.html. Gaya mesti dimuat kerana laluan bermula "/".
+  const notFound = fs.readFileSync(path.resolve('404.html'), 'utf8');
+  await mp.route('**/projek-lama/tiada/halaman', route => route.fulfill({ status: 404, contentType: 'text/html', body: notFound }));
+  const nf = await mp.goto(`${base}/projek-lama/tiada/halaman`, { waitUntil: 'load' });
+  assert.equal(nf.status(), 404);
+  assert.equal(await mp.locator('#nf-path').textContent(), '/projek-lama/tiada/halaman', '404 shows requested path');
+  assert.equal(await mp.locator('.hero').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(9, 14, 36)', '404 stylesheet loaded from /assets');
+  assert.ok(await mp.locator('meta[name="robots"][content*="noindex"]').count(), '404 noindex');
+  await mp.locator('.nf .btn--primary').click();
+  await mp.waitForURL(`${base}/`);
+  assert.equal(await mp.locator('#hero-title').count(), 1, '404 home button works');
+  checks += 5;
+
+  // 11. Versi lama masih dibuka.
+  for (const file of ['legacy/index.html', 'legacy/project.html']) {
+    const res = await mp.goto(`${base}/${file}`, { waitUntil: 'load' });
+    assert.equal(res.status(), 200, file);
+    checks++;
+  }
+  await motion.close();
+
+  await browser.close();
+  assert.deepEqual(errors.filter(e => !e.includes('legacy')), [], 'page errors');
+  console.log(`${name}: ok`);
 }
 
 (async () => {
-  for (const engine of ['edge','webkit']) {
-    const browser = await (engine === 'edge' ? chromium.launch({channel:'msedge'}) : webkit.launch());
-    try {
-      const context = await browser.newContext({viewport:{width:390,height:844}, isMobile:true, hasTouch:true, reducedMotion:'reduce'});
-      const page = await context.newPage();
-      const errors = [];
-      page.on('pageerror', error => errors.push(error.message));
-      for (const route of ['index.html','development.html','projects.html','legacy/index.html','legacy/project.html']) {
-        await page.goto(`${base}/${route}`, {waitUntil:'networkidle'});
-        if (!route.startsWith('legacy')) await ready(page);
-        await images(page);
-        for (const width of [320,360,390,430,768,1024,1440]) {
-          await page.setViewportSize({width,height:844});
-          await layout(page, !route.startsWith('legacy'));
-        }
-        if (!route.startsWith('legacy')) {
-          for (const language of ['ms','zh','en']) {
-            await page.evaluate(language => window.I18N.setLang(language), language);
-            assert.equal(await page.locator('html').getAttribute('lang'), language === 'zh' ? 'zh-CN' : language);
-            await page.setViewportSize({width:320,height:844});
-            await layout(page, true);
-          }
-        }
-        console.log(engine, route, 'layout & assets passed');
-      }
-      await page.setViewportSize({width:390,height:844});
-      await page.goto(`${base}/development.html`, {waitUntil:'networkidle'});
-      await page.locator('#burger').click();
-      assert.equal(await page.locator('#mobile-menu').evaluate(el=>el.inert),false);
-      await page.keyboard.press('Escape');
-      assert.equal(await page.locator('#mobile-menu').evaluate(el=>el.inert),true);
-      await page.locator('#burger').click();
-      await page.setViewportSize({width:1440,height:900});
-      await page.waitForTimeout(500);
-      assert.equal(await page.locator('body').evaluate(el=>el.style.overflow),''); checks++;
-      await page.setViewportSize({width:390,height:844});
-      await page.locator('#homestay .case__shots img').first().scrollIntoViewIfNeeded();
-      await page.locator('#homestay .case__shots img').first().focus();
-      await page.keyboard.press('Enter');
-      assert.equal(await page.locator('.lightbox').getAttribute('aria-hidden'),'false');
-      await page.keyboard.press('Tab');
-      assert.equal(await page.locator('.lightbox__x').evaluate(el=>el===document.activeElement),true);
-      await page.keyboard.press('Escape');
-      assert.equal(await page.locator('.lightbox').getAttribute('aria-hidden'),'true');
-      assert.equal(await page.locator('#homestay .case__shots img').first().evaluate(el=>el===document.activeElement),true); checks++;
-      await page.locator('#chat-fab').click();
-      await ask(page,'What technologies did you use for homestay?',/Next.js 16/);
-      await ask(page,'more details',/eight family homestays/);
-      await ask(page,'Tell me about kambing golek',/Motion and Lenis/);
-      await ask(page,'price and timeline',/no fixed price|delivery date/i);
-      await ask(page,'hiring full-time notice period',/notice period and start date/i);
-      await ask(page,'Infineon experience',/Infineon/);
-      await ask(page,'this shipping thing',/I don.t have a rule/);
-      await ask(page,'<img src=x onerror=alert(1)>',/I don.t have a rule/);
-      assert.equal(await page.locator('#chat-log .msg--me img').count(),0);
-      const question='boleh bincang harga & skop?';
-      await page.evaluate(()=>window.I18N.setLang('ms'));
-      await ask(page,question,/sebut harga|Sebut harga/);
-      const handoff=await page.locator('#chat-log .msg--bot').last().locator('.chat__handoff').getAttribute('href');
-      assert.ok(new URL(handoff).searchParams.get('text').includes(question)); checks++;
-      // Tukar bahasa ketika balasan masih tertangguh; jawapan lama mesti dibatalkan.
-      await page.locator('#chat-text').fill('homestay');
-      await page.locator('#chat-form').evaluate(form=>form.requestSubmit());
-      await page.evaluate(()=>window.I18N.setLang('zh'));
-      await page.waitForTimeout(600);
-      assert.equal(await page.locator('.msg--typing').count(),0);
-      assert.equal(await page.locator('#chat-log .msg--bot').count(),1);
-      await ask(page,'民宿技术',/八套/);
-      await page.evaluate(()=>window.I18N.setLang('en'));
-      await page.locator('#chat-text').fill('homestay');
-      await page.locator('#chat-form').evaluate(form=>{form.requestSubmit();form.requestSubmit();});
-      await page.waitForTimeout(550);
-      assert.equal(await page.locator('#chat-log .msg--me').count(),1); checks++;
-      await page.setViewportSize({width:390,height:460});
-      await page.waitForTimeout(500);
-      const box=await page.locator('#chat-panel').boundingBox();
-      assert.ok(box.y>=0 && box.y+box.height<=460,JSON.stringify(box)); checks++;
-      await page.keyboard.press('Escape');
-      assert.equal(await page.locator('#chat-fab').evaluate(el=>el===document.activeElement),true);
-      assert.equal(await page.locator('#chat-panel').evaluate(el=>el.inert),true);
-      await page.setViewportSize({width:390,height:844});
-      await page.locator('#share-work').click();
-      await page.waitForFunction(()=>document.querySelector('#share-status').textContent.length>0); checks++;
-      await page.goto(`${base}/projects.html`,{waitUntil:'networkidle'});
-      await page.locator('[data-filter="app"]').click();
-      assert.equal(await page.locator('#homestay').isVisible(),false);
-      await page.evaluate(()=>{location.hash='homestay';});
-      await page.locator('#homestay').waitFor({state:'visible'}); checks++;
-      // Screenshot semakan dengan imej sudah decode untuk mengelakkan ruang lazy kosong.
-      await page.goto(`${base}/index.html`,{waitUntil:'networkidle'}); await ready(page); await images(page);
-      for(const section of ['about','skills','projects']) {
-        await page.locator('#'+section).evaluate(el=>el.scrollIntoView({block:'start'}));
-        await page.screenshot({path:path.join(out,`${engine}-${section}-390.png`)});
-      }
-      assert.deepEqual(errors,[]); checks++;
-      await context.close();
-
-      // Motion biasa + CDN disekat: kandungan dan interaksi mesti masih berfungsi.
-      const fallback = await browser.newContext({viewport:{width:390,height:844}});
-      await fallback.route('https://cdn.jsdelivr.net/**',route=>route.abort());
-      const fp=await fallback.newPage();
-      await fp.goto(base+'/index.html',{waitUntil:'networkidle'}); await ready(fp);
-      await fp.locator('#about').scrollIntoViewIfNeeded();
-      await fp.waitForFunction(()=>document.querySelector('.about__copy').classList.contains('is-visible'));
-      await fp.locator('#chat-fab').click(); await ask(fp,'homestay',/Next.js/);
-      await fallback.close(); checks++;
-      const nojs=await browser.newContext({viewport:{width:320,height:700},javaScriptEnabled:false});
-      const np=await nojs.newPage();
-      await np.goto(base+'/development.html',{waitUntil:'networkidle'});
-      assert.ok(await np.locator('#homestay').isVisible()); await layout(np,true);
-      await np.goto(base+'/index.html',{waitUntil:'networkidle'});
-      assert.equal(await np.locator('#loader').isVisible(),false); await layout(np,true);
-      await nojs.close(); checks++;
-      console.log(engine,'interactions, motion/CDN fallback and no-JS passed');
-    } finally { await browser.close(); }
-  }
+  await run(chromium, 'edge', { channel: 'msedge' });
+  await run(webkit, 'webkit');
   console.log(`${checks} browser checks passed.`);
-})().catch(error=>{console.error(error);process.exitCode=1;});
+})().catch(error => { console.error(error); process.exit(1); });

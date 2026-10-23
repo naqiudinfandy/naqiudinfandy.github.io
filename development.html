@@ -1,572 +1,513 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<!--
+  development.html — halaman projek web development (pautan khas untuk client).
+
+  Tujuan: satu pautan yang boleh dikongsi dengan bakal client freelance:
+  perkhidmatan, cara kerja dan kajian kes penuh lima projek web.
+  Anchor kajian kes: #homestay, #booking, #kgom, #rsvp, #portfolio (dipaut dari index.html).
+
+  Fakta projek diambil daripada dokumentasi setiap repo (Okt 2026). Screenshot ialah
+  tangkapan laman live pada 23 Okt 2026, kecuali sistem admin yang sengaja tiada
+  screenshot kerana mengandungi data tetamu. Jangan tambah harga, angka trafik atau
+  dakwaan yang tiada sumber.
+-->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-  <title>Web &amp; Application Development Portfolio — Muhammad Naqiudin</title>
-  <meta name="description" content="Explore freelance websites and application projects by Muhammad Naqiudin: Homestay Shimah Jay, Kambing Golek Melaka Official, and web and desktop applications. View UI, technologies and case studies.">
-  <meta name="theme-color" content="#060A12">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Development Projects · Muhammad Naqiudin</title>
+  <meta name="description" content="Websites and web apps built by Muhammad Naqiudin in Melaka: Homestay Shimah Jay, a homestay booking management system, Kambing Golek Melaka Official and a digital invitation &amp; RSVP maker.">
   <link rel="canonical" href="https://naqiudinfandy.github.io/development.html">
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23060A12'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='46' font-weight='700' fill='%2300F0FF' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
-
+  <meta name="theme-color" content="#090e24">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Web Development Projects · Muhammad Naqiudin">
+  <meta property="og:description" content="Mobile-first websites, booking systems and digital invitations for real businesses and events.">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/development.html">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/assets/img/web/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='66' font-family='Arial' font-size='44' font-weight='800' fill='white' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
+  <!-- Pulihkan pilihan tema & saiz teks sebelum laman dilukis (sama seperti index.html). -->
+  <script>
+    (function (r) {
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme'); if (t) r.dataset.theme = t;
+        if (localStorage.getItem('text') === 'large') r.dataset.text = 'large';
+      } catch (e) {}
+    })(document.documentElement);
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="work.css">
-<meta property="og:type" content="website">
-  <meta property="og:title" content="Web &amp; App Portfolio — Muhammad Naqiudin">
-  <meta property="og:description" content="Real client websites. Thoughtful interfaces. Explore selected web and application projects.">
-  <meta property="og:url" content="https://naqiudinfandy.github.io/development.html">
-  <meta property="og:image" content="https://naqiudinfandy.github.io/assets/img/work/homestay-desktop.jpg">
-  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
-
 <body>
-<a class="skip-link" href="#main-content">Skip to content</a>
+<!-- Ikon SVG dikongsi: dilukis sekali, dipanggil dengan <use href="#i-…">. Disalin ke halaman lain. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/><path d="M9 10.5c.5 1.6 1.9 3 3.5 3.5l1.2-1.2 2 .8v1.6c-3.8.4-7.6-3.4-7.2-7.2h1.6l.8 2z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M11 20V4M17 20v-6M3 20h18"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6 4.7 1.9-4.7 1.9L12 16l-1.8-4.6-4.7-1.9 4.7-1.9z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.1 2.1 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22 22 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.7-.9 1.4-1.8-.3-.8.2-1.7 1.1-1.7H17a4 4 0 0 0 4-4c0-5-4-8.5-9-8.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7.5" r="1"/><circle cx="15" cy="8" r="1"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  </defs>
+</svg>
 
-<!-- Background layers (same as the home page) -->
-<div class="bg" aria-hidden="true">
-  <div class="bg__grid">
-</div>
-  <div class="bg__blob bg__blob--cyan">
-</div>
-  <div class="bg__blob bg__blob--violet">
-</div>
-  <canvas id="bg-canvas">
-</canvas>
-  <div class="bg__noise">
-</div>
-</div>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
 
-<div class="cursor" aria-hidden="true">
-  <div class="cursor__dot">
-</div>
-  <div class="cursor__ring">
-<span class="cursor__label">
-</span>
-</div>
-</div>
-
-<div class="scroll-progress" aria-hidden="true">
-<span>
-</span>
-</div>
-
-
-<!-- ===========================================================================
-     NAVIGATION — links point back to the sections of index.html
-     =========================================================================== -->
-<header class="nav" id="navbar">
-  <div class="nav__inner glass">
-    <a href="index.html" class="nav__logo" aria-label="Back to home">
-      <span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span>
-    </a>
-
-    <nav class="nav__links" aria-label="Main navigation">
-      <a href="index.html#about"          data-i18n="nav.about">About</a>
-      <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
-      <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
-      <a href="projects.html" data-i18n="nav.projects">Projects</a>
-      <a href="development.html" class="is-active" data-i18n="nav.development">Web &amp; Apps</a>
-      <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
-      <span class="nav__indicator" aria-hidden="true">
-</span>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="Muhammad Naqiudin, home page"><span class="brand__mark" aria-hidden="true">NF</span><span>Naqiudin</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="development.html" aria-current="page">Web case studies</a>
+      <a href="projects.html">All projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </nav>
-
-    <div class="nav__actions">
-      <div class="lang" id="lang-switch">
-        <button class="lang__btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="9">
-</circle>
-<path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18">
-</path>
-          </svg>
-          <span class="lang__current">EN</span>
-        </button>
-        <ul class="lang__menu glass" role="listbox">
-          <li>
-<button role="option" data-lang="en">English <span>EN</span>
-</button>
-</li>
-          <li>
-<button role="option" data-lang="ms">Bahasa Melayu <span>MS</span>
-</button>
-</li>
-          <li>
-<button role="option" data-lang="zh">中文 <span>ZH</span>
-</button>
-</li>
-        </ul>
-      </div>
-
-      <a href="index.html#contact" class="btn btn--primary btn--sm magnetic" data-i18n="nav.hire">Hire Me</a>
-
-      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span>
-</span>
-<span>
-</span>
-<span>
-</span>
+    <div class="header-tools">
+      <button class="icon-btn" type="button" data-text-toggle aria-pressed="false" aria-label="Larger text" title="Larger text">Aa</button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme" title="Light / dark theme">
+        <svg class="theme-icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="theme-icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
       </button>
+      <a class="btn btn--primary btn--sm header-cv" href="assets/resume/Muhammad-Naqiudin-Resume.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-download"/></svg>Résumé</a>
+      <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="development.html" aria-current="page">Web case studies</a>
+    <a href="projects.html">All projects</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn--primary" href="assets/resume/Muhammad-Naqiudin-Resume.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-download"/></svg>Download résumé (PDF)</a>
+  </nav>
 </header>
 
-<div class="drawer" id="mobile-menu" aria-hidden="true">
-  <nav class="drawer__links" aria-label="Mobile navigation">
-    <a href="index.html"                data-i18n="nav.home">Home</a>
-    <a href="index.html#about"          data-i18n="nav.about">About</a>
-    <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
-    <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
-    <a href="projects.html"             data-i18n="nav.projects">Projects</a>
-    <a href="development.html" class="is-active" data-i18n="nav.development">Web &amp; Apps</a>
-    <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
-  </nav>
-  <div class="drawer__foot">
-    <a href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/naqiudin-fandy/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="mailto:naqiudin73@gmail.com">Email</a>
-  </div>
-</div>
+<main id="main">
+  <span id="top-sentinel" aria-hidden="true"></span>
 
+  <!-- ======================= HERO HALAMAN ======================= -->
+  <section class="hero page-hero" aria-labelledby="page-title" data-anim>
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span>
+      <span class="hero__grid-bg"></span>
+    </div>
+    <div class="container" data-stagger>
+      <p class="open-badge hero-in"><span class="pulse" aria-hidden="true"></span>Taking on website, system &amp; data projects</p>
+      <h1 id="page-title" class="hero-in">Websites and systems that help businesses <span class="grad-text">get found and grow</span>.</h1>
+      <p class="lead hero-in">I take projects from the first conversation to go-live: requirements, UI/UX in Figma, development, configuration, UAT, SEO and Google Search Console. Every project below is running today and was built by me from scratch.</p>
+      <nav class="toc hero-in" aria-label="Case studies on this page">
+        <a class="btn btn--ghost btn--sm" href="#homestay">Homestay website</a>
+        <a class="btn btn--ghost btn--sm" href="#booking">Booking system</a>
+        <a class="btn btn--ghost btn--sm" href="#kgom">Kambing Golek Melaka</a>
+        <a class="btn btn--ghost btn--sm" href="#rsvp">Invitation &amp; RSVP</a>
+        <a class="btn btn--ghost btn--sm" href="#portfolio">This portfolio</a>
+      </nav>
+    </div>
+  </section>
 
-<!-- Halaman perkongsian client. Kandungan kajian kes ditulis dalam English; navigasi mengikut bahasa pilihan. -->
-<main id="main-content" class="development" lang="en">
-  <header class="work-hero container">
-    <div class="work-hero__copy">
-<span class="eyebrow">
-<i>
-</i>Web &amp; Application Development</span>
-      <h1>Good ideas.<br>
-<span class="gradient-text">Thoughtfully built.</span>
-</h1>
-      <p class="work-intro">Websites that make a first impression.<br>Applications that make work easier.</p>
-      <p class="section__lead">I'm Naqiudin, a software engineer and freelance developer in Melaka, Malaysia. I bring interface design, frontend development and backend experience together to build useful digital experiences.</p>
-      <div class="work-actions">
-<a class="btn btn--primary" href="#client-work">Explore client work ↓</a>
-<a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Project%20enquiry">Let's discuss your project ↗</a>
-</div>
-      <div class="work-proof">
-<span>Next.js &amp; React</span>
-<span>Web &amp; desktop apps</span>
-<span>Enterprise experience</span>
-</div>
-    </div>
-    <div class="work-preview">
-<div class="work-preview__bar">
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<small>Selected client work</small>
-</div>
-<a href="#homestay">
-<img src="assets/img/work/homestay-desktop.jpg" alt="Homestay Shimah Jay desktop website preview" width="1440" height="1000" fetchpriority="high">
-</a>
-<a href="#kgom" class="work-preview__phone">
-<img src="assets/img/work/kgom-mobile.jpg" alt="Kambing Golek Melaka Official mobile website preview" width="390" height="844">
-</a>
-<span class="work-preview__note">Designed for the way people browse.</span>
-</div>
-  </header>
-  <nav class="work-jump container" aria-label="Portfolio sections">
-<a href="#client-work">01 / Client websites</a>
-<a href="#applications">02 / Applications</a>
-<a href="#portfolio-versions">03 / Portfolio versions</a>
-<button type="button" id="share-work">Copy portfolio link ↗</button>
-<span id="share-status" role="status">
-</span>
-</nav>
-  <section class="container work-section" id="client-work">
-<div class="work-section__head">
-<div>
-<span class="eyebrow">
-<i>
-</i>Selected freelance work</span>
-<h2 class="display">Built for real businesses.</h2>
-</div>
-<p>From the first screen to the next step.<br>Explore the brief, the build and the UI.</p>
-</div>
-<!-- Kajian kes berdasarkan kod projek dan tangkapan production lokal, September 2026. -->
-<article class="case glass reveal client-case" id="homestay" data-cat="web" lang="en">
-  <div class="case__head">
-<span class="case__index">01</span>
-<div>
-<p class="case__role">Hospitality · Freelance website</p>
-<h2 class="case__title">Homestay Shimah Jay</h2>
-</div>
-<span class="work-status">Client project</span>
-</div>
-  <div class="case__grid">
-    <div class="case__body">
-      <h3 class="work-statement">A welcoming place to find your next family stay.</h3>
-<p>A bilingual website bringing eight homestays in Umbai and Telok Mas, Melaka into one easy-to-explore collection. Guests can compare houses, browse real photos and move from discovery to an enquiry.</p>
-      <h3 class="case__sub">The brief</h3>
-<p>Present the houses, facilities and location clearly, and give Malay- and English-speaking guests a straightforward way to contact the hosts.</p>
-      <h3 class="case__sub">What I built</h3>
-<p>Built a responsive Next.js App Router site with a dedicated page for each house, photo galleries, a trip planner, FAQs and a rule-based guest assistant. Malay uses the root URL; English uses /en, with permanent redirects for older /ms links.</p>
-      <h3 class="case__sub">UI / UX decisions</h3>
-<p>Warm natural colours, architectural curves and a clear visual hierarchy create a family-friendly feel. Two-column house cards help guests compare on mobile; touch galleries and prominent WhatsApp links support the enquiry journey.</p>
-      <h3 class="case__sub">Engineering</h3>
-<p>Typed house data feeds the cards, detail pages and assistant. Canonical URLs, hreflang, structured data and a sitemap support discoverability. Booking enquiries hand off to WhatsApp and external booking platforms; this is not an availability or payment engine.</p>
-      <div class="case__stats">
-<div class="case__stat">
-<b>8</b>
-<span>homestays in one collection</span>
-</div>
-<div class="case__stat">
-<b>BM / EN</b>
-<span>language-specific pages</span>
-</div>
-<div class="case__stat">
-<b>WhatsApp</b>
-<span>direct enquiry journey</span>
-</div>
-</div>
-      <div class="case__links">
-<a class="btn btn--primary" href="https://www.homestayshimahjay.com/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
-<a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry">Discuss a similar project ↗</a>
-</div>
-    </div>
-    <aside class="work-evidence">
-      <div class="case__shots work-shots">
-        <figure class="work-shots__desktop">
-<img src="assets/img/work/homestay-desktop.jpg" alt="Homestay Shimah Jay — actual desktop homepage interface" width="1440" height="1000" loading="lazy">
-<figcaption>Desktop · homepage</figcaption>
-</figure>
-        <figure>
-<img src="assets/img/work/homestay-detail.jpg" alt="Homestay Shimah Jay — house detail interface" width="1440" height="1000" loading="lazy">
-<figcaption>House details</figcaption>
-</figure>
-        <figure class="work-shots__mobile">
-<img src="assets/img/work/homestay-mobile.jpg" alt="Homestay Shimah Jay — actual mobile homepage interface" width="390" height="844" loading="lazy">
-<figcaption>Mobile · 390px</figcaption>
-</figure>
+  <!-- ======================= PERKHIDMATAN ======================= -->
+  <section class="section section--tint" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow">What I can build for you</span>
+        <h2 id="services-title">For small businesses <span class="grad-text">and corporate teams</span></h2>
+        <p>Pick one service or let me handle the whole project. Either way, you deal with one person who understands both the technology and your business.</p>
       </div>
-      <p class="work-caption">Actual UI from the local production build · September 2026. Select an image to enlarge.</p>
-      <h3 class="case__sub">Technologies</h3>
-<div class="tags">
-<span class="tag">Next.js 16</span>
-<span class="tag">React 19</span>
-<span class="tag">TypeScript</span>
-<span class="tag">Tailwind CSS v4</span>
-<span class="tag">Vercel</span>
-</div>
-<h3 class="case__sub">Skills applied</h3>
-<div class="tags">
-<span class="tag">Responsive UI/UX</span>
-<span class="tag">Bilingual routing</span>
-<span class="tag">Technical SEO</span>
-<span class="tag">Accessible galleries</span>
-<span class="tag">Chatbot logic</span>
-<span class="tag">Browser testing</span>
-</div>
-    </aside>
-  </div>
-</article>
-<!-- Kajian kes berdasarkan kod projek dan tangkapan production lokal, September 2026. -->
-<article class="case glass reveal client-case" id="kgom" data-cat="web" lang="en">
-  <div class="case__head">
-<span class="case__index">02</span>
-<div>
-<p class="case__role">Food & events · Freelance website</p>
-<h2 class="case__title">Kambing Golek Melaka Official</h2>
-</div>
-<span class="work-status">Client project</span>
-</div>
-  <div class="case__grid">
-    <div class="case__body">
-      <h3 class="work-statement">From a first impression to an event enquiry.</h3>
-<p>A dedicated website for a Melaka catering business, built around its food, event packages and service information. A guided enquiry form helps visitors prepare the details the business needs for a quotation.</p>
-      <h3 class="case__sub">The brief</h3>
-<p>Make catering packages easy to discover and understand, showcase the food and event experience, and guide visitors towards a useful WhatsApp enquiry.</p>
-      <h3 class="case__sub">What I built</h3>
-<p>Created a multi-page Next.js site with package listings and detail pages, an image gallery, company information, FAQs and a contact page. The enquiry form gathers event details and opens WhatsApp with a prepared message.</p>
-      <h3 class="case__sub">UI / UX decisions</h3>
-<p>Bold food photography, a warm visual palette and distinct package cards put the offer first. Responsive image galleries, clear navigation and repeated enquiry links help visitors explore on both phones and desktops.</p>
-      <h3 class="case__sub">Engineering</h3>
-<p>Reusable React components and typed package content keep the site consistent. Next.js image handling, metadata, structured data, sitemap and robots configuration support delivery and discovery. Motion and Lenis provide animation and scroll behaviour. Enquiries are confirmed by the business, not by an online checkout.</p>
-      <div class="case__stats">
-<div class="case__stat">
-<b>Packages</b>
-<span>listing & detail pages</span>
-</div>
-<div class="case__stat">
-<b>Gallery</b>
-<span>food & event photography</span>
-</div>
-<div class="case__stat">
-<b>WhatsApp</b>
-<span>prepared event enquiries</span>
-</div>
-</div>
-      <div class="case__links">
-<a class="btn btn--primary" href="https://kambing-golek-melaka-official.vercel.app/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
-<a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry">Discuss a similar project ↗</a>
-</div>
-    </div>
-    <aside class="work-evidence">
-      <div class="case__shots work-shots">
-        <figure class="work-shots__desktop">
-<img src="assets/img/work/kgom-desktop.jpg" alt="Kambing Golek Melaka Official — actual desktop homepage interface" width="1440" height="1000" loading="lazy">
-<figcaption>Desktop · homepage</figcaption>
-</figure>
-        <figure>
-<img src="assets/img/work/kgom-detail.jpg" alt="Kambing Golek Melaka Official — package listing interface" width="1440" height="1000" loading="lazy">
-<figcaption>Package discovery</figcaption>
-</figure>
-        <figure class="work-shots__mobile">
-<img src="assets/img/work/kgom-mobile.jpg" alt="Kambing Golek Melaka Official — actual mobile homepage interface" width="390" height="844" loading="lazy">
-<figcaption>Mobile · 390px</figcaption>
-</figure>
+      <div class="grid grid--3 grid--m2" data-stagger>
+        <article class="card card--lift service reveal">
+          <span class="icon-box"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
+          <h3>Business &amp; corporate websites</h3>
+          <p>Homestays, caterers, clinics, shops and company pages: fast, bilingual if needed, with WhatsApp enquiries. Built in Next.js or lightweight vanilla JavaScript.</p>
+          <ul class="tags"><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">TypeScript</li><li class="tag">Vanilla JS</li></ul>
+        </article>
+        <article class="card card--lift service reveal">
+          <span class="icon-box"><svg aria-hidden="true"><use href="#i-server"/></svg></span>
+          <h3>Booking, admin &amp; internal systems</h3>
+          <p>Private dashboards for your team: bookings, calendars, payments, receipts, reports and activity logs, with secure logins and a proper database.</p>
+          <ul class="tags"><li class="tag">Server Actions</li><li class="tag">PostgreSQL</li><li class="tag">C# .NET</li><li class="tag">REST API</li></ul>
+        </article>
+        <article class="card card--lift service reveal">
+          <span class="icon-box"><svg aria-hidden="true"><use href="#i-search"/></svg></span>
+          <h3>SEO &amp; Google visibility</h3>
+          <p>Help customers find you on Google: Search Console setup and monitoring, sitemap and robots, structured data, social previews, custom 404 pages and page-speed tuning.</p>
+          <ul class="tags"><li class="tag">Search Console</li><li class="tag">Sitemap</li><li class="tag">Schema</li><li class="tag">Lighthouse</li></ul>
+        </article>
+        <article class="card card--lift service reveal">
+          <span class="icon-box"><svg aria-hidden="true"><use href="#i-palette"/></svg></span>
+          <h3>UI/UX design</h3>
+          <p>Clear, friendly screens designed in Figma first: mobile-first, large touch targets and readable text for visitors of every age.</p>
+          <ul class="tags"><li class="tag">Figma</li><li class="tag">Prototyping</li><li class="tag">Accessibility</li></ul>
+        </article>
+        <article class="card card--lift service reveal">
+          <span class="icon-box"><svg aria-hidden="true"><use href="#i-bars"/></svg></span>
+          <h3>Data dashboards &amp; automation</h3>
+          <p>Clean up messy spreadsheets and databases, automate repeat work and turn the numbers into Power BI dashboards managers actually use.</p>
+          <ul class="tags"><li class="tag">Power BI</li><li class="tag">KNIME</li><li class="tag">SQL</li><li class="tag">Python</li></ul>
+        </article>
+        <article class="card card--lift service reveal">
+          <span class="icon-box"><svg aria-hidden="true"><use href="#i-mail"/></svg></span>
+          <h3>Digital invitations &amp; RSVP</h3>
+          <p>Wedding and event cards with music, maps, countdown, an RSVP list and a live photo wall for guests, with an admin dashboard for the hosts.</p>
+          <ul class="tags"><li class="tag">RSVP</li><li class="tag">Live Gallery</li><li class="tag">QR codes</li></ul>
+        </article>
       </div>
-      <p class="work-caption">Actual UI from the local production build · September 2026. Select an image to enlarge.</p>
-      <h3 class="case__sub">Technologies</h3>
-<div class="tags">
-<span class="tag">Next.js 16</span>
-<span class="tag">React 19</span>
-<span class="tag">TypeScript</span>
-<span class="tag">Tailwind CSS v4</span>
-<span class="tag">Motion</span>
-<span class="tag">Lenis</span>
-</div>
-<h3 class="case__sub">Skills applied</h3>
-<div class="tags">
-<span class="tag">Responsive UI/UX</span>
-<span class="tag">Component design</span>
-<span class="tag">Enquiry forms</span>
-<span class="tag">Technical SEO</span>
-<span class="tag">Image optimisation</span>
-<span class="tag">Interaction testing</span>
-</div>
-    </aside>
-  </div>
-</article>
-</section>
-  <section class="container work-section" id="applications">
-<div class="work-section__head">
-<div>
-<span class="eyebrow">
-<i>
-</i>Application development</span>
-<h2 class="display">Beyond the landing page.</h2>
-</div>
-<p>Selected academic and technical projects.<br>Interfaces connected to useful functionality.</p>
-</div>
-<div class="proj-grid">
-<article class="proj glass reveal">
-<a class="proj__media" href="projects.html#angular">
-<img src="assets/img/myproject8b.png" alt="Angular & REST API Platform interface" width="1200" height="750" loading="lazy">
-</a>
-<div class="proj__body">
-<p class="work-kicker">Application project</p>
-<h3>Angular & REST API Platform</h3>
-<p>Token authentication, product CRUD and API-connected screens in an Angular application.</p>
-<div class="tags">
-<span class="tag">Angular</span>
-<span class="tag">TypeScript</span>
-<span class="tag">REST APIs</span>
-</div>
-<a class="proj__link" href="projects.html#angular">Technical case study ↗</a>
-</div>
-</article>
-<article class="proj glass reveal">
-<a class="proj__media" href="projects.html#catalog">
-<img src="assets/img/myproject2.png" alt="Product Catalog Web System interface" width="1200" height="750" loading="lazy">
-</a>
-<div class="proj__body">
-<p class="work-kicker">Application project</p>
-<h3>Product Catalog Web System</h3>
-<p>A database-backed catalog with product administration, reporting and invoice screens.</p>
-<div class="tags">
-<span class="tag">PHP</span>
-<span class="tag">MySQL</span>
-<span class="tag">JavaScript</span>
-</div>
-<a class="proj__link" href="projects.html#catalog">Technical case study ↗</a>
-</div>
-</article>
-<article class="proj glass reveal">
-<a class="proj__media" href="projects.html#fyp">
-<img src="assets/img/myproject1.png" alt="HoverNet Research Web Application interface" width="1200" height="750" loading="lazy">
-</a>
-<div class="proj__body">
-<p class="work-kicker">Application project</p>
-<h3>HoverNet Research Web Application</h3>
-<p>A Django interface for a histopathology research workflow, connecting image uploads to a deep-learning model. Academic research prototype.</p>
-<div class="tags">
-<span class="tag">Django</span>
-<span class="tag">Python</span>
-<span class="tag">PyTorch</span>
-</div>
-<a class="proj__link" href="projects.html#fyp">Technical case study ↗</a>
-</div>
-</article>
-<article class="proj glass reveal">
-<a class="proj__media" href="projects.html#vbapp">
-<img src="assets/img/myproject5.png" alt="Drawing Art Tools product and order management interface" width="1200" height="750" loading="lazy">
-</a>
-<div class="proj__body">
-<p class="work-kicker">Application project</p>
-<h3>Drawing Art Tools</h3>
-<p>A Windows desktop system for an art-supplies shop, with product and order management, database integration and reporting.</p>
-<div class="tags">
-<span class="tag">VB.NET</span>
-<span class="tag">Windows Forms</span>
-<span class="tag">Desktop UI</span>
-</div>
-<a class="proj__link" href="projects.html#vbapp">Technical case study ↗</a>
-</div>
-</article>
-</div>
-</section>
-<div class="container work-section" id="portfolio-versions">
-<!-- Kedua-dua versi portfolio boleh dibuka, tanpa menggandakan résumé atau fail peribadi. -->
-<section class="version-showcase" aria-label="Portfolio design versions" lang="en">
-  <div>
-<span class="work-kicker">A design evolution</span>
-<h3 class="work-statement">One developer. Two perspectives.</h3>
-<p>Explore the previous portfolio and the current design, built with HTML, CSS and JavaScript.</p>
-</div>
-  <div class="version-grid">
-    <a class="version-card" href="legacy/index.html">
-<img src="assets/img/work/portfolio-old.jpg" alt="Previous portfolio design preview" width="1440" height="1000" loading="lazy">
-<span>
-<b>01 / Classic portfolio</b>
-<small>Previous design · Explore ↗</small>
-</span>
-</a>
-    <a class="version-card" href="index.html">
-<img src="assets/img/work/portfolio-new.jpg" alt="Current portfolio design preview" width="1440" height="1000" loading="lazy">
-<span>
-<b>02 / Current portfolio</b>
-<small>Current design · Explore ↗</small>
-</span>
-</a>
-  </div>
-</section>
-</div>
-<section class="container work-section">
-<div class="work-contact glass">
-<span class="eyebrow">
-<i>
-</i>Have something in mind?</span>
-<h2 class="display">Let's build your next chapter.</h2>
-<p>Share your business, the pages or features you need, your preferred timeline and a budget range. We can start with a clear scope.</p>
-<div class="work-actions">
-<a class="btn btn--primary" href="https://wa.me/60176220665?text=Hi%20Naqiudin%2C%20I%20saw%20your%20development%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">Discuss a project on WhatsApp ↗</a>
-<a class="btn btn--ghost" href="assets/resume/Muhammad-Naqiudin-Resume.pdf" target="_blank" rel="noopener noreferrer">Hiring? View my résumé ↗</a>
-</div>
-<p class="work-caption">Freelance enquiries &amp; full-time opportunities · Melaka, Malaysia</p>
-</div>
-</section>
+    </div>
+  </section>
+
+  <!-- ======================= PROSES & APA YANG TERMASUK ======================= -->
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">From scratch to go-live</span>
+        <h2 id="process-title">One person, <span class="grad-text">the whole journey</span></h2>
+        <p>You never have to coordinate a designer, a developer and an SEO person separately. I handle every step and keep you updated along the way.</p>
+      </div>
+      <ol class="process" data-stagger>
+        <li class="card reveal"><b>Discovery &amp; requirements</b><span>We talk about your customers, your workflow and what success looks like.</span><small>Requirements · scope</small></li>
+        <li class="card reveal"><b>UI/UX design</b><span>Layouts in Figma so you can see and approve the site before any code.</span><small>Figma · prototypes</small></li>
+        <li class="card reveal"><b>Development</b><span>Front end, back end and database with clean, documented code in Git.</span><small>Next.js · SQL · APIs</small></li>
+        <li class="card reveal"><b>Configuration</b><span>Domain, DNS, SSL, hosting and environments set up and secured.</span><small>Vercel · Cloudflare · DNS</small></li>
+        <li class="card reveal"><b>Testing &amp; UAT</b><span>Automated tests on phone and desktop sizes, then you test and sign off.</span><small>Browser tests · UAT</small></li>
+        <li class="card reveal"><b>SEO &amp; Search Console</b><span>Metadata, structured data, sitemap, robots and a custom 404 page; Search Console verified and indexing requested.</span><small>GSC · sitemap.xml · schema · 404</small></li>
+        <li class="card reveal"><b>Go-live</b><span>Release to production and check the live site end to end before announcing.</span><small>Release · live checks</small></li>
+        <li class="card reveal"><b>Support &amp; growth</b><span>Search Console monitoring, updates and handover notes so you stay in control.</span><small>Monitoring · documentation</small></li>
+      </ol>
+
+      <div class="card reveal" style="margin-top:22px">
+        <h3 style="margin-bottom:14px">Every launch includes</h3>
+        <ul class="checklist">
+          <li>Mobile-first, responsive design</li>
+          <li>Domain, DNS &amp; SSL configured</li>
+          <li>sitemap.xml &amp; robots.txt</li>
+          <li>Google Search Console verified</li>
+          <li>Structured data &amp; social previews</li>
+          <li>Optimised, lazy-loaded images</li>
+          <li>UAT with your sign-off</li>
+          <li>Custom 404 page</li>
+          <li>Handover documentation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= KAJIAN KES ======================= -->
+  <section class="section section--tint" aria-labelledby="cases-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Case studies</span>
+        <h2 id="cases-title">Projects in detail</h2>
+        <p>Screenshots were taken from the live websites in October 2026. Tap any image to enlarge it.</p>
+      </div>
+
+      <!-- 1. HOMESTAY SHIMAH JAY -->
+      <article class="card card--lift case reveal" id="homestay" aria-labelledby="homestay-title">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Client website · Hospitality</span></div>
+          <h2 id="homestay-title">Homestay Shimah Jay</h2>
+          <p class="case__role">A welcoming place to find your next family stay in Melaka.</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The brief</h4>
+            <p>Present eight family homestays in Umbai and Telok Mas clearly, and give Malay- and English-speaking guests an easy way to contact the hosts.</p>
+            <h4>What I built</h4>
+            <ul>
+              <li>A page for each house with photo galleries, facilities, capacity and the nightly rate set by the owner.</li>
+              <li>A homepage slideshow, house filter (Telok Mas / Umbai), trip planner, FAQ and holiday calendar.</li>
+              <li>A rule-based guest assistant that answers common questions without any paid AI service.</li>
+              <li>A custom 404 page that guides visitors who follow an old or mistyped link back to the houses.</li>
+              <li>Malay at <code>/</code> and English at <code>/en</code>, with permanent redirects for old <code>/ms</code> links.</li>
+            </ul>
+            <h4>UI / UX decisions</h4>
+            <p>Warm natural colours and a calm serif headline give a family feel. Two-column house cards let guests compare on a phone, and a large WhatsApp button is always within reach.</p>
+            <h4>Engineering</h4>
+            <p>One typed data file feeds the cards, house pages and assistant. Canonical URLs, hreflang, structured data and a sitemap covering every house in both languages support search. I monitor Google Search Console, diagnose indexing and canonical issues, and fix structured-data warnings. Hosted on Vercel with separate production and preview branches.</p>
+            <div class="facts">
+              <div><b>8</b><span>homestays in one site</span></div>
+              <div><b>BM / EN</b><span>two languages</span></div>
+              <div><b>WhatsApp</b><span>direct enquiries</span></div>
+            </div>
+            <div class="btn-row" style="margin-top:18px">
+              <a class="btn btn--primary" href="https://www.homestayshimahjay.com/" target="_blank" rel="noopener">Visit website<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots shots--mix">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/homestay-home.webp" data-caption="Homestay Shimah Jay · desktop homepage"><img src="assets/img/web/homestay-home.webp" width="1200" height="750" alt="Homestay Shimah Jay desktop homepage with pool photo" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot shot--phone"><button type="button" data-zoom="assets/img/web/homestay-mobile.webp" data-caption="Homestay Shimah Jay · house cards on a phone"><img src="assets/img/web/homestay-mobile.webp" width="420" height="909" alt="Homestay Shimah Jay house cards on a phone" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/homestay-house.webp" data-caption="Homestay Shimah Jay · house detail page"><img src="assets/img/web/homestay-house.webp" width="1200" height="750" alt="Homestay Umbai 1 detail page with photo grid" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Technologies</h4>
+            <ul class="tags"><li class="tag">Next.js 16</li><li class="tag">React 19</li><li class="tag">TypeScript</li><li class="tag">Tailwind CSS v4</li><li class="tag">Vercel</li></ul>
+            <h4>Skills applied</h4>
+            <ul class="tags"><li class="tag">Responsive UI/UX</li><li class="tag">Bilingual routing</li><li class="tag">Technical SEO</li><li class="tag">Accessible galleries</li><li class="tag">Browser testing</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. SISTEM PENGURUSAN TEMPAHAN (tiada screenshot: data tetamu) -->
+      <article class="card card--lift case reveal" id="booking" aria-labelledby="booking-title">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge badge--dev">In development</span><span class="badge">Web application · Private admin</span></div>
+          <h2 id="booking-title">Homestay Booking Management System</h2>
+          <p class="case__role">One place to see which house is free, who has paid and which house needs cleaning.</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The brief</h4>
+            <p>The family takes bookings from WhatsApp, Airbnb, Booking.com and walk-ins. They needed a simple admin they can use on a phone, so nobody double-books a house or forgets a payment.</p>
+            <h4>What I built</h4>
+            <ul>
+              <li><strong>Dashboard:</strong> today's check-ins and check-outs, occupied houses, unpaid balances, monthly revenue and 12-month charts.</li>
+              <li><strong>Bookings:</strong> searchable table with filters and CSV export, plus a house calendar where tapping an empty night starts a booking.</li>
+              <li><strong>Pricing &amp; availability:</strong> weekday, weekend and public-holiday rates calculated automatically, with a live availability check.</li>
+              <li><strong>Payments:</strong> deposits, balances and refunds with PDF receipts.</li>
+              <li><strong>Housekeeping:</strong> a cleaning task opens on check-out and is sorted by urgency before the next guest arrives.</li>
+              <li>Customers, reports, catalogue versions, one-click WhatsApp messages and an activity log of who changed what.</li>
+            </ul>
+            <h4>Business rules &amp; security</h4>
+            <p>Overlapping bookings for the same house are blocked. Money is stored in sen (whole numbers) so totals never drift. Four admin accounts use scrypt password hashing, one session per account and limited login attempts.</p>
+            <h4>Status</h4>
+            <p>All features work locally on SQLite (Node's built-in <code>node:sqlite</code>). The same SQL is tested against PostgreSQL, ready for a hosted database before the admin goes live.</p>
+            <div class="facts">
+              <div><b>20</b><span>admin pages</span></div>
+              <div><b>9</b><span>API routes</span></div>
+              <div><b>22</b><span>end-to-end tests</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="private-panel private-panel--lg">
+              <p><svg aria-hidden="true"><use href="#i-lock"/></svg>Screenshots are kept private because the system holds guest names and phone numbers.</p>
+              <ul class="module-grid">
+                <li>Dashboard</li><li>Bookings</li><li>Calendar</li>
+                <li>Customers</li><li>Houses</li><li>Payments</li>
+                <li>PDF receipts</li><li>Housekeeping</li><li>Messages</li>
+                <li>Reports</li><li>Catalogue</li><li>Activity log</li>
+              </ul>
+            </div>
+            <h4>Technologies</h4>
+            <ul class="tags"><li class="tag">Next.js 16 App Router</li><li class="tag">Server Actions</li><li class="tag">React 19</li><li class="tag">TypeScript</li><li class="tag">SQLite</li><li class="tag">PostgreSQL</li><li class="tag">Playwright</li></ul>
+            <h4>Skills applied</h4>
+            <ul class="tags"><li class="tag">System design</li><li class="tag">Data modelling</li><li class="tag">Authentication</li><li class="tag">Business rules</li><li class="tag">End-to-end testing</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. KAMBING GOLEK MELAKA OFFICIAL -->
+      <article class="card card--lift case reveal" id="kgom" aria-labelledby="kgom-title">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Client website · Food &amp; events</span></div>
+          <h2 id="kgom-title">Kambing Golek Melaka Official</h2>
+          <p class="case__role">From a first impression to a ready-to-send event enquiry.</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The brief</h4>
+            <p>A Melaka catering business wanted customers to understand each package, see the food and send a complete enquiry. Prices are discussed on WhatsApp, so the site focuses on what each package includes.</p>
+            <h4>What I built</h4>
+            <ul>
+              <li>Homepage sections ordered from attention to enquiry, package listing and detail pages, gallery, reviews, FAQ, service area and contact page.</li>
+              <li>An event details form that opens WhatsApp with the enquiry message already written.</li>
+              <li>About us, terms and privacy pages, plus a cookie choice banner.</li>
+            </ul>
+            <h4>UI / UX decisions</h4>
+            <p>Bold food photography and a warm red and gold palette match the brand. Buttons are large and repeated where people decide. Looping decorations use CSS and pause when off-screen so phones stay cool.</p>
+            <h4>Engineering</h4>
+            <p>Every photo goes through a Sharp pipeline into WebP. Metadata, structured data, sitemap and robots support search, and the domain is verified in Google Search Console through DNS with the sitemap submitted. A scripted test suite checks the menu, lightbox, form, carousel and cookie banner.</p>
+            <div class="facts">
+              <div><b>19</b><span>static pages</span></div>
+              <div><b>67</b><span>automated interaction tests</span></div>
+              <div><b>WhatsApp</b><span>prepared enquiries</span></div>
+            </div>
+            <div class="btn-row" style="margin-top:18px">
+              <a class="btn btn--primary" href="https://www.kambinggolekmelakaofficial.my/" target="_blank" rel="noopener">Visit website<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots shots--mix">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/kgom-home.webp" data-caption="Kambing Golek Melaka Official · desktop homepage"><img src="assets/img/web/kgom-home.webp" width="1200" height="750" alt="Kambing Golek Melaka Official desktop homepage" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot shot--phone"><button type="button" data-zoom="assets/img/web/kgom-mobile.webp" data-caption="Kambing Golek Melaka Official · homepage on a phone"><img src="assets/img/web/kgom-mobile.webp" width="420" height="909" alt="Kambing Golek Melaka Official homepage on a phone" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/kgom-packages.webp" data-caption="Kambing Golek Melaka Official · packages page"><img src="assets/img/web/kgom-packages.webp" width="1200" height="750" alt="Kambing Golek Melaka Official packages and menu page" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Technologies</h4>
+            <ul class="tags"><li class="tag">Next.js 16</li><li class="tag">React 19</li><li class="tag">TypeScript</li><li class="tag">Tailwind CSS v4</li><li class="tag">Motion</li><li class="tag">Lenis</li><li class="tag">Sharp</li></ul>
+            <h4>Skills applied</h4>
+            <ul class="tags"><li class="tag">Brand-led UI</li><li class="tag">Enquiry forms</li><li class="tag">Image optimisation</li><li class="tag">Technical SEO</li><li class="tag">Interaction testing</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. KAD JEMPUTAN DIGITAL + RSVP + LIVE GALLERY -->
+      <article class="card card--lift case reveal" id="rsvp" aria-labelledby="rsvp-title">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Personal project · Events</span></div>
+          <h2 id="rsvp-title">Digital Invitation &amp; RSVP Maker</h2>
+          <p class="case__role">A wedding card that grandparents and teenagers can both enjoy, first used for my own wedding.</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The brief</h4>
+            <p>Most guests open an invitation from WhatsApp on their phone. It had to be beautiful, simple to read in Malay, and collect RSVPs in one list. I built it as a reusable template so it can be adapted for other couples.</p>
+            <h4>The invitation</h4>
+            <ul>
+              <li>An animated gate cover that greets each guest by name from their personal link, with music that starts on tap.</li>
+              <li>Countdown, programme timeline, location with Waze and Google Maps, and an add-to-calendar file.</li>
+              <li>RSVP form (side of the family, attendance, number of guests), wishes and contacts in a bottom-sheet menu.</li>
+            </ul>
+            <h4>The Live Gallery</h4>
+            <ul>
+              <li>Guests take a photo or a short video, or pick one from their phone.</li>
+              <li>Filters, crop, frames, Photobooth strips and an optional voice note, all processed on the phone.</li>
+              <li>A shared wall with likes, a projector slideshow for the venue screen and table QR codes.</li>
+            </ul>
+            <h4>Admin</h4>
+            <p>Guest list with totals, Excel export and printing; moderation for wishes and photos; and switches to open or close RSVP and the gallery.</p>
+            <div class="facts">
+              <div><b>2</b><span>experiences: invitation &amp; gallery</span></div>
+              <div><b>8</b><span>admin on/off switches</span></div>
+              <div><b>11</b><span>user-acceptance test scripts</span></div>
+            </div>
+            <div class="btn-row" style="margin-top:18px">
+              <a class="btn btn--primary" href="https://www.naqiudindanatiqah.my/" target="_blank" rel="noopener">View live<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot shot--wide"><button type="button" data-zoom="assets/img/web/rsvp-desktop.webp" data-caption="Invitation on desktop with the illustration panel"><img src="assets/img/web/rsvp-desktop.webp" width="1200" height="750" alt="Wedding invitation on desktop with watercolour illustration and countdown" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <div class="shots shots--phones" style="margin-top:10px">
+              <figure class="shot shot--phone"><button type="button" data-zoom="assets/img/web/rsvp-cover.webp" data-caption="Gate cover with the guest's name"><img src="assets/img/web/rsvp-cover.webp" width="420" height="909" alt="Invitation gate cover on a phone" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot shot--phone"><button type="button" data-zoom="assets/img/web/rsvp-invite.webp" data-caption="Invitation with bottom menu"><img src="assets/img/web/rsvp-invite.webp" width="420" height="909" alt="Opened invitation with illustration and bottom menu" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot shot--phone"><button type="button" data-zoom="assets/img/web/rsvp-gallery.webp" data-caption="Live Gallery upload screen"><img src="assets/img/web/rsvp-gallery.webp" width="420" height="909" alt="Live Gallery screen with camera, video and Photobooth buttons" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Technologies</h4>
+            <ul class="tags"><li class="tag">Next.js 16</li><li class="tag">React 19</li><li class="tag">TypeScript</li><li class="tag">Tailwind CSS v4</li><li class="tag">Motion</li><li class="tag">Camera &amp; MediaRecorder APIs</li><li class="tag">IndexedDB</li><li class="tag">QR codes</li></ul>
+            <h4>Skills applied</h4>
+            <ul class="tags"><li class="tag">Mobile-first UX</li><li class="tag">Media processing</li><li class="tag">Accessibility</li><li class="tag">Privacy (noindex)</li><li class="tag">Domain &amp; DNS</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. PORTFOLIO INI (VANILLA JS) -->
+      <article class="card card--lift case reveal" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Personal project · Vanilla JavaScript</span></div>
+          <h2 id="portfolio-title">This Portfolio</h2>
+          <p class="case__role">Rebuilt to be lighter, clearer and friendlier for every visitor.</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>My previous portfolio used several animation libraries, a particle background, a custom cursor, a chatbot and three languages. It looked busy and worked phones hard.</p>
+            <h4>What I built</h4>
+            <ul>
+              <li>Plain HTML, one stylesheet and one small vanilla JavaScript file. No framework, no build step, no tracking.</li>
+              <li>Light and dark themes plus a larger-text button, both remembered on the visitor's device.</li>
+              <li>Keyboard-friendly menu, a native <code>&lt;dialog&gt;</code> image viewer and one-time scroll reveals that respect “reduce motion”.</li>
+              <li>All screenshots converted to WebP and lazy-loaded: every image used by the new pages adds up to about 1 MB.</li>
+            </ul>
+            <div class="facts">
+              <div><b>0</b><span>frameworks or libraries</span></div>
+              <div><b>1 + 1</b><span>CSS and JS file</span></div>
+              <div><b>WebP</b><span>lazy-loaded images</span></div>
+            </div>
+            <div class="btn-row" style="margin-top:18px">
+              <a class="btn btn--primary" href="https://github.com/naqiudinfandy/naqiudinfandy.github.io" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-github"/></svg>Source code</a>
+              <a class="btn btn--ghost" href="legacy/index.html">Previous version</a>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot shot--wide"><button type="button" data-zoom="assets/img/web/portfolio-old.webp" data-caption="An earlier version of my portfolio"><img src="assets/img/web/portfolio-old.webp" width="1000" height="694" alt="Earlier version of the portfolio website" loading="lazy" decoding="async"></button><figcaption>An earlier version, still available under “Previous version”.</figcaption></figure>
+            </div>
+            <h4>Technologies</h4>
+            <ul class="tags"><li class="tag tag--key">Vanilla JavaScript</li><li class="tag">HTML5</li><li class="tag">CSS3</li><li class="tag">IntersectionObserver</li><li class="tag">GitHub Pages</li></ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================= HUBUNGI ======================= -->
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-panel reveal">
+        <div style="position:relative;z-index:1">
+          <span class="eyebrow" style="color:#c7d2fe">Start a project</span>
+          <h2 id="contact-title">Need a website or system like these?</h2>
+          <p>Tell me about your business or event and I will suggest the simplest way to get it online and found on Google. Timeline and cost are discussed directly.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="https://wa.me/60176220665?text=Hi%20Naqiudin%2C%20I%20would%20like%20to%20ask%20about%20a%20website." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp me</a>
+            <a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry"><svg aria-hidden="true"><use href="#i-mail"/></svg>Send an email</a>
+          </div>
+        </div>
+        <ul class="contact-list">
+          <li><svg aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:naqiudin73@gmail.com">naqiudin73@gmail.com</a>
+            <button class="copy-btn" type="button" data-copy="naqiudin73@gmail.com" aria-describedby="copy-status">Copy</button></li>
+          <li><svg aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+60176220665">+60 17-622 0665</a></li>
+          <li><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Based in Melaka · working with clients across Malaysia</span></li>
+          <li style="border:0;padding-top:0"><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </main>
 
-
-<!-- ===========================================================================
-     FOOTER
-     =========================================================================== -->
-<footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <a href="index.html" class="nav__logo">
-<span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span>
-</a>
-      <p data-i18n="footer.tagline">Built by hand in Melaka, Malaysia — no page builder, no template.</p>
-    </div>
-    <nav class="footer__links" aria-label="Footer navigation">
-<a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
-<a href="legacy/index.html" data-i18n="nav.legacy">Previous portfolio</a>
-      <a href="index.html"                data-i18n="nav.home">Home</a>
-      <a href="index.html#about"          data-i18n="nav.about">About</a>
-      <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
-      <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
-      <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
-      <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
-    </nav>
-    <p class="footer__copy mono">© <span id="year">2026</span> Muhammad Naqiudin Bin Noor Affandy</p>
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span data-year>2026</span> Muhammad Naqiudin Bin Noor Affandy · Designed and built by me, by hand.</p>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">All projects</a></li>
+      <li><a href="legacy/index.html">Previous portfolio</a></li>
+      <li><a href="https://github.com/naqiudinfandy" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
   </div>
-
-  <a href="#" class="to-top magnetic" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M12 19V5M5 12l7-7 7 7"/>
-</svg>
-  </a>
 </footer>
 
+<!-- Paparan gambar besar: dibuka oleh butang [data-zoom] (lihat site.js initLightbox). -->
+<dialog class="lightbox" id="lightbox" aria-label="Image preview">
+  <div class="lightbox__bar">
+    <p data-lightbox-caption></p>
+    <button class="icon-btn" type="button" data-lightbox-close aria-label="Close preview"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <img alt="">
+</dialog>
 
-<!-- ===========================================================================
-     CHATBOT (same rule-based assistant as the home page)
-     =========================================================================== -->
-<button class="chat-fab magnetic" id="chat-fab" aria-label="Open chat assistant" aria-expanded="false" aria-controls="chat-panel">
-  <svg class="chat-fab__open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9">
-    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-5a8 8 0 1 1 17-6z"/>
-  </svg>
-  <svg class="chat-fab__close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M18 6 6 18M6 6l12 12"/>
-  </svg>
-  <span class="chat-fab__ping">
-</span>
-</button>
-
-<section class="chat glass" id="chat-panel" inert aria-hidden="true" aria-label="Portfolio assistant">
-  <header class="chat__head">
-    <span class="chat__avatar">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
-<rect x="4" y="7" width="16" height="12" rx="3"/>
-<path d="M12 3v4M9 13h.01M15 13h.01M9.5 16.5h5"/>
-</svg>
-    </span>
-    <div>
-      <strong data-i18n="chat.title">Portfolio Assistant</strong>
-      <small>
-<span class="pulse-dot pulse-dot--sm">
-</span>
-<span data-i18n="chat.status">rule-based · always online</span>
-</small>
-    </div>
-    <button class="chat__x" id="chat-close" aria-label="Close chat">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M18 6 6 18M6 6l12 12"/>
-</svg>
-    </button>
-  </header>
-  <div class="chat__log" id="chat-log" role="log" aria-live="polite">
-</div>
-  <div class="chat__chips" id="chat-chips">
-</div>
-  <form class="chat__input" id="chat-form">
-    <input id="chat-text" type="text" maxlength="1000" enterkeyhint="send" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
-    <button type="submit" aria-label="Send message">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-<path d="m22 2-7 20-4-9-9-4 20-7z"/>
-</svg>
-    </button>
-  </form>
-</section>
-
-
-<!-- Scripts — same set and order as index.html -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer>
-</script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer>
-</script>
-<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js" defer>
-</script>
-<script src="i18n.js" defer>
-</script>
-<script src="chatbot-knowledge.js" defer>
-</script>
-<script src="chatbot.js" defer>
-</script>
-<script src="script.js" defer>
-</script>
+<button class="to-top" type="button" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-up"/></svg></button>
 </body>
 </html>

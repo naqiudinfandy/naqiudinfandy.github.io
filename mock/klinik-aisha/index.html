@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<!--
+  Mock laman web Klinik Aisha Bertam Impian, Melaka.
+  Vanilla HTML + CSS + JS sahaja (tiada framework, tiada build step).
+  Buka terus fail ini dalam browser, atau jalankan pelayan statik ringkas.
+  Gaya: css/style.css | Interaksi: js/main.js | Nota klien: CLIENT_NOTES.md
+-->
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <!-- [sync-mocks] Halaman pratonton tersembunyi: jangan disenaraikan oleh enjin carian. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/mock/klinik-aisha/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Klinik Aisha Bertam Impian | Klinik Keluarga, Ibu &amp; Anak di Melaka</title>
+  <meta name="description" content="Klinik Aisha Bertam Impian, Melaka. Klinik keluarga pilihan ibu dan anak: doktor wanita, scan kehamilan, NIPT, rawatan am, saringan kesihatan dan vaksin umrah. Dibuka setiap hari 8 pagi hingga 11 malam.">
+  <meta name="theme-color" content="#B8146B">
+
+  <!-- Open Graph: pratonton bila pautan dikongsi di WhatsApp / Facebook -->
+  <meta property="og:title" content="Klinik Aisha Bertam Impian, Melaka">
+  <meta property="og:description" content="Klinik keluarga pilihan ibu dan anak. Doktor wanita, antenatal, scan dan rawatan am. Setiap hari 8 pagi hingga 11 malam.">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/mock/klinik-aisha/img/building/front%20building.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="img/logo/logo.jpg">
+
+  <!-- Font Google: Playfair Display (tajuk, selari dengan poster klinik) + Plus Jakarta Sans (teks) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tanda JS aktif seawal mungkin supaya animasi .reveal tidak berkelip -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Data berstruktur (schema.org) supaya Google faham ini sebuah klinik -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Klinik Aisha Bertam Impian",
+    "slogan": "Your Family. Our Care.",
+    "image": "img/building/front%20building.jpg",
+    "telephone": ["+60194936369", "+6063337335"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 180 & 182, Jalan Bi 1, Taman Bertam Impian",
+      "postalCode": "76450",
+      "addressLocality": "Melaka",
+      "addressCountry": "MY"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 2.2922629, "longitude": 102.1750069 },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "08:00", "closes": "23:00"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/p/Klinik-Aisha-Melaka-61583756892422/",
+      "https://www.instagram.com/klinikaisha.melaka/",
+      "https://www.tiktok.com/@klinikaisha_melaka",
+      "https://www.threads.com/@klinikaisha.melaka"
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- [sync-mocks] Jalur pratonton (bukan sebahagian reka bentuk klien). -->
+<div role="note" style="background:#111827;color:#f9fafb;font:600 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;text-align:center;padding:7px 14px;position:relative;z-index:1000">Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi klinik</div>
+
+  <!-- Pautan langkau untuk pengguna papan kekunci / pembaca skrin -->
+  <a class="skip-link" href="#utama">Langkau ke kandungan</a>
+
+  <!-- ===== Bar atas: telefon & waktu operasi (disembunyikan di skrin kecil) ===== -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span class="topbar__item">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Setiap hari, 8:00 pagi – 11:00 malam
+      </span>
+      <span class="topbar__item">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        Taman Bertam Impian, Melaka
+      </span>
+      <span class="topbar__item topbar__phones">
+        <a href="tel:+60194936369">019-493 6369</a>
+        <span aria-hidden="true">·</span>
+        <a href="tel:+6063337335">06-333 7335</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== Header & navigasi (melekat di atas bila skrol) ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#utama" class="brand" aria-label="Klinik Aisha, ke atas">
+        <img src="img/logo/logo.jpg" alt="Logo Klinik Aisha 24 Jam" width="680" height="370">
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#servis">Servis</a>
+        <a href="#harga">Pakej &amp; Harga</a>
+        <a href="#fasiliti">Fasiliti</a>
+        <a href="#ulasan">Ulasan</a>
+        <a href="#lokasi">Lokasi</a>
+        <a href="#kerjaya">Kerjaya</a>
+        <a class="btn btn--primary nav__cta" href="https://wa.me/60194936369?text=Salam%20Klinik%20Aisha%2C%20saya%20ingin%20membuat%20temujanji." target="_blank" rel="noopener">Buat Temujanji</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="utama">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__text reveal">
+          <p class="eyebrow">
+            <span class="status-dot" id="heroStatusDot"></span>
+            <span id="heroStatus">Dibuka setiap hari, 8 pagi – 11 malam</span>
+          </p>
+          <h1>Klinik keluarga pilihan <em>ibu &amp; anak</em> di Bertam Impian</h1>
+          <p class="lead">Doktor wanita yang mesra, scan kehamilan, rawatan am dan saringan kesihatan dalam suasana klinik yang tenang, bersih dan selesa untuk seisi keluarga.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="https://wa.me/60194936369?text=Salam%20Klinik%20Aisha%2C%20saya%20ingin%20membuat%20temujanji." target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2 2.5 4.3 5 5l1.2-1.2 2 1-.6 1.6c-3.6.4-8.4-4.2-8.2-8l1.6-.6 1 2z"/></svg>
+              WhatsApp Kami
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#servis">Lihat Servis</a>
+          </div>
+
+          <ul class="hero__chips">
+            <li>Doktor wanita</li>
+            <li>Scan 2D / 3D / 5D</li>
+            <li>Ruang mesra kanak-kanak</li>
+          </ul>
+        </div>
+
+        <!-- Kolaj foto berbentuk gerbang, mengikut reka bentuk arch dalam klinik -->
+        <div class="hero__visual reveal">
+          <div class="arch arch--main">
+            <img src="img/building/front%20building.jpg" alt="Bangunan hadapan Klinik Aisha di Taman Bertam Impian" width="382" height="510" fetchpriority="high">
+          </div>
+          <div class="arch arch--small">
+            <img src="img/building/waiting%20seat.jpg" alt="Ruang menunggu dengan sofa dan tumbuhan hijau" width="1500" height="2000">
+          </div>
+
+          <div class="float-card float-card--review">
+            <div class="stars" aria-label="5 bintang">★★★★★</div>
+            <p><strong>Ulasan 5 bintang</strong><br>di Google</p>
+          </div>
+          <div class="float-card float-card--license">
+            <svg class="ico ico--brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <p><strong>Berdaftar KKM</strong><br>KKLIU 3889</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Jalur info ringkas ===== -->
+    <section class="infobar" aria-label="Maklumat ringkas">
+      <div class="container infobar__grid">
+        <div class="infobar__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><strong>7 hari seminggu</strong><span>8:00 pagi – 11:00 malam</span></div>
+        </div>
+        <div class="infobar__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          <div><strong>Hubungi kami</strong><span><a href="tel:+60194936369">019-493 6369</a> / <a href="tel:+6063337335">06-333 7335</a></span></div>
+        </div>
+        <div class="infobar__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><strong>No. 180 &amp; 182, Jalan Bi 1</strong><span>Taman Bertam Impian, 76450 Melaka</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVIS ===== -->
+    <section class="section" id="servis">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Servis Kami</p>
+          <h2>Penjagaan menyeluruh, dari kehamilan hingga warga emas</h2>
+          <p>Klinik keluarga dengan tumpuan kepada kesihatan wanita, ibu mengandung dan kanak-kanak.</p>
+        </div>
+
+        <div class="services">
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></div>
+            <h3>Rawatan Am</h3>
+            <p>Demam, batuk, selesema, sakit sendi dan masalah kesihatan harian untuk dewasa dan kanak-kanak.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6" r="3"/><path d="M9 21v-5c-1.5-.5-2-2-2-3.5A5 5 0 0 1 12 9a5 5 0 0 1 5 5c0 2-1.5 3-3 3.5V21"/></svg></div>
+            <h3>Antenatal &amp; Doktor Wanita</h3>
+            <p>Pemeriksaan kehamilan berkala oleh doktor wanita dengan penerangan yang jelas dan teliti.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M8 13c1-3 2.5-5 4-5s2.5 1.5 3 3"/></svg></div>
+            <h3>Scan Kehamilan 2D / 3D / 5D</h3>
+            <p>Scan pengesahan, scan jantina, scan 3D/5D dan saringan trimester ke-2. Gambar dihantar melalui WhatsApp.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3c0 6 8 6 8 12s-8 6-8 6"/><path d="M16 3c0 6-8 6-8 12"/><path d="M9 7h6M9 17h6"/></svg></div>
+            <h3>Ujian NIPT</h3>
+            <p>Ujian darah saringan pranatal dari 10 minggu kehamilan untuk risiko Down, Edwards dan Patau Syndrome.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></div>
+            <h3>Saringan Kesihatan</h3>
+            <p>Pakej saringan untuk risiko kencing manis, darah tinggi dan kolesterol, serta pemeriksaan perubatan.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M10 20v-5h4v5"/></svg></div>
+            <h3>Program Kerajaan</h3>
+            <p>Saringan di bawah PeKa B40, SEHATI PERKESO dan Program Pemandu Sihat &amp; Selamat.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 3l3 3-9 9-4 1 1-4z"/><path d="M14 7l3 3"/><path d="M5 19l2-2"/></svg></div>
+            <h3>Vaksin Umrah &amp; Haji</h3>
+            <p>Vaksinasi dan dokumen kesihatan sebelum perjalanan ke Tanah Suci.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.5 13h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/><path d="M10 13h4"/></svg></div>
+            <h3>Pengurusan Berat Badan</h3>
+            <p>Program 1 bulan diselia doktor untuk membantu anda mencapai berat badan yang sihat.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TENTANG / KENAPA PILIH KAMI ===== -->
+    <section class="section section--tint" id="tentang">
+      <div class="container about">
+        <div class="about__media reveal">
+          <div class="arch arch--tall">
+            <img src="img/building/living%20area.jpg" alt="Ruang dalaman klinik dengan mural gunung dan belon udara" loading="lazy" width="1500" height="2000">
+          </div>
+          <div class="about__badge">
+            <span class="about__badge-big">Your Family.</span>
+            <span>Our Care.</span>
+          </div>
+        </div>
+
+        <div class="about__text reveal">
+          <p class="eyebrow">Kenapa Klinik Aisha</p>
+          <h2>Klinik yang tenang, kemas &amp; mesra keluarga</h2>
+          <p>Dari luar lagi klinik ini menarik perhatian, dan di dalamnya pesakit disambut dengan layanan yang mesra. Ruang menunggu yang lapang, sudut permainan kanak-kanak dan sudut minuman menjadikan setiap kunjungan lebih selesa.</p>
+
+          <ul class="checklist">
+            <li><strong>Doktor wanita</strong> yang teliti dan menerangkan dengan jelas</li>
+            <li><strong>Sudut kanak-kanak</strong> supaya ibu bapa lebih tenang</li>
+            <li><strong>Waktu menunggu singkat</strong> dengan proses pendaftaran yang lancar</li>
+            <li><strong>Harga berpatutan</strong> dan dipaparkan dengan telus</li>
+            <li><strong>Panel program kerajaan</strong> PeKa B40 &amp; SEHATI PERKESO</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PAKEJ & HARGA (tab) ===== -->
+    <section class="section" id="harga">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Pakej &amp; Harga</p>
+          <h2>Harga telus, tanpa kejutan</h2>
+          <p>Harga di bawah tidak termasuk caj konsultasi. Hubungi kami untuk maklumat terkini.</p>
+        </div>
+
+        <div class="tabs reveal" role="tablist" aria-label="Kategori pakej">
+          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-scan" id="tab-scan">Scan Kehamilan</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-nipt" id="tab-nipt" tabindex="-1">Ujian NIPT</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-lain" id="tab-lain" tabindex="-1">Saringan &amp; Lain-lain</button>
+        </div>
+
+        <!-- Panel 1: Scan kehamilan (sumber: poster servis 8) -->
+        <div class="tab-panel is-active" role="tabpanel" id="panel-scan" aria-labelledby="tab-scan">
+          <div class="price-grid">
+            <article class="price">
+              <span class="price__tag">&lt; 12 minggu</span>
+              <h3>Scan 2D</h3>
+              <p class="price__amount"><small>RM</small>50</p>
+              <ul><li>Ultrasound untuk pengesahan kehamilan</li><li>1 imej scan</li><li>Penilaian asas perkembangan bayi</li></ul>
+            </article>
+            <article class="price">
+              <span class="price__tag">≥ 18 minggu</span>
+              <h3>Scan Jantina</h3>
+              <p class="price__amount"><small>RM</small>30</p>
+              <ul><li>Pengesahan jantina bayi</li><li>1 imej scan</li><li>Pada usia kehamilan yang sesuai</li></ul>
+            </article>
+            <article class="price price--featured">
+              <span class="price__ribbon">Pilihan Popular</span>
+              <span class="price__tag">24 – 32 minggu</span>
+              <h3>Scan 3D / 5D</h3>
+              <p class="price__amount"><small>RM</small>75</p>
+              <ul><li>Imej bayi lebih jelas dan realistik</li><li>Imej dalam 5D beresolusi tinggi</li><li>Penilaian tumbesaran bayi</li><li>Semua gambar dihantar melalui WhatsApp</li></ul>
+            </article>
+            <article class="price">
+              <span class="price__tag">18 – 24 minggu</span>
+              <h3>Saringan Trimester Ke-2</h3>
+              <p class="price__amount"><small>RM</small>150</p>
+              <ul><li>Imej resolusi tinggi</li><li>Laporan scan disediakan</li><li>Semua gambar dihantar melalui WhatsApp</li></ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- Panel 2: NIPT (sumber: poster servis 7) -->
+        <div class="tab-panel" role="tabpanel" id="panel-nipt" aria-labelledby="tab-nipt" hidden>
+          <div class="nipt">
+            <div class="nipt__info">
+              <h3>Saringan pranatal termaju, kini lebih mudah</h3>
+              <p>Ujian darah ringkas dari <strong>10 minggu kehamilan</strong> untuk menilai risiko keadaan kromosom biasa:</p>
+              <ul class="checklist checklist--compact">
+                <li>Down Syndrome (Trisomy 21)</li>
+                <li>Edwards Syndrome (Trisomy 18)</li>
+                <li>Patau Syndrome (Trisomy 13)</li>
+                <li>Keadaan kromosom seks</li>
+              </ul>
+            </div>
+            <div class="nipt__table">
+              <div class="nipt__row"><span>Essential</span><strong>RM1,000</strong></div>
+              <div class="nipt__row"><span>Standard</span><strong>RM1,360</strong></div>
+              <div class="nipt__row"><span>Pro + 10MD</span><strong>RM1,600</strong></div>
+              <div class="nipt__row"><span>Pro + 20MD</span><strong>RM1,800</strong></div>
+              <div class="nipt__row"><span>Pro + 60MD</span><strong>RM2,000</strong></div>
+              <div class="nipt__row"><span>Pro + 95MD</span><strong>RM2,200</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Lain-lain (sumber: poster servis 2–6) -->
+        <div class="tab-panel" role="tabpanel" id="panel-lain" aria-labelledby="tab-lain" hidden>
+          <div class="price-grid price-grid--3">
+            <article class="price">
+              <span class="price__tag">Sejarah keluarga</span>
+              <h3>Pakej Saringan Kesihatan</h3>
+              <p class="price__amount"><small>dari RM</small>60</p>
+              <ul><li>Untuk risiko kencing manis &amp; darah tinggi</li><li>Sesuai bagi yang ada sejarah keluarga</li></ul>
+            </article>
+            <article class="price">
+              <span class="price__tag">Umrah &amp; Haji</span>
+              <h3>Vaksin Perjalanan</h3>
+              <p class="price__amount"><small>dari RM</small>140</p>
+              <ul><li>Vaksin sebelum ke Tanah Suci</li><li>Bantuan dokumen kesihatan</li></ul>
+            </article>
+            <article class="price">
+              <span class="price__tag">1 bulan program</span>
+              <h3>Pengurusan Berat Badan</h3>
+              <p class="price__amount"><small>RM</small>890</p>
+              <ul><li>Diselia oleh doktor</li><li>Pemantauan sepanjang program</li></ul>
+            </article>
+          </div>
+        </div>
+
+        <p class="note reveal">* Harga berdasarkan poster rasmi klinik. Tertakluk kepada perubahan, sila sahkan dengan klinik.</p>
+      </div>
+    </section>
+
+    <!-- ===== PROMOSI (poster boleh dibesarkan) ===== -->
+    <section class="section section--tint" id="promosi">
+      <div class="container">
+        <div class="section__head section__head--row reveal">
+          <div>
+            <p class="eyebrow">Promosi Terkini</p>
+            <h2>Kempen &amp; pakej semasa</h2>
+          </div>
+          <div class="scroller-nav">
+            <button class="round-btn" data-scroll="-1" aria-label="Poster sebelumnya">‹</button>
+            <button class="round-btn" data-scroll="1" aria-label="Poster seterusnya">›</button>
+          </div>
+        </div>
+
+        <div class="posters" id="posters">
+          <button class="poster" data-lightbox="img/servis/servis%20poster%208.jpg" aria-label="Besarkan poster Scan Kehamilan">
+            <img src="img/servis/servis%20poster%208.jpg" alt="Poster harga scan kehamilan" loading="lazy" width="340" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%207.jpg" aria-label="Besarkan poster NIPT">
+            <img src="img/servis/servis%20poster%207.jpg" alt="Poster pakej ujian NIPT" loading="lazy" width="510" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%201.jpg" aria-label="Besarkan poster Tempat Kerja Sihat">
+            <img src="img/servis/servis%20poster%201.jpg" alt="Poster saringan PeKa B40, SEHATI PERKESO dan Pemandu Sihat" loading="lazy" width="408" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%205.jpg" aria-label="Besarkan poster Saringan Kesihatan">
+            <img src="img/servis/servis%20poster%205.jpg" alt="Poster pakej saringan kencing manis dan darah tinggi" loading="lazy" width="408" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%203.jpg" aria-label="Besarkan poster Vaksin Umrah">
+            <img src="img/servis/servis%20poster%203.jpg" alt="Poster vaksin umrah" loading="lazy" width="408" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%204.jpg" aria-label="Besarkan poster Kurus Sebelum Raya">
+            <img src="img/servis/servis%20poster%204.jpg" alt="Poster program berat badan Kurus Sebelum Raya 2027" loading="lazy" width="408" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%202.jpg" aria-label="Besarkan poster Eh Dah Kurus">
+            <img src="img/servis/servis%20poster%202.jpg" alt="Poster program berat badan" loading="lazy" width="408" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%20poster%206.jpg" aria-label="Besarkan poster Naik Tangga">
+            <img src="img/servis/servis%20poster%206.jpg" alt="Poster program berat badan" loading="lazy" width="386" height="510">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FASILITI (galeri bento) ===== -->
+    <section class="section" id="fasiliti">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Fasiliti</p>
+          <h2>Ruang yang selesa untuk seisi keluarga</h2>
+          <p>Klik gambar untuk paparan lebih besar.</p>
+        </div>
+
+        <div class="gallery">
+          <button class="gallery__item gallery__item--wide reveal" data-lightbox="img/building/kids%20corner.jpg">
+            <img src="img/building/kids%20corner.jpg" alt="Sudut permainan kanak-kanak" loading="lazy" width="680" height="306">
+            <span class="gallery__label">Sudut Kanak-kanak</span>
+          </button>
+          <button class="gallery__item gallery__item--tall reveal" data-lightbox="img/building/waiting%20seat.jpg">
+            <img src="img/building/waiting%20seat.jpg" alt="Ruang menunggu" loading="lazy" width="1500" height="2000">
+            <span class="gallery__label">Ruang Menunggu</span>
+          </button>
+          <button class="gallery__item gallery__item--tall reveal" data-lightbox="img/building/inside%20cashier.jpg">
+            <img src="img/building/inside%20cashier.jpg" alt="Kaunter pendaftaran dengan logo Klinik Aisha" loading="lazy" width="382" height="510">
+            <span class="gallery__label">Kaunter Pendaftaran</span>
+          </button>
+          <button class="gallery__item reveal" data-lightbox="img/building/drink%20corner.jpg">
+            <img src="img/building/drink%20corner.jpg" alt="Sudut minuman berbentuk gerbang" loading="lazy" width="1500" height="2000">
+            <span class="gallery__label">Sudut Minuman</span>
+          </button>
+          <button class="gallery__item reveal" data-lightbox="img/building/living%20area%202.jpg">
+            <img src="img/building/living%20area%202.jpg" alt="Laluan dalam klinik menuju ruang keluarga" loading="lazy" width="1125" height="2000">
+            <span class="gallery__label">Ruang Keluarga</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ULASAN GOOGLE ===== -->
+    <section class="section section--tint" id="ulasan">
+      <div class="container">
+        <div class="reviews-head reveal">
+          <div>
+            <p class="eyebrow">Ulasan Google</p>
+            <h2>Apa kata pesakit kami</h2>
+          </div>
+          <div class="g-summary">
+            <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b></span>
+            <div>
+              <div class="stars stars--lg" aria-label="5 bintang">★★★★★</div>
+              <small>Ulasan pilihan, semuanya 5 bintang</small>
+            </div>
+            <a class="btn btn--ghost btn--sm" href="https://maps.app.goo.gl/69mQkkhPY1ZJxSGUA" target="_blank" rel="noopener">Lihat semua</a>
+          </div>
+        </div>
+
+        <!-- Kad ulasan dijana oleh js/main.js daripada senarai REVIEWS -->
+        <div class="reviews reveal" id="reviews"></div>
+        <p class="swipe-hint" aria-hidden="true">← Leret untuk ulasan lain →</p>
+      </div>
+    </section>
+
+    <!-- ===== KERJAYA ===== -->
+    <section class="section" id="kerjaya">
+      <div class="container">
+        <div class="careers reveal">
+          <div class="careers__text">
+            <p class="eyebrow eyebrow--light">Kerjaya</p>
+            <h2>Kami sedang mencari <em>Resident Doctor</em></h2>
+            <p>Sertai pasukan Klinik Aisha di Bertam Impian. Gaji RM8,000 – RM12,000, syif fleksi 45 jam seminggu, perkongsian keuntungan 2% dan pelbagai manfaat lain.</p>
+            <ul class="careers__perks">
+              <li>KWSP, SOCSO, EIS</li>
+              <li>Insurans indemniti</li>
+              <li>Elaun CME RM1,200/tahun</li>
+              <li>Bonus KPI</li>
+              <li>Cuti hari jadi</li>
+              <li>Cuti fleksi mesra anak</li>
+            </ul>
+            <div class="careers__actions">
+              <a class="btn btn--light" href="mailto:klinikaisha24jam@gmail.com?subject=Permohonan%20Resident%20Doctor">Hantar Resume</a>
+              <a class="btn btn--outline-light" href="https://wa.me/60123504791" target="_blank" rel="noopener">WhatsApp 012-350 4791</a>
+            </div>
+          </div>
+          <button class="careers__poster" data-lightbox="img/hiring/hiring%20resident%20doctor.jpg" aria-label="Besarkan poster jawatan kosong">
+            <img src="img/hiring/hiring%20resident%20doctor.jpg" alt="Poster jawatan kosong Resident Doctor" loading="lazy" width="512" height="512">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOKASI & WAKTU OPERASI ===== -->
+    <section class="section section--tint" id="lokasi">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Lokasi &amp; Waktu</p>
+          <h2>Kunjungi kami di Taman Bertam Impian</h2>
+        </div>
+
+        <div class="location">
+          <div class="location__map reveal">
+            <iframe
+              title="Peta lokasi Klinik Aisha Bertam Impian"
+              src="https://maps.google.com/maps?q=2.2922629,102.1750069&z=17&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+
+          <div class="location__card reveal">
+            <h3>Klinik Aisha Bertam Impian</h3>
+            <p class="location__addr">No. 180 &amp; 182, Jalan Bi 1,<br>Taman Bertam Impian, 76450 Melaka</p>
+
+            <div class="open-status" id="openStatus">
+              <span class="status-dot"></span><span>Menyemak waktu operasi…</span>
+            </div>
+
+            <!-- Jadual waktu: baris hari ini diserlahkan oleh JS -->
+            <table class="hours" id="hours">
+              <caption class="sr-only">Waktu operasi</caption>
+              <tbody>
+                <tr data-day="1"><th scope="row">Isnin</th><td>8:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="2"><th scope="row">Selasa</th><td>8:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="3"><th scope="row">Rabu</th><td>8:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="4"><th scope="row">Khamis</th><td>8:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="5"><th scope="row">Jumaat</th><td>8:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="6"><th scope="row">Sabtu</th><td>8:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="0"><th scope="row">Ahad</th><td>8:00 pagi – 11:00 malam</td></tr>
+              </tbody>
+            </table>
+
+            <div class="location__actions">
+              <a class="btn btn--primary" href="https://maps.app.goo.gl/69mQkkhPY1ZJxSGUA" target="_blank" rel="noopener">Google Maps</a>
+              <a class="btn btn--ghost" href="https://waze.com/ul?ll=2.2922629,102.1750069&navigate=yes" target="_blank" rel="noopener">Waze</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOALAN LAZIM ===== -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <div class="section__head reveal">
+          <p class="eyebrow">Soalan Lazim</p>
+          <h2>Ada soalan?</h2>
+        </div>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Perlukah saya buat temujanji dahulu?</summary>
+            <p>Pesakit walk-in dialu-alukan. Untuk scan kehamilan dan NIPT, kami cadangkan anda WhatsApp dahulu supaya slot dapat disediakan.</p>
+          </details>
+          <details>
+            <summary>Adakah klinik ini mempunyai doktor wanita?</summary>
+            <p>Ya. Klinik Aisha dikenali sebagai klinik pilihan ibu dan anak dengan doktor wanita untuk pemeriksaan antenatal dan rawatan am.</p>
+          </details>
+          <details>
+            <summary>Bila sesuai untuk buat scan jantina atau scan 3D/5D?</summary>
+            <p>Scan jantina sesuai dari 18 minggu, manakala scan 3D/5D paling jelas pada 24 hingga 32 minggu kehamilan.</p>
+          </details>
+          <details>
+            <summary>Adakah klinik menerima program PeKa B40 dan SEHATI PERKESO?</summary>
+            <p>Ya, klinik menjalankan saringan kesihatan di bawah PeKa B40, SEHATI PERKESO dan Program Pemandu Sihat &amp; Selamat. Sila bawa dokumen yang berkaitan.</p>
+          </details>
+          <details>
+            <summary>Adakah harga termasuk caj konsultasi?</summary>
+            <p>Tidak. Harga pakej yang dipaparkan tidak termasuk caj konsultasi doktor.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="img/logo/logo.jpg" alt="Klinik Aisha" width="680" height="370" loading="lazy"></div>
+        <p>Klinik keluarga pilihan ibu dan anak di Taman Bertam Impian, Melaka.</p>
+        <p class="footer__tagline">Your Family. Our Care.</p>
+      </div>
+
+      <div>
+        <h4>Hubungi</h4>
+        <ul class="footer__list">
+          <li><a href="tel:+60194936369">019-493 6369</a></li>
+          <li><a href="tel:+6063337335">06-333 7335</a></li>
+          <li>No. 180 &amp; 182, Jalan Bi 1,<br>Taman Bertam Impian, 76450 Melaka</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Waktu Operasi</h4>
+        <ul class="footer__list">
+          <li>Isnin – Ahad</li>
+          <li>8:00 pagi – 11:00 malam</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Ikuti Kami</h4>
+        <div class="socials">
+          <a href="https://www.facebook.com/p/Klinik-Aisha-Melaka-61583756892422/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" class="ico-fill" aria-hidden="true"><path d="M9.1 23.7v-8H6.6V12h2.5v-1.6c0-4.1 1.8-6 5.9-6 .7 0 1.9.1 2.4.3v3.3h-1.3c-1.3 0-1.8.5-1.8 1.8V12h3l-.5 3.7h-2.5V24C19.4 23.2 24 18.2 24 12 24 5.4 18.6 0 12 0S0 5.4 0 12c0 5.6 3.9 10.4 9.1 11.7z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/klinikaisha.melaka/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@klinikaisha_melaka" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" class="ico-fill" aria-hidden="true"><path d="M12.5 0h3.9c.1 1.5.6 3.1 1.8 4.2 1.1 1.1 2.7 1.6 4.2 1.8v4c-1.4 0-2.9-.4-4.2-1-.6-.3-1.1-.6-1.6-.9v8.7c-.1 1.4-.5 2.8-1.4 3.9-1.3 1.9-3.6 3.2-5.9 3.2-1.4.1-2.9-.3-4.1-1-2-1.2-3.4-3.4-3.6-5.7v-1.5c.2-1.9 1.1-3.7 2.6-5 1.7-1.4 4-2.1 6.2-1.7v4.4c-1-.3-2.2-.2-3 .4-.6.4-1.1 1-1.4 1.8-.2.5-.1 1.1-.1 1.6.2 1.6 1.8 3 3.5 2.9 1.1 0 2.2-.7 2.8-1.6.2-.3.4-.7.4-1.1.1-1.8.1-3.6.1-5.4V0z"/></svg>
+          </a>
+          <a href="https://www.threads.com/@klinikaisha.melaka" target="_blank" rel="noopener" aria-label="Threads">
+            <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M16 12a4 4 0 1 1-4-4c2.5 0 4 1.6 4 4v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1"/></svg>
+          </a>
+        </div>
+        <p class="footer__handle">@klinikaisha.melaka</p>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Klinik Aisha Bertam Impian. Berdaftar KKM, KKLIU 3889.</p>
+      <p class="footer__mock">Mock reka bentuk untuk semakan klien.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Butang WhatsApp terapung (desktop/tablet) ===== -->
+  <a class="wa-float" href="https://wa.me/60194936369?text=Salam%20Klinik%20Aisha%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="WhatsApp Klinik Aisha">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+  </a>
+
+  <!-- ===== Bar tindakan bawah (telefon sahaja) ===== -->
+  <nav class="mobile-bar" aria-label="Tindakan pantas">
+    <a href="tel:+60194936369">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      Telefon
+    </a>
+    <a class="mobile-bar__main" href="https://wa.me/60194936369?text=Salam%20Klinik%20Aisha%2C%20saya%20ingin%20membuat%20temujanji." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://maps.app.goo.gl/69mQkkhPY1ZJxSGUA" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      Arah
+    </a>
+  </nav>
+
+  <!-- ===== Lightbox: paparan gambar besar ===== -->
+  <dialog class="lightbox" id="lightbox" aria-label="Paparan gambar">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Tutup">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+  mock/index.html — DIJANA oleh scripts/sync-mocks.mjs. Jangan sunting terus; ubah senarai MOCKS
+  dalam skrip itu dan jalankan semula. Halaman tersembunyi untuk pemilik: tidak dipaut dari
+  portfolio dan bertanda noindex. Kongsi pautan setiap mock (/mock/<slug>/) kepada klien,
+  bukan halaman senarai ini, supaya klien tidak nampak mock klien lain.
+-->
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mock Laman Web · Naqiudin</title>
+  <meta name="theme-color" content="#090e24">
+  <script>
+    (function (r) {
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme'); if (t) r.dataset.theme = t;
+        if (localStorage.getItem('text') === 'large') r.dataset.text = 'large';
+      } catch (e) {}
+    })(document.documentElement);
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<main id="main">
+  <section class="hero page-hero" aria-labelledby="page-title" data-anim>
+    <div class="hero__bg" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="hero__grid-bg"></span></div>
+    <div class="container">
+      <span class="eyebrow" style="color:#c7d2fe">Pratonton untuk klien</span>
+      <h1 id="page-title">Mock laman web</h1>
+      <p class="lead">Reka bentuk cadangan untuk semakan klien. Halaman ini tidak disenaraikan di Google dan tidak dipaut dari portfolio.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p class="copy-status" id="copy-status" role="status" aria-live="polite" style="color:var(--ok);margin-bottom:12px"></p>
+      <div class="grid grid--2">
+        <article class="card card--lift project">
+          <a class="project__media" href="klinik-aisha/" tabindex="-1" aria-hidden="true"><img src="klinik-aisha/img/building/front%20building.jpg" alt="" loading="lazy" decoding="async"></a>
+          <div class="project__body">
+            <div class="project__meta"><span class="badge">Mock</span><span class="badge">22 Okt 2026</span></div>
+            <h2 style="font-size:1.2rem;margin:0">Klinik Aisha Bertam Impian</h2>
+            <p>Klinik keluarga, ibu &amp; anak · Melaka</p>
+            <p class="small" style="word-break:break-all"><code>https://naqiudinfandy.github.io/mock/klinik-aisha/</code></p>
+            <div class="btn-row">
+              <a class="btn btn--primary btn--sm" href="klinik-aisha/">Buka mock</a>
+              <button class="btn btn--ghost btn--sm" type="button" data-copy="https://naqiudinfandy.github.io/mock/klinik-aisha/" aria-describedby="copy-status">Salin pautan</button>
+            </div>
+          </div>
+        </article>
+        <article class="card card--lift project">
+          <a class="project__media" href="klinik-al-falah/" tabindex="-1" aria-hidden="true"><img src="klinik-al-falah/img/building/outside%20building.jpg" alt="" loading="lazy" decoding="async"></a>
+          <div class="project__body">
+            <div class="project__meta"><span class="badge">Mock</span><span class="badge">22 Okt 2026</span></div>
+            <h2 style="font-size:1.2rem;margin:0">Klinik Al Falah Umbai</h2>
+            <p>Klinik keluarga · Merlimau, Melaka</p>
+            <p class="small" style="word-break:break-all"><code>https://naqiudinfandy.github.io/mock/klinik-al-falah/</code></p>
+            <div class="btn-row">
+              <a class="btn btn--primary btn--sm" href="klinik-al-falah/">Buka mock</a>
+              <button class="btn btn--ghost btn--sm" type="button" data-copy="https://naqiudinfandy.github.io/mock/klinik-al-falah/" aria-describedby="copy-status">Salin pautan</button>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="muted small" style="margin-top:24px">© Muhammad Naqiudin · <a href="../index.html">Portfolio</a></p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

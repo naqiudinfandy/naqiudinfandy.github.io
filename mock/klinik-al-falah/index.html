@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<!--
+  Mock laman web Klinik Al Falah Umbai, Merlimau, Melaka.
+  Vanilla HTML + CSS + JS sahaja (tiada framework, tiada build step).
+  Buka terus fail ini dalam browser, atau jalankan pelayan statik ringkas.
+  Gaya: css/style.css | Interaksi: js/main.js | Nota klien: CLIENT_NOTES.md
+-->
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <!-- [sync-mocks] Halaman pratonton tersembunyi: jangan disenaraikan oleh enjin carian. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/mock/klinik-al-falah/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Klinik Al Falah Umbai | Klinik Keluarga di Merlimau, Melaka</title>
+  <meta name="description" content="Klinik Al Falah Umbai (dahulu Klinik Al-Fatih Umbai), Merlimau, Melaka. Rawatan am, scan kehamilan, pap smear, khatan laser, vaksin dan klinik kulit. Dibuka setiap hari 9 pagi hingga 11 malam.">
+  <meta name="theme-color" content="#14213D">
+
+  <!-- Open Graph: pratonton bila pautan dikongsi di WhatsApp / Facebook -->
+  <meta property="og:title" content="Klinik Al Falah Umbai, Merlimau">
+  <meta property="og:description" content="Klinik keluarga di Taman Umbai Impian. Setiap hari 9 pagi hingga 11 malam. 4.9 bintang di Google.">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/mock/klinik-al-falah/img/building/outside%20building.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="img/logo/logo.jpg">
+
+  <!-- Font Google: Outfit (tajuk, bulat & mesra) + Nunito Sans (teks) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tanda JS aktif seawal mungkin supaya animasi .reveal tidak berkelip -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Data berstruktur (schema.org) supaya Google faham ini sebuah klinik -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Klinik Al Falah Umbai",
+    "alternateName": "Klinik Al-Fatih Umbai",
+    "image": "img/building/outside%20building.jpg",
+    "telephone": ["+601165167075", "+60172287075"],
+    "email": "klinikalfatihumbai@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jalan Umbai Impian 1, Taman Umbai Impian",
+      "postalCode": "77300",
+      "addressLocality": "Merlimau",
+      "addressRegion": "Melaka",
+      "addressCountry": "MY"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 2.1782365, "longitude": 102.3450492 },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "09:00", "closes": "23:00"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/people/Klinik-Al-Falah-Umbai-Sdn-Bhd/100078023284326/",
+      "https://www.instagram.com/klinikalfalahumbai/",
+      "https://www.tiktok.com/@klinikalfalahumbai"
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- [sync-mocks] Jalur pratonton (bukan sebahagian reka bentuk klien). -->
+<div role="note" style="background:#111827;color:#f9fafb;font:600 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;text-align:center;padding:7px 14px;position:relative;z-index:1000">Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi klinik</div>
+
+  <a class="skip-link" href="#utama">Langkau ke kandungan</a>
+
+  <!-- ===== Header & navigasi (melekat di atas bila skrol) ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#utama" class="brand" aria-label="Klinik Al Falah Umbai, ke atas">
+        <!-- Logo asal segi empat; bekas ini hanya memaparkan simbol gerbang + kufi -->
+        <span class="brand__mark"><img src="img/logo/logo.jpg" alt="" width="330" height="330"></span>
+        <span class="brand__text">
+          <strong>Klinik Al Falah</strong>
+          <span>Umbai
+            <svg viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6h12l2-4 3 8 3-10 3 10 2-4h15"/></svg>
+          </span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#servis">Servis</a>
+        <a href="#harga">Harga</a>
+        <a href="#kulit">Klinik Kulit</a>
+        <a href="#fasiliti">Fasiliti</a>
+        <a href="#ulasan">Ulasan</a>
+        <a href="#lokasi">Lokasi</a>
+        <a class="btn btn--accent nav__cta" href="https://wa.me/601165167075?text=Assalamualaikum%20Klinik%20Al%20Falah%20Umbai%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="utama">
+
+    <!-- ===== HERO (latar biru tua dengan corak kufi halus) ===== -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__text reveal">
+          <p class="pill">
+            <span class="status-dot" id="heroStatusDot"></span>
+            <span id="heroStatus">Dibuka setiap hari, 9 pagi – 11 malam</span>
+          </p>
+          <h1>Klinik keluarga anda di <span class="hl">Umbai</span>, Merlimau</h1>
+          <p class="lead">Doktor yang lemah lembut, staf yang mesra dan klinik yang bersih, wangi dan selesa. Dari rawatan am hingga scan kehamilan, khatan laser dan rawatan kulit.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--accent btn--lg" href="https://wa.me/601165167075?text=Assalamualaikum%20Klinik%20Al%20Falah%20Umbai%2C%20saya%20ingin%20membuat%20temujanji." target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+              Buat Temujanji
+            </a>
+            <a class="btn btn--outline-light btn--lg" href="tel:+601165167075">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+              011-6516 7075
+            </a>
+          </div>
+
+          <!-- Rating Google ringkas (4.9 diberi oleh pemilik) -->
+          <div class="hero__rating">
+            <span class="hero__score">4.9</span>
+            <div>
+              <div class="stars" aria-label="4.9 daripada 5 bintang">★★★★★</div>
+              <small>Penilaian di Google</small>
+            </div>
+            <span class="hero__divider" aria-hidden="true"></span>
+            <div>
+              <strong>Panel PeKa B40</strong>
+              <small>Saringan kesihatan percuma</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto bangunan dalam bingkai gerbang, mengikut bentuk logo klinik -->
+        <div class="hero__visual reveal">
+          <div class="arch arch--main">
+            <img src="img/building/outside%20building.jpg" alt="Bangunan Klinik Al Falah Umbai di Taman Umbai Impian" width="382" height="510" fetchpriority="high">
+          </div>
+          <div class="hero__tag hero__tag--top">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>
+            <span><strong>7 hari</strong> seminggu</span>
+          </div>
+          <div class="hero__tag hero__tag--bottom">
+            <img src="img/building/seat.jpg" alt="" width="680" height="458">
+            <span><strong>Ruang menunggu</strong><br>selesa &amp; berhawa dingin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Garis ECG hiasan, diambil daripada logo "Umbai" -->
+      <svg class="hero__ecg" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 30h460l14-18 16 40 18-48 16 48 14-22h662"/>
+      </svg>
+    </section>
+
+    <!-- ===== Jalur info ringkas ===== -->
+    <section class="infobar" aria-label="Maklumat ringkas">
+      <div class="container infobar__grid">
+        <div class="infobar__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><strong>Setiap hari</strong><span>9:00 pagi – 11:00 malam</span></div>
+        </div>
+        <div class="infobar__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          <div><strong>Telefon / WhatsApp</strong><span><a href="tel:+601165167075">011-6516 7075</a> · <a href="tel:+60172287075">017-228 7075</a></span></div>
+        </div>
+        <div class="infobar__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><strong>Taman Umbai Impian</strong><span>77300 Merlimau, Melaka</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVIS ===== -->
+    <section class="section" id="servis">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Servis Kami</p>
+          <h2>Satu klinik untuk seisi keluarga</h2>
+          <p>Dari demam anak hingga saringan wanita dan prosedur kecil, semuanya dekat dengan rumah.</p>
+        </div>
+
+        <div class="services">
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></div>
+            <h3>Rawatan Am</h3>
+            <p>Demam, batuk, selesema, sakit perut dan masalah kesihatan harian untuk semua peringkat umur.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M8 13c1-3 2.5-5 4-5s2.5 1.5 3 3"/></svg></div>
+            <h3>Ibu &amp; Scan Kehamilan</h3>
+            <p>Pemeriksaan kehamilan dengan scan 2D dan 5D. Pantau perkembangan, kedudukan dan dengupan jantung bayi.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M12 12v9M9 18h6"/></svg></div>
+            <h3>Pap Smear</h3>
+            <p>Saringan awal kesihatan serviks wanita untuk mengesan perubahan sel dan mencegah komplikasi.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/><path d="M17 4l2-2M19 7h2"/></svg></div>
+            <h3>Khatan Laser</h3>
+            <p>Berkhatan kaedah laser untuk kanak-kanak 4 hingga 12 tahun, cepat dan cermat. Ubat tahan sakit &amp; antibiotik percuma.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 3l3 3-9 9-4 1 1-4z"/><path d="M14 7l3 3"/><path d="M5 19l2-2"/></svg></div>
+            <h3>Vaksin &amp; Imunisasi</h3>
+            <p>Suntikan influenza, vaksin haji &amp; umrah (meningococcal, pneumococcal) dan imunisasi kanak-kanak.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></div>
+            <h3>Saringan Kesihatan &amp; ECG</h3>
+            <p>Ujian darah, gula, kolesterol, fungsi buah pinggang dan ECG. Percuma untuk penerima PeKa B40.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 3 6 5.5 6 10a6 6 0 0 1-12 0c0-4.5 3-7 6-10z"/><path d="M10 14c.5 1.5 1.5 2 3 2"/></svg></div>
+            <h3>Klinik Kulit</h3>
+            <p>Masalah kulit, rambut dan kuku: jerawat, ekzema, psoriasis, rambut gugur, kulat kuku dan lain-lain.</p>
+          </article>
+          <article class="service reveal">
+            <div class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20L20 4"/><path d="M14 4h6v6"/><path d="M7 13l4 4"/></svg></div>
+            <h3>Prosedur Kecil</h3>
+            <p>Cuci luka, jahitan, rawatan ketuat, pembuangan skin tag dan cyst kecil.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TENTANG ===== -->
+    <section class="section section--tint" id="tentang">
+      <div class="container about">
+        <div class="about__media reveal">
+          <div class="arch arch--tall">
+            <img src="img/building/living%20area.jpg" alt="Dinding logo Klinik Al Falah Umbai di ruang dalam" loading="lazy" width="382" height="510">
+          </div>
+          <div class="about__badge">
+            <small>Dahulu dikenali sebagai</small>
+            <strong>Klinik Al-Fatih Umbai</strong>
+          </div>
+        </div>
+
+        <div class="about__text reveal">
+          <p class="eyebrow">Kenapa Al Falah</p>
+          <h2>Pilihan keluarga Umbai, setiap kali pulang ke kampung</h2>
+          <p>Pesakit memilih kami kerana dekat dengan rumah, doktor yang cakna dan lemah lembut, serta staf yang sentiasa membantu. Waktu menunggu tidak lama walaupun ramai.</p>
+          <ul class="checklist">
+            <li><strong>Doktor yang teliti</strong>, mendengar dan menerangkan dengan jelas</li>
+            <li><strong>Klinik bersih, wangi &amp; selesa</strong> dengan ruang menunggu berhawa dingin</li>
+            <li><strong>Sudut permainan kanak-kanak</strong> untuk si kecil</li>
+            <li><strong>Harga berpatutan</strong> dengan promosi berkala</li>
+            <li><strong>Dibuka lewat</strong> hingga 11 malam, setiap hari</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HARGA (tab) — sumber: poster rasmi klinik ===== -->
+    <section class="section" id="harga">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Harga &amp; Promosi</p>
+          <h2>Harga jelas, mampu milik</h2>
+          <p>Berdasarkan poster promosi klinik. Harga promosi tertakluk kepada tempoh dan stok.</p>
+        </div>
+
+        <div class="tabs reveal" role="tablist" aria-label="Kategori harga">
+          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-ibu" id="tab-ibu">Ibu &amp; Wanita</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-vaksin" id="tab-vaksin" tabindex="-1">Vaksin</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-anak" id="tab-anak" tabindex="-1">Kanak-kanak</button>
+        </div>
+
+        <!-- Panel 1: Ibu & wanita (poster servis 2 & 5) -->
+        <div class="tab-panel is-active" role="tabpanel" id="panel-ibu" aria-labelledby="tab-ibu">
+          <div class="price-grid">
+            <article class="price">
+              <span class="price__tag">Imbasan kehamilan</span>
+              <h3>Scan 2D</h3>
+              <p class="price__amount"><s>RM50</s> <span><small>RM</small>35</span></p>
+              <ul><li>Pemeriksaan asas perkembangan bayi</li><li>Pemantauan kedudukan bayi</li><li>Pemantauan dengupan jantung bayi</li></ul>
+            </article>
+            <article class="price price--featured">
+              <span class="price__ribbon">Paling Digemari</span>
+              <span class="price__tag">Imbasan kehamilan</span>
+              <h3>Scan 5D</h3>
+              <p class="price__amount"><s>RM85</s> <span><small>RM</small>70</span></p>
+              <ul><li>Gambaran wajah bayi lebih jelas</li><li>Pengalaman melihat bayi lebih terperinci</li><li>Gambar untuk simpanan kenangan</li></ul>
+            </article>
+            <article class="price">
+              <span class="price__tag">Kesihatan wanita</span>
+              <h3>Pap Smear</h3>
+              <p class="price__amount"><s>RM100</s> <span><small>RM</small>65</span></p>
+              <ul><li>Mengesan perubahan sel abnormal pada serviks</li><li>Saringan awal kanser serviks</li><li>Membantu rawatan awal</li></ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- Panel 2: Vaksin (poster servis 1 & 6) -->
+        <div class="tab-panel" role="tabpanel" id="panel-vaksin" aria-labelledby="tab-vaksin" hidden>
+          <div class="vaccine">
+            <article class="price price--featured vaccine__flu">
+              <span class="price__ribbon">Stok Terhad</span>
+              <span class="price__tag">Untuk semua umur</span>
+              <h3>Suntikan Influenza</h3>
+              <p class="price__amount"><s>RM85</s> <span><small>RM</small>40</span></p>
+              <ul><li>Lindungi diri &amp; keluarga daripada virus berbahaya</li><li>Kurangkan risiko radang paru-paru</li><li>Sesuai untuk kanak-kanak, dewasa &amp; warga emas</li></ul>
+            </article>
+            <div class="vaccine__table">
+              <h3>Pakej Vaksin Haji &amp; Umrah</h3>
+              <div class="row"><span>Meningococcal</span><strong>RM160</strong></div>
+              <div class="row"><span>Meningococcal + Influenza</span><strong>RM210</strong></div>
+              <div class="row"><span>Meningococcal + Pneumococcal</span><strong>RM320</strong></div>
+              <div class="row row--best"><span>Meningococcal + Pneumococcal + Influenza</span><strong>RM360</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Kanak-kanak (poster servis 3) -->
+        <div class="tab-panel" role="tabpanel" id="panel-anak" aria-labelledby="tab-anak" hidden>
+          <div class="khatan">
+            <div class="khatan__price">
+              <span class="price__tag">Khatan Cuti Sekolah</span>
+              <h3>Berkhatan Kaedah Laser</h3>
+              <p class="price__amount"><s>RM180</s> <span><small>RM</small>170</span></p>
+            </div>
+            <ul class="khatan__facts">
+              <li><strong>Had umur</strong><span>4 hingga 12 tahun</span></li>
+              <li><strong>Teknik</strong><span>Kaedah laser</span></li>
+              <li><strong>Percuma</strong><span>Ubat tahan sakit &amp; antibiotik</span></li>
+            </ul>
+            <a class="btn btn--primary" href="https://wa.me/601165167075?text=Assalamualaikum%2C%20saya%20ingin%20tempah%20slot%20khatan." target="_blank" rel="noopener">Tempah Slot Khatan</a>
+          </div>
+        </div>
+
+        <p class="note reveal">* Harga tidak termasuk caj konsultasi melainkan dinyatakan. Sila sahkan harga terkini dengan klinik.</p>
+      </div>
+    </section>
+
+    <!-- ===== KLINIK KULIT (sumber: poster servis 4) ===== -->
+    <section class="section section--navy" id="kulit">
+      <div class="container skin">
+        <div class="skin__intro reveal">
+          <p class="eyebrow eyebrow--light">Servis Khas</p>
+          <h2>Klinik Kulit Al Falah Umbai</h2>
+          <p class="skin__when">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            <span>Setiap <strong>Selasa</strong>, 6:00 – 10:00 malam</span>
+          </p>
+          <p class="skin__status" id="skinStatus"></p>
+          <button class="skin__poster" data-lightbox="img/servis/servis%204.jpg" aria-label="Besarkan poster Klinik Kulit">
+            <img src="img/servis/servis%204.jpg" alt="Poster Klinik Kulit Al Falah Umbai" loading="lazy" width="1131" height="1600">
+            <span>Lihat poster penuh</span>
+          </button>
+        </div>
+
+        <div class="skin__grid reveal">
+          <div class="skin__card">
+            <h3>Masalah Kulit</h3>
+            <p>Jerawat &amp; parut jerawat, jeragat (melasma), ekzema, psoriasis, dermatitis, kurap &amp; panau, kayap, urtikaria, vitiligo, rosacea, kudis buta</p>
+          </div>
+          <div class="skin__card">
+            <h3>Masalah Rambut</h3>
+            <p>Rambut gugur, alopecia areata, kelemumur, psoriasis &amp; jangkitan kulit kepala</p>
+          </div>
+          <div class="skin__card">
+            <h3>Masalah Kuku</h3>
+            <p>Kulat kuku, kuku tumbuh ke dalam, perubahan warna atau bentuk kuku</p>
+          </div>
+          <div class="skin__card">
+            <h3>Pemeriksaan &amp; Prosedur</h3>
+            <p>Pemeriksaan tahi lalat &amp; kanser kulit, rawatan ketuat, buang skin tag &amp; cyst kecil, suntikan parut keloid</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POSTER PROMOSI ===== -->
+    <section class="section" id="promosi">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Poster Terkini</p>
+          <h2>Promosi &amp; kempen klinik</h2>
+          <p>Klik poster untuk paparan penuh.</p>
+        </div>
+
+        <div class="posters reveal">
+          <button class="poster" data-lightbox="img/servis/servis%205.jpg" aria-label="Besarkan poster imbasan kehamilan">
+            <img src="img/servis/servis%205.jpg" alt="Poster promosi imbasan kehamilan 2D dan 5D" loading="lazy" width="940" height="788">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%202.jpg" aria-label="Besarkan poster pap smear">
+            <img src="img/servis/servis%202.jpg" alt="Poster promosi pap smear RM65" loading="lazy" width="1080" height="1080">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%203.jpg" aria-label="Besarkan poster khatan">
+            <img src="img/servis/servis%203.jpg" alt="Poster khatan cuti sekolah kaedah laser" loading="lazy" width="1254" height="1254">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%206.jpg" aria-label="Besarkan poster influenza">
+            <img src="img/servis/servis%206.jpg" alt="Poster suntikan influenza RM40" loading="lazy" width="1080" height="1080">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%201.jpg" aria-label="Besarkan poster vaksin haji dan umrah">
+            <img src="img/servis/servis%201.jpg" alt="Poster vaksin haji dan umrah serta saringan PeKa B40 di pintu klinik" loading="lazy" width="287" height="510">
+          </button>
+          <button class="poster" data-lightbox="img/servis/servis%204.jpg" aria-label="Besarkan poster klinik kulit">
+            <img src="img/servis/servis%204.jpg" alt="Poster Klinik Kulit setiap Selasa" loading="lazy" width="1131" height="1600">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FASILITI (galeri bento) ===== -->
+    <section class="section section--tint" id="fasiliti">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Fasiliti</p>
+          <h2>Bersih, terang &amp; selesa</h2>
+          <p>Klik gambar untuk paparan lebih besar.</p>
+        </div>
+
+        <div class="gallery">
+          <button class="gallery__item gallery__item--wide reveal" data-lightbox="img/building/seat%202.jpg">
+            <img src="img/building/seat%202.jpg" alt="Ruang menunggu dengan lampu biru" loading="lazy" width="680" height="306">
+            <span class="gallery__label">Ruang Menunggu</span>
+          </button>
+          <button class="gallery__item gallery__item--tall reveal" data-lightbox="img/building/front%20door.jpg">
+            <img src="img/building/front%20door.jpg" alt="Pintu masuk klinik dengan mural kanak-kanak" loading="lazy" width="382" height="510">
+            <span class="gallery__label">Pintu Masuk</span>
+          </button>
+          <button class="gallery__item gallery__item--tall reveal" data-lightbox="img/building/kids%20corner.jpg">
+            <img src="img/building/kids%20corner.jpg" alt="Sudut permainan kanak-kanak dengan gelongsor" loading="lazy" width="382" height="510">
+            <span class="gallery__label">Sudut Kanak-kanak</span>
+          </button>
+          <button class="gallery__item reveal" data-lightbox="img/building/seat.jpg">
+            <img src="img/building/seat.jpg" alt="Ruang menunggu dengan sofa dan kerusi" loading="lazy" width="680" height="458">
+            <span class="gallery__label">Ruang Rehat</span>
+          </button>
+          <button class="gallery__item reveal" data-lightbox="img/logo/logo%202.jpg">
+            <img src="img/logo/logo%202.jpg" alt="Papan tanda logo klinik di dinding" loading="lazy" width="382" height="510">
+            <span class="gallery__label">Kaunter</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ULASAN GOOGLE ===== -->
+    <section class="section" id="ulasan">
+      <div class="container">
+        <div class="reviews-head reveal">
+          <div class="g-score">
+            <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b></span>
+            <div class="g-score__num">4.9</div>
+            <div class="stars stars--lg" aria-label="4.9 daripada 5 bintang">★★★★★</div>
+            <small>Penilaian keseluruhan di Google</small>
+            <a class="btn btn--primary btn--sm" href="https://maps.app.goo.gl/qPLctuJ9wkRaSmEo6" target="_blank" rel="noopener">Lihat semua ulasan</a>
+          </div>
+          <div class="reviews-head__text">
+            <p class="eyebrow">Ulasan Pesakit</p>
+            <h2>Kata mereka yang pernah datang</h2>
+            <p>Ulasan sebenar daripada Google Maps.</p>
+          </div>
+        </div>
+
+        <!-- Kad ulasan dijana oleh js/main.js daripada senarai REVIEWS -->
+        <div class="reviews reveal" id="reviews"></div>
+        <p class="swipe-hint" aria-hidden="true">← Leret untuk ulasan lain →</p>
+      </div>
+    </section>
+
+    <!-- ===== KERJAYA (sumber: poster hiring) ===== -->
+    <section class="section section--tint" id="kerjaya">
+      <div class="container">
+        <div class="careers reveal">
+          <button class="careers__poster" data-lightbox="img/hiring/hiring%20clinic%20assitant.jpg" aria-label="Besarkan poster jawatan kosong">
+            <img src="img/hiring/hiring%20clinic%20assitant.jpg" alt="Poster jawatan kosong Clinic Assistant" loading="lazy" width="1280" height="1068">
+          </button>
+          <div class="careers__text">
+            <p class="eyebrow">Kerjaya</p>
+            <h2>Jawatan kosong: <span class="hl hl--dark">Pembantu Klinik</span></h2>
+            <p>Kami mencari calon yang berdedikasi dan bertanggungjawab untuk menyertai pasukan kami.</p>
+            <ul class="careers__perks">
+              <li>Warganegara Malaysia</li>
+              <li>Umur 19 – 29 tahun</li>
+              <li>Minimum SPM</li>
+              <li>Peramah &amp; mesra pelanggan</li>
+              <li>Boleh bekerja dalam pasukan</li>
+              <li>Pengalaman klinik satu kelebihan</li>
+            </ul>
+            <div class="careers__actions">
+              <a class="btn btn--primary" href="mailto:alfalahumbai@gmail.com?subject=Permohonan%20Pembantu%20Klinik">Hantar Resume</a>
+              <a class="btn btn--ghost" href="https://wa.me/601165167075?text=Assalamualaikum%2C%20saya%20berminat%20dengan%20jawatan%20Pembantu%20Klinik." target="_blank" rel="noopener">WhatsApp 011-6516 7075</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOKASI & WAKTU ===== -->
+    <section class="section" id="lokasi">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Lokasi &amp; Waktu</p>
+          <h2>Singgah ke Taman Umbai Impian</h2>
+        </div>
+
+        <div class="location">
+          <div class="location__map reveal">
+            <iframe
+              title="Peta lokasi Klinik Al Falah Umbai"
+              src="https://maps.google.com/maps?q=2.1782365,102.3450492&z=16&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+
+          <div class="location__card reveal">
+            <h3>Klinik Al Falah Umbai</h3>
+            <p class="location__addr">Jalan Umbai Impian 1, Taman Umbai Impian,<br>77300 Merlimau, Melaka</p>
+
+            <div class="open-status" id="openStatus">
+              <span class="status-dot"></span><span>Menyemak waktu operasi…</span>
+            </div>
+
+            <!-- Jadual waktu: baris hari ini diserlahkan oleh JS -->
+            <table class="hours" id="hours">
+              <caption class="sr-only">Waktu operasi</caption>
+              <tbody>
+                <tr data-day="1"><th scope="row">Isnin</th><td>9:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="2"><th scope="row">Selasa <em>+ Klinik Kulit</em></th><td>9:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="3"><th scope="row">Rabu</th><td>9:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="4"><th scope="row">Khamis</th><td>9:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="5"><th scope="row">Jumaat</th><td>9:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="6"><th scope="row">Sabtu</th><td>9:00 pagi – 11:00 malam</td></tr>
+                <tr data-day="0"><th scope="row">Ahad</th><td>9:00 pagi – 11:00 malam</td></tr>
+              </tbody>
+            </table>
+
+            <div class="location__actions">
+              <a class="btn btn--primary" href="https://maps.app.goo.gl/qPLctuJ9wkRaSmEo6" target="_blank" rel="noopener">Google Maps</a>
+              <a class="btn btn--ghost" href="https://waze.com/ul/hw22u2ut3k" target="_blank" rel="noopener">Waze</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOALAN LAZIM ===== -->
+    <section class="section section--tint" id="faq">
+      <div class="container container--narrow">
+        <div class="section__head reveal">
+          <p class="eyebrow">Soalan Lazim</p>
+          <h2>Ada soalan?</h2>
+        </div>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Adakah Klinik Al Falah Umbai sama dengan Klinik Al-Fatih Umbai?</summary>
+            <p>Ya. Klinik ini dahulunya dikenali sebagai Klinik Al-Fatih Umbai dan kini beroperasi dengan nama Klinik Al Falah Umbai di lokasi yang sama.</p>
+          </details>
+          <details>
+            <summary>Perlukah saya buat temujanji?</summary>
+            <p>Pesakit walk-in dialu-alukan setiap hari dari 9 pagi hingga 11 malam. Untuk scan, pap smear, khatan dan klinik kulit, sila WhatsApp dahulu untuk tempah slot.</p>
+          </details>
+          <details>
+            <summary>Berapakah umur yang sesuai untuk khatan laser?</summary>
+            <p>Khatan kaedah laser dibuka untuk kanak-kanak berumur 4 hingga 12 tahun. Ubat tahan sakit dan antibiotik diberi percuma.</p>
+          </details>
+          <details>
+            <summary>Bilakah Klinik Kulit dibuka?</summary>
+            <p>Klinik Kulit dibuka setiap hari Selasa, 6:00 hingga 10:00 malam, untuk masalah kulit, rambut dan kuku.</p>
+          </details>
+          <details>
+            <summary>Adakah saringan PeKa B40 percuma di sini?</summary>
+            <p>Ya, penerima PeKa B40 layak menjalani saringan kesihatan percuma termasuk ujian darah, fungsi buah pinggang, kolesterol, ujian air kencing dan gula. Sila bawa kad pengenalan.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="img/logo/logo.jpg" alt="Logo Klinik Al Falah Umbai" width="330" height="330" loading="lazy"></div>
+        <p>Klinik keluarga di Taman Umbai Impian, Merlimau. Dahulu dikenali sebagai Klinik Al-Fatih Umbai.</p>
+      </div>
+
+      <div>
+        <h4>Hubungi</h4>
+        <ul class="footer__list">
+          <li><a href="tel:+601165167075">011-6516 7075</a></li>
+          <li><a href="tel:+60172287075">017-228 7075</a></li>
+          <li><a href="mailto:klinikalfatihumbai@gmail.com">klinikalfatihumbai@gmail.com</a></li>
+          <li>Jalan Umbai Impian 1, Taman Umbai Impian, 77300 Merlimau, Melaka</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Waktu Operasi</h4>
+        <ul class="footer__list">
+          <li>Isnin – Ahad: 9:00 pagi – 11:00 malam</li>
+          <li>Klinik Kulit: Selasa, 6:00 – 10:00 malam</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Ikuti Kami</h4>
+        <div class="socials">
+          <a href="https://www.facebook.com/people/Klinik-Al-Falah-Umbai-Sdn-Bhd/100078023284326/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" class="ico-fill" aria-hidden="true"><path d="M9.1 23.7v-8H6.6V12h2.5v-1.6c0-4.1 1.8-6 5.9-6 .7 0 1.9.1 2.4.3v3.3h-1.3c-1.3 0-1.8.5-1.8 1.8V12h3l-.5 3.7h-2.5V24C19.4 23.2 24 18.2 24 12 24 5.4 18.6 0 12 0S0 5.4 0 12c0 5.6 3.9 10.4 9.1 11.7z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/klinikalfalahumbai/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@klinikalfalahumbai" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" class="ico-fill" aria-hidden="true"><path d="M12.5 0h3.9c.1 1.5.6 3.1 1.8 4.2 1.1 1.1 2.7 1.6 4.2 1.8v4c-1.4 0-2.9-.4-4.2-1-.6-.3-1.1-.6-1.6-.9v8.7c-.1 1.4-.5 2.8-1.4 3.9-1.3 1.9-3.6 3.2-5.9 3.2-1.4.1-2.9-.3-4.1-1-2-1.2-3.4-3.4-3.6-5.7v-1.5c.2-1.9 1.1-3.7 2.6-5 1.7-1.4 4-2.1 6.2-1.7v4.4c-1-.3-2.2-.2-3 .4-.6.4-1.1 1-1.4 1.8-.2.5-.1 1.1-.1 1.6.2 1.6 1.8 3 3.5 2.9 1.1 0 2.2-.7 2.8-1.6.2-.3.4-.7.4-1.1.1-1.8.1-3.6.1-5.4V0z"/></svg>
+          </a>
+        </div>
+        <p class="footer__handle">@klinikalfalahumbai</p>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Klinik Al Falah Umbai Sdn Bhd.</p>
+      <p class="footer__mock">Mock reka bentuk untuk semakan klien.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Butang WhatsApp terapung (desktop/tablet) ===== -->
+  <a class="wa-float" href="https://wa.me/601165167075?text=Assalamualaikum%20Klinik%20Al%20Falah%20Umbai%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="WhatsApp Klinik Al Falah Umbai">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+  </a>
+
+  <!-- ===== Bar tindakan bawah (telefon sahaja) ===== -->
+  <nav class="mobile-bar" aria-label="Tindakan pantas">
+    <a href="tel:+601165167075">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      Telefon
+    </a>
+    <a class="mobile-bar__main" href="https://wa.me/601165167075?text=Assalamualaikum%20Klinik%20Al%20Falah%20Umbai%2C%20saya%20ingin%20membuat%20temujanji." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://waze.com/ul/hw22u2ut3k" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      Arah
+    </a>
+  </nav>
+
+  <!-- ===== Lightbox: paparan gambar besar ===== -->
+  <dialog class="lightbox" id="lightbox" aria-label="Paparan gambar">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Tutup">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

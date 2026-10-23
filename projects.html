@@ -1,1028 +1,543 @@
 <!DOCTYPE html>
 <!--
-  ============================================================================
-  PROJECT ARCHIVE — full case studies
-  ============================================================================
-  File   : projects.html
-  Parent : index.html  (every "Case study" link on the home page lands here,
-                        at the matching #anchor listed below)
+  projects.html — arkib semua projek (kerja, latihan industri, universiti dan peribadi).
 
-  ANCHORS ON THIS PAGE
-    #masterdata → Enterprise Master Data Migration & Cleansing  (Infineon)
-    #homestay   → Homestay Shimah Jay booking site              (freelance)
-    #fyp        → Breast Cancer Prediction, HoverNet            (final year)
-    #yolo       → Real-time face mask detection
-    #network    → Network fault & speed prediction              (TM R&D)
-    #foodwaste  → In-flight food waste prediction               (AirAsia)
-    #angular    → Angular + REST API product platform
-    #sentiment  → Tweet sentiment classification
-    #kmeans     → Customer segmentation with K-Means
-    #catalog    → Product catalog web system
-    #vbapp      → Drawing art tools desktop application
-    #portfolio  → This portfolio website
-
-  The filter bar near the top hides/shows cards by the data-cat attribute on
-  each <article class="case">. Filtering is handled in script.js →
-  initProjectsPage().
-
-  NOTE ON LANGUAGE: the page chrome (nav, headings, labels) is translated into
-  English / Bahasa Melayu / 中文 by i18n.js. The detailed technical write-ups
-  below are kept in English on purpose — that is the language the stacks,
-  metrics and tooling are documented in.
-  ============================================================================
+  Penapis: butang [data-filter] dalam site.js menyorok <article data-cat="...">.
+  Kategori: web, data, ml, app (satu kajian kes boleh ada lebih daripada satu).
+  Anchor lama dikekalkan supaya pautan luar tidak rosak:
+    #masterdata #homestay #kgom #fyp #yolo #network #foodwaste #angular
+    #sentiment #kmeans #catalog #vbapp #portfolio  (+ baharu: #booking #rsvp)
+  Projek web hanya diringkaskan di sini; kajian kes penuh di development.html.
+  Sistem dalaman syarikat (Infineon, TM, AirAsia) sengaja tiada screenshot.
 -->
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-  <title>Projects — Muhammad Naqiudin</title>
-  <meta name="description" content="Full case studies of Muhammad Naqiudin's work: enterprise master data migration with Oracle PL/SQL, machine learning models, and Next.js client websites.">
-  <meta name="theme-color" content="#060A12">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Projects · Muhammad Naqiudin</title>
+  <meta name="description" content="All projects by Muhammad Naqiudin: enterprise data migration, machine learning, computer vision, data analytics, web development and desktop applications.">
   <link rel="canonical" href="https://naqiudinfandy.github.io/projects.html">
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23060A12'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='46' font-weight='700' fill='%2300F0FF' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
-
+  <meta name="theme-color" content="#090e24">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="All Projects · Muhammad Naqiudin">
+  <meta property="og:description" content="Data engineering, machine learning and web development projects, explained in plain language.">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/projects.html">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/assets/img/web/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='66' font-family='Arial' font-size='44' font-weight='800' fill='white' text-anchor='middle'%3ENF%3C/text%3E%3C/svg%3E">
+  <!-- Pulihkan pilihan tema & saiz teks sebelum laman dilukis (sama seperti index.html). -->
+  <script>
+    (function (r) {
+      r.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme'); if (t) r.dataset.theme = t;
+        if (localStorage.getItem('text') === 'large') r.dataset.text = 'large';
+      } catch (e) {}
+    })(document.documentElement);
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="work.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
-
 <body>
-<a class="skip-link" href="#main-content">Skip to content</a>
+<!-- Ikon SVG dikongsi: dilukis sekali, dipanggil dengan <use href="#i-…">. Disalin ke halaman lain. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/><path d="M9 10.5c.5 1.6 1.9 3 3.5 3.5l1.2-1.2 2 .8v1.6c-3.8.4-7.6-3.4-7.2-7.2h1.6l.8 2z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M11 20V4M17 20v-6M3 20h18"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6 4.7 1.9-4.7 1.9L12 16l-1.8-4.6-4.7-1.9 4.7-1.9z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.1 2.1 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22 22 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.7-.9 1.4-1.8-.3-.8.2-1.7 1.1-1.7H17a4 4 0 0 0 4-4c0-5-4-8.5-9-8.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7.5" r="1"/><circle cx="15" cy="8" r="1"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  </defs>
+</svg>
 
-<!-- Background layers (same as the home page) -->
-<div class="bg" aria-hidden="true">
-  <div class="bg__grid"></div>
-  <div class="bg__blob bg__blob--cyan"></div>
-  <div class="bg__blob bg__blob--violet"></div>
-  <canvas id="bg-canvas"></canvas>
-  <div class="bg__noise"></div>
-</div>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span></span></div>
 
-<div class="cursor" aria-hidden="true">
-  <div class="cursor__dot"></div>
-  <div class="cursor__ring"><span class="cursor__label"></span></div>
-</div>
-
-<div class="scroll-progress" aria-hidden="true"><span></span></div>
-
-
-<!-- ===========================================================================
-     NAVIGATION — links point back to the sections of index.html
-     =========================================================================== -->
-<header class="nav" id="navbar">
-  <div class="nav__inner glass">
-    <a href="index.html" class="nav__logo" aria-label="Back to home">
-      <span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span>
-    </a>
-
-    <nav class="nav__links" aria-label="Main navigation">
-      <a href="index.html#about"          data-i18n="nav.about">About</a>
-      <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
-      <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
-      <a href="projects.html" class="is-active" data-i18n="nav.projects">Projects</a>
-      <a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
-      <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
-      <span class="nav__indicator" aria-hidden="true"></span>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="Muhammad Naqiudin, home page"><span class="brand__mark" aria-hidden="true">NF</span><span>Naqiudin</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="development.html">Web case studies</a>
+      <a href="projects.html" aria-current="page">All projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
-
-    <div class="nav__actions">
-      <div class="lang" id="lang-switch">
-        <button class="lang__btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"></path>
-          </svg>
-          <span class="lang__current">EN</span>
-        </button>
-        <ul class="lang__menu glass" role="listbox">
-          <li><button role="option" data-lang="en">English <span>EN</span></button></li>
-          <li><button role="option" data-lang="ms">Bahasa Melayu <span>MS</span></button></li>
-          <li><button role="option" data-lang="zh">中文 <span>ZH</span></button></li>
-        </ul>
-      </div>
-
-      <a href="index.html#contact" class="btn btn--primary btn--sm magnetic" data-i18n="nav.hire">Hire Me</a>
-
-      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
+    <div class="header-tools">
+      <button class="icon-btn" type="button" data-text-toggle aria-pressed="false" aria-label="Larger text" title="Larger text">Aa</button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme" title="Light / dark theme">
+        <svg class="theme-icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="theme-icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
       </button>
+      <a class="btn btn--primary btn--sm header-cv" href="assets/resume/Muhammad-Naqiudin-Resume.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-download"/></svg>Résumé</a>
+      <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </div>
-</header>
-
-<div class="drawer" id="mobile-menu" aria-hidden="true">
-  <nav class="drawer__links" aria-label="Mobile navigation">
-    <a href="index.html"                data-i18n="nav.home">Home</a>
-    <a href="index.html#about"          data-i18n="nav.about">About</a>
-    <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
-    <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
-    <a href="projects.html"             data-i18n="nav.projects">Projects</a>
-    <a href="development.html" data-i18n="nav.development">Web &amp; Apps</a>
-    <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="development.html">Web case studies</a>
+    <a href="projects.html" aria-current="page">All projects</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#contact">Contact</a>
+    <a class="btn btn--primary" href="assets/resume/Muhammad-Naqiudin-Resume.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-download"/></svg>Download résumé (PDF)</a>
   </nav>
-  <div class="drawer__foot">
-    <a href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/naqiudin-fandy/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="mailto:naqiudin73@gmail.com">Email</a>
-  </div>
-</div>
-
-
-<main id="main-content">
-
-<!-- ===========================================================================
-     PAGE HERO
-     =========================================================================== -->
-<header class="page-hero container">
-<a class="work-backlink" href="development.html" data-i18n="nav.development">Web &amp; App Portfolio ↗</a>
-  <span class="eyebrow"><i></i><span data-i18n="page.eyebrow">Project Archive</span></span>
-  <h1 class="display" data-i18n="page.title">Every project, in detail.</h1>
-  <p class="section__lead" style="margin-inline:auto" data-i18n="page.lead">
-    Client websites and application builds across enterprise data engineering, machine learning and web development —
-    what the problem was, what I did, and what changed as a result.
-  </p>
 </header>
 
-<div class="container">
+<main id="main">
+  <span id="top-sentinel" aria-hidden="true"></span>
 
-  <!-- ---- Category filter. data-filter matches data-cat on each .case ---- -->
-  <div class="filters glass" role="group" aria-label="Filter projects by category">
-    <button class="is-active" data-filter="all"  data-i18n="page.filterAll">All</button>
-    <button data-filter="data" data-i18n="page.filterData">Data Engineering</button>
-    <button data-filter="ml"   data-i18n="page.filterMl">Machine Learning</button>
-    <button data-filter="web"  data-i18n="page.filterWeb">Web Development</button>
-    <button data-filter="app"  data-i18n="page.filterApp">Applications</button>
-  </div>
-
-
-  <!-- =========================================================================
-       01 — ENTERPRISE MASTER DATA MIGRATION  (Infineon, confidential)
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="masterdata" data-cat="data">
-    <div class="case__head">
-      <span class="case__index">01</span>
-      <div>
-        <h2 class="case__title">Enterprise Master Data Migration &amp; Cleansing</h2>
-        <p class="case__role">Infineon Technologies · Master Data Developer</p>
-      </div>
-      <span class="case__year">2025 – present</span>
+  <section class="hero page-hero" aria-labelledby="page-title" data-anim>
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span>
+      <span class="hero__grid-bg"></span>
     </div>
+    <div class="container" data-stagger>
+      <span class="eyebrow hero-in" style="color:#c7d2fe">Project archive</span>
+      <h1 id="page-title" class="hero-in">Every project, <span class="grad-text">explained simply</span>.</h1>
+      <p class="lead hero-in">Enterprise data at Infineon, machine learning at TM R&amp;D and AirAsia, university research and live websites. Each card says the problem, what I did and the result.</p>
+    </div>
+  </section>
 
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          Infineon's engineering master data is spread across many system classes and worldwide
-          sites. Over years of growth the same physical part could exist under several records,
-          each with a slightly different attribute set. Duplicate and drifting records break
-          downstream reporting, slow engineering lookups and create rework for the teams that
-          depend on that data being <strong>one single truth</strong>.
-        </p>
+  <section class="section" aria-label="Projects">
+    <div class="container">
+      <div class="filters" role="group" aria-label="Filter projects by category">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="web" aria-pressed="false">Web</button>
+        <button type="button" data-filter="data" aria-pressed="false">Data engineering</button>
+        <button type="button" data-filter="ml" aria-pressed="false">Machine learning</button>
+        <button type="button" data-filter="app" aria-pressed="false">Apps</button>
+      </div>
+      <p class="sr-only" id="filter-status" role="status" aria-live="polite"></p>
 
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          I built the PL/SQL layer that consolidates those records. Staging tables hold candidate
-          duplicates, a <strong>MERGE</strong>-based procedure promotes one golden record per part
-          and repoints the rest, and every operation writes to an audit package so any change can
-          be traced and rolled back.
-        </p>
-        <p>
-          Around that core I designed the ETL and data-warehouse flow — validation rules before
-          load, explicit error handling instead of silent failures, and reconciliation counts after
-          each run. The recurring parts of the job (data patching, cleansing, preparing comparison
-          sheets) were moved into <strong>KNIME</strong> workflows so a repeat ticket became a
-          button press rather than an afternoon.
-        </p>
-        <p>
-          The work also covered <strong>SAP</strong>-side migration and restructuring, plus the
-          reporting that lets the business see data quality trending rather than guessing at it.
-          Releases went out through weekly Jenkins pipelines across DEV, INT and PROD, which I ran
-          as Software Release Manager.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>~30%</b><span>leaner enterprise workflow</span></div>
-          <div class="case__stat"><b>~50%</b><span>less handling time per repeat ticket</span></div>
-          <div class="case__stat"><b>Weekly</b><span>release cadence, 3 environments</span></div>
-        </div>
+      <!-- ===== Projek web (ringkasan; butiran penuh di development.html) ===== -->
+      <div class="grid grid--2" style="margin-bottom:22px" data-stagger>
+        <article class="card card--lift project reveal" id="homestay" data-cat="web">
+          <a class="project__media" href="development.html#homestay" tabindex="-1" aria-hidden="true"><img src="assets/img/web/homestay-home.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"></a>
+          <div class="project__body">
+            <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Client website</span></div>
+            <h2 style="font-size:1.2rem;margin:0">Homestay Shimah Jay</h2>
+            <p>Bilingual website for eight family homestays in Melaka with galleries, house pages and WhatsApp enquiries.</p>
+            <div class="btn-row"><a class="btn btn--primary btn--sm" href="development.html#homestay">Read case study</a><a class="btn btn--ghost btn--sm" href="https://www.homestayshimahjay.com/" target="_blank" rel="noopener">Visit<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          </div>
+        </article>
+        <article class="card card--lift project reveal" id="booking" data-cat="web data">
+          <a class="project__media project__media--panel" href="development.html#booking" tabindex="-1" aria-hidden="true">
+            <div class="private-panel">
+              <p><svg aria-hidden="true"><use href="#i-lock"/></svg>Private admin · no screenshots (guest data)</p>
+              <ul class="module-grid"><li>Bookings</li><li>Calendar</li><li>Payments</li><li>Receipts</li><li>Housekeeping</li><li>Reports</li></ul>
+            </div>
+          </a>
+          <div class="project__body">
+            <div class="project__meta"><span class="badge badge--dev">In development</span><span class="badge">Web application</span></div>
+            <h2 style="font-size:1.2rem;margin:0">Homestay Booking Management System</h2>
+            <p>Admin system with double-booking checks, payments, PDF receipts, housekeeping alerts and reports.</p>
+            <div class="btn-row"><a class="btn btn--primary btn--sm" href="development.html#booking">Read case study</a></div>
+          </div>
+        </article>
+        <article class="card card--lift project reveal" id="kgom" data-cat="web">
+          <a class="project__media" href="development.html#kgom" tabindex="-1" aria-hidden="true"><img src="assets/img/web/kgom-home.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"></a>
+          <div class="project__body">
+            <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Client website</span></div>
+            <h2 style="font-size:1.2rem;margin:0">Kambing Golek Melaka Official</h2>
+            <p>Catering website with event packages, food gallery, reviews and a form that prepares a WhatsApp enquiry.</p>
+            <div class="btn-row"><a class="btn btn--primary btn--sm" href="development.html#kgom">Read case study</a><a class="btn btn--ghost btn--sm" href="https://www.kambinggolekmelakaofficial.my/" target="_blank" rel="noopener">Visit<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          </div>
+        </article>
+        <article class="card card--lift project reveal" id="rsvp" data-cat="web">
+          <a class="project__media" href="development.html#rsvp" tabindex="-1" aria-hidden="true"><img src="assets/img/web/rsvp-desktop.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"></a>
+          <div class="project__body">
+            <div class="project__meta"><span class="badge badge--live">Live</span><span class="badge">Personal project</span></div>
+            <h2 style="font-size:1.2rem;margin:0">Digital Invitation &amp; RSVP Maker</h2>
+            <p>Mobile-first wedding invitation with RSVP, maps, countdown and a Live Gallery photo wall for guests.</p>
+            <div class="btn-row"><a class="btn btn--primary btn--sm" href="development.html#rsvp">Read case study</a><a class="btn btn--ghost btn--sm" href="https://www.naqiudindanatiqah.my/" target="_blank" rel="noopener">View<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          </div>
+        </article>
       </div>
 
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Oracle PL/SQL</span><span class="tag">Oracle DB</span><span class="tag">ETL</span>
-          <span class="tag">Data Warehouse</span><span class="tag">SAP</span><span class="tag">KNIME</span>
-          <span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">C# .NET</span>
-          <span class="tag">Remedy</span><span class="tag">Octane</span>
+      <!-- ===== Infineon (dalaman, tiada screenshot) ===== -->
+      <article class="card case reveal" id="masterdata" data-cat="data" aria-labelledby="t-masterdata">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2025 – 2026</span><span class="badge">Data engineering</span></div>
+          <h2 id="t-masterdata">Enterprise Master Data Migration &amp; Cleansing</h2>
+          <p class="case__role">Infineon Technologies · Master Data Developer</p>
         </div>
-
-        <!-- No screenshots possible — an internal system. A code sketch stands in. -->
-        <div class="proj__media proj__media--code" style="margin-top:18px;border-radius:14px;border:1px solid rgba(255,255,255,.08)">
-          <div class="code">
-            <div class="code__bar"><i></i><i></i><i></i><span class="code__file">merge_golden_record.sql</span></div>
-<pre class="code__body"><span class="c-c">-- one golden record per part, everything else repointed</span>
-<span class="c-k">MERGE INTO</span> mdm_part t
-<span class="c-k">USING</span> (
-  <span class="c-k">SELECT</span> part_no,
-         <span class="c-k">MIN</span>(record_id)  <span class="c-k">AS</span> golden_id,
-         <span class="c-k">COUNT</span>(*)        <span class="c-k">AS</span> dup_count
-    <span class="c-k">FROM</span> stg_part_candidate
-   <span class="c-k">GROUP BY</span> part_no
-  <span class="c-k">HAVING COUNT</span>(*) &gt; 1
-) s
-   <span class="c-k">ON</span> (t.part_no = s.part_no)
-<span class="c-k">WHEN MATCHED THEN UPDATE SET</span>
-      t.golden_id  = s.golden_id,
-      t.changed_on = <span class="c-k">SYSDATE</span>;
-
-audit_pkg.log(<span class="c-s">'MERGE_GOLDEN'</span>, <span class="c-k">SQL%ROWCOUNT</span>);
-<span class="c-k">COMMIT</span>;</pre>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>Engineering master data is spread across many system classes and worldwide sites. The same part could exist as several slightly different records, which breaks reports and creates rework for teams that need one single truth.</p>
+            <h4>What I did</h4>
+            <p>Built PL/SQL that consolidates those records: staging tables hold candidate duplicates, a MERGE procedure keeps one “golden” record and repoints the rest, and every change is logged so it can be traced. Around it I refined the ETL and data-warehouse flow with validation before load and clear error handling, moved repeat ticket work into KNIME workflows, and supported SAP-side migration and reporting. Releases went out weekly through Jenkins across DEV, INT and PROD.</p>
+            <div class="facts">
+              <div><b>30%</b><span>leaner workflow (SAP projects)</span></div>
+              <div><b>50%</b><span>less time on repeat tickets</span></div>
+              <div><b>Weekly</b><span>releases, 3 environments</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Oracle PL/SQL</li><li class="tag">Oracle DB</li><li class="tag">ETL</li><li class="tag">Data warehouse</li><li class="tag">SAP</li><li class="tag">KNIME</li><li class="tag">Jenkins</li><li class="tag">Azure DevOps</li><li class="tag">C# .NET</li></ul>
+            <h4>Note</h4>
+            <p class="muted small" style="margin:0">Internal enterprise system, so there are no screenshots. The description explains the approach instead.</p>
           </div>
         </div>
-        <p class="form__hint" style="margin-top:10px;text-align:left" data-i18n="page.confidential">
-          Internal enterprise system — no screenshots can be shared, so the write-up describes the approach instead.
-        </p>
-      </aside>
+      </article>
+
+      <!-- ===== TM R&D ===== -->
+      <article class="card case reveal" id="network" data-cat="ml data" aria-labelledby="t-network">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2024 – 2025</span><span class="badge">Machine learning · Data</span></div>
+          <h2 id="t-network">Network Fault &amp; Internet Speed Prediction</h2>
+          <p class="case__role">TM Research &amp; Development · Data Science Intern</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>Network faults were handled after customers complained. The data to see problems coming already existed (access network logs, termination logs, CTT records, speed tests) but it was too messy to trust.</p>
+            <h4>What I did</h4>
+            <p>Cleaned and reconciled thousands of records across the sources, then built Random Forest Regression and LSTM time-series models to predict speed drops and faults. Results went into Power BI and Python dashboards reviewed weekly. I also automated data extraction with Selenium Robot Framework and supported the OracleDB to MariaDB migration.</p>
+            <div class="facts">
+              <div><b>80%+</b><span>prediction accuracy</span></div>
+              <div><b>90%</b><span>better data quality</span></div>
+              <div><b>60%</b><span>less manual reporting</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Python</li><li class="tag">LSTM</li><li class="tag">Random Forest</li><li class="tag">Pandas</li><li class="tag">Power BI</li><li class="tag">Seaborn</li><li class="tag">Selenium</li><li class="tag">OracleDB</li><li class="tag">MariaDB</li></ul>
+            <h4>Note</h4>
+            <p class="muted small" style="margin:0">Internal telco data, so there are no screenshots.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== AirAsia ===== -->
+      <article class="card case reveal" id="foodwaste" data-cat="ml data" aria-labelledby="t-foodwaste">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2025</span><span class="badge">Machine learning</span></div>
+          <h2 id="t-foodwaste">In-Flight Food Waste Prediction</h2>
+          <p class="case__role">AirAsia · Khazanah K-Youth Employment Programme</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>Load too much food onto a flight and it is thrown away; load too little and passengers go without. That error repeats across hundreds of flights a day.</p>
+            <h4>What I did</h4>
+            <p>Worked with the data science team on XGBoost models that forecast waste per flight: cleaning historic catering data, engineering features such as route, time and seasonality, and tuning hyperparameters. Data tracking, validation and monitoring ran on Google Cloud Platform.</p>
+            <div class="facts">
+              <div><b>80%+</b><span>model accuracy</span></div>
+              <div><b>GCP</b><span>tracked, validated pipeline</span></div>
+              <div><b>3 months</b><span>industry apprenticeship</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Python</li><li class="tag">XGBoost</li><li class="tag">Pandas</li><li class="tag">Scikit-Learn</li><li class="tag">Google Cloud</li><li class="tag">Feature engineering</li></ul>
+            <h4>Note</h4>
+            <p class="muted small" style="margin:0">Internal company data, so there are no screenshots.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Projek Tahun Akhir UKM ===== -->
+      <article class="card case reveal" id="fyp" data-cat="ml" aria-labelledby="t-fyp">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2024 – 2025</span><span class="badge">Deep learning · Web app</span></div>
+          <h2 id="t-fyp">Breast Cancer Prediction using HoverNet</h2>
+          <p class="case__role">UKM · Final Year Project</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>Reading histopathology slides means counting and classifying cell nuclei by eye: slow, tiring and inconsistent. A model can give the pathologist a fast second opinion.</p>
+            <h4>What I did</h4>
+            <p>Implemented the HoverNet framework, which predicts distance maps alongside segmentation so touching nuclei can be separated, trained on the PanNuke dataset. I wrapped it in a Django web app where a user uploads a slide image and gets an overlay and counts per class, with results stored in MySQL.</p>
+            <div class="facts">
+              <div><b>2-in-1</b><span>segmentation + classification</span></div>
+              <div><b>Web-based</b><span>no ML setup for users</span></div>
+              <div><b>First Class</b><span>degree outcome</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project1.webp" data-caption="Breast cancer prediction · overview"><img src="assets/img/web/project1.webp" width="1000" height="562" alt="Breast cancer prediction system overview" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project1b.webp" data-caption="Breast cancer prediction · analysis"><img src="assets/img/web/project1b.webp" width="1000" height="477" alt="Breast cancer prediction analysis screen" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project1c.webp" data-caption="Breast cancer prediction · results"><img src="assets/img/web/project1c.webp" width="1000" height="477" alt="Breast cancer prediction results" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project1d.webp" data-caption="Breast cancer prediction · interface"><img src="assets/img/web/project1d.webp" width="1000" height="477" alt="Breast cancer prediction interface" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Python</li><li class="tag">PyTorch</li><li class="tag">HoverNet</li><li class="tag">Django</li><li class="tag">MySQL</li><li class="tag">Bootstrap</li><li class="tag">Jupyter</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== YOLOv8 ===== -->
+      <article class="card case reveal" id="yolo" data-cat="ml" aria-labelledby="t-yolo">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2024</span><span class="badge">Computer vision</span></div>
+          <h2 id="t-yolo">Real-Time Face Mask Detection (YOLOv8 &amp; OpenCV)</h2>
+          <p class="case__role">Personal project</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>A simple “mask / no mask” check misses the most common case: a mask worn under the nose. The model needed three classes and had to run live.</p>
+            <h4>What I did</h4>
+            <p>Labelled and augmented the dataset in LabelImg and Roboflow, then trained YOLOv8 for three classes: worn correctly, worn incorrectly and not worn. OpenCV reads the webcam and draws colour-coded boxes, and a Flask app serves it in the browser.</p>
+            <div class="facts">
+              <div><b>0.905</b><span>mAP@50</span></div>
+              <div><b>0.898</b><span>precision</span></div>
+              <div><b>0.848</b><span>recall</span></div>
+            </div>
+            <div class="btn-row" style="margin-top:18px"><a class="btn btn--ghost btn--sm" href="https://github.com/naqiudinfandy/Facemask-detection-YOLOv8-OpenCV" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-github"/></svg>View on GitHub</a></div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project7.webp" data-caption="Face mask detection · interface"><img src="assets/img/web/project7.webp" width="1000" height="563" alt="Face mask detection interface" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project7b.webp" data-caption="Face mask detection · live detection"><img src="assets/img/web/project7b.webp" width="1000" height="562" alt="Live face mask detection" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project7d.webp" data-caption="Face mask detection · training run"><img src="assets/img/web/project7d.webp" width="1000" height="562" alt="YOLOv8 training run" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project7e.webp" data-caption="Face mask detection · evaluation metrics"><img src="assets/img/web/project7e.webp" width="1000" height="562" alt="YOLOv8 evaluation metrics" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">YOLOv8</li><li class="tag">Ultralytics</li><li class="tag">OpenCV</li><li class="tag">Flask</li><li class="tag">Roboflow</li><li class="tag">LabelImg</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Angular ===== -->
+      <article class="card case reveal" id="angular" data-cat="web" aria-labelledby="t-angular">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2024</span><span class="badge">Web application</span></div>
+          <h2 id="t-angular">Angular &amp; REST API Product Platform</h2>
+          <p class="case__role">Full-stack build · authentication and CRUD</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>A three-screen app that had to prove the fundamentals with a real API: token login, protected routes, product management and a detail view driven by asynchronous queries.</p>
+            <h4>What I did</h4>
+            <p>The login stores a bearer token and blocks protected routes without it. The home screen lists products with an add/edit modal whose submit button stays disabled until the form is valid. The detail screen shows a paginated table with date filters that update asynchronously.</p>
+            <div class="facts">
+              <div><b>3</b><span>route-guarded screens</span></div>
+              <div><b>JWT</b><span>bearer token flow</span></div>
+              <div><b>Async</b><span>paged, filtered queries</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project8.webp" data-caption="Angular platform · login"><img src="assets/img/web/project8.webp" width="1000" height="450" alt="Angular platform login" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project8a.webp" data-caption="Angular platform · home"><img src="assets/img/web/project8a.webp" width="1000" height="450" alt="Angular platform home" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project8b.webp" data-caption="Angular platform · product list"><img src="assets/img/web/project8b.webp" width="1000" height="450" alt="Angular platform product list" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project8d.webp" data-caption="Angular platform · modal form"><img src="assets/img/web/project8d.webp" width="1000" height="461" alt="Angular platform modal form" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Angular 18</li><li class="tag">TypeScript</li><li class="tag">RxJS</li><li class="tag">REST API</li><li class="tag">JWT</li><li class="tag">GitLab</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Analisis sentimen ===== -->
+      <article class="card case reveal" id="sentiment" data-cat="ml" aria-labelledby="t-sentiment">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2023</span><span class="badge">Natural language processing</span></div>
+          <h2 id="t-sentiment">Tweet Sentiment Classification</h2>
+          <p class="case__role">University modelling project</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>Classify tweets as positive, negative or neutral, and find out which classical model works best on short, noisy text.</p>
+            <h4>What I did</h4>
+            <p>Built the preprocessing chain (cleaning, tokenisation, stop words, vectorisation), then trained Logistic Regression, Naive Bayes and Support Vector Machines on identical splits for a fair comparison.</p>
+            <div class="facts">
+              <div><b>3</b><span>models compared</span></div>
+              <div><b>3-class</b><span>positive / negative / neutral</span></div>
+              <div><b>Fair</b><span>identical train/test splits</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project3.webp" data-caption="Sentiment analysis · overview"><img src="assets/img/web/project3.webp" width="1000" height="548" alt="Sentiment analysis overview" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project3b.webp" data-caption="Sentiment analysis · exploratory analysis"><img src="assets/img/web/project3b.webp" width="1000" height="535" alt="Sentiment exploratory data analysis" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project3c.webp" data-caption="Sentiment analysis · model comparison"><img src="assets/img/web/project3c.webp" width="1000" height="553" alt="Sentiment model comparison" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project3d.webp" data-caption="Sentiment analysis · results"><img src="assets/img/web/project3d.webp" width="1000" height="529" alt="Sentiment analysis results" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Python</li><li class="tag">Scikit-Learn</li><li class="tag">NLTK</li><li class="tag">Pandas</li><li class="tag">Jupyter</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== K-Means ===== -->
+      <article class="card case reveal" id="kmeans" data-cat="ml data" aria-labelledby="t-kmeans">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2023</span><span class="badge">Unsupervised learning</span></div>
+          <h2 id="t-kmeans">Customer Segmentation with K-Means</h2>
+          <p class="case__role">University data analysis project</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>“All customers” is not a useful marketing target. The task was to group mall customers by annual income and spending score.</p>
+            <h4>What I did</h4>
+            <p>Explored the data first, used the elbow method to choose the number of clusters, ran K-Means and described each segment in plain language: who they are, what they spend and what to offer them.</p>
+            <div class="facts">
+              <div><b>Elbow</b><span>method to choose k</span></div>
+              <div><b>High-value</b><span>segments identified</span></div>
+              <div><b>Plain</b><span>language summaries</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project6.webp" data-caption="K-Means segmentation · overview"><img src="assets/img/web/project6.webp" width="1000" height="437" alt="K-Means segmentation overview" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project6b.webp" data-caption="K-Means segmentation · elbow method"><img src="assets/img/web/project6b.webp" width="1000" height="464" alt="Elbow method chart" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project6c.webp" data-caption="K-Means segmentation · clusters"><img src="assets/img/web/project6c.webp" width="1000" height="488" alt="Customer clusters" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project6e.webp" data-caption="K-Means segmentation · results"><img src="assets/img/web/project6e.webp" width="1000" height="465" alt="Segmentation results" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">Python</li><li class="tag">Scikit-Learn</li><li class="tag">Pandas</li><li class="tag">Matplotlib</li><li class="tag">Seaborn</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Katalog produk PHP ===== -->
+      <article class="card case reveal" id="catalog" data-cat="web" aria-labelledby="t-catalog">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2023</span><span class="badge">Web system</span></div>
+          <h2 id="t-catalog">Product Catalog Web System</h2>
+          <p class="case__role">University web development project · multi-role system</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>A drawing-tools retailer needed more than a product list: staff, supervisors and customers use the same catalogue but should not see or do the same things.</p>
+            <h4>What I did</h4>
+            <p>Built a PHP and MySQL system with three permission levels (Admin, Supervisor, User). Admins manage products with image upload, accounts can be registered and updated, and purchases create an invoice. Responsive Bootstrap front end, tested on XAMPP and deployed on the UKM server.</p>
+            <div class="facts">
+              <div><b>3</b><span>user roles</span></div>
+              <div><b>CRUD</b><span>plus image upload</span></div>
+              <div><b>Invoices</b><span>for each purchase</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project2.webp" data-caption="Product catalog · home"><img src="assets/img/web/project2.webp" width="1000" height="562" alt="Product catalog home page" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project2b.webp" data-caption="Product catalog · admin panel"><img src="assets/img/web/project2b.webp" width="1000" height="562" alt="Product catalog admin panel" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project2e.webp" data-caption="Product catalog · invoice"><img src="assets/img/web/project2e.webp" width="1000" height="562" alt="Product catalog invoice" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project2g.webp" data-caption="Product catalog · dashboard"><img src="assets/img/web/project2g.webp" width="1000" height="562" alt="Product catalog dashboard" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">PHP</li><li class="tag">MySQL</li><li class="tag">JavaScript</li><li class="tag">Bootstrap</li><li class="tag">phpMyAdmin</li><li class="tag">XAMPP</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Aplikasi desktop VB.NET ===== -->
+      <article class="card case reveal" id="vbapp" data-cat="app" aria-labelledby="t-vbapp">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2022</span><span class="badge">Desktop application</span></div>
+          <h2 id="t-vbapp">Drawing Art Tools: Desktop Application</h2>
+          <p class="case__role">University project · VB.NET with database integration</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <h4>The problem</h4>
+            <p>A shop counter needs software that works without internet: add a product, take an order, change it and print a report.</p>
+            <h4>What I did</h4>
+            <p>Built a Windows application in Visual Studio 2019 with Visual Basic .NET, backed by Microsoft Access and MySQL. Full create, update and delete for products and orders, live reads and writes between forms and the database, and a report screen.</p>
+            <div class="facts">
+              <div><b>Offline</b><span>no internet needed</span></div>
+              <div><b>2</b><span>databases: Access + MySQL</span></div>
+              <div><b>Reports</b><span>for the shop owner</span></div>
+            </div>
+          </div>
+          <div class="case__aside">
+            <div class="shots">
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project5.webp" data-caption="Desktop app · main window"><img src="assets/img/web/project5.webp" width="895" height="584" alt="Desktop app main window" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project5a.webp" data-caption="Desktop app · products"><img src="assets/img/web/project5a.webp" width="754" height="492" alt="Desktop app products form" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project5b.webp" data-caption="Desktop app · orders"><img src="assets/img/web/project5b.webp" width="892" height="641" alt="Desktop app orders form" loading="lazy" decoding="async"></button></figure>
+              <figure class="shot"><button type="button" data-zoom="assets/img/web/project5e.webp" data-caption="Desktop app · report"><img src="assets/img/web/project5e.webp" width="1000" height="761" alt="Desktop app report" loading="lazy" decoding="async"></button></figure>
+            </div>
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag">VB.NET</li><li class="tag">Visual Studio 2019</li><li class="tag">MS Access</li><li class="tag">MySQL</li><li class="tag">SQL</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== Portfolio ini ===== -->
+      <article class="card case reveal" id="portfolio" data-cat="web" aria-labelledby="t-portfolio">
+        <div class="case__head">
+          <div class="project__meta"><span class="badge">2026</span><span class="badge">Vanilla JavaScript</span></div>
+          <h2 id="t-portfolio">This Portfolio Website</h2>
+          <p class="case__role">Personal project · hand-written HTML, CSS and JavaScript</p>
+        </div>
+        <div class="case__grid">
+          <div class="case__body">
+            <p>Rebuilt in October 2026 to be light and friendly for every visitor: no framework, no animation libraries and no chatbot, with light/dark themes, a larger-text button and WebP images.</p>
+            <div class="btn-row"><a class="btn btn--primary btn--sm" href="development.html#portfolio">How it is built</a><a class="btn btn--ghost btn--sm" href="legacy/index.html">Previous version</a></div>
+          </div>
+          <div class="case__aside">
+            <h4>Stack</h4>
+            <ul class="tags"><li class="tag tag--key">Vanilla JavaScript</li><li class="tag">HTML5</li><li class="tag">CSS3</li><li class="tag">GitHub Pages</li></ul>
+          </div>
+        </div>
+      </article>
     </div>
-  </article>
-
-
-  <!-- =========================================================================
-       02 — HOMESTAY SHIMAH JAY  (freelance)
-       ========================================================================= -->
-  <!-- Kajian kes berdasarkan kod projek dan tangkapan production lokal, September 2026. -->
-<article class="case glass reveal client-case" id="homestay" data-cat="web">
-  <div class="case__head"><span class="case__index">01</span><div><p class="case__role">Hospitality · Freelance website</p><h2 class="case__title">Homestay Shimah Jay</h2></div><span class="work-status">Client project</span></div>
-  <div class="case__grid">
-    <div class="case__body">
-      <h3 class="work-statement">A welcoming place to find your next family stay.</h3><p>A bilingual website bringing eight homestays in Umbai and Telok Mas, Melaka into one easy-to-explore collection. Guests can compare houses, browse real photos and move from discovery to an enquiry.</p>
-      <h3 class="case__sub">The brief</h3><p>Present the houses, facilities and location clearly, and give Malay- and English-speaking guests a straightforward way to contact the hosts.</p>
-      <h3 class="case__sub">What I built</h3><p>Built a responsive Next.js App Router site with a dedicated page for each house, photo galleries, a trip planner, FAQs and a rule-based guest assistant. Malay uses the root URL; English uses /en, with permanent redirects for older /ms links.</p>
-      <h3 class="case__sub">UI / UX decisions</h3><p>Warm natural colours, architectural curves and a clear visual hierarchy create a family-friendly feel. Two-column house cards help guests compare on mobile; touch galleries and prominent WhatsApp links support the enquiry journey.</p>
-      <h3 class="case__sub">Engineering</h3><p>Typed house data feeds the cards, detail pages and assistant. Canonical URLs, hreflang, structured data and a sitemap support discoverability. Booking enquiries hand off to WhatsApp and external booking platforms; this is not an availability or payment engine.</p>
-      <div class="case__stats"><div class="case__stat"><b>8</b><span>homestays in one collection</span></div><div class="case__stat"><b>BM / EN</b><span>language-specific pages</span></div><div class="case__stat"><b>WhatsApp</b><span>direct enquiry journey</span></div></div>
-      <div class="case__links"><a class="btn btn--primary" href="https://www.homestayshimahjay.com/" target="_blank" rel="noopener noreferrer">Visit website ↗</a><a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry">Discuss a similar project ↗</a></div>
-    </div>
-    <aside class="work-evidence">
-      <div class="case__shots work-shots">
-        <figure class="work-shots__desktop"><img src="assets/img/work/homestay-desktop.jpg" alt="Homestay Shimah Jay — actual desktop homepage interface" width="1440" height="1000" loading="lazy"><figcaption>Desktop · homepage</figcaption></figure>
-        <figure><img src="assets/img/work/homestay-detail.jpg" alt="Homestay Shimah Jay — house detail interface" width="1440" height="1000" loading="lazy"><figcaption>House details</figcaption></figure>
-        <figure class="work-shots__mobile"><img src="assets/img/work/homestay-mobile.jpg" alt="Homestay Shimah Jay — actual mobile homepage interface" width="390" height="844" loading="lazy"><figcaption>Mobile · 390px</figcaption></figure>
-      </div>
-      <p class="work-caption">Actual UI from the local production build · September 2026. Select an image to enlarge.</p>
-      <h3 class="case__sub">Technologies</h3><div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS v4</span><span class="tag">Vercel</span></div><h3 class="case__sub">Skills applied</h3><div class="tags"><span class="tag">Responsive UI/UX</span><span class="tag">Bilingual routing</span><span class="tag">Technical SEO</span><span class="tag">Accessible galleries</span><span class="tag">Chatbot logic</span><span class="tag">Browser testing</span></div>
-    </aside>
-  </div>
-</article>
-<!-- Kajian kes berdasarkan kod projek dan tangkapan production lokal, September 2026. -->
-<article class="case glass reveal client-case" id="kgom" data-cat="web">
-  <div class="case__head"><span class="case__index">02</span><div><p class="case__role">Food & events · Freelance website</p><h2 class="case__title">Kambing Golek Melaka Official</h2></div><span class="work-status">Client project</span></div>
-  <div class="case__grid">
-    <div class="case__body">
-      <h3 class="work-statement">From a first impression to an event enquiry.</h3><p>A dedicated website for a Melaka catering business, built around its food, event packages and service information. A guided enquiry form helps visitors prepare the details the business needs for a quotation.</p>
-      <h3 class="case__sub">The brief</h3><p>Make catering packages easy to discover and understand, showcase the food and event experience, and guide visitors towards a useful WhatsApp enquiry.</p>
-      <h3 class="case__sub">What I built</h3><p>Created a multi-page Next.js site with package listings and detail pages, an image gallery, company information, FAQs and a contact page. The enquiry form gathers event details and opens WhatsApp with a prepared message.</p>
-      <h3 class="case__sub">UI / UX decisions</h3><p>Bold food photography, a warm visual palette and distinct package cards put the offer first. Responsive image galleries, clear navigation and repeated enquiry links help visitors explore on both phones and desktops.</p>
-      <h3 class="case__sub">Engineering</h3><p>Reusable React components and typed package content keep the site consistent. Next.js image handling, metadata, structured data, sitemap and robots configuration support delivery and discovery. Motion and Lenis provide animation and scroll behaviour. Enquiries are confirmed by the business, not by an online checkout.</p>
-      <div class="case__stats"><div class="case__stat"><b>Packages</b><span>listing & detail pages</span></div><div class="case__stat"><b>Gallery</b><span>food & event photography</span></div><div class="case__stat"><b>WhatsApp</b><span>prepared event enquiries</span></div></div>
-      <div class="case__links"><a class="btn btn--primary" href="https://kambing-golek-melaka-official.vercel.app/" target="_blank" rel="noopener noreferrer">Visit website ↗</a><a class="btn btn--ghost" href="mailto:naqiudin73@gmail.com?subject=Website%20project%20enquiry">Discuss a similar project ↗</a></div>
-    </div>
-    <aside class="work-evidence">
-      <div class="case__shots work-shots">
-        <figure class="work-shots__desktop"><img src="assets/img/work/kgom-desktop.jpg" alt="Kambing Golek Melaka Official — actual desktop homepage interface" width="1440" height="1000" loading="lazy"><figcaption>Desktop · homepage</figcaption></figure>
-        <figure><img src="assets/img/work/kgom-detail.jpg" alt="Kambing Golek Melaka Official — package listing interface" width="1440" height="1000" loading="lazy"><figcaption>Package discovery</figcaption></figure>
-        <figure class="work-shots__mobile"><img src="assets/img/work/kgom-mobile.jpg" alt="Kambing Golek Melaka Official — actual mobile homepage interface" width="390" height="844" loading="lazy"><figcaption>Mobile · 390px</figcaption></figure>
-      </div>
-      <p class="work-caption">Actual UI from the local production build · September 2026. Select an image to enlarge.</p>
-      <h3 class="case__sub">Technologies</h3><div class="tags"><span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS v4</span><span class="tag">Motion</span><span class="tag">Lenis</span></div><h3 class="case__sub">Skills applied</h3><div class="tags"><span class="tag">Responsive UI/UX</span><span class="tag">Component design</span><span class="tag">Enquiry forms</span><span class="tag">Technical SEO</span><span class="tag">Image optimisation</span><span class="tag">Interaction testing</span></div>
-    </aside>
-  </div>
-</article>
-
-
-  <!-- =========================================================================
-       03 — FINAL YEAR PROJECT
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="fyp" data-cat="ml">
-    <div class="case__head">
-      <span class="case__index">03</span>
-      <div>
-        <h2 class="case__title">Breast Cancer Prediction using the HoverNet Approach</h2>
-        <p class="case__role">UKM · Final Year Project</p>
-      </div>
-      <span class="case__year">2024 – 2025</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          Diagnosing breast cancer from histopathology slides means counting and classifying
-          nuclei by eye — slow, tiring, and inconsistent between reviewers. A model that
-          segments and classifies nuclei automatically gives the pathologist a fast second
-          opinion instead of replacing their judgement.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Implemented the <strong>HoverNet</strong> framework, which predicts horizontal and
-          vertical distance maps alongside the segmentation branch — that is what lets it
-          separate nuclei that touch each other, the failure case simpler models struggle with.
-          Trained and evaluated on the <strong>PanNuke</strong> dataset.
-        </p>
-        <p>
-          Wrapped the model in a <strong>Django</strong> web application so a clinician uploads a
-          slide image and gets back the overlay and per-class counts, with results and user
-          accounts persisted in MySQL. Preprocessing and dataset analysis were done in Jupyter
-          and Excel.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>Simultaneous</b><span>segmentation + classification</span></div>
-          <div class="case__stat"><b>Web-based</b><span>usable without any ML setup</span></div>
-          <div class="case__stat"><b>First Class</b><span>degree outcome</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">HoverNet</span>
-          <span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">PHP</span>
-          <span class="tag">Bootstrap</span><span class="tag">Jupyter</span><span class="tag">XAMPP</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject1.png"  alt="Breast cancer prediction system — overview" loading="lazy">
-          <img src="assets/img/myproject1b.png" alt="Breast cancer prediction system — analysis" loading="lazy">
-          <img src="assets/img/myproject1c.png" alt="Breast cancer prediction system — results" loading="lazy">
-          <img src="assets/img/myproject1d.png" alt="Breast cancer prediction system — interface" loading="lazy">
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       04 — YOLOv8 FACE MASK DETECTION
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="yolo" data-cat="ml">
-    <div class="case__head">
-      <span class="case__index">04</span>
-      <div>
-        <h2 class="case__title">Real-Time Face Mask Detection — YOLOv8 &amp; OpenCV</h2>
-        <p class="case__role">Personal project · Computer vision</p>
-      </div>
-      <span class="case__year">2024</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          Checking mask compliance manually at an entrance does not scale, and a plain
-          "mask / no mask" classifier misses the most common real-world case: a mask worn
-          under the nose. The model needed three classes, not two, and it needed to run live.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Labelled and augmented the dataset in <strong>LabelImg</strong> and
-          <strong>Roboflow</strong>, then trained <strong>YOLOv8</strong> for three classes:
-          worn correctly (green), worn incorrectly (yellow), not worn (red). OpenCV handles the
-          webcam stream and draws the colour-coded boxes; a <strong>Flask</strong> app serves it
-          in the browser so no local install is needed.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>0.905</b><span>mAP@50</span></div>
-          <div class="case__stat"><b>0.898</b><span>precision</span></div>
-          <div class="case__stat"><b>0.848</b><span>recall</span></div>
-          <div class="case__stat"><b>0.636</b><span>mAP@50-95</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">YOLOv8</span><span class="tag">Ultralytics</span><span class="tag">OpenCV</span>
-          <span class="tag">Flask</span><span class="tag">TensorFlow</span><span class="tag">Roboflow</span>
-          <span class="tag">LabelImg</span><span class="tag">Anaconda</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject7.png"  alt="Face mask detection — interface" loading="lazy">
-          <img src="assets/img/myproject7b.png" alt="Face mask detection — live detection" loading="lazy">
-          <img src="assets/img/myproject7d.png" alt="Face mask detection — training run" loading="lazy">
-          <img src="assets/img/myproject7e.png" alt="Face mask detection — evaluation metrics" loading="lazy">
-        </div>
-
-        <div class="case__links">
-          <a class="btn btn--ghost btn--sm magnetic" href="https://github.com/naqiudinfandy/Facemask-detection-YOLOv8-OpenCV" target="_blank" rel="noopener noreferrer">
-            View on GitHub
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-          </a>
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       05 — NETWORK FAULT & SPEED PREDICTION  (TM R&D)
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="network" data-cat="ml data">
-    <div class="case__head">
-      <span class="case__index">05</span>
-      <div>
-        <h2 class="case__title">Network Fault &amp; Internet Speed Prediction</h2>
-        <p class="case__role">TM Research &amp; Development · Data Science Intern</p>
-      </div>
-      <span class="case__year">2024 – 2025</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          Network faults were handled reactively: a customer complains, then someone looks. The
-          telemetry to see problems coming already existed — access network logs, termination
-          logs, CTT records, speed tests — but it was messy enough that nobody trusted it.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Started with the unglamorous half: cleaning and reconciling thousands of records across
-          four sources, which lifted usable data quality by around <strong>90%</strong>. Then built
-          <strong>Random Forest Regression</strong> and <strong>LSTM</strong> time-series models to
-          predict speed degradation and fault likelihood.
-        </p>
-        <p>
-          Results went into <strong>Power BI</strong> and Python (Matplotlib / Seaborn) dashboards
-          reviewed weekly by the ops team. I also automated the data extraction with
-          <strong>Selenium Robot Framework</strong>, and supported the OracleDB → MariaDB migration
-          with ETL work and testing.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>80%+</b><span>prediction accuracy</span></div>
-          <div class="case__stat"><b>90%</b><span>improvement in data quality</span></div>
-          <div class="case__stat"><b>60%</b><span>less manual reporting work</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">LSTM</span><span class="tag">Random Forest</span>
-          <span class="tag">Pandas</span><span class="tag">Power BI</span><span class="tag">Seaborn</span>
-          <span class="tag">Selenium</span><span class="tag">OracleDB</span><span class="tag">MariaDB</span>
-        </div>
-
-        <!-- Internal telco data — the chart below is an illustration of the output shape -->
-        <div class="proj__media proj__media--chart" style="margin-top:18px;border-radius:14px;border:1px solid rgba(255,255,255,.08);min-height:200px">
-          <svg class="spark" viewBox="0 0 320 150" role="img" aria-label="Illustration of predicted versus actual network speed">
-            <defs>
-              <linearGradient id="sparkFill2" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#00F0FF" stop-opacity=".35"/>
-                <stop offset="100%" stop-color="#00F0FF" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <g stroke="rgba(255,255,255,.07)"><line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="80" x2="320" y2="80"/><line x1="0" y1="120" x2="320" y2="120"/></g>
-            <path class="spark__area" d="M0,118 L40,96 L80,108 L120,72 L160,84 L200,50 L240,60 L280,34 L320,42 L320,150 L0,150 Z" fill="url(#sparkFill2)"/>
-            <path class="spark__line" d="M0,118 L40,96 L80,108 L120,72 L160,84 L200,50 L240,60 L280,34 L320,42" fill="none" stroke="#00F0FF" stroke-width="2.2" stroke-linecap="round"/>
-            <path class="spark__pred" d="M200,50 L240,54 L280,28 L320,36" fill="none" stroke="#FF00AA" stroke-width="2" stroke-dasharray="5 5"/>
-          </svg>
-        </div>
-        <p class="form__hint" style="margin-top:10px;text-align:left" data-i18n="page.confidential">
-          Internal enterprise system — no screenshots can be shared, so the write-up describes the approach instead.
-        </p>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       06 — FOOD WASTE PREDICTION  (AirAsia)
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="foodwaste" data-cat="ml data">
-    <div class="case__head">
-      <span class="case__index">06</span>
-      <div>
-        <h2 class="case__title">In-Flight Food Waste Prediction</h2>
-        <p class="case__role">AirAsia · K-Youth Employment Programme</p>
-      </div>
-      <span class="case__year">2025</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          Load too much food onto a flight and it is thrown away; load too little and passengers
-          go without. Every unit of that error is either wasted cost or lost revenue, repeated
-          across hundreds of flights a day.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Worked with the data science team on <strong>XGBoost</strong> models to forecast waste
-          per flight. My contribution was across the pipeline: cleaning the historic catering data,
-          engineering features (route, time of day, aircraft, seasonality, load factor) and tuning
-          hyperparameters against a held-out set.
-        </p>
-        <p>
-          Data tracking, validation and workflow monitoring ran on <strong>Google Cloud
-          Platform</strong>. Alongside the modelling, the programme included formal training in
-          multicultural teamwork, communication and presenting results to non-technical
-          stakeholders — which mattered as much as the model itself.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>XGBoost</b><span>gradient-boosted forecasting</span></div>
-          <div class="case__stat"><b>GCP</b><span>tracked, validated pipeline</span></div>
-          <div class="case__stat"><b>3 months</b><span>industry apprenticeship</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">Pandas</span>
-          <span class="tag">Scikit-Learn</span><span class="tag">Google Cloud</span><span class="tag">Feature Engineering</span>
-        </div>
-        <p class="form__hint" style="margin-top:14px;text-align:left" data-i18n="page.confidential">
-          Internal enterprise system — no screenshots can be shared, so the write-up describes the approach instead.
-        </p>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       07 — ANGULAR + REST API
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="angular" data-cat="web">
-    <div class="case__head">
-      <span class="case__index">07</span>
-      <div>
-        <h2 class="case__title">Angular &amp; REST API Product Platform</h2>
-        <p class="case__role">Full-stack build · Authentication &amp; CRUD</p>
-      </div>
-      <span class="case__year">2024</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          A three-screen application that had to prove the fundamentals properly: real token
-          authentication, protected routes, product management, and a detail view driven by
-          asynchronous API queries — not mocked data.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          <strong>Login</strong> — credentials POST to the API; a valid response stores the bearer
-          token and unlocks the app, while any direct attempt to reach a protected route without
-          one bounces back to login.
-        </p>
-        <p>
-          <strong>Home</strong> — a product table fetched with the bearer token. Adding opens a
-          modal whose submit button stays disabled until every required field is filled; editing
-          pre-fills the same modal and updates the row in place.
-        </p>
-        <p>
-          <strong>Detail</strong> — reached by clicking a product name, with the ID passed as a
-          route parameter. It shows a paginated table with date filters (defaulting to yesterday →
-          today) where both pagination and the range update asynchronously.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>3</b><span>route-guarded modules</span></div>
-          <div class="case__stat"><b>JWT</b><span>bearer token flow</span></div>
-          <div class="case__stat"><b>Async</b><span>paginated, filtered queries</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Angular 18</span><span class="tag">TypeScript</span><span class="tag">RxJS</span>
-          <span class="tag">REST API</span><span class="tag">JWT</span><span class="tag">GitLab</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject8.png"  alt="Angular platform — login" loading="lazy">
-          <img src="assets/img/myproject8a.png" alt="Angular platform — home" loading="lazy">
-          <img src="assets/img/myproject8b.png" alt="Angular platform — product list" loading="lazy">
-          <img src="assets/img/myproject8d.png" alt="Angular platform — modal form" loading="lazy">
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       08 — SENTIMENT ANALYSIS
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="sentiment" data-cat="ml">
-    <div class="case__head">
-      <span class="case__index">08</span>
-      <div>
-        <h2 class="case__title">Tweet Sentiment Classification</h2>
-        <p class="case__role">Modelling project · Natural language processing</p>
-      </div>
-      <span class="case__year">2023</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          Free-text opinion is the hardest kind of data to summarise. The goal was to classify
-          tweets as positive, negative or neutral, and — more usefully — to find out which
-          classical model actually earns its place on this kind of text.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Built the full preprocessing chain: cleaning noise and handles, tokenisation,
-          stop-word handling and vectorisation. Then trained and compared three classifiers —
-          <strong>Logistic Regression</strong>, <strong>Naive Bayes</strong> and
-          <strong>Support Vector Machines</strong> — on identical splits so the comparison was fair.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>3</b><span>models benchmarked head to head</span></div>
-          <div class="case__stat"><b>3-class</b><span>positive / negative / neutral</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">NLTK</span>
-          <span class="tag">Pandas</span><span class="tag">Jupyter</span><span class="tag">Power BI</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject3.png"  alt="Sentiment analysis — overview" loading="lazy">
-          <img src="assets/img/myproject3b.png" alt="Sentiment analysis — exploratory data analysis" loading="lazy">
-          <img src="assets/img/myproject3c.png" alt="Sentiment analysis — model comparison" loading="lazy">
-          <img src="assets/img/myproject3d.png" alt="Sentiment analysis — results" loading="lazy">
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       09 — K-MEANS SEGMENTATION
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="kmeans" data-cat="ml data">
-    <div class="case__head">
-      <span class="case__index">09</span>
-      <div>
-        <h2 class="case__title">Customer Segmentation with K-Means</h2>
-        <p class="case__role">Data analysis project · Unsupervised learning</p>
-      </div>
-      <span class="case__year">2023</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          "All customers" is not a useful marketing target. The task was to split mall customers
-          into meaningful groups from annual income and spending score, and turn those groups into
-          something a business could actually act on.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Cleaned and explored the dataset first — distributions, correlations, outliers — then
-          used the <strong>elbow method</strong> to choose <em>k</em> rather than guessing it.
-          Ran <strong>K-Means</strong> clustering and visualised the resulting segments with
-          Matplotlib and Seaborn, then described each cluster in plain language: who they are,
-          what they spend, what to offer them.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>Elbow</b><span>method-driven cluster count</span></div>
-          <div class="case__stat"><b>High-value</b><span>segments identified for targeting</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">Pandas</span>
-          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Jupyter</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject6.png"  alt="K-Means segmentation — overview" loading="lazy">
-          <img src="assets/img/myproject6b.png" alt="K-Means segmentation — elbow method" loading="lazy">
-          <img src="assets/img/myproject6c.png" alt="K-Means segmentation — clusters" loading="lazy">
-          <img src="assets/img/myproject6e.png" alt="K-Means segmentation — results" loading="lazy">
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       10 — PRODUCT CATALOG WEB SYSTEM
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="catalog" data-cat="web">
-    <div class="case__head">
-      <span class="case__index">10</span>
-      <div>
-        <h2 class="case__title">Product Catalog Web System</h2>
-        <p class="case__role">Web development project · Multi-role system</p>
-      </div>
-      <span class="case__year">2023</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          A drawing-tools retailer needed more than a product list: staff, supervisors and
-          customers all touch the same catalogue but should not see or do the same things.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Built a PHP + MySQL system with three permission levels — Admin, Supervisor and
-          Normal User. Admins manage products including image upload; staff and customer accounts
-          can be registered and updated; purchases generate an invoice. Deployed on UKM's server
-          and tested locally under XAMPP, with a responsive Bootstrap front end.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>3</b><span>user roles with distinct permissions</span></div>
-          <div class="case__stat"><b>Full CRUD</b><span>plus image upload &amp; invoicing</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
-          <span class="tag">Bootstrap</span><span class="tag">phpMyAdmin</span><span class="tag">XAMPP</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject2.png"  alt="Product catalog — home" loading="lazy">
-          <img src="assets/img/myproject2b.png" alt="Product catalog — admin panel" loading="lazy">
-          <img src="assets/img/myproject2e.png" alt="Product catalog — invoice" loading="lazy">
-          <img src="assets/img/myproject2g.png" alt="Product catalog — dashboard" loading="lazy">
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       11 — VB.NET DESKTOP APPLICATION
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="vbapp" data-cat="app">
-    <div class="case__head">
-      <span class="case__index">11</span>
-      <div>
-        <h2 class="case__title">Drawing Art Tools — Desktop Application</h2>
-        <p class="case__role">Desktop software · VB.NET &amp; database integration</p>
-      </div>
-      <span class="case__year">2022</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          A shop counter needs software that works without internet: add a product, take an order,
-          amend it, print the report. Web was the wrong answer here — a native Windows form was
-          the right one.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Built the application in <strong>Visual Studio 2019</strong> with
-          <strong>Visual Basic .NET</strong>, backed by an Access database and MySQL for product and
-          order data. Full create / update / delete on both the catalogue and the orders, with
-          real-time reads and writes between the forms and the database, plus a reporting screen.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>Offline</b><span>works with no internet connection</span></div>
-          <div class="case__stat"><b>2 stores</b><span>Access + MySQL integration</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">VB.NET</span><span class="tag">Visual Studio 2019</span>
-          <span class="tag">MS Access</span><span class="tag">MySQL</span><span class="tag">SQL</span>
-        </div>
-
-        <h3 class="case__sub" data-i18n="page.gallery">Screens</h3>
-        <div class="case__shots">
-          <img src="assets/img/myproject5.png"  alt="Drawing art tools app — main window" loading="lazy">
-          <img src="assets/img/myproject5a.png" alt="Drawing art tools app — products" loading="lazy">
-          <img src="assets/img/myproject5b.png" alt="Drawing art tools app — orders" loading="lazy">
-          <img src="assets/img/myproject5e.png" alt="Drawing art tools app — report" loading="lazy">
-        </div>
-      </aside>
-    </div>
-  </article>
-
-
-  <!-- =========================================================================
-       12 — THIS PORTFOLIO
-       ========================================================================= -->
-  <article lang="en" class="case glass reveal" id="portfolio" data-cat="web">
-    <div class="case__head">
-      <span class="case__index">12</span>
-      <div>
-        <h2 class="case__title">This Portfolio Website</h2>
-        <p class="case__role">Personal project · Third iteration, built from scratch</p>
-      </div>
-      <span class="case__year">2026</span>
-    </div>
-
-    <div class="case__grid">
-      <div class="case__body">
-        <h3 class="case__sub" data-i18n="page.problem">The problem</h3>
-        <p>
-          The previous two versions of my portfolio worked, but they looked like every other
-          developer template: a card grid, a couple of fade-ins, done. I wanted something that
-          demonstrates front-end craft directly — you should be able to judge the work by
-          using the page, before reading a word of it.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.did">What I did</h3>
-        <p>
-          Designed the layout in <strong>Figma</strong> first, then built it by hand in plain
-          HTML, CSS and JavaScript — no framework, no page builder, no build step, so it deploys
-          straight to GitHub Pages.
-        </p>
-        <p>
-          The motion layer uses <strong>GSAP + ScrollTrigger</strong> for scroll-driven parallax
-          and the timeline scrub, and <strong>Motion One</strong> — Framer Motion's vanilla-JS
-          sibling — for the hero entrance. The glass surfaces are real
-          <code>backdrop-filter</code> panels with a specular highlight that tracks the pointer,
-          and there is a canvas particle field, a custom easing cursor, magnetic buttons and 3D
-          tilt cards.
-        </p>
-        <p>
-          Everything is translated into <strong>English, Bahasa Melayu and 中文</strong> through a
-          small key-based i18n layer, and the assistant in the corner is a
-          <strong>rule-based chatbot</strong> — keyword matching over a written answer sheet,
-          no AI service, no API cost.
-        </p>
-
-        <h3 class="case__sub" data-i18n="page.result">Result</h3>
-        <div class="case__stats">
-          <div class="case__stat"><b>0</b><span>build steps or dependencies to install</span></div>
-          <div class="case__stat"><b>3</b><span>languages, one key-based dictionary</span></div>
-          <div class="case__stat"><b>A11y</b><span>keyboard nav, reduced-motion, print styles</span></div>
-        </div>
-      </div>
-
-      <aside>
-        <h3 class="case__sub" data-i18n="page.stack">Stack</h3>
-        <div class="tags">
-          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
-          <span class="tag">GSAP</span><span class="tag">ScrollTrigger</span><span class="tag">Motion One</span>
-          <span class="tag">Canvas API</span><span class="tag">Figma</span><span class="tag">GitHub Pages</span>
-        </div>
-
-        <h3 class="case__sub">Previous versions</h3>
-
-
-        <div class="case__links">
-          <a class="btn btn--ghost btn--sm magnetic" href="https://github.com/naqiudinfandy" target="_blank" rel="noopener noreferrer">
-            Source on GitHub
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-          </a>
-        </div>
-      </aside>
-    </div>
-  <!-- Kedua-dua versi portfolio boleh dibuka, tanpa menggandakan résumé atau fail peribadi. -->
-<section class="version-showcase" aria-label="Portfolio design versions" lang="en">
-  <div><span class="work-kicker">A design evolution</span><h3 class="work-statement">One developer. Two perspectives.</h3><p>Explore the previous portfolio and the current design, built with HTML, CSS and JavaScript.</p></div>
-  <div class="version-grid">
-    <a class="version-card" href="legacy/index.html"><img src="assets/img/work/portfolio-old.jpg" alt="Previous portfolio design preview" width="1440" height="1000" loading="lazy"><span><b>01 / Classic portfolio</b><small>Previous design · Explore ↗</small></span></a>
-    <a class="version-card" href="index.html"><img src="assets/img/work/portfolio-new.jpg" alt="Current portfolio design preview" width="1440" height="1000" loading="lazy"><span><b>02 / Current portfolio</b><small>Current design · Explore ↗</small></span></a>
-  </div>
-</section>
-</article>
-
-
-  <!-- ---- Back to the home page ---- -->
-  <div class="projects__more reveal" style="margin-bottom:80px">
-    <a href="index.html#projects" class="btn btn--primary btn--lg magnetic">
-      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-      <span data-i18n="nav.back">← Back to home</span>
-    </a>
-  </div>
-
-</div>
+  </section>
 </main>
 
-
-<!-- ===========================================================================
-     FOOTER
-     =========================================================================== -->
-<footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <a href="index.html" class="nav__logo"><span class="nav__logo-bracket">&lt;</span>NF<span class="nav__logo-bracket">/&gt;</span></a>
-      <p data-i18n="footer.tagline">Built by hand in Melaka, Malaysia — no page builder, no template.</p>
-    </div>
-    <nav class="footer__links" aria-label="Footer navigation"><a href="development.html" data-i18n="nav.development">Web &amp; Apps</a><a href="legacy/index.html" data-i18n="nav.legacy">Previous portfolio</a>
-      <a href="index.html"                data-i18n="nav.home">Home</a>
-      <a href="index.html#about"          data-i18n="nav.about">About</a>
-      <a href="index.html#experience"     data-i18n="nav.experience">Experience</a>
-      <a href="index.html#skills"         data-i18n="nav.skills">Skills</a>
-      <a href="index.html#certifications" data-i18n="nav.certs">Certifications</a>
-      <a href="index.html#contact"        data-i18n="nav.contact">Contact</a>
-    </nav>
-    <p class="footer__copy mono">© <span id="year">2026</span> Muhammad Naqiudin Bin Noor Affandy</p>
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span data-year>2026</span> Muhammad Naqiudin Bin Noor Affandy · Designed and built by me, by hand.</p>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="development.html">Web projects</a></li>
+      <li><a href="legacy/index.html">Previous portfolio</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
   </div>
-
-  <a href="#" class="to-top magnetic" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  </a>
 </footer>
 
+<!-- Paparan gambar besar: dibuka oleh butang [data-zoom] (lihat site.js initLightbox). -->
+<dialog class="lightbox" id="lightbox" aria-label="Image preview">
+  <div class="lightbox__bar">
+    <p data-lightbox-caption></p>
+    <button class="icon-btn" type="button" data-lightbox-close aria-label="Close preview"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <img alt="">
+</dialog>
 
-<!-- ===========================================================================
-     CHATBOT (same rule-based assistant as the home page)
-     =========================================================================== -->
-<button class="chat-fab magnetic" id="chat-fab" aria-label="Open chat assistant" aria-expanded="false" aria-controls="chat-panel">
-  <svg class="chat-fab__open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9">
-    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-5a8 8 0 1 1 17-6z"/>
-  </svg>
-  <svg class="chat-fab__close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M18 6 6 18M6 6l12 12"/>
-  </svg>
-  <span class="chat-fab__ping"></span>
-</button>
-
-<section class="chat glass" id="chat-panel" inert aria-hidden="true" aria-label="Portfolio assistant">
-  <header class="chat__head">
-    <span class="chat__avatar">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>
-    </span>
-    <div>
-      <strong data-i18n="chat.title">Portfolio Assistant</strong>
-      <small><span class="pulse-dot pulse-dot--sm"></span><span data-i18n="chat.status">rule-based · always online</span></small>
-    </div>
-    <button class="chat__x" id="chat-close" aria-label="Close chat">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-  </header>
-  <div class="chat__log" id="chat-log" role="log" aria-live="polite"></div>
-  <div class="chat__chips" id="chat-chips"></div>
-  <form class="chat__input" id="chat-form">
-    <input id="chat-text" type="text" maxlength="1000" enterkeyhint="send" autocomplete="off" placeholder="Ask about my work…" data-i18n-ph="chat.placeholder" aria-label="Type your message">
-    <button type="submit" aria-label="Send message">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
-    </button>
-  </form>
-</section>
-
-
-<!-- Scripts — same set and order as index.html -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js" defer></script>
-<script src="i18n.js" defer></script>
-<script src="chatbot-knowledge.js" defer></script>
-<script src="chatbot.js" defer></script>
-<script src="script.js" defer></script>
+<button class="to-top" type="button" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-up"/></svg></button>
 </body>
 </html>

@@ -14,6 +14,8 @@ old_portfolio/
 *.fig
 /image/
 /resume/
+# Gambar asal pemilik (saiz penuh). Laman hanya guna versi WebP kecil dalam assets/img/web/.
+assets/img/me/
 *.docx
 *.doc
 *.xlsx
