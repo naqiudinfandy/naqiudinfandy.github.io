@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!--
+  Mock laman web Temu Coffee House, Padang Temu, Melaka.
+  Vanilla HTML + CSS + JS sahaja (tiada framework, tiada build step).
+  Buka terus fail ini dalam browser, atau jalankan pelayan statik ringkas.
+  Gaya: css/style.css | Interaksi: js/main.js | Nota klien: CLIENT_NOTES.md
+  Identiti: kafe klasik waktu malam — espreso + krim + emas, lampu tali (fairy lights) dari foto premis,
+  bingkai panel dinding (wainscoting) dari ruang makan dalam.
+-->
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <!-- [sync-mocks] Halaman pratonton tersembunyi: jangan disenaraikan oleh enjin carian. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/mock/temu-coffee/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Temu Coffee House | Kafe Estetik di Padang Temu, Melaka</title>
+  <meta name="description" content="Temu Coffee House, Taman Jaya Padang Temu, Melaka. Kopi, pasta, nasi lemak ayam berempah dan pencuci mulut dalam suasana cozy. Bilik peribadi untuk majlis hari jadi, parti dan makan malam syarikat. Dibuka 5 petang hingga lewat malam (Selasa tutup).">
+  <meta name="theme-color" content="#16110D">
+
+  <!-- Open Graph: pratonton bila pautan dikongsi di WhatsApp / Facebook -->
+  <meta property="og:title" content="Temu Coffee House, Padang Temu">
+  <meta property="og:description" content="Where extraordinary moments begin. Kafe cozy dengan lampu malam, kopi dan makanan sedap. 5.0 bintang di Google.">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/mock/temu-coffee/img/building/front%20building.png">
+  <meta property="og:type" content="website">
+
+  <!-- Ikon tab: monogram TC ringkas (SVG sebaris, tiada fail tambahan) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316110D'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='30' fill='%23D4AF6A'%3ETC%3C/text%3E%3C/svg%3E">
+
+  <!-- Font Google: Cormorant Garamond (tajuk, klasik seperti papan tanda & poster) + Jost (teks, bersih) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tanda JS aktif seawal mungkin supaya animasi .reveal tidak berkelip -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Data berstruktur (schema.org). Tiada aggregateRating kerana jumlah ulasan tidak diberi. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Temu Coffee House",
+    "alternateName": "Temu Coffee",
+    "slogan": "Where extraordinary moments begin",
+    "image": "img/building/front%20building.png",
+    "telephone": "+60143507883",
+    "servesCuisine": ["Kopi", "Pasta", "Masakan Melayu", "Pencuci mulut"],
+    "priceRange": "RM 1–60",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Taman Jaya Padang Temu",
+      "postalCode": "75050",
+      "addressLocality": "Melaka",
+      "addressRegion": "Melaka",
+      "addressCountry": "MY"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Wednesday", "Thursday"], "opens": "17:00", "closes": "01:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday", "Sunday"], "opens": "17:00", "closes": "02:00" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/temucoffeemelaka/",
+      "https://www.tiktok.com/@temucoffeemelaka"
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- [sync-mocks] Jalur pratonton (bukan sebahagian reka bentuk klien). -->
+<div role="note" style="background:#111827;color:#f9fafb;font:600 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;text-align:center;padding:7px 14px;position:relative;z-index:1000">Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi</div>
+
+  <a class="skip-link" href="#utama">Langkau ke kandungan</a>
+
+  <!-- ===== Header (lutsinar di atas hero gelap, jadi pekat bila skrol) ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#utama" class="brand" aria-label="Temu Coffee House, ke atas">
+        <!-- Monogram TC dalam bingkai bujur, gema logo pada poster "We Are Open" -->
+        <span class="brand__mono" aria-hidden="true">TC</span>
+        <span class="brand__text">
+          <strong>TEMU</strong>
+          <span>Coffee House</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#cerita">Cerita</a>
+        <a href="#menu">Menu</a>
+        <a href="#majlis">Bilik Majlis</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#ulasan">Ulasan</a>
+        <a href="#kerjaya">Kerjaya</a>
+        <a href="#lokasi">Lokasi</a>
+        <a class="btn btn--gold nav__cta" href="https://wa.me/60143507883?text=Hai%20Temu%20Coffee%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="utama">
+
+    <!-- ===== HERO (foto malam + lampu tali berkelip) ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <img src="img/building/front%20building%202.png" alt="" width="680" height="510" fetchpriority="high">
+      </div>
+
+      <!-- Lampu tali: dua lengkung mentol, berkelip perlahan (CSS). Dijeda bila hero di luar skrin. -->
+      <svg class="lights" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="lights__wire" d="M-10 10 Q300 110 600 30 T1210 20"/>
+        <g class="lights__bulbs">
+          <circle cx="60" cy="31" r="4"/><circle cx="140" cy="50" r="4"/><circle cx="220" cy="62" r="4"/>
+          <circle cx="300" cy="66" r="4"/><circle cx="380" cy="62" r="4"/><circle cx="460" cy="50" r="4"/>
+          <circle cx="540" cy="38" r="4"/><circle cx="620" cy="30" r="4"/><circle cx="700" cy="24" r="4"/>
+          <circle cx="780" cy="22" r="4"/><circle cx="860" cy="22" r="4"/><circle cx="940" cy="21" r="4"/>
+          <circle cx="1020" cy="21" r="4"/><circle cx="1100" cy="20" r="4"/><circle cx="1180" cy="20" r="4"/>
+        </g>
+      </svg>
+
+      <div class="container hero__inner">
+        <div class="hero__text reveal">
+          <p class="hero__est">Padang Temu · Melaka · Est. 2026</p>
+          <h1>Kopi sedap,<br>makan puas,<br><em>momen tak terlupa.</em></h1>
+          <p class="hero__script">Where extraordinary moments begin</p>
+          <p class="lead">Kafe cozy dengan ruang dalam bergaya klasik dan meja luar di bawah lampu malam. Lepak bersama kawan, raikan hari jadi atau makan malam bersama pasukan kerja.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--gold btn--lg" href="https://wa.me/60143507883?text=Hai%20Temu%20Coffee%2C%20saya%20ingin%20tempah%20meja." target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+              Tempah Meja
+            </a>
+            <a class="btn btn--line btn--lg" href="#menu">Lihat Menu</a>
+          </div>
+
+          <div class="hero__meta">
+            <p class="status" id="heroStatus"><span class="status-dot" id="heroDot"></span><span id="heroStatusText">Dibuka 5 petang · Selasa tutup</span></p>
+            <p class="hero__rating"><strong>5.0</strong> <span class="stars" aria-label="5.0 daripada 5 bintang">★★★★★</span> <span>359 ulasan Google</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Jalur info ===== -->
+    <section class="strip" aria-label="Maklumat ringkas">
+      <div class="container strip__grid">
+        <div class="strip__item"><span class="strip__k">Isnin, Rabu, Khamis</span><span class="strip__v">5 ptg – 1 pagi</span></div>
+        <div class="strip__item"><span class="strip__k">Jumaat – Ahad</span><span class="strip__v">5 ptg – 2 pagi</span></div>
+        <div class="strip__item"><span class="strip__k">Selasa</span><span class="strip__v">Tutup</span></div>
+        <a class="strip__item" href="tel:+60143507883"><span class="strip__k">Telefon / WhatsApp</span><span class="strip__v">014-350 7883</span></a>
+      </div>
+    </section>
+
+    <!-- ===== Cerita & suasana ===== -->
+    <section class="section section--cream" id="cerita">
+      <div class="container story">
+        <div class="story__photos reveal">
+          <button class="frame frame--a" type="button" data-lightbox="img/building/dining%20area.png">
+            <img src="img/building/dining%20area.png" alt="Ruang makan dalam dengan kerusi rotan dan lampu dinding klasik" width="382" height="510" loading="lazy">
+          </button>
+          <button class="frame frame--b" type="button" data-lightbox="img/building/front%20building%203.png">
+            <img src="img/building/front%20building%203.png" alt="Meja luar Temu Coffee waktu senja dengan lampu tali" width="382" height="510" loading="lazy">
+          </button>
+          <span class="story__badge" aria-hidden="true"><em>Est.</em>2026</span>
+        </div>
+
+        <div class="story__text reveal">
+          <p class="eyebrow">Cerita kami</p>
+          <h2>Dua suasana, <em>satu tempat</em> untuk bertemu</h2>
+          <p>Temu Coffee dibuka pada <strong>14 Ogos 2026</strong> di Padang Temu. Seperti namanya, inilah tempat kawan, keluarga dan rakan kerja bertemu.</p>
+          <ul class="perks">
+            <li>
+              <span class="perks__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9h16v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M8 5v2M12 4v3M16 5v2"/></svg></span>
+              <div><strong>Ruang dalam klasik</strong><span>Berhawa dingin, siling berpanel, kerusi rotan dan potret vintaj.</span></div>
+            </li>
+            <li>
+              <span class="perks__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6q9 8 18 0"/><circle cx="7" cy="10" r="1.5"/><circle cx="12" cy="11.5" r="1.5"/><circle cx="17" cy="10" r="1.5"/></svg></span>
+              <div><strong>Meja luar bawah lampu</strong><span>Paling cantik waktu senja dan malam, kata pelanggan kami.</span></div>
+            </li>
+            <li>
+              <span class="perks__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1"/><circle cx="14" cy="9" r="1"/><circle cx="13" cy="14" r="1"/><circle cx="9.5" cy="14.5" r="1"/></svg></span>
+              <div><strong>Kukis sementara menunggu</strong><span>Ramai pelanggan menyebut kukis percuma yang diberi semasa menunggu makanan.</span></div>
+            </li>
+            <li>
+              <span class="perks__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.3"/><circle cx="15" cy="15" r="1.3"/><circle cx="15" cy="9" r="1.3"/><circle cx="9" cy="15" r="1.3"/></svg></span>
+              <div><strong>Board game bersama geng</strong><span>Lepak lama sambil bermain dan berbual hingga lewat malam.</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Menu (tab; harga daripada foto menu klien) ===== -->
+    <section class="section section--dark" id="menu">
+      <div class="container">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow">Menu</p>
+          <h2>Good coffee. <em>Great food.</em></h2>
+          <p>Pilihan kegemaran daripada menu kami. Harga dalam Ringgit Malaysia (RM).</p>
+        </header>
+
+        <div class="menu reveal">
+          <div class="tabs" role="tablist" aria-label="Kategori menu">
+            <button class="tab is-active" id="tab-kopi" role="tab" aria-selected="true" aria-controls="panel-kopi">Kopi</button>
+            <button class="tab" id="tab-minuman" role="tab" aria-selected="false" aria-controls="panel-minuman" tabindex="-1">Bukan Kopi</button>
+            <button class="tab" id="tab-makan" role="tab" aria-selected="false" aria-controls="panel-makan" tabindex="-1">Makanan</button>
+            <button class="tab" id="tab-sampingan" role="tab" aria-selected="false" aria-controls="panel-sampingan" tabindex="-1">Sampingan</button>
+          </div>
+
+          <!-- Kopi: hanya harga AIS dipaparkan kerana harga panas dalam foto menu dilindungi silau -->
+          <div class="panel is-active" id="panel-kopi" role="tabpanel" aria-labelledby="tab-kopi">
+            <div class="menu__grid">
+              <ul class="menu__list">
+                <li><span>Americano</span><i></i><b>9.50</b></li>
+                <li><span>Cappuccino</span><i></i><b>11.50</b></li>
+                <li><span>Latte</span><i></i><b>11.50</b></li>
+                <li><span>Caramel Macchiato</span><i></i><b>13.50</b></li>
+                <li><span>Mocha</span><i></i><b>14.00</b></li>
+                <li><span>On The Rocks</span><i></i><b>8.00</b></li>
+                <li><span>Toffee Nut Mocha</span><i></i><b>15.00</b></li>
+                <li><span>Butterscotch Latte</span><i></i><b>15.00</b></li>
+                <li><span>Flat White · Long Black <small>(panas sahaja)</small></span><i></i><b class="ask">di kaunter</b></li>
+              </ul>
+              <button class="menu__photo" type="button" data-lightbox="img/servis/food3.png">
+                <img src="img/servis/food3.png" alt="Kopi ais, teh lemon, sup cendawan dan pasta di atas meja" width="680" height="510" loading="lazy">
+              </button>
+            </div>
+            <p class="menu__note">Harga kopi di atas ialah versi <strong>ais</strong>. Versi panas juga ada; sila rujuk harga di kaunter.</p>
+          </div>
+
+          <div class="panel" id="panel-minuman" role="tabpanel" aria-labelledby="tab-minuman" hidden>
+            <div class="menu__grid">
+              <ul class="menu__list">
+                <li><span>Green Tea Latte <small>panas / ais</small></span><i></i><b>12.50 / 13.90</b></li>
+                <li><span>Chocolate Marshmellow</span><i></i><b>14.00 / 15.00</b></li>
+                <li><span>Chocolate Toffee Nut</span><i></i><b>12.50 / 13.50</b></li>
+                <li><span>Chocolate Classic</span><i></i><b>11.50 / 12.50</b></li>
+                <li><span>Honey Lemon Tea</span><i></i><b>6.00 / 6.50</b></li>
+                <li><span>Mango Fizzy · Strawberry Fizzy</span><i></i><b>12.90</b></li>
+                <li><span>Bundaberg <small>(Sarsaparilla, Passionfruit, Pink Grapefruit, Ginger)</small></span><i></i><b>9.00</b></li>
+                <li><span>Evian</span><i></i><b>10.00</b></li>
+                <li><span>Dubai Chocolate Bar</span><i></i><b>12.00</b></li>
+                <li><span>Pistachio Choco Roll <small>6 biji</small></span><i></i><b>10.00</b></li>
+              </ul>
+              <button class="menu__photo" type="button" data-lightbox="img/servis/dessert%20and%20food.png">
+                <img src="img/servis/dessert%20and%20food.png" alt="Minuman ais, pencuci mulut berbentuk mangga dan stik" width="382" height="510" loading="lazy">
+              </button>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-makan" role="tabpanel" aria-labelledby="tab-makan" hidden>
+            <div class="menu__grid">
+              <ul class="menu__list">
+                <li class="is-star"><span>Nasi Lemak Ayam Berempah <small>Chef Speciality</small></span><i></i><b>13.90</b></li>
+                <li><span>Aglio Olio Seafood</span><i></i><b>23.00</b></li>
+                <li><span>Creamy Tomyam</span><i></i><b>25.00</b></li>
+                <li><span>Carbonara Beef</span><i></i><b>19.90</b></li>
+                <li><span>Carbonara Chicken</span><i></i><b>18.90</b></li>
+                <li><span>Bolognese Beef</span><i></i><b>18.90</b></li>
+                <li><span>Bolognese Chicken</span><i></i><b>17.90</b></li>
+              </ul>
+              <button class="menu__photo" type="button" data-lightbox="img/servis/food2.png">
+                <img src="img/servis/food2.png" alt="Nasi lemak ayam berempah dan pasta udang" width="382" height="510" loading="lazy">
+              </button>
+            </div>
+            <p class="menu__note">Pilih jenis pasta: <strong>spaghetti, fettuccine</strong> atau <strong>penne</strong>.</p>
+          </div>
+
+          <div class="panel" id="panel-sampingan" role="tabpanel" aria-labelledby="tab-sampingan" hidden>
+            <div class="menu__grid">
+              <ul class="menu__list">
+                <li><span>Mushroom Soup + Garlic Bread <small>2 keping</small></span><i></i><b>13.50</b></li>
+                <li><span>Loaded Fries</span><i></i><b>14.90</b></li>
+                <li><span>Popia Carbonara <small>5 biji</small></span><i></i><b>11.90</b></li>
+                <li><span>Classic Fries</span><i></i><b>8.90</b></li>
+                <li><span>Garlic Bread <small>3 keping</small></span><i></i><b>5.80</b></li>
+                <li><span>Cekodok Bawang <small>Local Favourite</small></span><i></i><b>6.80</b></li>
+                <li><span>Cekodok Geragau <small>Local Favourite</small></span><i></i><b>9.50</b></li>
+              </ul>
+              <button class="menu__photo" type="button" data-lightbox="img/servis/food1.png">
+                <img src="img/servis/food1.png" alt="Pelbagai hidangan pasta, sup dan sampingan di atas meja" width="223" height="160" loading="lazy">
+              </button>
+            </div>
+          </div>
+
+          <div class="menu__foot">
+            <p>Harga mengikut menu bercetak (Nov 2026) dan boleh berubah.</p>
+            <button class="btn btn--line btn--sm" type="button" data-lightbox="img/servis/menu.png">Lihat foto menu asal</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Bilik majlis (borang → WhatsApp, tiada server) ===== -->
+    <section class="section section--wall" id="majlis">
+      <div class="container celebrate">
+        <div class="celebrate__text reveal">
+          <p class="eyebrow">Bilik peribadi</p>
+          <h2>Raikan <em>momen istimewa</em> anda di Temu</h2>
+          <p>Kami ada bilik peribadi untuk majlis kecil anda. Sesuai untuk:</p>
+          <ul class="occasions">
+            <li>Hari jadi</li><li>Parti</li><li>Makan malam syarikat</li><li>Mesyuarat santai</li><li>Majlis keluarga</li><li>Reunion</li>
+          </ul>
+          <blockquote class="celebrate__quote">
+            “Huge thank you to all the staff making my birthday extra special.”
+            <cite>Farhan Zulkeflee, ulasan Google</cite>
+          </blockquote>
+        </div>
+
+        <form class="booking reveal" id="bookingForm" novalidate>
+          <h3>Tanya tentang bilik peribadi</h3>
+          <p class="small">Isi ringkas. Kami buka WhatsApp dengan mesej siap ditulis; tiada data disimpan di laman ini.</p>
+          <div class="booking__row">
+            <div>
+              <label for="bName">Nama</label>
+              <input id="bName" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="bType">Majlis</label>
+              <select id="bType" name="type">
+                <option>Hari jadi</option>
+                <option>Parti</option>
+                <option>Makan malam syarikat</option>
+                <option>Mesyuarat santai</option>
+                <option>Majlis keluarga</option>
+                <option>Lain-lain</option>
+              </select>
+            </div>
+          </div>
+          <div class="booking__row">
+            <div>
+              <label for="bDate">Tarikh</label>
+              <input id="bDate" name="date" type="date">
+            </div>
+            <div>
+              <label for="bPax">Bilangan tetamu</label>
+              <input id="bPax" name="pax" type="number" min="1" max="200" inputmode="numeric" placeholder="cth. 15">
+            </div>
+          </div>
+          <p class="form-error" id="bookingError" role="alert"></p>
+          <button class="btn btn--gold btn--block" type="submit">Hantar melalui WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== Galeri (bento) ===== -->
+    <section class="section section--cream" id="galeri">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Galeri</p>
+          <h2>Cozy &amp; <em>aesthetic</em>, siang atau malam</h2>
+        </header>
+        <div class="gallery reveal">
+          <button class="gallery__item" type="button" data-lightbox="img/building/front%20building.png">
+            <img src="img/building/front%20building.png" alt="Hadapan Temu Hall dan Temu Coffee pada waktu malam" width="680" height="510" loading="lazy">
+            <span class="gallery__cap">Temu Hall &amp; Temu Coffee</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/cozy%20and%20aesthetic.png">
+            <img src="img/building/cozy%20and%20aesthetic.png" alt="Ruang dalam kafe dengan lampu malap" width="287" height="510" loading="lazy">
+            <span class="gallery__cap">Suasana malam</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/dessert.png">
+            <img src="img/servis/dessert.png" alt="Peti pencuci mulut dengan kek dan minuman" width="382" height="510" loading="lazy">
+            <span class="gallery__cap">Pencuci mulut</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/inside%20temu.png">
+            <img src="img/building/inside%20temu.png" alt="Barista di stesen minuman bawah papan Temu Coffee" width="382" height="510" loading="lazy">
+            <span class="gallery__cap">Stesen barista</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/kaunter%202.png">
+            <img src="img/building/kaunter%202.png" alt="Kaunter kopi dengan mesin espreso dan rak" width="680" height="382" loading="lazy">
+            <span class="gallery__cap">Kaunter kopi</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/food4.png">
+            <img src="img/servis/food4.png" alt="Ayam bakar bersama nasi dan sambal" width="382" height="510" loading="lazy">
+            <span class="gallery__cap">Hidangan utama</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/dining%20area%202.png">
+            <img src="img/building/dining%20area%202.png" alt="Meja marmar panjang dan siling berpanel" width="382" height="510" loading="lazy">
+            <span class="gallery__cap">Meja berkumpulan</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/boardgame.png">
+            <img src="img/servis/boardgame.png" alt="Board game di atas meja bersama kentang goreng dan minuman" width="382" height="510" loading="lazy">
+            <span class="gallery__cap">Board game</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/food5.webp">
+            <img src="img/servis/food5.webp" alt="Semangkuk mi berkuah merah dengan udang dan telur" width="382" height="510" loading="lazy">
+            <span class="gallery__cap">Hidangan berkuah</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/kaunter.png">
+            <img src="img/building/kaunter.png" alt="Kaunter dan ruang makan yang terang" width="680" height="510" loading="lazy">
+            <span class="gallery__cap">Ruang makan dalam</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Ulasan Google (karusel dengan butang) ===== -->
+    <section class="section section--dark" id="ulasan">
+      <div class="container">
+        <header class="reviews-head reveal">
+          <div>
+            <p class="eyebrow">Ulasan Google</p>
+            <h2>Kata mereka yang <em>sudah singgah</em></h2>
+          </div>
+          <div class="score">
+            <span class="score__num">5.0</span>
+            <span>
+              <span class="stars" aria-label="5.0 daripada 5 bintang">★★★★★</span>
+              <small>359 ulasan di Google (2 Nov 2026)</small>
+            </span>
+          </div>
+        </header>
+
+        <!-- Kad dijana oleh js/main.js (senarai REVIEWS) -->
+        <div class="reviews reveal" id="reviews" tabindex="0" aria-label="Ulasan pelanggan, leret ke kanan"></div>
+
+        <div class="reviews-nav reveal">
+          <button class="round" type="button" id="revPrev" aria-label="Ulasan sebelumnya">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="round" type="button" id="revNext" aria-label="Ulasan seterusnya">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <a class="btn btn--line btn--sm" href="https://maps.google.com/?cid=9410608023658080383" target="_blank" rel="noopener">Lihat semua di Google</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kerjaya (kad jawatan; setiap butang buka WhatsApp dengan nama jawatan) ===== -->
+    <section class="section section--cream" id="kerjaya">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Kerjaya</p>
+          <h2>Jadi sebahagian <em>pasukan Temu</em></h2>
+          <p>Suka suasana kafe dan melayan orang? Pilih jawatan dan WhatsApp kami terus. Kekosongan bergantung pada keperluan semasa.</p>
+        </header>
+
+        <div class="roles reveal">
+          <article class="role">
+            <span class="role__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M9 3c0 1.5 1 1.5 1 3M13 3c0 1.5 1 1.5 1 3"/></svg></span>
+            <h3>Barista</h3>
+            <p>Sediakan kopi dan minuman, jaga kualiti setiap cawan dan kebersihan bar.</p>
+            <a class="role__link" data-role="Barista" href="https://wa.me/60143507883" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+          <article class="role">
+            <span class="role__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 13a6 6 0 0 1 12 0z"/><path d="M4 13h16M12 7V5"/><path d="M7 17h10l-1 3H8z"/></svg></span>
+            <h3>Kru Dapur / Tukang Masak</h3>
+            <p>Sediakan pasta, nasi lemak dan sampingan mengikut resipi, serta jaga kebersihan dapur.</p>
+            <a class="role__link" data-role="Kru Dapur / Tukang Masak" href="https://wa.me/60143507883" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+          <article class="role">
+            <span class="role__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M3 12h6"/></svg></span>
+            <h3>Pelayan (Service Crew)</h3>
+            <p>Sambut pelanggan, ambil pesanan dan hantar makanan dengan mesra dan sopan.</p>
+            <a class="role__link" data-role="Pelayan (Service Crew)" href="https://wa.me/60143507883" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+          <article class="role">
+            <span class="role__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M8 9V5h8v4M8 14h2M14 14h2M8 17h8"/></svg></span>
+            <h3>Juruwang / Kaunter</h3>
+            <p>Uruskan pesanan dan bayaran di kaunter, serta bantu pelanggan memilih menu.</p>
+            <a class="role__link" data-role="Juruwang / Kaunter" href="https://wa.me/60143507883" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+        </div>
+        <p class="roles__note reveal">Waktu kerja mengikut waktu operasi kafe (petang hingga lewat malam). Sila nyatakan nama, umur dan pengalaman dalam mesej anda.</p>
+      </div>
+    </section>
+
+    <!-- ===== Lokasi & waktu ===== -->
+    <section class="section section--wall" id="lokasi">
+      <div class="container location">
+        <div class="location__info reveal">
+          <p class="eyebrow">Lokasi &amp; waktu</p>
+          <h2>Jumpa kami di <em>Padang Temu</em></h2>
+          <address>Taman Jaya Padang Temu,<br>75050 Melaka</address>
+          <p class="location__hint">Di Jalan Padang Temu, berhampiran simpang Jalan Jaya 1.</p>
+
+          <p class="status status--block" id="openStatus" aria-live="polite"></p>
+
+          <table class="hours" id="hours">
+            <caption class="sr-only">Waktu operasi</caption>
+            <tbody>
+              <tr data-day="1"><th scope="row">Isnin</th><td>5:00 ptg – 1:00 pagi</td></tr>
+              <tr data-day="2" class="is-closed"><th scope="row">Selasa</th><td>Tutup</td></tr>
+              <tr data-day="3"><th scope="row">Rabu</th><td>5:00 ptg – 1:00 pagi</td></tr>
+              <tr data-day="4"><th scope="row">Khamis</th><td>5:00 ptg – 1:00 pagi</td></tr>
+              <tr data-day="5"><th scope="row">Jumaat</th><td>5:00 ptg – 2:00 pagi</td></tr>
+              <tr data-day="6"><th scope="row">Sabtu</th><td>5:00 ptg – 2:00 pagi</td></tr>
+              <tr data-day="0"><th scope="row">Ahad</th><td>5:00 ptg – 2:00 pagi</td></tr>
+            </tbody>
+          </table>
+
+          <div class="btn-row">
+            <a class="btn btn--gold" href="https://maps.google.com/?cid=9410608023658080383" target="_blank" rel="noopener">Google Maps</a>
+            <a class="btn btn--line" href="https://www.waze.com/ms/live-map/directions/my/melaka/melaka/temu-coffee-house?to=place.ChIJu3FEPxPu0TERf6iUUiMymYI" target="_blank" rel="noopener">Waze</a>
+            <a class="btn btn--line" href="tel:+60143507883">014-350 7883</a>
+          </div>
+        </div>
+
+        <div class="map reveal">
+          <!-- Peta guna CID tempat Google (dari ftid pautan Maps pemilik); tiada API key diperlukan -->
+          <iframe title="Peta lokasi Temu Coffee House, Padang Temu" src="https://maps.google.com/maps?cid=9410608023658080383&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Soalan lazim ===== -->
+    <section class="section section--cream" id="faq">
+      <div class="container faq">
+        <header class="section__head reveal">
+          <p class="eyebrow">Soalan lazim</p>
+          <h2>Sebelum <em>anda datang</em></h2>
+        </header>
+        <div class="faq__list reveal">
+          <details>
+            <summary>Hari apa Temu Coffee tutup?</summary>
+            <p>Kami tutup setiap hari Selasa. Hari lain dibuka dari 5:00 petang: hingga 1:00 pagi (Isnin, Rabu, Khamis) dan hingga 2:00 pagi (Jumaat hingga Ahad).</p>
+          </details>
+          <details>
+            <summary>Boleh tempah bilik peribadi untuk hari jadi?</summary>
+            <p>Boleh. Isi borang di bahagian Bilik Peribadi atau WhatsApp 014-350 7883 dengan tarikh dan bilangan tetamu. Staf kami akan beri butiran lanjut.</p>
+          </details>
+          <details>
+            <summary>Boleh pilih jenis pasta?</summary>
+            <p>Boleh. Semua pasta boleh dipilih dengan spaghetti, fettuccine atau penne.</p>
+          </details>
+          <details>
+            <summary>Ada tempat duduk luar?</summary>
+            <p>Ada. Meja luar di hadapan kafe dihiasi lampu tali, sesuai untuk lepak waktu petang dan malam. Ruang dalam pula berhawa dingin.</p>
+          </details>
+          <details>
+            <summary>Berapa bajet seorang?</summary>
+            <p>Kebanyakan pelanggan di Google melaporkan sekitar RM20 hingga RM40 seorang. Lihat menu di atas untuk harga setiap hidangan.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <span class="brand__mono brand__mono--lg" aria-hidden="true">TC</span>
+        <div>
+          <strong>Temu Coffee House</strong>
+          <p class="footer__script">Where extraordinary moments begin</p>
+          <p>Good coffee. Great food. Extraordinary moments.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3>Waktu</h3>
+        <ul class="footer__list">
+          <li>Isnin, Rabu, Khamis · 5 ptg – 1 pagi</li>
+          <li>Jumaat – Ahad · 5 ptg – 2 pagi</li>
+          <li>Selasa · Tutup</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Hubungi</h3>
+        <ul class="footer__list">
+          <li><a href="tel:+60143507883">014-350 7883</a></li>
+          <li>Taman Jaya Padang Temu, 75050 Melaka</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Ikuti kami</h3>
+        <div class="social">
+          <a href="https://www.instagram.com/temucoffeemelaka/" target="_blank" rel="noopener" aria-label="Instagram @temucoffeemelaka">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@temucoffeemelaka" target="_blank" rel="noopener" aria-label="TikTok @temucoffeemelaka">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3c.4 2.4 1.9 4 4.5 4.2v3.2a8 8 0 0 1-4.4-1.4v6.6A6.4 6.4 0 1 1 9.7 9.3v3.3a3.1 3.1 0 1 0 3.1 3.1V3z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/ridzuanM3s/posts/-open-day-today-the-wait-is-finally-over-%EF%B8%8Ftemu-coffee-is-officially-open-todayco/28004882965788034/" target="_blank" rel="noopener" aria-label="Pengumuman pembukaan di Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z"/></svg>
+          </a>
+        </div>
+        <p class="small">@temucoffeemelaka</p>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Temu Coffee House. Hak cipta terpelihara.</p>
+      <p>Padang Temu, Melaka</p>
+    </div>
+  </footer>
+
+  <!-- Butang WhatsApp terapung (desktop & tablet) -->
+  <a class="wa-float" href="https://wa.me/60143507883?text=Hai%20Temu%20Coffee%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="WhatsApp Temu Coffee">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.2.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.2z"/></svg>
+  </a>
+
+  <!-- Bar tindakan bawah (telefon sahaja) -->
+  <nav class="action-bar" aria-label="Tindakan pantas">
+    <a href="tel:+60143507883">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      Telefon
+    </a>
+    <a class="is-primary" href="https://wa.me/60143507883?text=Hai%20Temu%20Coffee%2C%20saya%20ingin%20tempah%20meja." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+      Tempah
+    </a>
+    <a href="https://maps.google.com/?cid=9410608023658080383" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      Arah
+    </a>
+  </nav>
+
+  <!-- Lightbox gambar (dialog asli browser) -->
+  <dialog class="lightbox" id="lightbox" aria-label="Paparan gambar">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Tutup gambar">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

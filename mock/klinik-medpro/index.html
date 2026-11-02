@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<!--
+  Mock laman web Klinik MedPro, Batu Berendam, Melaka.
+  Vanilla HTML + CSS + JS sahaja (tiada framework, tiada build step).
+  Buka terus fail ini dalam browser, atau jalankan pelayan statik ringkas.
+  Gaya: css/style.css | Interaksi: js/main.js | Nota klien: CLIENT_NOTES.md
+  Motif reka bentuk: BULATAN (bentuk logo) + garis degupan jantung (ECG) dari simbol logo.
+-->
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <!-- [sync-mocks] Halaman pratonton tersembunyi: jangan disenaraikan oleh enjin carian. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/mock/klinik-medpro/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Klinik MedPro Batu Berendam | Klinik Keluarga & Klinik Panel, Melaka</title>
+  <meta name="description" content="Klinik MedPro, Taman Melaka Baru, Batu Berendam. Rawatan penyakit akut & kronik, vaksinasi, rawatan luka, lawatan ke rumah, Grab Medical Checkup dan klinik panel lebih 20 syarikat. Dibuka setiap hari 9 pagi hingga 9 malam.">
+  <meta name="theme-color" content="#16264A">
+
+  <!-- Open Graph: pratonton bila pautan dikongsi di WhatsApp / Facebook -->
+  <meta property="og:title" content="Klinik MedPro, Batu Berendam">
+  <meta property="og:description" content="Healing lives with heart. Klinik keluarga & klinik panel di Taman Melaka Baru. Setiap hari 9 pagi hingga 9 malam.">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/mock/klinik-medpro/img/building/front%20bulding%20night.png">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="img/logo/logo.png">
+
+  <!-- Font Google: Sora (tajuk, geometri bulat sepadan logo) + DM Sans (teks) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tanda JS aktif seawal mungkin supaya animasi .reveal tidak berkelip -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Data berstruktur (schema.org) supaya Google faham ini sebuah klinik.
+       Tiada "geo": koordinat tepat belum disahkan (lihat CLIENT_NOTES). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Klinik MedPro",
+    "slogan": "Healing lives with heart",
+    "image": "img/building/front%20bulding%20night.png",
+    "logo": "img/logo/logo.png",
+    "telephone": ["+601130044520", "+6063176362"],
+    "email": "klinikmedpro@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 352 (Tingkat Bawah), Jalan Merak 1, Taman Melaka Baru",
+      "postalCode": "75350",
+      "addressLocality": "Batu Berendam",
+      "addressRegion": "Melaka",
+      "addressCountry": "MY"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "09:00", "closes": "21:00"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/p/Klinik-Medpro-61584519770132/",
+      "https://www.instagram.com/klinik.medpro/"
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- [sync-mocks] Jalur pratonton (bukan sebahagian reka bentuk klien). -->
+<div role="note" style="background:#111827;color:#f9fafb;font:600 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;text-align:center;padding:7px 14px;position:relative;z-index:1000">Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi</div>
+
+  <a class="skip-link" href="#utama">Langkau ke kandungan</a>
+
+  <!-- ===== Header & navigasi (melekat di atas bila skrol) ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#utama" class="brand" aria-label="Klinik MedPro, ke atas">
+        <!-- Logo asal JPG bulat berlatar putih; dipaparkan dalam bekas bulat -->
+        <span class="brand__mark"><img src="img/logo/logo.png" alt="" width="447" height="447"></span>
+        <span class="brand__text">
+          <strong>Klinik <em>MedPro</em></strong>
+          <span>Batu Berendam · Melaka</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#servis">Servis</a>
+        <a href="#panel">Panel</a>
+        <a href="#fasiliti">Fasiliti</a>
+        <a href="#ulasan">Ulasan</a>
+        <a href="#kerjaya">Kerjaya</a>
+        <a href="#lokasi">Lokasi</a>
+        <a class="btn btn--coral nav__cta" href="https://wa.me/601130044520?text=Hai%20Klinik%20MedPro%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="utama">
+
+    <!-- ===== HERO (latar cerah, bulatan besar seperti logo) ===== -->
+    <section class="hero">
+      <!-- Bulatan hiasan di latar (tidak dibaca oleh pembaca skrin) -->
+      <span class="hero__ring hero__ring--1" aria-hidden="true"></span>
+      <span class="hero__ring hero__ring--2" aria-hidden="true"></span>
+
+      <div class="container hero__grid">
+        <div class="hero__text reveal">
+          <p class="pill">
+            <span class="status-dot" id="heroStatusDot"></span>
+            <span id="heroStatus">Dibuka setiap hari, 9 pagi – 9 malam</span>
+          </p>
+          <h1>Rawatan <span class="hl">pantas</span> &amp; mesra untuk seisi keluarga</h1>
+          <p class="tagline">
+            <!-- Garis ECG kecil, sama seperti dalam simbol logo -->
+            <svg viewBox="0 0 64 16" aria-hidden="true"><path d="M0 8h20l3-6 4 12 4-12 3 6h30"/></svg>
+            Healing lives with heart
+          </p>
+          <p class="lead">Klinik keluarga di Taman Melaka Baru, Batu Berendam. Doktor sedia sebaik klinik dibuka, penjelasan yang terperinci dan harga yang berpatutan.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--coral btn--lg" href="https://wa.me/601130044520?text=Hai%20Klinik%20MedPro%2C%20saya%20ingin%20membuat%20temujanji." target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+              WhatsApp Kami
+            </a>
+            <a class="btn btn--ghost btn--lg" href="tel:+6063176362">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+              06-317 6362
+            </a>
+          </div>
+
+          <!-- Bukti ringkas: ulasan 5 bintang + bilangan panel (dikira dari senarai klien) -->
+          <ul class="hero__proof">
+            <li>
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span><strong>Ulasan 5 bintang</strong> di Google</span>
+            </li>
+            <li>
+              <span class="hero__proof-num">20+</span>
+              <span><strong>Syarikat panel</strong> termasuk DRB-HICOM &amp; BSN</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Foto premis waktu malam dalam bingkai bulat + kad terapung -->
+        <div class="hero__visual reveal">
+          <div class="circle-frame">
+            <div class="circle-frame__clip">
+              <img src="img/building/front%20bulding%20night.png" alt="Pintu masuk Klinik MedPro yang terang pada waktu malam" width="680" height="510" fetchpriority="high">
+            </div>
+          </div>
+          <div class="float-card float-card--top">
+            <span class="float-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <span><strong>7 hari seminggu</strong><small>9:00 pagi – 9:00 malam</small></span>
+          </div>
+          <div class="float-card float-card--bottom">
+            <span class="float-card__icon float-card__icon--green" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 16l2-6h12l2 6"/><path d="M3 16h18v3H3z"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>
+            </span>
+            <span><strong>Grab Medical Checkup</strong><small>Untuk rakan pemandu Grab</small></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Garis degupan jantung melintang (dilukis sekali bila halaman dibuka) -->
+      <svg class="hero__ecg" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 30h470l14-22 18 44 18-44 14 22h80l10-14 12 28 10-14h554"/>
+      </svg>
+    </section>
+
+    <!-- ===== Jalur info ringkas ===== -->
+    <section class="infobar" aria-label="Maklumat ringkas">
+      <div class="container infobar__grid">
+        <div class="info">
+          <svg class="info__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><strong>Setiap hari</strong><span>9:00 pagi – 9:00 malam</span></div>
+        </div>
+        <a class="info" href="tel:+601130044520">
+          <svg class="info__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          <div><strong>011-3004 4520</strong><span>06-317 6362</span></div>
+        </a>
+        <a class="info" href="#lokasi">
+          <svg class="info__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><strong>Taman Melaka Baru</strong><span>Batu Berendam, 75350 Melaka</span></div>
+        </a>
+        <a class="info" href="#panel">
+          <svg class="info__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <div><strong>Klinik panel</strong><span>20+ syarikat &amp; Mednefits</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Servis (senarai dari pemilik/klien) ===== -->
+    <section class="section" id="servis">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Servis kami</p>
+          <h2>Caring for you and your family <span class="hl">with heart</span></h2>
+          <p>Dari demam dan batuk hingga penyakit kronik, rawatan luka dan lawatan ke rumah. Satu klinik untuk semua ahli keluarga.</p>
+        </header>
+
+        <div class="services reveal">
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>
+            </span>
+            <h3>Penyakit akut &amp; kronik</h3>
+            <p>Demam, selesema, sakit perut dan kecederaan ringan. Susulan berkala untuk darah tinggi, kencing manis dan kolesterol.</p>
+          </article>
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 20h14l-1.5-11h-11z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/><path d="M10 14h4"/></svg>
+            </span>
+            <h3>Program turun berat badan</h3>
+            <p>Penilaian dan pemantauan oleh doktor, dengan nasihat pemakanan dan gaya hidup yang sesuai untuk anda.</p>
+          </article>
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 3l3 3M16 5l3 3-9 9H7v-3z"/><path d="M5 19l2-2"/></svg>
+            </span>
+            <h3>Vaksinasi</h3>
+            <p>Suntikan vaksin untuk dewasa dan kanak-kanak. WhatsApp kami untuk semak stok dan jenis vaksin.</p>
+          </article>
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" transform="rotate(-45 12 12)"/><path d="M10 12h.01M12 10h.01M14 12h.01M12 14h.01"/></svg>
+            </span>
+            <h3>Rawatan luka</h3>
+            <p>Cuci dan balut luka, luka kecil akibat kemalangan, serta penjagaan luka susulan sehingga sembuh.</p>
+          </article>
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M12 12v6M9 15h6"/></svg>
+            </span>
+            <h3>Lawatan ke rumah</h3>
+            <p>Untuk warga emas atau pesakit yang sukar bergerak. Hubungi kami dahulu untuk mengatur masa lawatan.</p>
+          </article>
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3c4 4 6 7 6 10a6 6 0 0 1-12 0c0-3 2-6 6-10z"/><path d="M10 13h.01M14 15h.01M12 11h.01"/></svg>
+            </span>
+            <h3>Penyakit kulit</h3>
+            <p>Ruam, jerawat, ekzema, jangkitan kulat dan masalah kulit lain diperiksa dan dirawat oleh doktor.</p>
+          </article>
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </span>
+            <h3>Penyakit kelamin (STD)</h3>
+            <p>Saringan dan rawatan secara sulit, peribadi dan tanpa menghakimi. Maklumat anda dijaga rapi.</p>
+          </article>
+          <article class="service service--feature">
+            <span class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 16l2-6h12l2 6"/><path d="M3 16h18v3H3z"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>
+            </span>
+            <h3>Grab Medical Checkup</h3>
+            <p>Pemeriksaan kesihatan untuk rakan pemandu Grab. WhatsApp kami untuk semak dokumen yang perlu dibawa.</p>
+            <a class="service__link" href="https://wa.me/601130044520?text=Hai%20Klinik%20MedPro%2C%20saya%20ingin%20buat%20Grab%20Medical%20Checkup." target="_blank" rel="noopener">Tanya sekarang →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kenapa MedPro (setiap poin disokong oleh ulasan sebenar) ===== -->
+    <section class="section section--soft" id="kenapa">
+      <div class="container why">
+        <div class="why__intro reveal">
+          <p class="eyebrow">Kenapa MedPro</p>
+          <h2>Apa yang pesakit kami <span class="hl">sebut</span></h2>
+          <p>Klinik baharu di Batu Berendam, tetapi pesakit sudah merasai bezanya. Setiap perkara di sini diambil daripada ulasan Google sebenar.</p>
+          <a class="btn btn--navy" href="#ulasan">Baca ulasan</a>
+        </div>
+        <ul class="why__list reveal">
+          <li>
+            <span class="why__num">01</span>
+            <div><h3>Doktor sedia dari awal</h3><p>“Quickly nurse attend to me and doctor was fast response.”</p></div>
+          </li>
+          <li>
+            <span class="why__num">02</span>
+            <div><h3>Penjelasan yang terperinci</h3><p>“Very detailed explanation given by doctor.”</p></div>
+          </li>
+          <li>
+            <span class="why__num">03</span>
+            <div><h3>Harga berpatutan</h3><p>“Price is worth… they use original stuff.”</p></div>
+          </li>
+          <li>
+            <span class="why__num">04</span>
+            <div><h3>Mesra kanak-kanak</h3><p>“Very gentle and passionate, get along well with kids.”</p></div>
+          </li>
+          <li>
+            <span class="why__num">05</span>
+            <div><h3>Bersih &amp; selesa</h3><p>“Clean and nice environment. Front desk lady was polite.”</p></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Klinik panel ===== -->
+    <section class="section section--navy" id="panel">
+      <div class="container">
+        <header class="section__head section__head--light reveal">
+          <p class="eyebrow">Klinik panel</p>
+          <h2>Staf syarikat panel? <span class="hl">Datang terus</span></h2>
+          <p>Bawa kad pekerja atau kad panel anda. Jika syarikat anda tiada dalam senarai, hubungi kami untuk semakan.</p>
+        </header>
+
+        <!-- Senarai nama panel (teks, bukan logo, supaya ringan dan mudah dikemas kini) -->
+        <ul class="panel-list reveal" aria-label="Syarikat panel">
+          <li>DRB-HICOM</li><li>CTRM</li><li>BSN</li><li>PNMB</li><li>SPAN</li><li>EON</li>
+          <li>PUSPAKOM</li><li>Allianz</li><li>PNB</li><li>Lam Soon</li><li>Canon</li>
+          <li>Al-Ikhsan Sports</li><li>AmanahRaya</li><li>Al Rajhi Bank</li><li>PRefChem</li>
+          <li>Lalamove</li><li>Generali</li><li>Jaya Grocer</li><li>McDonald’s</li>
+          <li class="is-new">ATX Semiconductor</li><li class="is-new">Texas Instruments</li><li class="is-new">Mednefits</li>
+        </ul>
+        <p class="panel-note reveal">
+          <span class="panel-note__dot" aria-hidden="true"></span>
+          Baharu: ATX Semiconductor (Melaka), Texas Instruments Melaka dan rangkaian Mednefits.
+        </p>
+
+        <!-- Poster panel rasmi klinik: grid pada desktop, leret pada telefon -->
+        <div class="posters reveal">
+          <button class="poster" type="button" data-lightbox="img/servis/Panel%20others%202.png">
+            <img src="img/servis/Panel%20others%202.png" alt="Poster Our Panel: senarai logo syarikat panel Klinik MedPro" width="905" height="1280" loading="lazy">
+          </button>
+          <!-- 3 poster di bawah dipotong daripada tangkapan skrin Facebook dalam img/servis/ (tanpa kapsyen) -->
+          <button class="poster poster--wide" type="button" data-lightbox="img/panel/texas-instruments.png">
+            <img src="img/panel/texas-instruments.png" alt="Poster: Klinik MedPro kini klinik panel Texas Instruments" width="399" height="384" loading="lazy">
+          </button>
+          <button class="poster poster--wide" type="button" data-lightbox="img/panel/atx-semiconductor.png">
+            <img src="img/panel/atx-semiconductor.png" alt="Poster: Klinik MedPro kini klinik panel ATX Semiconductor Melaka" width="400" height="336" loading="lazy">
+          </button>
+          <button class="poster poster--wide" type="button" data-lightbox="img/panel/mednefits.png">
+            <img src="img/panel/mednefits.png" alt="Poster: Klinik MedPro kini penyedia panel Mednefits" width="402" height="334" loading="lazy">
+          </button>
+          <button class="poster" type="button" data-lightbox="img/servis/panel%20Others.png">
+            <img src="img/servis/panel%20Others.png" alt="Poster: syarikat dalam rangkaian Mednefits yang boleh mendapatkan rawatan di Klinik MedPro" width="276" height="397" loading="lazy">
+          </button>
+        </div>
+        <p class="hint">Ketik poster untuk paparan penuh.</p>
+      </div>
+    </section>
+
+    <!-- ===== Info kesihatan (dari poster buasir klinik) ===== -->
+    <section class="section" id="info">
+      <div class="container health">
+        <button class="health__poster reveal" type="button" data-lightbox="img/servis/Haemorrhoid.png">
+          <img src="img/servis/Haemorrhoid.png" alt="Poster info kesihatan Klinik MedPro: Haemorrhoid, what you need to know" width="690" height="977" loading="lazy">
+        </button>
+        <div class="health__text reveal">
+          <p class="eyebrow">Info kesihatan</p>
+          <h2>Buasir: <span class="hl">jangan malu</span> untuk berjumpa doktor</h2>
+          <p>Buasir (haemorrhoid) ialah salur darah yang membengkak di dubur. Ia boleh menyebabkan sakit, pendarahan dan rasa tidak selesa. Ramai yang menangguhkan rawatan kerana malu, padahal ia boleh dirawat.</p>
+          <h3>Tanda-tanda biasa</h3>
+          <ul class="checks">
+            <li>Najis berdarah</li>
+            <li>Gatal di sekitar dubur</li>
+            <li>Sakit ketika duduk</li>
+            <li>Rasa tidak selesa</li>
+          </ul>
+          <p class="health__note">Ada tanda-tanda ini? Pemeriksaan dibuat secara peribadi dan sulit.</p>
+          <a class="btn btn--coral" href="https://wa.me/601130044520?text=Hai%20Klinik%20MedPro%2C%20saya%20ingin%20berjumpa%20doktor%20secara%20peribadi." target="_blank" rel="noopener">Tanya secara peribadi</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Fasiliti (galeri bento) ===== -->
+    <section class="section section--soft" id="fasiliti">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Fasiliti</p>
+          <h2>Bersih, terang &amp; <span class="hl">selesa</span></h2>
+          <p>Klinik di tingkat bawah, masuk terus dari hadapan kedai. Tiada tangga untuk didaki.</p>
+        </header>
+
+        <div class="gallery reveal">
+          <button class="gallery__item gallery__item--big" type="button" data-lightbox="img/building/front%20bulding%20night.png">
+            <img src="img/building/front%20bulding%20night.png" alt="Hadapan Klinik MedPro waktu malam" width="680" height="510" loading="lazy">
+            <span class="gallery__cap">Hadapan klinik</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/kaunter.png">
+            <img src="img/building/kaunter.png" alt="Kaunter pendaftaran Klinik MedPro" width="223" height="160" loading="lazy">
+            <span class="gallery__cap">Kaunter</span>
+          </button>
+          <button class="gallery__item gallery__item--tall" type="button" data-lightbox="img/building/living%20area.png">
+            <img src="img/building/living%20area.png" alt="Ruang menunggu dengan kerusi" width="223" height="279" loading="lazy">
+            <span class="gallery__cap">Ruang menunggu</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/front%20building.png">
+            <img src="img/building/front%20building.png" alt="Hadapan Klinik MedPro waktu siang" width="223" height="224" loading="lazy">
+            <span class="gallery__cap">Waktu siang</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Ulasan Google ===== -->
+    <section class="section" id="ulasan">
+      <div class="container">
+        <header class="reviews-head reveal">
+          <div>
+            <p class="eyebrow">Ulasan Google</p>
+            <h2>Dipercayai jiran <span class="hl">Batu Berendam</span></h2>
+          </div>
+          <div class="g-badge">
+            <span class="g-badge__logo" aria-hidden="true">G</span>
+            <span>
+              <span class="stars" aria-label="5 bintang">★★★★★</span>
+              <small>Ulasan 5 bintang di Google</small>
+            </span>
+          </div>
+        </header>
+
+        <!-- Kad ulasan dijana oleh js/main.js (senarai REVIEWS). Desktop: lajur bata; telefon: leret -->
+        <div class="reviews reveal" id="reviews"></div>
+
+        <div class="center reveal">
+          <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Klinik%20Medpro%20%40%20%20Batu%20Berendam%20%2C%20Melaka%20Melaka" target="_blank" rel="noopener">Lihat semua ulasan di Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kerjaya (borang ringkas yang menyusun mesej WhatsApp, tiada server) ===== -->
+    <section class="section section--coral" id="kerjaya">
+      <div class="container career">
+        <div class="career__text reveal">
+          <p class="eyebrow">Kerjaya</p>
+          <h2>Sertai pasukan <span class="hl">MedPro</span></h2>
+          <p>Kami klinik yang sedang berkembang dan sentiasa mencari rakan sepasukan yang mesra, cekap dan menjaga pesakit dengan hati.</p>
+          <ul class="checks checks--light">
+            <li>Klinik baharu, bersih &amp; teratur</li>
+            <li>Pasukan kecil yang saling membantu</li>
+            <li>Lokasi mudah di Batu Berendam</li>
+          </ul>
+          <p class="career__alt">Atau hantar resume ke <a href="mailto:klinikmedpro@gmail.com?subject=Permohonan%20kerja%20Klinik%20MedPro">klinikmedpro@gmail.com</a></p>
+        </div>
+
+        <form class="career__form reveal" id="careerForm" novalidate>
+          <h3>Mohon melalui WhatsApp</h3>
+          <p class="small">Isi ringkas di bawah. Kami akan buka WhatsApp dengan mesej siap ditulis.</p>
+          <label for="cName">Nama penuh</label>
+          <input id="cName" name="name" type="text" autocomplete="name" required>
+          <label for="cRole">Jawatan diminati</label>
+          <!-- Contoh jawatan klinik biasa; sahkan kekosongan sebenar dengan klinik -->
+          <select id="cRole" name="role">
+            <option>Pembantu Klinik</option>
+            <option>Jururawat</option>
+            <option>Penyambut Tetamu / Admin</option>
+            <option>Doktor Locum</option>
+            <option>Lain-lain</option>
+          </select>
+          <label for="cExp">Pengalaman (ringkas)</label>
+          <input id="cExp" name="exp" type="text" placeholder="cth. 2 tahun di klinik swasta">
+          <p class="form-error" id="careerError" role="alert"></p>
+          <button class="btn btn--coral btn--block" type="submit">Hantar melalui WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== Lokasi & waktu ===== -->
+    <section class="section section--soft" id="lokasi">
+      <div class="container location">
+        <div class="location__info reveal">
+          <p class="eyebrow">Lokasi &amp; waktu</p>
+          <h2>Jumpa kami di <span class="hl">Jalan Merak 1</span></h2>
+          <address>
+            No. 352 (Tingkat Bawah), Jalan Merak 1,<br>
+            Taman Melaka Baru, Batu Berendam,<br>
+            75350 Melaka
+          </address>
+
+          <p class="open-status" id="openStatus" aria-live="polite"></p>
+
+          <table class="hours" id="hours">
+            <caption class="sr-only">Waktu operasi</caption>
+            <tbody>
+              <tr data-day="1"><th scope="row">Isnin</th><td>9:00 pagi – 9:00 malam</td></tr>
+              <tr data-day="2"><th scope="row">Selasa</th><td>9:00 pagi – 9:00 malam</td></tr>
+              <tr data-day="3"><th scope="row">Rabu</th><td>9:00 pagi – 9:00 malam</td></tr>
+              <tr data-day="4"><th scope="row">Khamis</th><td>9:00 pagi – 9:00 malam</td></tr>
+              <tr data-day="5"><th scope="row">Jumaat</th><td>9:00 pagi – 9:00 malam</td></tr>
+              <tr data-day="6"><th scope="row">Sabtu</th><td>9:00 pagi – 9:00 malam</td></tr>
+              <tr data-day="0"><th scope="row">Ahad</th><td>9:00 pagi – 9:00 malam</td></tr>
+            </tbody>
+          </table>
+
+          <div class="contact-list">
+            <a href="tel:+601130044520"><span>Telefon / WhatsApp</span><strong>011-3004 4520</strong></a>
+            <a href="tel:+6063176362"><span>Talian klinik</span><strong>06-317 6362</strong></a>
+            <a href="mailto:klinikmedpro@gmail.com"><span>Emel</span><strong>klinikmedpro@gmail.com</strong></a>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn btn--navy" href="https://www.google.com/maps/search/?api=1&amp;query=Klinik%20Medpro%20%40%20%20Batu%20Berendam%20%2C%20Melaka%20Melaka" target="_blank" rel="noopener">Google Maps</a>
+            <a class="btn btn--ghost" href="https://waze.com/ul?q=Klinik%20Medpro%20Batu%20Berendam&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
+          </div>
+        </div>
+
+        <div class="map reveal">
+          <!-- Peta guna carian nama + alamat (tiada API key). Koordinat tepat belum disahkan -->
+          <iframe title="Peta lokasi Klinik MedPro, Batu Berendam" src="https://maps.google.com/maps?q=Klinik%20Medpro%2C%20Jalan%20Merak%201%2C%20Taman%20Melaka%20Baru%2C%20Batu%20Berendam%2C%20Melaka&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Soalan lazim ===== -->
+    <section class="section" id="faq">
+      <div class="container faq">
+        <header class="section__head reveal">
+          <p class="eyebrow">Soalan lazim</p>
+          <h2>Ada <span class="hl">soalan?</span></h2>
+        </header>
+        <div class="faq__list reveal">
+          <details>
+            <summary>Adakah klinik dibuka pada hujung minggu?</summary>
+            <p>Ya. Klinik MedPro dibuka setiap hari, Isnin hingga Ahad, dari 9:00 pagi hingga 9:00 malam.</p>
+          </details>
+          <details>
+            <summary>Syarikat saya klinik panel MedPro. Apa yang perlu dibawa?</summary>
+            <p>Bawa kad pekerja atau kad panel dan kad pengenalan. Jika syarikat anda tiada dalam senarai, hubungi 06-317 6362 untuk semakan sebelum datang.</p>
+          </details>
+          <details>
+            <summary>Saya pemandu Grab. Boleh buat medical checkup di sini?</summary>
+            <p>Boleh. Klinik MedPro menawarkan Grab Medical Checkup. WhatsApp 011-3004 4520 untuk semak dokumen yang perlu dibawa dan masa yang sesuai.</p>
+          </details>
+          <details>
+            <summary>Bagaimana mahu menempah lawatan ke rumah?</summary>
+            <p>Hubungi atau WhatsApp kami dengan alamat dan keadaan pesakit. Staf kami akan mengatur masa lawatan bersama doktor.</p>
+          </details>
+          <details>
+            <summary>Adakah rawatan penyakit kelamin dijaga kerahsiaannya?</summary>
+            <p>Ya. Konsultasi dijalankan secara peribadi di bilik doktor, dan rekod perubatan anda dijaga sulit.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <span class="brand__mark brand__mark--lg"><img src="img/logo/logo.png" alt="" width="447" height="447" loading="lazy"></span>
+        <div>
+          <strong>Klinik MedPro</strong>
+          <p>Healing lives with heart. Klinik keluarga &amp; klinik panel di Batu Berendam, Melaka.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3>Hubungi</h3>
+        <ul class="footer__list">
+          <li><a href="tel:+601130044520">011-3004 4520</a></li>
+          <li><a href="tel:+6063176362">06-317 6362</a></li>
+          <li><a href="mailto:klinikmedpro@gmail.com">klinikmedpro@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Alamat</h3>
+        <p>No. 352 (GF), Jalan Merak 1, Taman Melaka Baru, Batu Berendam, 75350 Melaka</p>
+        <p>Setiap hari · 9:00 pagi – 9:00 malam</p>
+      </div>
+
+      <div>
+        <h3>Ikuti kami</h3>
+        <div class="social">
+          <a href="https://www.facebook.com/p/Klinik-Medpro-61584519770132/" target="_blank" rel="noopener" aria-label="Facebook Klinik MedPro">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/klinik.medpro/" target="_blank" rel="noopener" aria-label="Instagram @klinik.medpro">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3"/></svg>
+          </a>
+        </div>
+        <p class="small">@klinik.medpro</p>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Klinik MedPro. Hak cipta terpelihara.</p>
+      <p>Maklumat di laman ini bukan pengganti nasihat doktor.</p>
+    </div>
+  </footer>
+
+  <!-- Butang WhatsApp terapung (desktop & tablet) -->
+  <a class="wa-float" href="https://wa.me/601130044520?text=Hai%20Klinik%20MedPro%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="WhatsApp Klinik MedPro">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.2.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.2z"/></svg>
+  </a>
+
+  <!-- Bar tindakan bawah (telefon sahaja) -->
+  <nav class="action-bar" aria-label="Tindakan pantas">
+    <a href="tel:+6063176362">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      Telefon
+    </a>
+    <a class="is-primary" href="https://wa.me/601130044520?text=Hai%20Klinik%20MedPro%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Klinik%20Medpro%20%40%20%20Batu%20Berendam%20%2C%20Melaka%20Melaka" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      Arah
+    </a>
+  </nav>
+
+  <!-- Lightbox gambar (dialog asli browser) -->
+  <dialog class="lightbox" id="lightbox" aria-label="Paparan gambar">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Tutup gambar">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

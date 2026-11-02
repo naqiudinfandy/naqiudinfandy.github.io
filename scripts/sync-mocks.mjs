@@ -37,6 +37,9 @@ const siteUrl = 'https://naqiudinfandy.github.io';
  * type    — penerangan ringkas jenis laman
  * source  — folder mock dalam Development/Mock (relatif)
  * updated — tarikh versi mock (untuk paparan sahaja)
+ * exclude — (pilihan) senarai laluan fail relatif dalam folder mock yang TIDAK disalin.
+ *           Guna untuk foto yang tidak dipaparkan tetapi sensitif (cth. wajah kanak-kanak),
+ *           kerana repo portfolio adalah awam. Contoh: ['img/building/inside.png'].
  */
 const MOCKS = [
   {
@@ -53,19 +56,37 @@ const MOCKS = [
     source: 'KlinikAlFalah/Mock_web_KlinikAlFalah',
     updated: '22 Okt 2026',
   },
+  {
+    slug: 'klinik-medpro',
+    name: 'Klinik MedPro',
+    type: 'Klinik keluarga & klinik panel · Batu Berendam, Melaka',
+    source: 'KlinikMedPro/Mock_web_KlinikMedPro',
+    updated: '2 Nov 2026',
+  },
+  {
+    slug: 'temu-coffee',
+    name: 'Temu Coffee House',
+    type: 'Kafe estetik & bilik majlis · Padang Temu, Melaka',
+    source: 'TemuCoffeeHouse/Mock_web_TemuCoffeeHouse',
+    updated: '2 Nov 2026',
+    // inside.png: wajah kanak-kanak (tidak dipaparkan). food5: salinan tanpa sambungan; laman guna food5.webp.
+    exclude: ['img/building/inside.png', 'img/servis/food5'],
+  },
 ];
 
 /** Fail yang tidak diterbitkan: nota dalaman pemilik dan fail sistem. */
 const SKIP = /(\.md$|^Contact\.txt$|^Thumbs\.db$|^desktop\.ini$|^\.DS_Store$|^\.)/i;
 
 /** Salin folder secara rekursif, langkau fail dalam SKIP. Pulangkan bilangan & saiz. */
-function copyDir(from, to, stats = { files: 0, bytes: 0 }) {
+// exclude = Set laluan relatif (garis condong ke hadapan) yang dilangkau; base = folder akar mock.
+function copyDir(from, to, stats = { files: 0, bytes: 0 }, exclude = new Set(), base = from) {
   mkdirSync(to, { recursive: true });
   for (const entry of readdirSync(from)) {
     if (SKIP.test(entry)) continue;
     const src = join(from, entry);
     const dest = join(to, entry);
-    if (statSync(src).isDirectory()) copyDir(src, dest, stats);
+    if (exclude.has(relative(base, src).split('\\').join('/'))) { stats.skipped = (stats.skipped || 0) + 1; continue; }
+    if (statSync(src).isDirectory()) copyDir(src, dest, stats, exclude, base);
     else { copyFileSync(src, dest); stats.files++; stats.bytes += statSync(src).size; }
   }
   return stats;
@@ -89,7 +110,7 @@ function prepareIndex(file, mock) {
   // Jalur kecil di atas: jujur bahawa ini mock, supaya tidak disangka laman rasmi.
   const ribbon = '\n<!-- [sync-mocks] Jalur pratonton (bukan sebahagian reka bentuk klien). -->\n'
     + '<div role="note" style="background:#111827;color:#f9fafb;font:600 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;text-align:center;padding:7px 14px;position:relative;z-index:1000">'
-    + 'Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi klinik</div>';
+    + 'Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi</div>';
   html = html.replace(/(<body[^>]*>)/i, `$1${ribbon}`);
   if (!html.includes('noindex')) throw new Error(`Gagal menambah noindex: ${file}`);
   writeFileSync(file, html);
@@ -174,7 +195,12 @@ for (const mock of MOCKS) {
   if (!existsSync(join(src, 'index.html'))) throw new Error(`Tiada index.html dalam ${src}`);
   const dest = join(outDir, mock.slug);
   rmSync(dest, { recursive: true, force: true });
-  const stats = copyDir(src, dest);
+  const stats = copyDir(src, dest, undefined, new Set(mock.exclude || []));
+  // Pastikan setiap laluan exclude benar-benar wujud (elak salah taip yang menerbitkan fail sensitif)
+  for (const ex of mock.exclude || []) {
+    if (!existsSync(join(src, ex))) throw new Error(`exclude tidak dijumpai dalam ${mock.slug}: ${ex}`);
+    if (existsSync(join(dest, ex))) throw new Error(`exclude masih disalin: ${mock.slug}/${ex}`);
+  }
   const image = prepareIndex(join(dest, 'index.html'), mock);
   published.push({ ...mock, image });
   console.log(`mock/${mock.slug}/  ← ${relative(resolve(root, '..'), src)}  (${stats.files} fail, ${(stats.bytes / 1024 / 1024).toFixed(2)} MB)`);
