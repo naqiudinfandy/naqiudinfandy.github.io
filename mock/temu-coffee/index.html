@@ -142,6 +142,13 @@
             <p class="hero__rating"><strong>5.0</strong> <span class="stars" aria-label="5.0 daripada 5 bintang">★★★★★</span> <span>359 ulasan Google</span></p>
           </div>
         </div>
+
+        <!-- Foto berbingkai (desktop sahaja). Di skrin lebar, foto 680px tidak lagi diregang penuh skrin;
+             latar belakang hero dikaburkan sebagai suasana dan foto sebenar dipaparkan hampir saiz asal. -->
+        <figure class="hero__photo">
+          <img src="img/building/front%20building.png" alt="Hadapan Temu Hall dan Temu Coffee pada waktu malam" width="680" height="510" loading="lazy">
+          <figcaption>Temu Hall &amp; Temu Coffee, Padang Temu</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -354,7 +361,8 @@
           <p class="eyebrow">Galeri</p>
           <h2>Cozy &amp; <em>aesthetic</em>, siang atau malam</h2>
         </header>
-        <div class="gallery reveal">
+        <!-- Telefon: hanya 5 foto pertama dipaparkan; butang "Lihat lagi gambar" membuka selebihnya (js/main.js) -->
+        <div class="gallery reveal" id="gallery">
           <button class="gallery__item" type="button" data-lightbox="img/building/front%20building.png">
             <img src="img/building/front%20building.png" alt="Hadapan Temu Hall dan Temu Coffee pada waktu malam" width="680" height="510" loading="lazy">
             <span class="gallery__cap">Temu Hall &amp; Temu Coffee</span>
@@ -395,6 +403,10 @@
             <img src="img/building/kaunter.png" alt="Kaunter dan ruang makan yang terang" width="680" height="510" loading="lazy">
             <span class="gallery__cap">Ruang makan dalam</span>
           </button>
+        </div>
+        <!-- Butang buka/tutup galeri (telefon sahaja; disorok pada tablet & desktop) -->
+        <div class="gallery-more">
+          <button class="btn btn--dark" type="button" id="galleryMore" aria-controls="gallery" aria-expanded="false">Lihat lagi gambar</button>
         </div>
       </div>
     </section>

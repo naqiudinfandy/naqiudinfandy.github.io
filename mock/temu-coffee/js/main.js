@@ -333,6 +333,24 @@
     link.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
   });
 
+  /* ---------- 7b. Galeri telefon: butang "Lihat lagi gambar" ---------- */
+  // CSS menyorok foto ke-6 dan seterusnya pada telefon (≤599px) selagi galeri tiada kelas .is-expanded.
+  var gallery = document.getElementById("gallery");
+  var galleryMore = document.getElementById("galleryMore");
+  if (gallery && galleryMore) {
+    var VISIBLE = 5; // mesti sama dengan :nth-child(n+6) dalam CSS
+    var hiddenCount = gallery.querySelectorAll(".gallery__item").length - VISIBLE;
+    var moreLabel = "Lihat lagi gambar (" + hiddenCount + ")";
+    galleryMore.textContent = moreLabel;
+    galleryMore.addEventListener("click", function () {
+      var open = gallery.classList.toggle("is-expanded");
+      galleryMore.textContent = open ? "Tunjuk kurang" : moreLabel;
+      galleryMore.setAttribute("aria-expanded", String(open));
+      // Bila ditutup semula, bawa pengguna kembali ke atas galeri supaya tidak "tersesat" jauh di bawah
+      if (!open) gallery.scrollIntoView({ block: "start" });
+    });
+  }
+
   /* ---------- 8. Lightbox ---------- */
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightboxImg");

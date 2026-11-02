@@ -197,6 +197,11 @@ address { font-style: normal; }
 .hero__meta { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; font-size: .95rem; padding-top: 20px; border-top: 1px solid rgba(201, 163, 91, .3); }
 .hero__rating { margin: 0; display: flex; align-items: center; gap: 8px; }
 .hero__rating strong { font: 600 1.6rem/1 var(--font-head); color: #fff; }
+/* Foto berbingkai berganda emas di kanan hero (desktop sahaja; disorok pada telefon/tablet) */
+.hero__photo { display: none; position: relative; margin: 0; padding: 10px; background: rgba(22, 17, 13, .6); border: 1px solid rgba(201, 163, 91, .55); box-shadow: var(--shadow-lg); }
+.hero__photo::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(201, 163, 91, .25); pointer-events: none; }
+.hero__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.hero__photo figcaption { padding: 10px 4px 2px; font: italic 500 1rem var(--font-head); color: var(--gold-2); text-align: center; }
 
 /* ---------- 4b. Jalur info ---------- */
 .strip { background: var(--espresso); color: var(--cream); border-top: 1px solid rgba(201, 163, 91, .2); }
@@ -324,13 +329,27 @@ a.strip__item:hover .strip__v { color: var(--gold-2); }
 .form-error { min-height: 1.4em; margin: 12px 0 8px; color: #B23A30; font-size: .9rem; font-weight: 500; }
 
 /* ---------- 4g. Galeri ---------- */
-/* Lajur bata (gaya Pinterest): setiap foto ikut nisbah asal, jadi tiada lubang walau bentuk foto berbeza */
-.gallery { columns: 2; column-gap: 10px; }
+/* Grid foto. Susunan telefon (≤599px) dan tablet/desktop (bento 4×4) ditetapkan dalam bahagian responsif. */
+.gallery { display: grid; gap: 8px; }
 .gallery__item {
-  position: relative; display: block; width: 100%; margin: 0 0 10px; padding: 0; border: 0;
-  overflow: hidden; background: var(--latte); break-inside: avoid;
+  position: relative; display: block; width: 100%; padding: 0; border: 0;
+  overflow: hidden; background: var(--latte);
 }
-.gallery__item img { width: 100%; height: auto; transition: transform .5s ease; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.gallery-more { display: none; justify-content: center; margin-top: 18px; }
+.btn--dark { background: transparent; color: var(--mocha); border-color: var(--mocha); }
+.btn--dark:hover { background: var(--espresso); color: var(--gold-2); border-color: var(--espresso); }
+
+/* Telefon: grid 2 lajur ringkas. Foto pertama & terakhir lebar penuh, selebihnya segi empat sama.
+   Hanya 5 foto pertama dipaparkan sehingga butang "Lihat lagi gambar" ditekan (kelas .is-expanded).
+   Peraturan sorok bergantung pada .js, jadi tanpa JavaScript semua foto tetap kelihatan. */
+@media (max-width: 599px) {
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .gallery__item { aspect-ratio: 1; }
+  .gallery__item:first-child, .gallery__item:last-child { grid-column: span 2; aspect-ratio: 16 / 10; }
+  .js .gallery:not(.is-expanded) .gallery__item:nth-child(n+6) { display: none; }
+  .js .gallery-more { display: flex; }
+}
 .gallery__item:hover img { transform: scale(1.06); }
 .gallery__cap {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 12px 10px; text-align: left;
@@ -471,6 +490,12 @@ a.strip__item:hover .strip__v { color: var(--gold-2); }
   background: var(--gold); color: var(--espresso); font-size: 1.6rem; line-height: 1;
 }
 
+/* Nombor sebaris untuk Cormorant. Singkatan `font:` menetapkan semula font-variant-numeric kepada normal,
+   jadi elemen yang guna singkatan itu perlu ditetapkan semula di sini (warisan dari body tidak mencukupi). */
+.brand__mono, .brand__text strong, .hero__script, .hero__rating strong, .hero__photo figcaption, .strip__v,
+.story__badge, .perks strong, .menu__list span, .celebrate__quote, .gallery__cap, .score__num,
+.faq summary, .footer__brand strong, .footer__script { font-variant-numeric: lining-nums; }
+
 /* ---------- 6. Animasi ---------- */
 /* .reveal hanya disembunyikan bila JS aktif, supaya kandungan tetap kelihatan tanpa JS */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
@@ -506,9 +531,7 @@ a.strip__item:hover .strip__v { color: var(--gold-2); }
   .roles { grid-template-columns: 1fr 1fr; }
   .reviews { grid-auto-columns: calc((100% - 16px) / 2); }
   /* Galeri bento tetap 4×4 sel (10 foto, 16 sel, tiada lubang). Susunan ikut urutan foto dalam HTML. */
-  .gallery { display: grid; columns: auto; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 150px; gap: 10px; }
-  .gallery__item { margin: 0; }
-  .gallery__item img { height: 100%; object-fit: cover; }
+  .gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 150px; gap: 10px; }
   .gallery__item:nth-child(1)  { grid-column: 1 / 3; grid-row: 1; }
   .gallery__item:nth-child(2)  { grid-column: 3; grid-row: 1 / 3; }
   .gallery__item:nth-child(3)  { grid-column: 4; grid-row: 1 / 3; }
@@ -537,7 +560,13 @@ a.strip__item:hover .strip__v { color: var(--gold-2); }
   .nav a { padding: 8px 12px; border: 0; font-size: .9rem; }
   .nav a.nav__cta { margin: 0 0 0 10px; }
 
-  .hero { padding-bottom: 80px; }
+  /* Hero desktop: tidak lagi skrin penuh. Foto latar (680px) dikaburkan sebagai suasana,
+     foto sebenar dipaparkan dalam bingkai di kanan pada saiz hampir asal → tajam, tidak "terlalu besar". */
+  .hero { min-height: 0; align-items: center; padding: calc(var(--header-h) + 100px) 0 96px; }
+  .hero__bg img { filter: blur(16px) brightness(.5) saturate(1.1); transform: scale(1.12); animation: none; }
+  .hero__inner { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(3.2rem, 4.6vw, 4.4rem); }
+  .hero__photo { display: block; }
   .lights { height: 120px; }
 
   .section { padding: 110px 0; }
