@@ -72,6 +72,15 @@ const MOCKS = [
     // inside.png: wajah kanak-kanak (tidak dipaparkan). food5: salinan tanpa sambungan; laman guna food5.webp.
     exclude: ['img/building/inside.png', 'img/servis/food5'],
   },
+  {
+    slug: 'sudo-bakery',
+    name: 'Sudo Bakery',
+    type: 'Kedai roti sourdough · Peringgit Jaya & Kota Syahbandar, Melaka',
+    source: 'SudoBakeryPeringgit/Mock_web_SudoBakeryPeringgit',
+    updated: '3 Nov 2026',
+    // PDF cetakan menu Canva (terpotong, tidak dirujuk laman) — tidak perlu diterbitkan.
+    exclude: ['img/servis/Sudo Menu Link Tree.pdf'],
+  },
 ];
 
 /** Fail yang tidak diterbitkan: nota dalaman pemilik dan fail sistem. */

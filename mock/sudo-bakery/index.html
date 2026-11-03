@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<!--
+  Mock laman web Sudo Bakery (südo · 须藤パン屋), Melaka — 2 cawangan: Peringgit Jaya & Kota Syahbandar.
+  APA:     laman satu halaman (vanilla HTML + CSS + JS, tiada framework/build step).
+  KENAPA:  pratonton reka bentuk untuk klien; buka terus fail ini atau melalui pelayan statik.
+  DI MANA: gaya css/style.css · interaksi js/main.js · nota klien CLIENT_NOTES.md
+  Identiti: merah jambu papan tanda (jalur beralun panel bumbung), hitam logo, kerak roti & dulang kayu,
+            cop bulat "HANDMADE · FRESH · WHOLESOME" berputar perlahan, tajuk gaya poster (Bebas Neue).
+-->
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <!-- [sync-mocks] Halaman pratonton tersembunyi: jangan disenaraikan oleh enjin carian. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:url" content="https://naqiudinfandy.github.io/mock/sudo-bakery/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sudo Bakery Melaka | Roti Sourdough Buatan Tangan · Peringgit Jaya & Kota Syahbandar</title>
+  <meta name="description" content="Sudo Bakery (südo), Melaka: roti sourdough artisan, bagel sourdough, shokupan, focaccia, croissant dan kek. Cawangan Peringgit Jaya (setiap hari 10 pagi – 6:30 petang) dan Kota Syahbandar. Order WhatsApp, Grab dan Shopee.">
+  <meta name="theme-color" content="#F3C6CF">
+
+  <!-- Open Graph: pratonton bila pautan dikongsi di WhatsApp / Facebook -->
+  <meta property="og:title" content="Sudo Bakery · Melaka's Favourite Sourdough Bakery">
+  <meta property="og:description" content="Handmade · Fresh · Wholesome. Roti sourdough & bagel dibakar setiap hari di Peringgit Jaya dan Kota Syahbandar.">
+  <meta property="og:image" content="https://naqiudinfandy.github.io/mock/sudo-bakery/img/servis/food%202.png">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="img/logo/logo.png">
+
+  <!-- Font Google: Bebas Neue (tajuk gaya poster kedai) + Quicksand (teks bulat, sepadan huruf "südo") + Allura (skrip hiasan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Bebas+Neue&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tanda JS aktif seawal mungkin supaya animasi .reveal tidak berkelip -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Data berstruktur (schema.org): dua cawangan kedai roti. Rating tidak dimasukkan (tiada ulasan disalin). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Bakery",
+        "name": "Sudo Bakery Peringgit Jaya",
+        "alternateName": "südo · 须藤パン屋",
+        "slogan": "Handmade · Fresh · Wholesome",
+        "image": "img/building/front%20building%20main.png",
+        "telephone": "+60166231662",
+        "email": "sudobakery@gmail.com",
+        "address": { "@type": "PostalAddress", "streetAddress": "375K, Jalan Melor 1/1, Taman Peringgit Jaya", "postalCode": "75400", "addressLocality": "Melaka", "addressCountry": "MY" },
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "10:00", "closes": "18:30" }],
+        "sameAs": ["https://www.instagram.com/sudobakery_/", "https://www.facebook.com/sudobakery", "https://linktr.ee/sudobakery", "https://shopee.com.my/sudobakery"]
+      },
+      {
+        "@type": "Bakery",
+        "name": "Sudo Bakery Kota Syahbandar",
+        "address": { "@type": "PostalAddress", "streetAddress": "2A-G, Jalan KSB 15, Taman Kota Syahbandar", "postalCode": "75200", "addressLocality": "Melaka", "addressCountry": "MY" },
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "09:00", "closes": "18:00" }]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- [sync-mocks] Jalur pratonton (bukan sebahagian reka bentuk klien). -->
+<div role="note" style="background:#111827;color:#f9fafb;font:600 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;text-align:center;padding:7px 14px;position:relative;z-index:1000">Pratonton reka bentuk (mock) oleh Naqiudin · bukan laman web rasmi</div>
+
+  <a class="skip-link" href="#utama">Langkau ke kandungan</a>
+
+  <!-- ===== Header melekat ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#utama" class="brand" aria-label="Sudo Bakery, ke atas">
+        <span class="brand__mark"><img src="img/logo/logo.png" alt="" width="500" height="500"></span>
+        <span class="brand__text">
+          <strong>südo</strong>
+          <span>sourdough bakery</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#roti">Roti Kami</a>
+        <a href="#nikmati">Idea Makan</a>
+        <a href="#ahli">Ahli &amp; Promosi</a>
+        <a href="#beli">Cara Beli</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#lokasi">Cawangan</a>
+        <a class="btn btn--ink nav__cta" href="https://tr.ee/HSjuLWpud5" target="_blank" rel="noopener">Order &amp; Pickup</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="utama">
+
+    <!-- ===== HERO (latar merah jambu berjalur seperti panel papan tanda) ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero__grid">
+        <div class="hero__text reveal">
+          <p class="hero__tag">Melaka's Favourite Sourdough Bakery</p>
+          <h1>Sourdough<br>buatan tangan,<br><span>dibakar setiap hari.</span></h1>
+          <p class="hero__script">handmade · fresh · wholesome</p>
+          <p class="lead">Roti sourdough artisan, bagel lembut berkerak dan pastri dari dapur kecil kami di Peringgit Jaya dan Kota Syahbandar. Ditapai perlahan secara semula jadi, tanpa jalan pintas.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--ink btn--lg" href="https://tr.ee/HSjuLWpud5" target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+              Order &amp; Pickup
+            </a>
+            <a class="btn btn--line btn--lg" href="#roti">Lihat Roti Kami</a>
+          </div>
+
+          <ul class="hero__meta">
+            <li><span class="status-dot" id="heroDot"></span><span id="heroStatus">Peringgit Jaya · setiap hari 10 pagi – 6:30 ptg</span></li>
+            <li><strong>4.7</strong><span class="stars" aria-hidden="true">★★★★★</span><span>296 ulasan Google</span></li>
+          </ul>
+        </div>
+
+        <!-- Kolaj foto: bagel + hadapan kedai, dalam bingkai polaroid condong; cop bulat berputar di tengah -->
+        <div class="hero__visual reveal" aria-label="Foto bagel sourdough dan hadapan kedai Sudo">
+          <figure class="polaroid polaroid--a">
+            <img src="img/servis/food%202.png" alt="Empat bagel sourdough di atas papan kayu" width="680" height="383" fetchpriority="high">
+            <figcaption>bagel sourdough</figcaption>
+          </figure>
+          <figure class="polaroid polaroid--b">
+            <img src="img/building/front%20building%20main.png" alt="Hadapan kedai Sudo Bakery dengan papan tanda merah jambu dan kanopi Artisanal Sourdough Bakery" width="382" height="510">
+            <figcaption>须藤パン屋</figcaption>
+          </figure>
+          <!-- Cop bulat: teks melengkung mengikut bulatan (SVG textPath), berputar perlahan -->
+          <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="stampRing" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+            <circle cx="100" cy="100" r="96" class="stamp__bg"/>
+            <circle cx="100" cy="100" r="92" class="stamp__line"/>
+            <g class="stamp__spin">
+              <text><textPath href="#stampRing">• HANDMADE • FRESH • WHOLESOME • SOURDOUGH</textPath></text>
+            </g>
+            <circle cx="100" cy="100" r="44" class="stamp__line"/>
+            <text x="100" y="110" text-anchor="middle" class="stamp__word">südo</text>
+          </svg>
+        </div>
+      </div>
+      <!-- Tepi bawah beralun (seperti kanopi kedai) -->
+      <svg class="hero__edge" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0h1200v14c-50 0-50 26-100 26s-50-26-100-26-50 26-100 26-50-26-100-26-50 26-100 26-50-26-100-26-50 26-100 26-50-26-100-26-50 26-100 26-50-26-100-26-50 26-100 26-50-26-100-26-50 26-100 26S50 14 0 14z"/>
+      </svg>
+    </section>
+
+    <!-- ===== Jalur cara beli ringkas ===== -->
+    <section class="ribbon" aria-label="Cara mendapatkan roti Sudo">
+      <div class="container ribbon__row">
+        <span>Walk-in 2 cawangan</span><i aria-hidden="true"></i>
+        <span>Order &amp; pickup Peringgit Jaya</span><i aria-hidden="true"></i>
+        <span>GrabMart Melaka</span><i aria-hidden="true"></i>
+        <span>Shopee seluruh Malaysia</span>
+      </div>
+    </section>
+
+    <!-- ===== Roti kami (tab; harga daripada menu & poster rasmi kedai) ===== -->
+    <section class="section" id="roti">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Roti kami</p>
+          <h2>Dari sourdough desa hingga <em>bagel &amp; madeleine</em></h2>
+          <p>Harga dalam RM, berdasarkan menu dan poster kedai. Pilihan harian bergantung pada bakaran hari itu: <strong>baked fresh daily, until it's gone</strong>.</p>
+        </header>
+
+        <div class="tabs reveal" role="tablist" aria-label="Kategori roti">
+          <button class="tab is-active" id="tab-sourdough" role="tab" aria-selected="true" aria-controls="panel-sourdough">Sourdough</button>
+          <button class="tab" id="tab-bagel" role="tab" aria-selected="false" aria-controls="panel-bagel" tabindex="-1">Bagel</button>
+          <button class="tab" id="tab-lembut" role="tab" aria-selected="false" aria-controls="panel-lembut" tabindex="-1">Roti Lembut &amp; Manisan</button>
+          <button class="tab" id="tab-pastri" role="tab" aria-selected="false" aria-controls="panel-pastri" tabindex="-1">Pastri &amp; Kek</button>
+        </div>
+
+        <!-- Sourdough artisan (menu Canva rasmi; sebahagian harga terpotong dalam cetakan → "harga di kedai") -->
+        <div class="panel is-active" id="panel-sourdough" role="tabpanel" aria-labelledby="tab-sourdough">
+          <div class="panel__grid">
+            <button class="panel__photo" type="button" data-lightbox="img/servis/food%203.png">
+              <img src="img/servis/food%203.png" alt="Sebuku roti sourdough dalam beg, di hadapan kedai Sudo" width="382" height="510" loading="lazy">
+              <span class="panel__note">Ditapai perlahan dengan ragi semula jadi</span>
+            </button>
+            <ul class="items">
+              <li><span class="items__dot items__dot--a"></span><div><strong>Country Sourdough</strong><small>Roti sourdough desa klasik</small></div><b>14</b></li>
+              <li><span class="items__dot items__dot--b"></span><div><strong>Wholemeal Sourdough</strong><small>Gandum penuh</small></div><b>17</b></li>
+              <li><span class="items__dot items__dot--c"></span><div><strong>Super Seeded Rye Oats</strong><small>Rai, oat &amp; bijirin</small></div><b>18</b></li>
+              <li><span class="items__dot items__dot--d"></span><div><strong>Rosemary + Cheese</strong><small>Rosemary &amp; keju</small></div><b>20</b></li>
+              <li><span class="items__dot items__dot--e"></span><div><strong>Flaxseed Pullman Loaf</strong><small>Roti tin dengan biji rami</small></div><b>14</b></li>
+              <li><span class="items__dot items__dot--f"></span><div><strong>Walnut + Cranberry</strong><small>Walnut &amp; kranberi</small></div><b class="ask">di kedai</b></li>
+              <li><span class="items__dot items__dot--b"></span><div><strong>Wholemeal Pullman Loaf</strong><small>Roti tin gandum penuh</small></div><b class="ask">di kedai</b></li>
+              <li><span class="items__dot items__dot--a"></span><div><strong>Pecan + Raisins</strong><small>Edisi musim perayaan</small></div><b class="ask">di kedai</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bagel (poster pintu kedai "The Queen of Bagels") -->
+        <div class="panel" id="panel-bagel" role="tabpanel" aria-labelledby="tab-bagel" hidden>
+          <div class="panel__grid">
+            <button class="panel__photo" type="button" data-lightbox="img/building/front%20door.png">
+              <img src="img/building/front%20door.png" alt="Poster perisa bagel sourdough di pintu kaca kedai" width="382" height="510" loading="lazy">
+              <span class="panel__note">The Queen of Bagels</span>
+            </button>
+            <div>
+              <p class="panel__lead">Bagel sourdough dibakar setiap hari, sehingga habis. Lapan perisa di poster kedai:</p>
+              <ul class="flavours">
+                <li>Original</li><li>Triple Cheese</li><li>Blueberry</li><li>Everything</li>
+                <li>Jalapeño</li><li>Earl Grey</li><li>Matcha</li><li>Choco</li>
+              </ul>
+              <p class="panel__deal"><strong>Mix &amp; Match: mana-mana 3 untuk RM15</strong> bagi item bertanda di rak kedai.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roti lembut & manisan (menu "Soft breads & sweet treats") -->
+        <div class="panel" id="panel-lembut" role="tabpanel" aria-labelledby="tab-lembut" hidden>
+          <div class="panel__grid">
+            <button class="panel__photo" type="button" data-lightbox="img/servis/menu.png">
+              <img src="img/servis/menu.png" alt="Menu Soft breads and sweet treats Sudo dengan gambar dan harga" width="361" height="510" loading="lazy">
+              <span class="panel__note">Ketik untuk menu asal</span>
+            </button>
+            <ul class="items">
+              <li><span class="items__dot items__dot--a"></span><div><strong>Shokupan</strong><small>Roti susu Jepun sourdough, gebu &amp; lembut</small></div><b>14</b></li>
+              <li><span class="items__dot items__dot--b"></span><div><strong>Brioche Burger Buns</strong><small>5 biji, mentega yang banyak</small></div><b>15</b></li>
+              <li><span class="items__dot items__dot--c"></span><div><strong>Classic Focaccia</strong><small>Rosemary, keju &amp; tomato ceri</small></div><b>20</b></li>
+              <li><span class="items__dot items__dot--d"></span><div><strong>Madeleines</strong><small>12 biji · matcha white chocolate &amp; double chocolate</small></div><b>24</b></li>
+              <li><span class="items__dot items__dot--e"></span><div><strong>Premium Chocolate Cookies</strong><small>Sekotak 12 biji, coklat sebenar</small></div><b>26</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pastri & kek (foto media sosial kedai; tiada harga diberi) -->
+        <div class="panel" id="panel-pastri" role="tabpanel" aria-labelledby="tab-pastri" hidden>
+          <div class="pastry">
+            <button class="pastry__card" type="button" data-lightbox="img/servis/food%2010.png">
+              <img src="img/servis/food%2010.png" alt="Almond croissant bersama kopi" width="590" height="590" loading="lazy">
+              <span>Almond Croissant</span>
+            </button>
+            <button class="pastry__card" type="button" data-lightbox="img/servis/food%208.png">
+              <img src="img/servis/food%208.png" alt="Twice-baked honey butter croissant" width="443" height="590" loading="lazy">
+              <span>Twice-baked Honey Butter Croissant</span>
+            </button>
+            <button class="pastry__card" type="button" data-lightbox="img/servis/food%209.png">
+              <img src="img/servis/food%209.png" alt="Croissant dengan strawberry compote dan kastard badam" width="443" height="590" loading="lazy">
+              <span>Croissant, Strawberry Compote &amp; Custard</span>
+            </button>
+            <button class="pastry__card" type="button" data-lightbox="img/servis/food%2011.png">
+              <img src="img/servis/food%2011.png" alt="Sepotong banana cake dengan cip coklat" width="590" height="590" loading="lazy">
+              <span>Banana Cake</span>
+            </button>
+          </div>
+          <p class="panel__lead panel__lead--center">Harga pastri &amp; kek di kedai. Pilihan berubah ikut hari.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Idea makan sourdough (poster resipi kedai; karusel leret) ===== -->
+    <section class="section section--pink" id="nikmati">
+      <div class="container">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow">How to enjoy your sourdough</p>
+          <h2>Idea <em>topping</em> untuk sarapan esok</h2>
+          <p>Cadangan dari dapur Sudo. Leret untuk lihat semua.</p>
+        </header>
+
+        <div class="recipes reveal" id="recipes" tabindex="0" aria-label="Idea topping sourdough, leret ke kanan">
+          <article class="recipe">
+            <button type="button" class="recipe__img" data-lightbox="img/servis/food%2012.png"><img src="img/servis/food%2012.png" alt="Sourdough dengan granola, beri biru, kelapa, buah tin dan krim keju" width="590" height="590" loading="lazy"></button>
+            <h3>Granola &amp; beri</h3>
+            <p>Krim keju, buah tin, granola buatan sendiri, beri biru, kelapa kering.</p>
+          </article>
+          <article class="recipe">
+            <button type="button" class="recipe__img" data-lightbox="img/servis/food%2013.png"><img src="img/servis/food%2013.png" alt="Sourdough dengan oren, beri biru dan kelapa" width="590" height="590" loading="lazy"></button>
+            <h3>Oren segar</h3>
+            <p>Krim keju, hirisan oren, beri biru, kelapa kering.</p>
+          </article>
+          <article class="recipe">
+            <button type="button" class="recipe__img" data-lightbox="img/servis/food%2016.png"><img src="img/servis/food%2016.png" alt="Sourdough dengan telur lenyek, yogurt Greek dan paprika" width="590" height="590" loading="lazy"></button>
+            <h3>Telur lenyek</h3>
+            <p>Telur lenyek, yogurt Greek, serbuk paprika.</p>
+          </article>
+          <article class="recipe">
+            <button type="button" class="recipe__img" data-lightbox="img/servis/food%2017.png"><img src="img/servis/food%2017.png" alt="Sourdough dengan mentega kacang, pisang dan kayu manis" width="590" height="590" loading="lazy"></button>
+            <h3>Pisang &amp; kacang</h3>
+            <p>Mentega kacang, pes bijan hitam, pisang, kayu manis, bijirin, kelapa.</p>
+          </article>
+          <article class="recipe">
+            <button type="button" class="recipe__img" data-lightbox="img/servis/food%2015.png"><img src="img/servis/food%2015.png" alt="Pullman sourdough dengan strawberi, kiwi dan kelapa" width="526" height="526" loading="lazy"></button>
+            <h3>Pullman buah-buahan</h3>
+            <p>Krim keju, pes bijan hitam, strawberi, kiwi, kelapa kering.</p>
+          </article>
+          <article class="recipe">
+            <button type="button" class="recipe__img" data-lightbox="img/servis/food%206.png"><img src="img/servis/food%206.png" alt="Sourdough bakar dengan avokado dan tomato ceri" width="382" height="510" loading="lazy"></button>
+            <h3>Avokado &amp; tomato</h3>
+            <p>Avokado lenyek dan tomato ceri di atas sourdough bakar.</p>
+          </article>
+        </div>
+        <div class="carousel-nav reveal">
+          <button class="round" type="button" id="recPrev" aria-label="Idea sebelumnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="round" type="button" id="recNext" aria-label="Idea seterusnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Keahlian Sudoku & promosi ===== -->
+    <section class="section" id="ahli">
+      <div class="container member">
+        <div class="member__card reveal">
+          <p class="eyebrow">Sudoku Membership</p>
+          <h2>Jadi ahli dengan <em>RM25</em> sahaja</h2>
+          <ul class="perks">
+            <li><b>3%</b><span>Cash back untuk pembelian seterusnya, tiada tarikh luput</span></li>
+            <li><b>%</b><span>Promosi eksklusif pada <strong>Members' Day</strong></span></li>
+            <li><b>RM</b><span>Harga ahli untuk produk baharu</span></li>
+            <li><b>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            </b><span>Beg jut percuma, dan diskaun bila bawa beg sendiri ke Sudo</span></li>
+          </ul>
+          <p class="small">Daftar di kaunter mana-mana cawangan. Butiran ikut poster keahlian kedai.</p>
+          <button class="btn btn--line" type="button" data-lightbox="img/servis/membership.png">Lihat poster keahlian</button>
+        </div>
+
+        <div class="promos reveal">
+          <button class="promo" type="button" data-lightbox="img/servis/promotion.png">
+            <img src="img/servis/promotion.png" alt="Poster Members' Day 31 Oktober: 20% bagel, 10% sourdough, 10% toastie, RM2 bawa beg Sudo" width="1080" height="1080" loading="lazy">
+            <span class="promo__tag">Members' Day lepas · 31 Okt</span>
+          </button>
+          <button class="promo" type="button" data-lightbox="img/servis/festival.png">
+            <img src="img/servis/festival.png" alt="Poster Festive Specials: pecan raisins sourdough, apple compote cinnamon roll, macadamia snowballs" width="362" height="510" loading="lazy">
+            <span class="promo__tag">Edisi perayaan</span>
+          </button>
+          <button class="promo" type="button" data-lightbox="img/servis/food%207.png">
+            <img src="img/servis/food%207.png" alt="Apple compote cinnamon roll" width="510" height="510" loading="lazy">
+            <span class="promo__tag">Apple Compote Cinnamon Roll</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cara beli ===== -->
+    <section class="section section--cream" id="beli">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Cara beli</p>
+          <h2>Singgah, <em>pickup</em> atau hantar ke rumah</h2>
+        </header>
+        <div class="buy reveal">
+          <a class="buy__card" href="https://tr.ee/HSjuLWpud5" target="_blank" rel="noopener">
+            <span class="buy__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg></span>
+            <strong>Order &amp; Pickup</strong>
+            <span>Tempah melalui WhatsApp, ambil di Peringgit Jaya.</span>
+            <em>Tempah sekarang →</em>
+          </a>
+          <a class="buy__card" href="https://www.grab.com/my/?c=1-C4DTTVKCNNADRA&amp;is_retargeting=true&amp;af_dp=grab%3A%2F%2Fopen%3FscreenType%3DGRABMART%26sourceID%3DA4pcqCZkS4%26merchantIDs%3D1-C4DTTVKCNNADRA&amp;af_force_deeplink=true&amp;pid=inappsharing" target="_blank" rel="noopener">
+            <span class="buy__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span>
+            <strong>GrabMart</strong>
+            <span>Penghantaran di sekitar Melaka.</span>
+            <em>Buka di Grab →</em>
+          </a>
+          <a class="buy__card" href="https://shopee.com.my/sudobakery" target="_blank" rel="noopener">
+            <span class="buy__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span>
+            <strong>Shopee</strong>
+            <span>Penghantaran ke seluruh Malaysia.</span>
+            <em>Kedai Shopee →</em>
+          </a>
+          <a class="buy__card" href="#lokasi">
+            <span class="buy__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></svg></span>
+            <strong>Walk-in</strong>
+            <span>Peringgit Jaya &amp; Kota Syahbandar.</span>
+            <em>Lihat cawangan →</em>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Galeri (telefon: 5 foto + butang "Lihat lagi gambar") ===== -->
+    <section class="section" id="galeri">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Galeri</p>
+          <h2>Kedai kecil, <em>bau roti</em> yang besar</h2>
+        </header>
+        <div class="gallery reveal" id="gallery">
+          <button class="gallery__item" type="button" data-lightbox="img/building/front%20building.png">
+            <img src="img/building/front%20building.png" alt="Papan tanda merah jambu sourdough bakery 须藤パン屋" width="680" height="383" loading="lazy"><span class="gallery__cap">Papan tanda kami</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/food%205.png">
+            <img src="img/servis/food%205.png" alt="Meja bagel dengan poster The Queen of Bagels" width="382" height="510" loading="lazy"><span class="gallery__cap">The Queen of Bagels</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/aesthetic.png">
+            <img src="img/building/aesthetic.png" alt="Rak roti dalam cahaya petang dan poster Everything Sourdough" width="357" height="510" loading="lazy"><span class="gallery__cap">Cahaya petang</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/food%20table.png">
+            <img src="img/building/food%20table.png" alt="Meja roti sourdough dan bagel berlatar dinding merah jambu" width="382" height="510" loading="lazy"><span class="gallery__cap">Meja roti</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/food%204.png">
+            <img src="img/servis/food%204.png" alt="Rak roti dengan label Mix and Match dan Pullman sourdough" width="680" height="510" loading="lazy"><span class="gallery__cap">Rak harian</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/living%20area.png">
+            <img src="img/building/living%20area.png" alt="Rak produk dan papan hitam Salud to your health" width="680" height="383" loading="lazy"><span class="gallery__cap">Sudut produk</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/front%20building%20main.png">
+            <img src="img/building/front%20building%20main.png" alt="Hadapan kedai Sudo Bakery dengan kanopi" width="382" height="510" loading="lazy"><span class="gallery__cap">Hadapan kedai</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/machine.png">
+            <img src="img/servis/machine.png" alt="Mesin pengadun doh di dapur" width="382" height="510" loading="lazy"><span class="gallery__cap">Pengadun doh</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/servis/food%201.png">
+            <img src="img/servis/food%201.png" alt="Roti berbungkus di atas dulang kayu" width="141" height="234" loading="lazy"><span class="gallery__cap">Dibungkus segar</span>
+          </button>
+          <button class="gallery__item" type="button" data-lightbox="img/building/front%20door.png">
+            <img src="img/building/front%20door.png" alt="Poster sourdough dan bagel di pintu kaca" width="382" height="510" loading="lazy"><span class="gallery__cap">Pintu kedai</span>
+          </button>
+        </div>
+        <div class="gallery-more">
+          <button class="btn btn--line" type="button" id="galleryMore" aria-controls="gallery" aria-expanded="false">Lihat lagi gambar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Ulasan Google (rating sebenar setiap cawangan; tiada teks ulasan diberi) ===== -->
+    <section class="section section--ink" id="ulasan">
+      <div class="container rating">
+        <div class="reveal">
+          <p class="eyebrow">Ulasan Google</p>
+          <h2>Dipercayai <em>ratusan</em> pelanggan Melaka</h2>
+          <p>Penilaian di Google Maps, disemak pada 3 November 2026.</p>
+        </div>
+        <div class="rating__cards reveal">
+          <a class="rating__card" href="https://maps.google.com/?cid=2174281737394900751" target="_blank" rel="noopener">
+            <span class="rating__num">4.7</span>
+            <span class="stars" aria-label="4.7 daripada 5 bintang">★★★★★</span>
+            <strong>Peringgit Jaya</strong>
+            <span>296 ulasan · Baca di Google →</span>
+          </a>
+          <a class="rating__card" href="https://maps.google.com/?cid=15332739537214601974" target="_blank" rel="noopener">
+            <span class="rating__num">4.6</span>
+            <span class="stars" aria-label="4.6 daripada 5 bintang">★★★★★</span>
+            <strong>Kota Syahbandar</strong>
+            <span>169 ulasan · Baca di Google →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kerjaya (WhatsApp nombor kedai) ===== -->
+    <section class="section section--cream" id="kerjaya">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Kerjaya</p>
+          <h2>Suka bau roti pagi? <em>Sertai kami.</em></h2>
+          <p>Pilih jawatan dan WhatsApp kami terus. Kekosongan bergantung pada keperluan semasa setiap cawangan.</p>
+        </header>
+        <div class="roles reveal">
+          <article class="role">
+            <h3>Pembantu Pembuat Roti</h3>
+            <p>Bantu menguli, membentuk dan membakar sourdough, bagel dan pastri mengikut resipi.</p>
+            <a class="role__link" data-role="Pembantu Pembuat Roti (Baker Assistant)" href="https://wa.me/60166231662" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+          <article class="role">
+            <h3>Pembantu Kedai / Juruwang</h3>
+            <p>Layan pelanggan, susun rak roti, uruskan bayaran dan pendaftaran ahli Sudoku.</p>
+            <a class="role__link" data-role="Pembantu Kedai / Juruwang" href="https://wa.me/60166231662" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+          <article class="role">
+            <h3>Pembungkusan &amp; Pesanan Online</h3>
+            <p>Bungkus pesanan Shopee, Grab dan pickup dengan kemas, serta semak pesanan harian.</p>
+            <a class="role__link" data-role="Pembungkusan & Pesanan Online" href="https://wa.me/60166231662" target="_blank" rel="noopener">Mohon via WhatsApp</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cawangan (tab peta: Peringgit Jaya / Kota Syahbandar) ===== -->
+    <section class="section" id="lokasi">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Cawangan &amp; waktu</p>
+          <h2>Dua kedai, <em>satu resipi</em></h2>
+        </header>
+
+        <div class="branches reveal">
+          <div class="branch-tabs" role="tablist" aria-label="Pilih cawangan">
+            <button class="branch-tab is-active" role="tab" id="btab-pj" aria-selected="true" aria-controls="branch-pj">Peringgit Jaya</button>
+            <button class="branch-tab" role="tab" id="btab-ksb" aria-selected="false" aria-controls="branch-ksb" tabindex="-1">Kota Syahbandar</button>
+          </div>
+
+          <div class="branch is-active" id="branch-pj" role="tabpanel" aria-labelledby="btab-pj" data-map="https://maps.google.com/maps?cid=2174281737394900751&amp;z=17&amp;output=embed">
+            <div class="branch__info">
+              <address>375K, Jalan Melor 1/1, Taman Peringgit Jaya,<br>75400 Melaka</address>
+              <p class="status" data-branch="pj"></p>
+              <table class="hours">
+                <caption class="sr-only">Waktu operasi Peringgit Jaya</caption>
+                <tbody>
+                  <tr><th scope="row">Isnin – Ahad</th><td>10:00 pagi – 6:30 ptg</td></tr>
+                  <tr><th scope="row">Cuti umum</th><td class="closed">Tutup</td></tr>
+                </tbody>
+              </table>
+              <div class="btn-row">
+                <a class="btn btn--ink" href="https://maps.google.com/?cid=2174281737394900751" target="_blank" rel="noopener">Google Maps</a>
+                <a class="btn btn--line" href="https://www.waze.com/ms/live-map/directions/my/melaka/melaka/sudo-bakery-peringgit-jaya?to=place.ChIJ-8GdumPv0TERD88KZ7iZLB4" target="_blank" rel="noopener">Waze</a>
+                <a class="btn btn--line" href="tel:+60166231662">016-623 1662</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch" id="branch-ksb" role="tabpanel" aria-labelledby="btab-ksb" data-map="https://maps.google.com/maps?cid=15332739537214601974&amp;z=17&amp;output=embed" hidden>
+            <div class="branch__info">
+              <address>2A-G, Jalan KSB 15, Taman Kota Syahbandar,<br>75200 Melaka</address>
+              <p class="status" data-branch="ksb"></p>
+              <table class="hours">
+                <caption class="sr-only">Waktu operasi Kota Syahbandar</caption>
+                <tbody>
+                  <tr><th scope="row">Rabu – Ahad</th><td>9:00 pagi – 6:00 ptg</td></tr>
+                  <tr><th scope="row">Isnin &amp; Selasa</th><td class="closed">Tutup</td></tr>
+                </tbody>
+              </table>
+              <div class="btn-row">
+                <a class="btn btn--ink" href="https://maps.google.com/?cid=15332739537214601974" target="_blank" rel="noopener">Google Maps</a>
+                <a class="btn btn--line" href="https://waze.com/ul?q=Sudo%20Bakery%20Kota%20Syahbandar&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
+                <button class="btn btn--line" type="button" data-lightbox="img/servis/opening%20hours.png">Poster waktu</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Satu iframe peta dikongsi; src ditukar ikut tab cawangan (js/main.js) -->
+          <div class="map">
+            <iframe id="branchMap" title="Peta lokasi Sudo Bakery" src="https://maps.google.com/maps?cid=2174281737394900751&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Soalan lazim ===== -->
+    <section class="section section--cream" id="faq">
+      <div class="container faq">
+        <header class="section__head reveal">
+          <p class="eyebrow">Soalan lazim</p>
+          <h2>Sebelum <em>anda singgah</em></h2>
+        </header>
+        <div class="faq__list reveal">
+          <details>
+            <summary>Apa beza sourdough dengan roti biasa?</summary>
+            <p>Sourdough ditapai perlahan menggunakan ragi semula jadi (starter), bukan yis segera. Hasilnya kerak lebih rangup, isi kenyal dan rasa sedikit masam yang khas.</p>
+          </details>
+          <details>
+            <summary>Bila cawangan dibuka?</summary>
+            <p>Peringgit Jaya: setiap hari 10:00 pagi – 6:30 petang (tutup pada cuti umum). Kota Syahbandar: Rabu hingga Ahad 9:00 pagi – 6:00 petang, tutup Isnin dan Selasa.</p>
+          </details>
+          <details>
+            <summary>Boleh tempah dahulu dan ambil sendiri?</summary>
+            <p>Boleh. Gunakan pautan Order &amp; Pickup untuk tempah melalui WhatsApp, kemudian ambil di cawangan Peringgit Jaya.</p>
+          </details>
+          <details>
+            <summary>Boleh hantar ke luar Melaka?</summary>
+            <p>Boleh melalui kedai Shopee Sudo, dengan penghantaran ke seluruh Malaysia. Untuk sekitar Melaka, Sudo juga ada di GrabMart.</p>
+          </details>
+          <details>
+            <summary>Apa itu Sudoku Membership?</summary>
+            <p>Keahlian RM25 dengan 3% cash back tanpa tarikh luput, promosi Members' Day, harga ahli untuk produk baharu dan beg jut percuma. Daftar di kaunter.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <span class="brand__mark brand__mark--lg"><img src="img/logo/logo.png" alt="" width="500" height="500" loading="lazy"></span>
+        <div>
+          <strong>Sudo Bakery</strong>
+          <p class="footer__jp">须藤パン屋</p>
+          <p>Handmade · Fresh · Wholesome. Roti sourdough artisan dari Melaka.</p>
+        </div>
+      </div>
+      <div>
+        <h3>Hubungi</h3>
+        <ul class="footer__list">
+          <li><a href="tel:+60166231662">016-623 1662</a></li>
+          <li><a href="mailto:sudobakery@gmail.com">sudobakery@gmail.com</a></li>
+          <li><a href="https://linktr.ee/sudobakery" target="_blank" rel="noopener">linktr.ee/sudobakery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Cawangan</h3>
+        <ul class="footer__list">
+          <li>Peringgit Jaya · setiap hari 10 pg – 6:30 ptg</li>
+          <li>Kota Syahbandar · Rabu – Ahad 9 pg – 6 ptg</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ikuti kami</h3>
+        <div class="social">
+          <a href="https://www.instagram.com/sudobakery_/" target="_blank" rel="noopener" aria-label="Instagram @sudobakery_">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3"/></svg>
+          </a>
+          <a href="https://www.facebook.com/sudobakery" target="_blank" rel="noopener" aria-label="Facebook Sudo Bakery">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z"/></svg>
+          </a>
+          <a href="https://www.rednote.com/user/profile/64cbc888000000000b006338" target="_blank" rel="noopener" aria-label="RedNote (Xiaohongshu) Sudo Bakery" class="social__text">小红书</a>
+          <a href="https://shopee.com.my/sudobakery" target="_blank" rel="noopener" aria-label="Kedai Shopee Sudo Bakery">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 8a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> Sudo Bakery. Hak cipta terpelihara.</p>
+      <p>Melaka, Malaysia</p>
+    </div>
+  </footer>
+
+  <!-- Butang WhatsApp terapung (desktop & tablet) -->
+  <a class="wa-float" href="https://wa.me/60166231662?text=Hai%20Sudo%20Bakery%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="WhatsApp Sudo Bakery">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.2.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.2z"/></svg>
+  </a>
+
+  <!-- Bar tindakan bawah (telefon sahaja) -->
+  <nav class="action-bar" aria-label="Tindakan pantas">
+    <a href="tel:+60166231662">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      Telefon
+    </a>
+    <a class="is-primary" href="https://tr.ee/HSjuLWpud5" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+      Order
+    </a>
+    <a href="#lokasi">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      Cawangan
+    </a>
+  </nav>
+
+  <!-- Lightbox gambar (dialog asli browser) -->
+  <dialog class="lightbox" id="lightbox" aria-label="Paparan gambar">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Tutup gambar">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
